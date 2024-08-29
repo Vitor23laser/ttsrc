@@ -10,7 +10,7 @@ from datetime import timedelta
 # Direct Specific Modules
 #################################################################
 from direct.directnotify import DirectNotifyGlobal
-from direct.showbase.PythonUtil import Enum, SingletonError
+from direct.showbase.PythonUtil import SingletonError
 from direct.task import Task
 
 #################################################################
@@ -52,16 +52,14 @@ from toontown.ai import SillyMeterHolidayAI
 #################################################################
 import random
 import time
+import enum
 
 #################################################################
 # Global Enumerations and Constants
 #################################################################
-Month = Enum('JANUARY, FEBRUARY, MARCH, APRIL, \
-              MAY, JUNE, JULY, AUGUST, SEPTEMBER, \
-              OCTOBER, NOVEMBER, DECEMBER', 1)
+Month = enum.IntEnum('Month', ('JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'), start=1)
 
-Day = Enum('MONDAY, TUESDAY, WEDNESDAY, THURSDAY, \
-            FRIDAY, SATURDAY, SUNDAY')
+Day = enum.IntEnum('Day', ('MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'), start=0)
 
 OncelyMultipleStartHolidays = (ToontownGlobals.COLD_CALLER_INVASION,
                                ToontownGlobals.BEAN_COUNTER_INVASION,

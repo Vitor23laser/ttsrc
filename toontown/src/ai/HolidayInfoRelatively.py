@@ -16,11 +16,19 @@ from toontown.ai.HolidayInfo import *
 import calendar
 import random
 import time
+import enum
 from copy import deepcopy
 
-Day = Enum('MONDAY, TUESDAY, WEDNESDAY, THURSDAY, \
-            FRIDAY, SATURDAY, SUNDAY')
-            
+Day = enum.IntEnum('Day', (
+    'MONDAY',
+    'TUESDAY',
+    'WEDNESDAY',
+    'THURSDAY',
+    'FRIDAY',
+    'SATURDAY',
+    'SUNDAY'
+))
+
 #################################################################
 # Class: HolidayInfo_Relatively
 # Purpose: Stores all relevant information regarding an event,
@@ -46,12 +54,12 @@ class HolidayInfo_Relatively(HolidayInfo_Base):
         HolidayInfo_Base.__init__(self, holidayClass, displayOnCalendar)
 
         dateElemIter = ModifiedIter(dateList)
-        for i in range(len(dateList)/2):
+        for i in range(len(dateList)//2):
             start = dateElemIter.current()
-            end = next(dateElemIter)
+            end = dateElemIter.next()
 
             self.tupleList.append((start, end))
-            next(dateElemIter)
+            dateElemIter.next()
 
         self.tupleList.sort(cmpDates)
         self.weekDaysInMonth = []                       # A matrix of the number of times a weekday repeats in a month
@@ -62,14 +70,14 @@ class HolidayInfo_Relatively(HolidayInfo_Base):
                                                         # one more time than the other days.
         for i in range(7):                              # The minimum number of times a day repeats in a month
             self.weekDaysInMonth.append((i,4))
-            
+
     ############################################################
     # Method: initRepMatrix
     # Initialize the number of times weekdays get
     # repeated in a month method.
     ############################################################
     def initRepMatrix(self, year, month):
-        
+
         for i in range(7):
             self.weekDaysInMonth[i] = (i,4)
 
@@ -111,7 +119,7 @@ class HolidayInfo_Relatively(HolidayInfo_Base):
                             0,
                             0,
                             -1))
-                            
+
     #############################################################
     # Method: getStartTime
     # Purpose: This method returns the current start time of
@@ -146,7 +154,7 @@ class HolidayInfo_Relatively(HolidayInfo_Base):
     def getNextHolidayTime(self, currTime):
         sCurrYear = time.localtime()[0]
         eCurrYear = sCurrYear
-                
+
         for i in range(len(self.tupleList)):
             startTuple, endTuple = self.getUpdatedTuples(self.currElemIter.peekNext())
             sMonth = startTuple[0]
@@ -221,7 +229,7 @@ class HolidayInfo_Relatively(HolidayInfo_Base):
                 sTime = self.getTime((sCurrYear,), startTuple)
                 eTime = self.getTime((eCurrYear,), endTuple)
 
-            next(self.currElemIter)
+            self.currElemIter.next()
             if (currTime < eTime):
                 return sTime
 
@@ -264,7 +272,7 @@ class HolidayInfo_Relatively(HolidayInfo_Base):
                 eTuple[0] += 1
                 eTuple[1] = 1
         return sTuple, eTuple
-    
+
     ############################################################
     # Method: dayForWeekday(month, weekday, repNum)
     # Returns the day for a given weekday that has repeated

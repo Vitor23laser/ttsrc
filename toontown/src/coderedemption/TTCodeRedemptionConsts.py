@@ -1,8 +1,8 @@
+import enum
+
 DefaultDbName = 'tt_code_redemption'
 
-RedeemErrors = Enum(
-    'Success, CodeDoesntExist, CodeIsExpired, CodeAlreadyRedeemed, AwardCouldntBeGiven, '
-    'TooManyAttempts, SystemUnavailable, ')
+RedeemErrors = enum.IntEnum('RedeemErrors', ('Success', 'CodeDoesntExist', 'CodeIsExpired', 'CodeAlreadyRedeemed', 'AwardCouldntBeGiven', 'TooManyAttempts', 'SystemUnavailable'))
 
 # for ~code response
 RedeemErrorStrings = {

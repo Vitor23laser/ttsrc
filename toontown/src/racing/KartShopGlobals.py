@@ -6,9 +6,10 @@
 ##########################################################################
 
 from direct.showbase import PythonUtil
+import enum
 
-class KartShopGlobals:  
-        EVENTDICT = { 'guiDone' : 'guiDone', 
+class KartShopGlobals:
+        EVENTDICT = { 'guiDone' : 'guiDone',
                       'returnKart' : 'returnKart',
                       'buyKart' : 'buyAKart',
                       'buyAccessory' : 'buyAccessory'
@@ -25,7 +26,7 @@ class KartGlobals:
         BOARDING_TIME = 10.0
         ENTER_RACE_TIME = 6.0
 
-        ERROR_CODE = PythonUtil.Enum( 'success, eGeneric, eTickets, eBoardOver, eNoKart, eOccupied, eTrackClosed, eTooLate, eUnpaid' )
+        ERROR_CODE = enum.IntEnum('ERROR_CODE', ('success', 'eGeneric', 'eTickets', 'eBoardOver', 'eNoKart', 'eOccupied', 'eTrackClosed', 'eTooLate', 'eUnpaid'))
 
         # Kart Pad Locations
         FRONT_LEFT_SPOT = 0

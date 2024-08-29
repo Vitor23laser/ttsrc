@@ -1,14 +1,15 @@
 """PetTricks.py"""
 
-from direct.showbase.PythonUtil import Enum, invertDictLossless
+from direct.showbase.PythonUtil import invertDictLossless
 from direct.interval.IntervalGlobal import *
 import types
 import random
+import enum
 
 # ONLY ADD TRICKS JUST BEFORE 'BALK'
 # BALK is not really a trick; it's what the pets do if they don't do the trick
 # correctly. Keep it at the end of the Enum.
-Tricks = Enum('JUMP, BEG, PLAYDEAD, ROLLOVER, BACKFLIP, DANCE, SPEAK, BALK,')
+Tricks = enum.IntEnum('Tricks', ('JUMP', 'BEG', 'PLAYDEAD', 'ROLLOVER', 'BACKFLIP', 'DANCE', 'SPEAK', 'BALK'), start=0)
 assert Tricks.BALK == len(Tricks)-1
 
 # these are what aptitude 0. and 1. map to in an actual random range of [0,1]

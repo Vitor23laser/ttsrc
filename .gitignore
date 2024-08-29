@@ -1,4 +1,5 @@
 built
+built-switch
 builtTT
 *.pyc
 *.pyo
@@ -13,3 +14,4 @@ news/*
 useropt
 inject.py
 *.log
+app

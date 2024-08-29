@@ -1,8 +1,24 @@
-GiveAwardErrors = Enum('Success, WrongGender, NotGiftable, FullMailbox, FullAwardMailbox, AlreadyInMailbox, AlreadyInGiftQueue, '
-                       'AlreadyInOrderedQueue, AlreadyInCloset, AlreadyBeingWorn, AlreadyInAwardMailbox, '
-                       'AlreadyInThirtyMinuteQueue, AlreadyInMyPhrases, AlreadyKnowDoodleTraining, '
-                       'GenericAlreadyHaveError, UnknownError, UnknownToon, '
-                       )
+import enum
+
+GiveAwardErrors = enum.IntEnum('GiveAwardErrors', (
+    'Success',
+    'WrongGender',
+    'NotGiftable',
+    'FullMailbox',
+    'FullAwardMailbox',
+    'AlreadyInMailbox',
+    'AlreadyInGiftQueue',
+    'AlreadyInOrderedQueue',
+    'AlreadyInCloset',
+    'AlreadyBeingWorn',
+    'AlreadyInAwardMailbox',
+    'AlreadyInThirtyMinuteQueue',
+    'AlreadyInMyPhrases',
+    'AlreadyKnowDoodleTraining',
+    'GenericAlreadyHaveError',
+    'UnknownError',
+    'UnknownToon'
+))
 
 GiveAwardErrorStrings = {
     GiveAwardErrors.Success: "success",

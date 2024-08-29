@@ -1,7 +1,8 @@
 from direct.directnotify import DirectNotifyGlobal
-from direct.showbase.PythonUtil import list2dict, Enum
+from direct.showbase.PythonUtil import list2dict
 from toontown.pets import PetTricks
 import types
+import enum
 
 notify = DirectNotifyGlobal.directNotify.newCategory('PetObserve')
 
@@ -27,18 +28,18 @@ def send(zoneIds, petObserve):
             messenger.send(getEventName(zoneId), [petObserve])
 
 # spoken messages that pets understand; speedchat phrases map to one of these
-Phrases = Enum('HI, BYE, YES, NO, SOOTHE, PRAISE, CRITICISM, HAPPY,'
-               'SAD, ANGRY, HURRY, QUESTION, FRIENDLY, LETS_PLAY,'
-               'COME, FOLLOW_ME, STAY, NEED_LAFF, NEED_GAGS, NEED_JB,'
-               'GO_AWAY, DO_TRICK,'
-               )
+Phrases = enum.IntEnum('Phrases', ('HI', 'BYE', 'YES', 'NO', 'SOOTHE', 'PRAISE', 'CRITICISM', 'HAPPY',
+               'SAD', 'ANGRY', 'HURRY', 'QUESTION', 'FRIENDLY', 'LETS_PLAY',
+               'COME', 'FOLLOW_ME', 'STAY', 'NEED_LAFF', 'NEED_GAGS', 'NEED_JB',
+               'GO_AWAY', 'DO_TRICK')
+)
 # actions of other avatars that the pet can observe
-Actions = Enum('FEED, SCRATCH,'
-               'ATTENDED_START, ATTENDED_STOP,'
-               'ATTENDING_START, ATTENDING_STOP,'
-               'CHANGE_ZONE, LOGOUT,'
-               'GARDEN'
-               )
+Actions = enum.IntEnum('Actions', ('FEED', 'SCRATCH',
+               'ATTENDED_START', 'ATTENDED_STOP',
+               'ATTENDING_START', 'ATTENDING_STOP',
+               'CHANGE_ZONE', 'LOGOUT',
+               'GARDEN')
+)
 
 class PetObserve:
     # base class for all pet observes
@@ -70,7 +71,7 @@ class PetActionObserve(PetObserve):
         return self.avId
     def getData(self):
         return self.data
-    
+
     def _influence(self, petBrain):
         petBrain._handleActionObserve(self)
     def __repr__(self):

@@ -1,6 +1,6 @@
 ##########################################################################
 # Module: KartDNA.py
-# Purpose: The KartDNA Module provides the 
+# Purpose: The KartDNA Module provides the
 #
 #
 #
@@ -11,11 +11,11 @@
 ##########################################################################
 #from direct.directbase import DirectStart
 from direct.directnotify import DirectNotifyGlobal
-from direct.showbase import PythonUtil
 from toontown.toonbase import TTLocalizer
 from pandac.PandaModules import *
 from .KartShopGlobals import *
 import types
+import enum
 
 ##########################################################################
 # Python Import Modules
@@ -38,12 +38,22 @@ import copy
 ##########################################################################
 # KartDNA Globals and Enumerations
 ##########################################################################
-KartDNA = PythonUtil.Enum( "bodyType, bodyColor, accColor, \
-                            ebType, spType, fwwType, \
-                            bwwType, rimsType, decalType" )
+KartDNA = enum.IntEnum("KartDNA", (
+    "bodyType",
+    "bodyColor",
+    "accColor",
+    "ebType",
+    "spType",
+    "fwwType",
+    "bwwType",
+    "rimsType",
+    "decalType"
+),
+    start=0
+)
 InvalidEntry = -1
-KartInfo = PythonUtil.Enum("name, model, cost, viewDist, decalId, LODmodel1, LODmodel2")
-AccInfo =  PythonUtil.Enum("name, model, cost, texCard, attach")
+KartInfo = enum.IntEnum("KartInfo", ("name", "model", "cost", "viewDist", "decalId", "LODmodel1", "LODmodel2"), start=0)
+AccInfo =  enum.IntEnum("AccInfo", ("name", "model", "cost", "texCard," "attach"), start=0)
 ##########################################################################
 # Global Accessory Dictionaries
 ##########################################################################
@@ -97,7 +107,7 @@ AccessoryDict = { #name, model/color, cost, texCard_Node, Attach_Node
     26 : (aNames[3007], "phase_6/models/karting/accessory_front_ww_7", 450, "accessory_front_ww_7_gui", "%sFWWNode_2"), # Wood Running Boards
 #    28 : (aNames[3008], "phase_6/models/karting/accessory_front_ww_1", 28, "", "%sFWWNode_1"),
 #    29 : (aNames[3009], "phase_6/models/karting/accessory_front_ww_1", 29, "", "%sFWWNode_1"),
-    
+
     # Initial 10 Back Wheel Well Accessories
     27 : (aNames[4000], "phase_6/models/karting/accessory_rear_ww_0", 800, "accessory_rear_ww_0_gui", "%sBWWNode_0"), # Curly Tailpipes
     28 : (aNames[4001], "phase_6/models/karting/accessory_rear_ww_1", 200, "accessory_rear_ww_1_gui", "%sBWWNode_1"), # Splash Fenders
@@ -129,7 +139,7 @@ AccessoryDict = { #name, model/color, cost, texCard_Node, Attach_Node
     52 : (aNames[5012], "phase_6/maps/kart_Rim_13", 450, "kart_Rim_13", ), # gem
     53 : (aNames[5013], "phase_6/maps/kart_Rim_14", 1250, "kart_Rim_14", ), # 6 spoke
     54 : (aNames[5014], "phase_6/maps/kart_Rim_15", 5000, "kart_Rim_15", ), # wire
-    
+
     # Initial 10 Decal IDs - textures are not
     # generic like rims, thus the need for
     # the texture ids which are found in the
@@ -187,7 +197,7 @@ AccessoryTypeDict = {
     KartDNA.bodyColor : [ 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80,
                           81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91 ],
     }
-    
+
 #these are the localizer variable namess for these accessory types
 AccessoryTypeNameDict = [None,"KartShtikerBodyColor", "KartShtikerAccColor",
                         "KartShtikerEngineBlock","KartShtikerSpoiler",
@@ -255,7 +265,7 @@ def checkKartDNAValidity( dna ):
     #print str(AccessoryTypeDict)
     # Provide Range checking for each dna field
     for field in range( len( dna ) ):
-        if( field == KartDNA.bodyType ):           
+        if( field == KartDNA.bodyType ):
             if( not dna[ field ] in list(KartDict.keys()) ):
                 return 0
         elif( field == KartDNA.bodyColor or field == KartDNA.accColor ):
@@ -272,7 +282,7 @@ def checkKartDNAValidity( dna ):
                 #print accList
                 return 0
 
-    return 1 
+    return 1
 
 def getDefaultColor():
     """
@@ -319,7 +329,7 @@ def getKartTypeInfo( type ):
     returns the appropriate information about the kart.
 
     Params: type - The numerical index representing the kart type.
-    
+
     Return: (name, dna, cost ) - The name, model file, and cost of this kart.
     """
     if( type in list(KartDict.keys()) ):
@@ -333,14 +343,14 @@ def getAccessoryInfo( index ):
     returns the appropriate information about that accessory.
 
     Params: type - The numerical index representing the kaccessory.
-    
+
     Return: (name, model, cost ) - The name, model file, and cost of this accessory.
     """
     if( index in list(AccessoryDict.keys()) ):
             return AccessoryDict[index]
 
     return InvalidEntry
-    
+
 def getAccessoryType( accessoryId ):
     """
     Purpose: The getAccessoryType Method accepts an accessory id, and
@@ -371,7 +381,7 @@ def getAccessoryDictFromOwned( accessoryOwnedList, pType=-1 ):
 
     #remove default rim #this is the simpliest, chepest way to do this, not the most elegant!
     accessDict[KartDNA.rimsType].remove(getDefaultRim())
-            
+
     # Determine the accessory type for each accessory owned, then remove
     # it from the corresponding type list in the accessDict.
     for accOwnedId in accessoryOwnedList:
@@ -381,7 +391,7 @@ def getAccessoryDictFromOwned( accessoryOwnedList, pType=-1 ):
 
     if pType != -1: #request for specific type only
         return accessDict[pType]
-    else: 
+    else:
         return accessDict
 
 def getAccessDictByType( accessoryOwnedList ):
@@ -409,7 +419,7 @@ def getAccessDictByType( accessoryOwnedList ):
 def getKartCost( kartID):
         """
         Purpose: Calculates and returns the cost of a particular Kart.
-        
+
         Params: kartID - the id of the kart in question
         Return: cost - the cost of the Kart
         """
@@ -417,21 +427,21 @@ def getKartCost( kartID):
             return KartDict[kartID][KartInfo.cost]
         else:
             return "key error"
-        
-        
+
+
 def getAccCost( accID):
         """
         Purpose: Calculates and returns the cost of a particular Kart accessory.
-        
+
         Params: accID - the id of the kart accessory in question
         Return: cost - the cost of the Kart accessory
         """
         return AccessoryDict[accID][AccInfo.cost]
-        
+
 def getAccName( accID):
         """
         Purpose: Returns this accessories name from the current localizer
-        
+
         Params: accID - the id of the kart accessory in question
         Return: name - the name of the Kart accessory
         """

@@ -1,7 +1,7 @@
-from direct.showbase.PythonUtil import randFloat, normalDistrib, Enum
+from direct.showbase.PythonUtil import randFloat, normalDistrib
 from direct.showbase.PythonUtil import clampScalar
 from toontown.toonbase import TTLocalizer, ToontownGlobals
-import random, copy
+import random, copy, enum
 
 # this should match the DC
 TraitDivisor = 10000
@@ -27,9 +27,9 @@ class TraitDistribution:
     # trait value. Traits are in [0..1]
 
     # these are classifications for pet traits
-    TraitQuality = Enum('VERY_BAD, BAD, AVERAGE, GOOD, VERY_GOOD')
+    TraitQuality = enum.IntEnum('TraitQuality', ('VERY_BAD', 'BAD', 'AVERAGE', 'GOOD', 'VERY_GOOD'))
     # INCREASING means higher value is better
-    TraitTypes = Enum('INCREASING, DECREASING')
+    TraitTypes = enum.IntEnum('TraitTypes', ('INCREASING', 'DECREASING'))
 
     # subclasses should set this to a table of szId: (min, max)
     Sz2MinMax = None
@@ -235,7 +235,7 @@ class PetTraits:
         def __repr__(self):
             return ('Trait: %s, %s, %s, %s' % (
                 self.name, self.value,
-                TraitDistribution.TraitQuality.getString(self.quality),
+                TraitDistribution.TraitQuality(self.quality).name,
                 self.howExtreme))
 
     def __init__(self, traitSeed, safeZoneId, traitValueList=[]):
@@ -246,7 +246,7 @@ class PetTraits:
         self.traitSeed = traitSeed
         self.safeZoneId = safeZoneId
         self.rng = random.Random(self.traitSeed)
-        
+
         # create dictionary of trait name to Trait object
         self.traits = {}
         for i in range(len(PetTraits.TraitDescs)):
@@ -260,7 +260,7 @@ class PetTraits:
             self.traits[trait.name] = trait
             # add a copy of the trait value on ourselves
             self.__dict__[trait.name] = trait.value
-            
+
         # pre-calculate the extreme traits, ordered by... extremity-ness
         extremeTraits = []
         for trait in list(self.traits.values()):

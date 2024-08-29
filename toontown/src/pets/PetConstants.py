@@ -1,7 +1,8 @@
 from pandac.PandaModules import *
-from direct.showbase.PythonUtil import Enum, invertDictLossless
+from direct.showbase.PythonUtil import invertDictLossless
 import math
 from toontown.toonbase import ToontownGlobals
+import enum
 
 # This is a bboard key for a bool that, if True, indicates that we know
 # that the mood of localAvatar's pet has changed in the DB. If true, upon
@@ -69,7 +70,7 @@ GettingAttentionGoalScaleDur = 7.
 
 # these are general, high-level moods that directly correspond to the sets
 # of body animations (walk, neutral) that we have for the pets
-AnimMoods = Enum('EXCITED, SAD, NEUTRAL')
+AnimMoods = enum.IntEnum('AnimMoods', ('EXCITED', 'SAD', 'NEUTRAL'))
 
 # movement speeds
 FwdSpeed = 12.

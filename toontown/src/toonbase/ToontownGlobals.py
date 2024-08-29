@@ -5,8 +5,9 @@ may have meaning to several classes.
 
 from . import TTLocalizer
 from otp.otpbase.OTPGlobals import *
-from direct.showbase.PythonUtil import Enum, invertDict
+from direct.showbase.PythonUtil import invertDict
 from pandac.PandaModules import BitMask32, Vec4
+import enum
 
 AccountDatabaseChannelId = 4008
 ToonDatabaseChannelId = 4021
@@ -1554,7 +1555,7 @@ gmMagicWordList = [
 
 NewsPageScaleAdjust = 0.85
 # Prop types for the new animating props
-AnimPropTypes = Enum(("Unknown",
+AnimPropTypes = enum.IntEnum("AnimPropTypes", ("Unknown",
                       "Hydrant",
                       "Mailbox",
                       "Trashcan",
