@@ -3,13 +3,15 @@
 # Created: Aug 2008
 #
 # Purpose: Central location for Toontown Parties' variables
-#------------------------------------------------------------------------------- 
+#-------------------------------------------------------------------------------
 from pandac.PandaModules import BitMask32
 from pandac.PandaModules import Point3, VBase4
 
 from direct.showbase import PythonUtil
 
 from toontown.toonbase import TTLocalizer
+
+import enum
 
 # This event is dispatched when
 # the DistributedPartyManager kicks a toon back to the playground
@@ -75,14 +77,14 @@ TrashCanScale = 0.7
 PartyEditorTrashBounds = ((-0.16, -0.38), (-0.05, -0.56))
 
 
-ActivityRequestStatus = PythonUtil.Enum(
+ActivityRequestStatus = enum.IntEnum("ActivityRequestStatus",
     (
         "Joining",
         "Exiting",
     ),
 )
 
-InviteStatus = PythonUtil.Enum(
+InviteStatus = enum.IntEnum("InviteStatus",
     (
         "NotRead",
         "ReadButNotReplied",
@@ -91,7 +93,7 @@ InviteStatus = PythonUtil.Enum(
     ),
 )
 
-InviteTheme = PythonUtil.Enum(
+InviteTheme = enum.IntEnum("InviteTheme",
     (
         "Birthday",
         "GenericMale",
@@ -100,9 +102,9 @@ InviteTheme = PythonUtil.Enum(
         "Valentoons",
         "VictoryParty",
     ),
-)
+start=0)
 
-PartyStatus = PythonUtil.Enum(
+PartyStatus = enum.IntEnum("PartyStatus",
     (
         "Pending", # party's start time is still in the future
         "Cancelled", # user cancelled this party
@@ -110,22 +112,22 @@ PartyStatus = PythonUtil.Enum(
         "CanStart", # party can start, time is good, go button hasn't been hit yet
         "Started", # Party has started
         "NeverStarted", # End time has passed, party was never started
-    )
-)
+    ),
+start=0)
 
 # TODO For all error codes add differentiation between
 # the different ways validation and database errors can fail
-AddPartyErrorCode = PythonUtil.Enum(
+AddPartyErrorCode = enum.IntEnum("AddPartyErrorCode",
     (
         "AllOk",
         "ValidationError",
         "DatabaseError",
-        "TooManyHostedParties",    
+        "TooManyHostedParties",
     ),
 )
 
 # used by both changePrivate and changePartyStatus
-ChangePartyFieldErrorCode = PythonUtil.Enum(
+ChangePartyFieldErrorCode = enum.IntEnum("ChangePartyFieldErrorCode",
     (
         "AllOk",
         "ValidationError",
@@ -134,7 +136,7 @@ ChangePartyFieldErrorCode = PythonUtil.Enum(
     ),
 )
 
-ActivityTypes = PythonUtil.Enum(
+ActivityTypes = enum.IntEnum("ActivityTypes",
     (
         "HostInitiated",
         "GuestInitiated",
@@ -143,7 +145,7 @@ ActivityTypes = PythonUtil.Enum(
 )
 
 # reasons why a request to join a party from the party gate can fail
-PartyGateDenialReasons = PythonUtil.Enum(
+PartyGateDenialReasons = enum.IntEnum("PartyGateDenialReasons",
     (
         "Unavailable",
         "Full",
@@ -151,7 +153,7 @@ PartyGateDenialReasons = PythonUtil.Enum(
 )
 
 # Note : If this enum changes, TTLocalizer PartyActivityNameDict must change too
-ActivityIds = PythonUtil.Enum(
+ActivityIds = enum.IntEnum("ActivityIds",
     (
         "PartyJukebox",
         "PartyCannon",
@@ -186,7 +188,7 @@ PartyEditorActivityOrder = [
 
 assert (len(PartyEditorActivityOrder) == len(ActivityIds))
 
-    
+
 # a list of activity ids which we are advertising but not letting people buy
 UnreleasedActivityIds  = (
     #ActivityIds.PartyTugOfWar,
@@ -212,7 +214,7 @@ VictoryPartyReplacementActivityIds = frozenset([
     ActivityIds.PartyTrampoline, # replaced by PartyVictoryTrampoline
 ])
 
-DecorationIds = PythonUtil.Enum(
+DecorationIds = enum.IntEnum("DecorationIds",
     (
         "BalloonAnvil",
         "BalloonStage",
@@ -242,7 +244,7 @@ DecorationIds = PythonUtil.Enum(
 # Decoration sound attributes
 DECORATION_VOLUME = 1.0
 DECORATION_CUTOFF = 45
-                                   
+
 # Decoration IDs that should be available only for victory parties.
 VictoryPartyDecorationIds = frozenset([
     DecorationIds.Hydra,
@@ -267,7 +269,7 @@ UnreleasedDecorationIds  = (
     #DecorationIds.Pinwheel
     )
 
-GoToPartyStatus = PythonUtil.Enum(
+GoToPartyStatus = enum.IntEnum("GoToPartyStatus",
     (
         "AllowedToGo",
         "PartyFull",
@@ -328,7 +330,7 @@ ActivityInformationDict = {
         "limitPerParty" : 1,
         "paidOnly" : False,
         "gridAsset" : "PartyJukebox_activity_1x1",
-    },    
+    },
     ActivityIds.PartyCannon : {
         "cost" : int( 50 *PartyCostMultiplier),
         "gridsize" : (1,1),
@@ -384,7 +386,7 @@ ActivityInformationDict = {
         "limitPerParty" : 1,
         "paidOnly" : True,
         "gridAsset" : "PartyDance_activity_3x3",
-    },    
+    },
     ActivityIds.PartyTugOfWar : {
         "cost" : int(200 * PartyCostMultiplier),
         "gridsize" : (4,4),
@@ -420,7 +422,7 @@ for id in DecorationIds:
             "numberPerPurchase" : 1,
             "limitPerParty" : 5,
             "paidOnly" : False,
-            #"gridAsset" : "PartyDance_activity_3x3", 
+            #"gridAsset" : "PartyDance_activity_3x3",
             "gridAsset" : "decoration_propStage_2x2",
         }
     else:
@@ -440,13 +442,13 @@ for id in DecorationIds:
 
 DefaultRulesTimeout = 10.0
 # why a join or exit request is denied
-DenialReasons = PythonUtil.Enum(
+DenialReasons = enum.IntEnum("DenialReasons",
     (
         "Default",
         "Full",
         "SilentFail",
     ),
-    start = 0,
+    start=0,
 )
 
 #===============================================================================
@@ -457,7 +459,7 @@ DenialReasons = PythonUtil.Enum(
 # ToontownGlobals, as both are used in effects/FireworkShows as keys into the
 # shows dictionary
 
-FireworkShows = PythonUtil.Enum(
+FireworkShows = enum.IntEnum("FireworkShows",
     (
         "Summer",
     ),
@@ -482,7 +484,7 @@ FireworksTransitionToDisabledDelay = 3.0
 # Distributed Party Team Activity
 #==============================================================================
 
-TeamActivityTeams = PythonUtil.Enum(
+TeamActivityTeams = enum.IntEnum("TeamActivityTeams",
     (
         "LeftTeam",
         "RightTeam",
@@ -494,14 +496,14 @@ TeamActivityNeitherTeam = 3 # special value indicating neither team
 TeamActivityTextScale = 0.135
 
 # How long it counts down waiting for more players before it begins
-TeamActivityStartDelay = 8.0 
+TeamActivityStartDelay = 8.0
 
 TeamActivityDefaultMinPlayersPerTeam = 1
 TeamActivityDefaultMaxPlayersPerTeam = 4
 
 TeamActivityDefaultDuration = 60.0
 # How long does the tallying up results lasts
-TeamActivityDefaultConclusionDuration = 4.0 
+TeamActivityDefaultConclusionDuration = 4.0
 
 TeamActivityStatusColor = VBase4(1.0, 1.0, 0.65, 1.0)
 
@@ -524,7 +526,7 @@ CogActivityColors = (
 # The base color of the splat texture is a yellowish color
 CogActivitySplatColorBase = VBase4(.98, .9, .094, 1.0)
 
-# In order to tint it correctly, we divide the color we want by 
+# In order to tint it correctly, we divide the color we want by
 # that yellow, so when we do a setColorScale it multiplies properly.
 CogActivitySplatColors = (
     VBase4(
@@ -547,7 +549,7 @@ CogPinataHeadZ = 4.7
 CogActivityHitPoints = 1
 CogActivityHitPointsForHead = 3
 # How far to push the cog when body is hit
-CogPinataPushBodyFactor = 0.05 
+CogPinataPushBodyFactor = 0.05
 # How far to push the cog when head is hit
 CogPinataPushHeadFactor = CogPinataPushBodyFactor * abs(CogActivityHitPointsForHead - CogActivityHitPoints)
 
@@ -639,7 +641,7 @@ PARTY_COG_CUTOFF = 60
 # Party Tug of War
 #==============================================================================
 TugOfWarStartDelay = 8.0    # in seconds. wait this long to allow more players to
-                            # join after we have gotten the minimum number of 
+                            # join after we have gotten the minimum number of
                             # players
 TugOfWarReadyDuration = 1.5 # time between "ready" and "go" when starting a game
 TugOfWarGoDuration = 0.75 # time between "go" and when you can start pulling
@@ -682,7 +684,7 @@ TugOfWarTargetRateList = [
     (6.0, 10),
     (7.0, 11),
     (8.0, 12),
-] 
+]
 TugOfWarKeyPressTimeToLive = 1.0    # key presses are considered valid towards the
                                     # rate for this long
 TugOfWarKeyPressUpdateRate = 0.1    # delay between updates of the player's rate
@@ -702,12 +704,12 @@ TugOfWarLossReward = 8
 TugOfWarTieReward = 5
 TugOfWarTieThreshold = 0.75 # if the teams moved this much or less from their
                             # start position, consider it a tie
-        
+
 #===============================================================================
 # Party Trampoline
 #===============================================================================
 
-TrampolineDuration = 60.0 # kick you off the trampoline after this long 
+TrampolineDuration = 60.0 # kick you off the trampoline after this long
 TrampolineSignOffset = Point3(-6.0, -6.0, 0.0)
 TrampolineLeverOffset = Point3(-5.0, -9.0, 0.0)
 TrampolineNumJellyBeans = 12
@@ -803,7 +805,7 @@ NumFruits = [
 # Dance Activity
 #===============================================================================
 
-# TODO make DistributedDanceFloorBase to support 8, 16 and 24 move Dance floors 
+# TODO make DistributedDanceFloorBase to support 8, 16 and 24 move Dance floors
 
 # rule first 3 letters must be unique
 # Dance Patterns to Animations
@@ -811,25 +813,25 @@ DancePatternToAnims = {
 #    "ddd" : "down",
     "dduu" : "slip-backward",
 #    "drul" : "sad-walk",
-#    "ldr" : "push",    
+#    "ldr" : "push",
     "ldddud" : "happy-dance",
-#    "ldu" : "sprinkle-dust",    
+#    "ldu" : "sprinkle-dust",
     "lll" : "left",
-#    "llrr" : "firehose",    
-#    "lrlr" : "wave",    
+#    "llrr" : "firehose",
+#    "lrlr" : "wave",
 #    "ludr" : "conked",
-#    "lurd" : "walk",    
+#    "lurd" : "walk",
 #    "rdl" : "shrug",
-    "rdu" : "struggle",    
-#    "rlrl" : "confused",    
+    "rdu" : "struggle",
+#    "rlrl" : "confused",
     "rrr" : "right",
-    "rulu" : "running-jump",    
+    "rulu" : "running-jump",
 #    "uddd" : "reel-neutral",
-    "udlr" : "good-putt",    
+    "udlr" : "good-putt",
 #    "udud" : "angry",
     "udllrr" : "victory",
     "ulu" : "jump",
-    "uudd" : "slip-forward",    
+    "uudd" : "slip-forward",
 #    "uuu" : "up",
     }
 
@@ -838,25 +840,25 @@ DancePatternToAnims20 = {
     "ddd" : "down",
     "dduu" : "slip-backward",
     "drul" : "sad-walk",
-    "ldr" : "push",    
+    "ldr" : "push",
     "ldddud" : "happy-dance",
-    "ldu" : "sprinkle-dust",    
+    "ldu" : "sprinkle-dust",
     "lll" : "left",
-    "llrr" : "firehose",    
-    "lrlr" : "wave",    
+    "llrr" : "firehose",
+    "lrlr" : "wave",
 #    "ludr" : "conked",
-#    "lurd" : "walk",    
+#    "lurd" : "walk",
 #    "rdl" : "shrug",
-    "rdu" : "struggle",    
-    "rlrl" : "confused",    
+    "rdu" : "struggle",
+    "rlrl" : "confused",
     "rrr" : "right",
-    "rulu" : "running-jump",    
+    "rulu" : "running-jump",
     "uddd" : "reel-neutral",
-    "udlr" : "good-putt",    
+    "udlr" : "good-putt",
     "udud" : "angry",
     "udllrr" : "victory",
     "ulu" : "jump",
-    "uudd" : "slip-forward",    
+    "uudd" : "slip-forward",
     "uuu" : "up",
     }
 
@@ -891,7 +893,7 @@ DanceAnimToName = {
 DanceReverseLoopAnims = ["left", "right", "up", "down", "good-putt"]
 
 # Used to transfer state data between clietns
-ToonDancingStates = PythonUtil.Enum(
+ToonDancingStates = enum.IntEnum("ToonDancingStates",
     (
         "Init",
         "DanceMove",
@@ -1099,7 +1101,7 @@ def countMusic():
     for key in PhaseToMusicData:
         numMusic += len(PhaseToMusicData[key])
     print("PhaseToMusicData %d" % numMusic)
-        
+
     numMusic = 0
     for key in PhaseToMusicData40:
         numMusic += len(PhaseToMusicData40[key])
@@ -1109,7 +1111,7 @@ def countMusic():
 
 
 def getMusicRepeatTimes(length, minLength=MUSIC_MIN_LENGTH_SECONDS):
-    times = round(float(minLength) / length) 
+    times = round(float(minLength) / length)
     if minLength <= 0 or times < 1.0:
         times = 1.0
     return times
@@ -1136,16 +1138,16 @@ CatchMaxTotalReward = 500 # Maximum number of beans they can get when they leave
 
 PartyCannonCollisions = {
     "clouds" : ["cloudSphere-0"],
-    
+
     "bounce" : [
         "wall_collision",
         "discoBall_collision",
         "platform_left_collision",
         "platform_right_collision",
         ],
-        
+
     "trampoline_bounce" : "TrampolineCollision",
-    
+
     "ground" : [
         "floor_collision",
         "danceFloor_collision",
@@ -1153,7 +1155,7 @@ PartyCannonCollisions = {
         "hill_collision",
         "fence_floor",
         ],
-        
+
     "fence" : [
         "dockTube1_collision",
         "dockTube2_collision",
