@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="vision" platform="win32" version="Rocket_1.7" seq="1">
+    <config display_name="Panda3D vision modules" />
+    <requires name="panda3d" platform="win32" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <uncompressed_archive filename="vision.Rocket_1.7.win32.mf" size="2567858" timestamp="1687218631" hash="cc00cdb484ec4bf99027fc3e9d375758" />
+    <compressed_archive filename="vision.Rocket_1.7.win32.mf.pz" size="1140317" timestamp="1687218631" hash="70017a3643bdb7b6f2953fdd7d58a68f" />
+    <extract filename="api-ms-win-core-debug-l1-1-0.dll" size="11984" timestamp="1631685802" hash="6c580f945147d132beb3e12f9fffda24" />
+    <extract filename="api-ms-win-core-file-l1-1-0.dll" size="15568" timestamp="1631685808" hash="4082ab9b3a739f2e1b1583aaefb2b4ee" />
+    <extract filename="api-ms-win-core-interlocked-l1-1-0.dll" size="11984" timestamp="1631685824" hash="8103ec685742c3a641ea6eb6ad5c22d1" />
+    <extract filename="api-ms-win-core-memory-l1-1-0.dll" size="12496" timestamp="1631685832" hash="2422d0a9458004421e036d2346fc65cb" />
+    <extract filename="api-ms-win-core-rtlsupport-l1-1-0.dll" size="12496" timestamp="1631685850" hash="7ef8364dc609028160c0341882256570" />
+    <extract filename="api-ms-win-crt-private-l1-1-0.dll" size="64720" timestamp="1631685896" hash="577be9d9e88204fcc2e5eba78b79279f" />
+    <extract filename="api-ms-win-crt-runtime-l1-1-0.dll" size="16592" timestamp="1631685902" hash="fe25b5d4c7d20d469184195ea06dfa11" />
+    <extract filename="api-ms-win-crt-string-l1-1-0.dll" size="18128" timestamp="1631685908" hash="d744d66821cdc6c471a976e617bddc5e" />
+    <extract filename="AVICAP32.dll" size="73216" timestamp="1686278027" hash="204b9a49df84470d0cc080cf35ca1dfd" />
+    <extract filename="AVIFIL32.dll" size="101376" timestamp="1686278032" hash="8379c3d24f26c48af5b939205ce378b0" />
+    <extract filename="cxcore100.dll" size="1011764" timestamp="1687212761" hash="3a32f6154f3f0132fbd44fa54bac72ac" />
+    <extract filename="highgui100.dll" size="626741" timestamp="1687212761" hash="d3e159a9cef48112caa5563408b16b88" />
+    <extract filename="libguide40.dll" size="196608" timestamp="1687212761" hash="e6fbcd1a1818911cc6335c0473d8ab17" />
+    <extract filename="libp3vision.dll" size="173056" timestamp="1687213501" hash="94f1eeb04447853335d4fbaf8ca58f05" />
+    <extract filename="msacm32.dll" size="91904" timestamp="1686278000" hash="1ab1c0eac3bd216cbd17e6a7622f4837" />
+    <extract filename="MSVFW32.dll" size="128512" timestamp="1686278006" hash="09685f24d7be9bb5380a868538610146" />
+</package>

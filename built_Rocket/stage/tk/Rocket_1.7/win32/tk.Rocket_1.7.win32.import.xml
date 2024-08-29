@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="tk" platform="win32" version="Rocket_1.7" host="http://download.sunrise.games/runtime" seq="1">
+    <requires name="panda3d" platform="win32" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <component filename="_ctypes.pyd" />
+    <component filename="_tkinter.pyd" />
+    <component filename="tcl85.dll" />
+    <component filename="tk85.dll" />
+    <module name="_ctypes" />
+    <module name="_tkinter" />
+    <module name="ctypes" />
+    <module name="ctypes._endian" />
+    <module name="direct.showbase.TkGlobal" />
+    <module name="direct.tkpanels" />
+    <module name="direct.tkpanels.NotifyPanel" />
+    <module name="direct.tkpanels.Placer" />
+    <module name="direct.tkpanels.TaskManagerPanel" />
+    <module name="direct.tkwidgets" />
+    <module name="direct.tkwidgets.AppShell" />
+    <module name="direct.tkwidgets.Dial" />
+    <module name="direct.tkwidgets.EntryScale" />
+    <module name="direct.tkwidgets.Floater" />
+    <module name="direct.tkwidgets.ProgressBar" />
+    <module name="direct.tkwidgets.SceneGraphExplorer" />
+    <module name="direct.tkwidgets.Slider" />
+    <module name="direct.tkwidgets.Tree" />
+    <module name="direct.tkwidgets.Valuator" />
+    <module name="direct.tkwidgets.VectorWidgets" />
+    <module name="direct.tkwidgets.WidgetPropertiesDialog" />
+    <module name="FixTk" />
+    <module name="tkColorChooser" />
+    <module name="Tkconstants" />
+    <module name="tkFileDialog" />
+    <module name="Tkinter" />
+</package>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="openal" platform="win32" version="Rocket_1.7" host="http://download.sunrise.games/runtime" seq="1">
+    <requires name="panda3d" platform="win32" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <component filename="libp3openal_audio.dll" />
+    <component filename="openal.prc" />
+    <component filename="OpenAL32.dll" />
+</package>

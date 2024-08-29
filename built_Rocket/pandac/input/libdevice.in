@@ -1,0 +1,1272 @@
+1687212879
+2 2
+9 libdevice 4 OfOP 5 panda 
+55
+54 24 fork_asynchronous_thread 4 109 36 ClientBase::fork_asynchronous_thread 0 1 1 612
+////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::fork_asynchronous_thread
+//       Access: Public
+//  Description: Forks a separate thread to do all the polling of
+//               connected devices.  The forked thread will poll after
+//               every poll_time seconds has elapsed.  Returns true if
+//               the fork was successful, or false otherwise (for
+//               instance, because we were already forked, or because
+//               asynchronous threads are disabled).
+////////////////////////////////////////////////////////////////////
+60
+bool ClientBase::fork_asynchronous_thread(double poll_time);
+
+55 9 is_forked 4 109 21 ClientBase::is_forked 0 1 2 854
+// Filename: clientBase.I
+// Created by:  drose (25Jan01)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::is_forked
+//       Access: Public
+//  Description: Returns true if the ClientBase has been forked (and,
+//               therefore, poll() does not need to be called), false
+//               otherwise.
+////////////////////////////////////////////////////////////////////
+46
+inline bool ClientBase::is_forked(void) const;
+
+56 4 poll 4 109 16 ClientBase::poll 0 1 3 429
+////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::poll
+//       Access: Public
+//  Description: Initiates a poll of the client devices, if we are not
+//               forked and if we have not already polled this frame.
+//               Returns true if the poll occurred, or false if it did
+//               not.
+////////////////////////////////////////////////////////////////////
+35
+inline bool ClientBase::poll(void);
+
+57 18 get_last_poll_time 4 109 30 ClientBase::get_last_poll_time 0 1 4 365
+////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::get_last_poll_time
+//       Access: Public
+//  Description: Returns the time (according to the global
+//               ClockObject's get_real_time() method) of the last
+//               device poll.
+////////////////////////////////////////////////////////////////////
+57
+inline double ClientBase::get_last_poll_time(void) const;
+
+58 21 set_coordinate_system 4 109 33 ClientBase::set_coordinate_system 0 1 5 390
+////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::set_coordinate_system
+//       Access: Published
+//  Description: Specifies the coordinate system that all devices
+//               associated with this client will operate in.
+//               Normally, this is CS_default.
+////////////////////////////////////////////////////////////////////
+67
+inline void ClientBase::set_coordinate_system(CoordinateSystem cs);
+
+59 21 get_coordinate_system 4 109 33 ClientBase::get_coordinate_system 0 1 6 388
+////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::get_coordinate_system
+//       Access: Published
+//  Description: Returns the coordinate system that all devices
+//               associated with this client will operate in.
+//               Normally, this is CS_default.
+////////////////////////////////////////////////////////////////////
+70
+inline CoordinateSystem ClientBase::get_coordinate_system(void) const;
+
+60 14 get_class_type 4 109 26 ClientBase::get_class_type 0 1 7 0
+51
+static TypeHandle ClientBase::get_class_type(void);
+
+61 10 AnalogNode 4 111 22 AnalogNode::AnalogNode 0 1 8 219
+////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+84
+AnalogNode::AnalogNode(ClientBase *client, basic_string< char > const &device_name);
+
+62 8 is_valid 4 111 20 AnalogNode::is_valid 0 1 9 317
+////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::is_valid
+//       Access: Public
+//  Description: Returns true if the AnalogNode is valid and
+//               connected to a server, false otherwise.
+////////////////////////////////////////////////////////////////////
+45
+inline bool AnalogNode::is_valid(void) const;
+
+63 16 get_num_controls 4 111 28 AnalogNode::get_num_controls 0 1 10 378
+////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::get_num_controls
+//       Access: Public
+//  Description: Returns the number of analog controls known to the
+//               AnalogNode.  This number may change as more controls
+//               are discovered.
+////////////////////////////////////////////////////////////////////
+52
+inline int AnalogNode::get_num_controls(void) const;
+
+64 17 get_control_state 4 111 29 AnalogNode::get_control_state 0 1 11 453
+////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::get_control_state
+//       Access: Public
+//  Description: Returns the current position of indicated analog
+//               control identified by its index number, or 0.0 if
+//               the control is unknown.  The normal range of a single
+//               control is -1.0 to 1.0.
+////////////////////////////////////////////////////////////////////
+61
+inline double AnalogNode::get_control_state(int index) const;
+
+65 16 is_control_known 4 111 28 AnalogNode::is_control_known 0 1 12 398
+////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::is_control_known
+//       Access: Public
+//  Description: Returns true if the state of the indicated analog
+//               control is known, or false if we have never heard
+//               anything about this particular control.
+////////////////////////////////////////////////////////////////////
+58
+inline bool AnalogNode::is_control_known(int index) const;
+
+66 10 set_output 4 111 22 AnalogNode::set_output 0 1 13 598
+////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::set_output
+//       Access: Public
+//  Description: Causes a particular analog control to be placed in
+//               the data graph for the indicated channel.  Normally,
+//               a mouse uses channels 0 and 1 for the X and Y
+//               information, respectively; channels 0, 1, and 2 are
+//               available.  If flip is true, the analog control value
+//               will be reversed before outputting it.
+////////////////////////////////////////////////////////////////////
+70
+inline void AnalogNode::set_output(int channel, int index, bool flip);
+
+67 12 clear_output 4 111 24 AnalogNode::clear_output 0 1 14 332
+////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::clear_output
+//       Access: Public
+//  Description: Removes the output to the data graph associated with
+//               the indicated channel.  See set_output().
+////////////////////////////////////////////////////////////////////
+50
+inline void AnalogNode::clear_output(int channel);
+
+68 10 get_output 4 111 22 AnalogNode::get_output 0 1 15 410
+////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::get_output
+//       Access: Public
+//  Description: Returns the analog control index that is output to
+//               the data graph on the indicated channel, or -1 if no
+//               control is output on that channel.  See set_output().
+////////////////////////////////////////////////////////////////////
+53
+inline int AnalogNode::get_output(int channel) const;
+
+69 17 is_output_flipped 4 111 29 AnalogNode::is_output_flipped 0 1 16 389
+////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::is_output_flipped
+//       Access: Public
+//  Description: Returns true if the analog control index that is
+//               output to the data graph on the indicated channel is
+//               flipped.  See set_output().
+////////////////////////////////////////////////////////////////////
+61
+inline bool AnalogNode::is_output_flipped(int channel) const;
+
+70 14 get_class_type 4 111 26 AnalogNode::get_class_type 0 1 17 0
+51
+static TypeHandle AnalogNode::get_class_type(void);
+
+71 10 ButtonNode 4 113 22 ButtonNode::ButtonNode 0 1 18 219
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+84
+ButtonNode::ButtonNode(ClientBase *client, basic_string< char > const &device_name);
+
+72 8 is_valid 4 113 20 ButtonNode::is_valid 0 1 19 803
+// Filename: buttonNode.I
+// Created by:  drose (12Mar02)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::is_valid
+//       Access: Public
+//  Description: Returns true if the ButtonNode is valid and
+//               connected to a server, false otherwise.
+////////////////////////////////////////////////////////////////////
+45
+inline bool ButtonNode::is_valid(void) const;
+
+73 15 get_num_buttons 4 113 27 ButtonNode::get_num_buttons 0 1 20 572
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::get_num_buttons
+//       Access: Public
+//  Description: Returns the number of buttons known to the
+//               ButtonNode.  This includes those buttons whose state
+//               has been seen, as well as buttons that have been
+//               associated with a ButtonHandle even if their state is
+//               unknown.  This number may change as more buttons are
+//               discovered.
+////////////////////////////////////////////////////////////////////
+51
+inline int ButtonNode::get_num_buttons(void) const;
+
+74 14 set_button_map 4 113 26 ButtonNode::set_button_map 0 1 21 820
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::set_button_map
+//       Access: Public
+//  Description: Associates the indicated ButtonHandle with the button
+//               of the indicated index number.  When the given button
+//               index changes state, a corresponding ButtonEvent will
+//               be generated with the given ButtonHandle.  Pass
+//               ButtonHandle::none() to turn off any association.
+//
+//               It is not necessary to call this if you simply want
+//               to query the state of the various buttons by index
+//               number; this is only necessary in order to generate
+//               ButtonEvents when the buttons change state.
+////////////////////////////////////////////////////////////////////
+71
+inline void ButtonNode::set_button_map(int index, ButtonHandle button);
+
+75 14 get_button_map 4 113 26 ButtonNode::get_button_map 0 1 22 441
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::get_button_map
+//       Access: Public
+//  Description: Returns the ButtonHandle that was previously
+//               associated with the given index number by
+//               a call to set_button_map(), or ButtonHandle::none()
+//               if no button was associated.
+////////////////////////////////////////////////////////////////////
+64
+inline ButtonHandle ButtonNode::get_button_map(int index) const;
+
+76 16 get_button_state 4 113 28 ButtonNode::get_button_state 0 1 23 392
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::get_button_state
+//       Access: Public
+//  Description: Returns true if the indicated button (identified by
+//               its index number) is currently known to be down, or
+//               false if it is up or unknown.
+////////////////////////////////////////////////////////////////////
+58
+inline bool ButtonNode::get_button_state(int index) const;
+
+77 15 is_button_known 4 113 27 ButtonNode::is_button_known 0 1 24 388
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::is_button_known
+//       Access: Public
+//  Description: Returns true if the state of the indicated button is
+//               known, or false if we have never heard anything about
+//               this particular button.
+////////////////////////////////////////////////////////////////////
+57
+inline bool ButtonNode::is_button_known(int index) const;
+
+78 14 get_class_type 4 113 26 ButtonNode::get_class_type 0 1 25 0
+51
+static TypeHandle ButtonNode::get_class_type(void);
+
+79 8 DialNode 4 114 18 DialNode::DialNode 0 1 26 217
+////////////////////////////////////////////////////////////////////
+//     Function: DialNode::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+80
+DialNode::DialNode(ClientBase *client, basic_string< char > const &device_name);
+
+80 8 is_valid 4 114 18 DialNode::is_valid 0 1 27 797
+// Filename: dialNode.I
+// Created by:  drose (12Mar02)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: DialNode::is_valid
+//       Access: Public
+//  Description: Returns true if the DialNode is valid and
+//               connected to a server, false otherwise.
+////////////////////////////////////////////////////////////////////
+43
+inline bool DialNode::is_valid(void) const;
+
+81 13 get_num_dials 4 114 23 DialNode::get_num_dials 0 1 28 363
+////////////////////////////////////////////////////////////////////
+//     Function: DialNode::get_num_dials
+//       Access: Public
+//  Description: Returns the number of dial dials known to the
+//               DialNode.  This number may change as more dials
+//               are discovered.
+////////////////////////////////////////////////////////////////////
+47
+inline int DialNode::get_num_dials(void) const;
+
+82 9 read_dial 4 114 19 DialNode::read_dial 0 1 29 465
+////////////////////////////////////////////////////////////////////
+//     Function: DialNode::read_dial
+//       Access: Public
+//  Description: Returns the number of complete revolutions of the
+//               dial since the last time read_dial() was called.
+//               This is a destructive operation; it is not possible
+//               to read the dial without resetting the counter.
+////////////////////////////////////////////////////////////////////
+45
+inline double DialNode::read_dial(int index);
+
+83 13 is_dial_known 4 114 23 DialNode::is_dial_known 0 1 30 385
+////////////////////////////////////////////////////////////////////
+//     Function: DialNode::is_dial_known
+//       Access: Public
+//  Description: Returns true if the state of the indicated dial
+//               dial is known, or false if we have never heard
+//               anything about this particular dial.
+////////////////////////////////////////////////////////////////////
+53
+inline bool DialNode::is_dial_known(int index) const;
+
+84 14 get_class_type 4 114 24 DialNode::get_class_type 0 1 31 0
+49
+static TypeHandle DialNode::get_class_type(void);
+
+85 16 MouseAndKeyboard 4 115 34 MouseAndKeyboard::MouseAndKeyboard 0 1 32 225
+////////////////////////////////////////////////////////////////////
+//     Function: MouseAndKeyboard::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+105
+MouseAndKeyboard::MouseAndKeyboard(GraphicsWindow *window, int device, basic_string< char > const &name);
+
+86 10 set_source 4 115 28 MouseAndKeyboard::set_source 0 1 33 379
+////////////////////////////////////////////////////////////////////
+//     Function: MouseAndKeyboard::set_source
+//       Access: Public
+//  Description: Redirects the class to get the data from the mouse
+//               and keyboard associated with a different window
+//               and/or device number.
+////////////////////////////////////////////////////////////////////
+70
+void MouseAndKeyboard::set_source(GraphicsWindow *window, int device);
+
+87 14 get_class_type 4 115 32 MouseAndKeyboard::get_class_type 0 1 34 0
+57
+static TypeHandle MouseAndKeyboard::get_class_type(void);
+
+88 17 ~MouseAndKeyboard 4 115 35 MouseAndKeyboard::~MouseAndKeyboard 0 0 0
+42
+MouseAndKeyboard::~MouseAndKeyboard(void);
+
+89 11 TrackerNode 4 116 24 TrackerNode::TrackerNode 0 1 35 220
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+86
+TrackerNode::TrackerNode(ClientBase *client, basic_string< char > const &device_name);
+
+90 8 is_valid 4 116 21 TrackerNode::is_valid 0 1 36 806
+// Filename: trackerNode.I
+// Created by:  drose (12Mar02)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::is_valid
+//       Access: Public
+//  Description: Returns true if the TrackerNode is valid and
+//               connected to a server, false otherwise.
+////////////////////////////////////////////////////////////////////
+46
+inline bool TrackerNode::is_valid(void) const;
+
+91 7 get_pos 4 116 20 TrackerNode::get_pos 0 1 37 298
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_pos
+//       Access: Public
+//  Description: Returns the current position of the tracker, if it is
+//               available.
+////////////////////////////////////////////////////////////////////
+56
+inline LPoint3f const &TrackerNode::get_pos(void) const;
+
+92 10 get_orient 4 116 23 TrackerNode::get_orient 0 1 38 304
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_orient
+//       Access: Public
+//  Description: Returns the current orientation of the tracker, if it
+//               is available.
+////////////////////////////////////////////////////////////////////
+64
+inline LOrientationf const &TrackerNode::get_orient(void) const;
+
+93 13 get_transform 4 116 26 TrackerNode::get_transform 0 1 39 322
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_transform
+//       Access: Public
+//  Description: Returns the current position and orientation of the
+//               tracker, as a combined matrix.
+////////////////////////////////////////////////////////////////////
+63
+inline LMatrix4f const &TrackerNode::get_transform(void) const;
+
+94 8 get_time 4 116 21 TrackerNode::get_time 0 1 40 264
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_time
+//       Access: Public
+//  Description: Returns the time of the tracker's last update.
+////////////////////////////////////////////////////////////////////
+48
+inline double TrackerNode::get_time(void) const;
+
+95 8 has_time 4 116 21 TrackerNode::has_time 0 1 41 258
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::has_time
+//       Access: Public
+//  Description: True if this data comes with timestamps.
+////////////////////////////////////////////////////////////////////
+46
+inline bool TrackerNode::has_time(void) const;
+
+96 29 set_tracker_coordinate_system 4 116 42 TrackerNode::set_tracker_coordinate_system 0 1 42 547
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::set_tracker_coordinate_system
+//       Access: Published
+//  Description: Specifies the coordinate system that the tracker
+//               associated with this node will operate in.  Normally,
+//               this is set from the ClientBase that's used to create
+//               the TrackerNode, so it should not need to be set on
+//               an individual tracker basis.
+////////////////////////////////////////////////////////////////////
+76
+inline void TrackerNode::set_tracker_coordinate_system(CoordinateSystem cs);
+
+97 29 get_tracker_coordinate_system 4 116 42 TrackerNode::get_tracker_coordinate_system 0 1 43 348
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_tracker_coordinate_system
+//       Access: Published
+//  Description: Returns the coordinate system that the tracker
+//               associated with this node will operate in.
+////////////////////////////////////////////////////////////////////
+79
+inline CoordinateSystem TrackerNode::get_tracker_coordinate_system(void) const;
+
+98 27 set_graph_coordinate_system 4 116 40 TrackerNode::set_graph_coordinate_system 0 1 44 422
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::set_graph_coordinate_system
+//       Access: Published
+//  Description: Specifies the coordinate system that the TrackerNode
+//               will convert its transform into for passing down the
+//               data graph.  Normally, this is CS_default.
+////////////////////////////////////////////////////////////////////
+74
+inline void TrackerNode::set_graph_coordinate_system(CoordinateSystem cs);
+
+99 27 get_graph_coordinate_system 4 116 40 TrackerNode::get_graph_coordinate_system 0 1 45 420
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_graph_coordinate_system
+//       Access: Published
+//  Description: Returns the coordinate system that the TrackerNode
+//               will convert its transform into for passing down the
+//               data graph.  Normally, this is CS_default.
+////////////////////////////////////////////////////////////////////
+77
+inline CoordinateSystem TrackerNode::get_graph_coordinate_system(void) const;
+
+100 14 get_class_type 4 116 27 TrackerNode::get_class_type 0 1 46 0
+52
+static TypeHandle TrackerNode::get_class_type(void);
+
+101 12 VirtualMouse 4 117 26 VirtualMouse::VirtualMouse 0 1 47 224
+////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::Constructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+61
+VirtualMouse::VirtualMouse(basic_string< char > const &name);
+
+102 13 set_mouse_pos 4 117 27 VirtualMouse::set_mouse_pos 0 1 48 402
+////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::set_mouse_pos
+//       Access: Published
+//  Description: Sets the current mouse pixel location, where (0,0) is
+//               the upper left, and (width-1, height-1) is the lower
+//               right pixel of the virtual window.
+////////////////////////////////////////////////////////////////////
+47
+void VirtualMouse::set_mouse_pos(int x, int y);
+
+103 15 set_window_size 4 117 29 VirtualMouse::set_window_size 0 1 49 385
+////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::set_window_size
+//       Access: Published
+//  Description: Sets the size of the "window" in which the mouse
+//               rolls.  This changes the meaning of the values passed
+//               to set_mouse_pos().
+////////////////////////////////////////////////////////////////////
+58
+void VirtualMouse::set_window_size(int width, int height);
+
+104 12 set_mouse_on 4 117 26 VirtualMouse::set_mouse_on 0 1 50 477
+////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::set_mouse_on
+//       Access: Published
+//  Description: Sets whether the mouse should appear to be within the
+//               window or not.  If this is true, the mouse is within
+//               the window; if false, the mouse is not within the
+//               window (and set_mouse_pos() means nothing).
+////////////////////////////////////////////////////////////////////
+43
+void VirtualMouse::set_mouse_on(bool flag);
+
+105 12 press_button 4 117 26 VirtualMouse::press_button 0 1 51 426
+////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::press_button
+//       Access: Published
+//  Description: Simulates a mouse or keyboard button being depressed.
+//               This should be followed up by a call to
+//               release_button() sometime later (possibly
+//               immediately).
+////////////////////////////////////////////////////////////////////
+53
+void VirtualMouse::press_button(ButtonHandle button);
+
+106 14 release_button 4 117 28 VirtualMouse::release_button 0 1 52 336
+////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::release_button
+//       Access: Published
+//  Description: Simulates the button being released.  This should
+//               follow a previous call to press_button().
+////////////////////////////////////////////////////////////////////
+55
+void VirtualMouse::release_button(ButtonHandle button);
+
+107 14 get_class_type 4 117 28 VirtualMouse::get_class_type 0 1 53 0
+53
+static TypeHandle VirtualMouse::get_class_type(void);
+
+108 13 ~VirtualMouse 4 117 27 VirtualMouse::~VirtualMouse 0 0 0
+34
+VirtualMouse::~VirtualMouse(void);
+
+53
+1 14 Dtool_OfOP_6xH 6 3 120 0 14 Dtool_OfOP_6xH 612 ////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::fork_asynchronous_thread
+//       Access: Public
+//  Description: Forks a separate thread to do all the polling of
+//               connected devices.  The forked thread will poll after
+//               every poll_time seconds has elapsed.  Returns true if
+//               the fork was successful, or false otherwise (for
+//               instance, because we were already forked, or because
+//               asynchronous threads are disabled).
+//////////////////////////////////////////////////////////////////// 2 4 this 3 118  9 poll_time 1 119  
+2 14 Dtool_OfOPpe_A 6 4 120 0 14 Dtool_OfOPpe_A 854 // Filename: clientBase.I
+// Created by:  drose (25Jan01)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::is_forked
+//       Access: Public
+//  Description: Returns true if the ClientBase has been forked (and,
+//               therefore, poll() does not need to be called), false
+//               otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 121  
+3 14 Dtool_OfOP0HyU 6 5 120 0 14 Dtool_OfOP0HyU 429 ////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::poll
+//       Access: Public
+//  Description: Initiates a poll of the client devices, if we are not
+//               forked and if we have not already polled this frame.
+//               Returns true if the poll occurred, or false if it did
+//               not.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 118  
+4 14 Dtool_OfOPkkN3 6 6 119 0 14 Dtool_OfOPkkN3 365 ////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::get_last_poll_time
+//       Access: Public
+//  Description: Returns the time (according to the global
+//               ClockObject's get_real_time() method) of the last
+//               device poll.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 121  
+5 14 Dtool_OfOPHNkp 4 7 124 0 14 Dtool_OfOPHNkp 390 ////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::set_coordinate_system
+//       Access: Published
+//  Description: Specifies the coordinate system that all devices
+//               associated with this client will operate in.
+//               Normally, this is CS_default.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 118  2 cs 1 123  
+6 14 Dtool_OfOPwXH8 6 8 123 0 14 Dtool_OfOPwXH8 388 ////////////////////////////////////////////////////////////////////
+//     Function: ClientBase::get_coordinate_system
+//       Access: Published
+//  Description: Returns the coordinate system that all devices
+//               associated with this client will operate in.
+//               Normally, this is CS_default.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 121  
+7 14 Dtool_OfOPXw0P 7 9 126 0 14 Dtool_OfOPXw0P 0 0 
+8 14 Dtool_OfOPr0Vk 7 12 128 0 14 Dtool_OfOPr0Vk 219 ////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 6 client 1 118  11 device_name 1 127  
+9 14 Dtool_OfOPljF9 6 13 120 0 14 Dtool_OfOPljF9 317 ////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::is_valid
+//       Access: Public
+//  Description: Returns true if the AnalogNode is valid and
+//               connected to a server, false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 129  
+10 14 Dtool_OfOPOfB0 6 14 131 0 14 Dtool_OfOPOfB0 378 ////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::get_num_controls
+//       Access: Public
+//  Description: Returns the number of analog controls known to the
+//               AnalogNode.  This number may change as more controls
+//               are discovered.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 129  
+11 14 Dtool_OfOPVK5b 6 15 119 0 14 Dtool_OfOPVK5b 453 ////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::get_control_state
+//       Access: Public
+//  Description: Returns the current position of indicated analog
+//               control identified by its index number, or 0.0 if
+//               the control is unknown.  The normal range of a single
+//               control is -1.0 to 1.0.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 129  5 index 1 131  
+12 14 Dtool_OfOP_d_i 6 16 120 0 14 Dtool_OfOP_d_i 398 ////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::is_control_known
+//       Access: Public
+//  Description: Returns true if the state of the indicated analog
+//               control is known, or false if we have never heard
+//               anything about this particular control.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 129  5 index 1 131  
+13 14 Dtool_OfOPDna3 4 17 124 0 14 Dtool_OfOPDna3 598 ////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::set_output
+//       Access: Public
+//  Description: Causes a particular analog control to be placed in
+//               the data graph for the indicated channel.  Normally,
+//               a mouse uses channels 0 and 1 for the X and Y
+//               information, respectively; channels 0, 1, and 2 are
+//               available.  If flip is true, the analog control value
+//               will be reversed before outputting it.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 128  7 channel 1 131  5 index 1 131  4 flip 1 120  
+14 14 Dtool_OfOP0Apo 4 18 124 0 14 Dtool_OfOP0Apo 332 ////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::clear_output
+//       Access: Public
+//  Description: Removes the output to the data graph associated with
+//               the indicated channel.  See set_output().
+//////////////////////////////////////////////////////////////////// 2 4 this 3 128  7 channel 1 131  
+15 14 Dtool_OfOP_dLB 6 19 131 0 14 Dtool_OfOP_dLB 410 ////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::get_output
+//       Access: Public
+//  Description: Returns the analog control index that is output to
+//               the data graph on the indicated channel, or -1 if no
+//               control is output on that channel.  See set_output().
+//////////////////////////////////////////////////////////////////// 2 4 this 3 129  7 channel 1 131  
+16 14 Dtool_OfOPyrW_ 6 20 120 0 14 Dtool_OfOPyrW_ 389 ////////////////////////////////////////////////////////////////////
+//     Function: AnalogNode::is_output_flipped
+//       Access: Public
+//  Description: Returns true if the analog control index that is
+//               output to the data graph on the indicated channel is
+//               flipped.  See set_output().
+//////////////////////////////////////////////////////////////////// 2 4 this 3 129  7 channel 1 131  
+17 14 Dtool_OfOPJCld 7 21 126 0 14 Dtool_OfOPJCld 0 0 
+18 14 Dtool_OfOPN3Xg 7 23 132 0 14 Dtool_OfOPN3Xg 219 ////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 6 client 1 118  11 device_name 1 127  
+19 14 Dtool_OfOPWoo7 6 24 120 0 14 Dtool_OfOPWoo7 803 // Filename: buttonNode.I
+// Created by:  drose (12Mar02)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::is_valid
+//       Access: Public
+//  Description: Returns true if the ButtonNode is valid and
+//               connected to a server, false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 133  
+20 14 Dtool_OfOP0MKT 6 25 131 0 14 Dtool_OfOP0MKT 572 ////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::get_num_buttons
+//       Access: Public
+//  Description: Returns the number of buttons known to the
+//               ButtonNode.  This includes those buttons whose state
+//               has been seen, as well as buttons that have been
+//               associated with a ButtonHandle even if their state is
+//               unknown.  This number may change as more buttons are
+//               discovered.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 133  
+21 14 Dtool_OfOPgucs 4 26 124 0 14 Dtool_OfOPgucs 820 ////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::set_button_map
+//       Access: Public
+//  Description: Associates the indicated ButtonHandle with the button
+//               of the indicated index number.  When the given button
+//               index changes state, a corresponding ButtonEvent will
+//               be generated with the given ButtonHandle.  Pass
+//               ButtonHandle::none() to turn off any association.
+//
+//               It is not necessary to call this if you simply want
+//               to query the state of the various buttons by index
+//               number; this is only necessary in order to generate
+//               ButtonEvents when the buttons change state.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 132  5 index 1 131  6 button 1 135  
+22 14 Dtool_OfOPQ5W8 7 27 135 0 14 Dtool_OfOPQ5W8 441 ////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::get_button_map
+//       Access: Public
+//  Description: Returns the ButtonHandle that was previously
+//               associated with the given index number by
+//               a call to set_button_map(), or ButtonHandle::none()
+//               if no button was associated.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 133  5 index 1 131  
+23 14 Dtool_OfOPGekS 6 28 120 0 14 Dtool_OfOPGekS 392 ////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::get_button_state
+//       Access: Public
+//  Description: Returns true if the indicated button (identified by
+//               its index number) is currently known to be down, or
+//               false if it is up or unknown.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 133  5 index 1 131  
+24 14 Dtool_OfOPIiuC 6 29 120 0 14 Dtool_OfOPIiuC 388 ////////////////////////////////////////////////////////////////////
+//     Function: ButtonNode::is_button_known
+//       Access: Public
+//  Description: Returns true if the state of the indicated button is
+//               known, or false if we have never heard anything about
+//               this particular button.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 133  5 index 1 131  
+25 14 Dtool_OfOPO7Jc 7 30 126 0 14 Dtool_OfOPO7Jc 0 0 
+26 14 Dtool_OfOPn9Tp 7 32 137 0 14 Dtool_OfOPn9Tp 217 ////////////////////////////////////////////////////////////////////
+//     Function: DialNode::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 6 client 1 118  11 device_name 1 127  
+27 14 Dtool_OfOPonZa 6 33 120 0 14 Dtool_OfOPonZa 797 // Filename: dialNode.I
+// Created by:  drose (12Mar02)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: DialNode::is_valid
+//       Access: Public
+//  Description: Returns true if the DialNode is valid and
+//               connected to a server, false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 138  
+28 14 Dtool_OfOPpBgJ 6 34 131 0 14 Dtool_OfOPpBgJ 363 ////////////////////////////////////////////////////////////////////
+//     Function: DialNode::get_num_dials
+//       Access: Public
+//  Description: Returns the number of dial dials known to the
+//               DialNode.  This number may change as more dials
+//               are discovered.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 138  
+29 14 Dtool_OfOPTlFp 6 35 119 0 14 Dtool_OfOPTlFp 465 ////////////////////////////////////////////////////////////////////
+//     Function: DialNode::read_dial
+//       Access: Public
+//  Description: Returns the number of complete revolutions of the
+//               dial since the last time read_dial() was called.
+//               This is a destructive operation; it is not possible
+//               to read the dial without resetting the counter.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 137  5 index 1 131  
+30 14 Dtool_OfOPdP5l 6 36 120 0 14 Dtool_OfOPdP5l 385 ////////////////////////////////////////////////////////////////////
+//     Function: DialNode::is_dial_known
+//       Access: Public
+//  Description: Returns true if the state of the indicated dial
+//               dial is known, or false if we have never heard
+//               anything about this particular dial.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 138  5 index 1 131  
+31 14 Dtool_OfOP0JS5 7 37 126 0 14 Dtool_OfOP0JS5 0 0 
+32 14 Dtool_OfOPiwVV 7 39 142 88 14 Dtool_OfOPiwVV 225 ////////////////////////////////////////////////////////////////////
+//     Function: MouseAndKeyboard::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 3 6 window 1 140  6 device 1 131  4 name 1 127  
+33 14 Dtool_OfOPHs56 4 40 124 0 14 Dtool_OfOPHs56 379 ////////////////////////////////////////////////////////////////////
+//     Function: MouseAndKeyboard::set_source
+//       Access: Public
+//  Description: Redirects the class to get the data from the mouse
+//               and keyboard associated with a different window
+//               and/or device number.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 142  6 window 1 140  6 device 1 131  
+34 14 Dtool_OfOPwQKX 7 41 126 0 14 Dtool_OfOPwQKX 0 0 
+35 14 Dtool_OfOPHyCC 7 44 143 0 14 Dtool_OfOPHyCC 220 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 6 client 1 118  11 device_name 1 127  
+36 14 Dtool_OfOPDEoZ 6 45 120 0 14 Dtool_OfOPDEoZ 806 // Filename: trackerNode.I
+// Created by:  drose (12Mar02)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::is_valid
+//       Access: Public
+//  Description: Returns true if the TrackerNode is valid and
+//               connected to a server, false otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+37 14 Dtool_OfOPfpbJ 6 46 146 0 14 Dtool_OfOPfpbJ 298 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_pos
+//       Access: Public
+//  Description: Returns the current position of the tracker, if it is
+//               available.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+38 14 Dtool_OfOPc1d9 6 47 149 0 14 Dtool_OfOPc1d9 304 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_orient
+//       Access: Public
+//  Description: Returns the current orientation of the tracker, if it
+//               is available.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+39 14 Dtool_OfOPzbsf 6 48 152 0 14 Dtool_OfOPzbsf 322 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_transform
+//       Access: Public
+//  Description: Returns the current position and orientation of the
+//               tracker, as a combined matrix.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+40 14 Dtool_OfOPKr_I 6 49 119 0 14 Dtool_OfOPKr_I 264 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_time
+//       Access: Public
+//  Description: Returns the time of the tracker's last update.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+41 14 Dtool_OfOPgtUM 6 50 120 0 14 Dtool_OfOPgtUM 258 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::has_time
+//       Access: Public
+//  Description: True if this data comes with timestamps.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+42 14 Dtool_OfOPSq_7 4 51 124 0 14 Dtool_OfOPSq_7 547 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::set_tracker_coordinate_system
+//       Access: Published
+//  Description: Specifies the coordinate system that the tracker
+//               associated with this node will operate in.  Normally,
+//               this is set from the ClientBase that's used to create
+//               the TrackerNode, so it should not need to be set on
+//               an individual tracker basis.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 143  2 cs 1 123  
+43 14 Dtool_OfOPOtgh 6 52 123 0 14 Dtool_OfOPOtgh 348 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_tracker_coordinate_system
+//       Access: Published
+//  Description: Returns the coordinate system that the tracker
+//               associated with this node will operate in.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+44 14 Dtool_OfOPgH95 4 53 124 0 14 Dtool_OfOPgH95 422 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::set_graph_coordinate_system
+//       Access: Published
+//  Description: Specifies the coordinate system that the TrackerNode
+//               will convert its transform into for passing down the
+//               data graph.  Normally, this is CS_default.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 143  2 cs 1 123  
+45 14 Dtool_OfOP_MOP 6 54 123 0 14 Dtool_OfOP_MOP 420 ////////////////////////////////////////////////////////////////////
+//     Function: TrackerNode::get_graph_coordinate_system
+//       Access: Published
+//  Description: Returns the coordinate system that the TrackerNode
+//               will convert its transform into for passing down the
+//               data graph.  Normally, this is CS_default.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+46 14 Dtool_OfOPbA7p 7 55 126 0 14 Dtool_OfOPbA7p 0 0 
+47 14 Dtool_OfOPZip_ 7 57 155 108 14 Dtool_OfOPZip_ 224 ////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::Constructor
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 name 1 127  
+48 14 Dtool_OfOPOTQU 4 58 124 0 14 Dtool_OfOPOTQU 402 ////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::set_mouse_pos
+//       Access: Published
+//  Description: Sets the current mouse pixel location, where (0,0) is
+//               the upper left, and (width-1, height-1) is the lower
+//               right pixel of the virtual window.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 155  1 x 1 131  1 y 1 131  
+49 14 Dtool_OfOPaz5v 4 59 124 0 14 Dtool_OfOPaz5v 385 ////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::set_window_size
+//       Access: Published
+//  Description: Sets the size of the "window" in which the mouse
+//               rolls.  This changes the meaning of the values passed
+//               to set_mouse_pos().
+//////////////////////////////////////////////////////////////////// 3 4 this 3 155  5 width 1 131  6 height 1 131  
+50 14 Dtool_OfOPi_qA 4 60 124 0 14 Dtool_OfOPi_qA 477 ////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::set_mouse_on
+//       Access: Published
+//  Description: Sets whether the mouse should appear to be within the
+//               window or not.  If this is true, the mouse is within
+//               the window; if false, the mouse is not within the
+//               window (and set_mouse_pos() means nothing).
+//////////////////////////////////////////////////////////////////// 2 4 this 3 155  4 flag 1 120  
+51 14 Dtool_OfOPe3_V 4 61 124 0 14 Dtool_OfOPe3_V 426 ////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::press_button
+//       Access: Published
+//  Description: Simulates a mouse or keyboard button being depressed.
+//               This should be followed up by a call to
+//               release_button() sometime later (possibly
+//               immediately).
+//////////////////////////////////////////////////////////////////// 2 4 this 3 155  6 button 1 135  
+52 14 Dtool_OfOPgbfY 4 62 124 0 14 Dtool_OfOPgbfY 336 ////////////////////////////////////////////////////////////////////
+//     Function: VirtualMouse::release_button
+//       Access: Published
+//  Description: Simulates the button being released.  This should
+//               follow a previous call to press_button().
+//////////////////////////////////////////////////////////////////// 2 4 this 3 155  6 button 1 135  
+53 14 Dtool_OfOP2nN2 7 63 126 0 14 Dtool_OfOP2nN2 0 0 
+47
+109 10 ClientBase 75777 10 ClientBase 10 ClientBase 0 0 0 0 0 0 7 54 55 56 57 58 59 60 0 0 1 0 110 0 0 0 0 568
+////////////////////////////////////////////////////////////////////
+//       Class : ClientBase
+// Description : An abstract base class for a family of client
+//               device interfaces--including trackers, buttons,
+//               dials, and other analog inputs.
+//
+//               This provides a common interface to connect to such
+//               devices and extract their data; it is used by
+//               TrackerNode etc. to put these devices in the data
+//               graph.
+////////////////////////////////////////////////////////////////////
+
+110 19 TypedReferenceCount 2049 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 710
+////////////////////////////////////////////////////////////////////
+//       Class : TypedReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedObject and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedObjects and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+111 10 AnalogNode 75777 10 AnalogNode 10 AnalogNode 0 0 0 1 61 0 0 9 62 63 64 65 66 67 68 69 70 0 0 1 0 112 0 0 0 0 1077
+////////////////////////////////////////////////////////////////////
+//       Class : AnalogNode
+// Description : This is the primary interface to analog controls like
+//               sliders and joysticks associated with a ClientBase.
+//               This creates a node that connects to the named analog
+//               device, if it exists, and provides hooks to the user
+//               to read the state of any of the sequentially numbered
+//               controls associated with that device.
+//
+//               Each control can return a value ranging from -1 to 1,
+//               reflecting the current position of the control within
+//               its total range of motion.
+//
+//               The user may choose up to two analog controls to
+//               place on the data graph as the two channels of an
+//               xy datagram, similarly to the way a mouse places its
+//               position data.  In this way, an AnalogNode may be
+//               used in place of a mouse.
+////////////////////////////////////////////////////////////////////
+
+112 8 DataNode 2049 8 DataNode 8 DataNode 0 0 0 0 0 0 0 0 0 0 0 0 695
+////////////////////////////////////////////////////////////////////
+//       Class : DataNode
+// Description : The fundamental type of node for the data graph.  The
+//               DataNode class is itself primarily intended as an
+//               abstract class; it defines no inputs and no outputs.
+//               Most kinds of data nodes will derive from this to
+//               specify the inputs and outputs in the constructor.
+//
+//               DataNode does not attempt to cycle its data with a
+//               PipelineCycler.  The data graph is intended to be
+//               used only within a single thread.
+////////////////////////////////////////////////////////////////////
+
+113 10 ButtonNode 75777 10 ButtonNode 10 ButtonNode 0 0 0 1 71 0 0 7 72 73 74 75 76 77 78 0 0 1 0 112 0 0 0 0 851
+////////////////////////////////////////////////////////////////////
+//       Class : ButtonNode
+// Description : This is the primary interface to on/off button
+//               devices associated with a ClientBase.  This creates a
+//               node that connects to the named button device, if it
+//               exists, and provides hooks to the user to read the
+//               state of any of the sequentially numbered buttons
+//               associated with that device.
+//
+//               It also can associate an arbitrary ButtonHandle with
+//               each button; when buttons are associated with
+//               ButtonHandles, this node will put appropriate up and
+//               down events on the data graph for each button state
+//               change.
+////////////////////////////////////////////////////////////////////
+
+114 8 DialNode 75777 8 DialNode 8 DialNode 0 0 0 1 79 0 0 5 80 81 82 83 84 0 0 1 0 112 0 0 0 0 815
+////////////////////////////////////////////////////////////////////
+//       Class : DialNode
+// Description : This is the primary interface to infinite dial type
+//               devices associated with a ClientBase.  This creates a
+//               node that connects to the named dial device, if it
+//               exists, and provides hooks to the user to read the
+//               state of any of the sequentially numbered dial
+//               controls associated with that device.
+//
+//               A dial is a rotating device that does not have
+//               stops--it can keep rotating any number of times.
+//               Therefore it does not have a specific position at any
+//               given time, unlike an AnalogDevice.
+////////////////////////////////////////////////////////////////////
+
+115 16 MouseAndKeyboard 141313 16 MouseAndKeyboard 16 MouseAndKeyboard 0 0 0 1 85 88 0 2 86 87 0 0 1 0 112 0 0 0 0 1158
+////////////////////////////////////////////////////////////////////
+//       Class : MouseAndKeyboard
+// Description : Reads the mouse and/or keyboard data sent from a
+//               GraphicsWindow, and transmits it down the data graph.
+//
+//               The mouse and keyboard devices are bundled together
+//               into one device here, because they interrelate so
+//               much.  A mouse might be constrained by the holding
+//               down of the shift key, for instance, or the clicking
+//               of the mouse button might be handled in much the same
+//               way as a keyboard key.
+//
+//               Mouse data is sent down the data graph as an x,y
+//               position as well as the set of buttons currently
+//               being held down; keyboard data is sent down as a set
+//               of keypress events in an EventDataTransition.  To
+//               throw these events to the system, you must attach an
+//               EventThrower to the MouseAndKeyboard object;
+//               otherwise, the events will be discarded.
+////////////////////////////////////////////////////////////////////
+
+116 11 TrackerNode 75777 11 TrackerNode 11 TrackerNode 0 0 0 1 89 0 0 11 90 91 92 93 94 95 96 97 98 99 100 0 0 1 0 112 0 0 0 0 461
+////////////////////////////////////////////////////////////////////
+//       Class : TrackerNode
+// Description : This is the primary interface to a Tracker object
+//               associated with a ClientBase.  It reads the position
+//               and orientation information from the tracker and
+//               makes it available as a transformation on the data
+//               graph.
+////////////////////////////////////////////////////////////////////
+
+117 12 VirtualMouse 141313 12 VirtualMouse 12 VirtualMouse 0 0 0 1 101 108 0 6 102 103 104 105 106 107 0 0 1 0 112 0 0 0 0 541
+////////////////////////////////////////////////////////////////////
+//       Class : VirtualMouse
+// Description : Poses as a MouseAndKeyboard object in the datagraph,
+//               but accepts input from user calls, rather than
+//               reading the actual mouse and keyboard from an input
+//               device.  The user can write high-level code to put
+//               the mouse wherever he/she wants, and to insert
+//               keypresses on demand.
+////////////////////////////////////////////////////////////////////
+
+118 12 ClientBase * 8576 12 ClientBase * 12 ClientBase * 0 0 109 0 0 0 0 0 0 0 0 0 0
+
+119 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+120 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+121 18 ClientBase const * 8576 18 ClientBase const * 18 ClientBase const * 0 0 122 0 0 0 0 0 0 0 0 0 0
+
+122 16 ClientBase const 8832 16 ClientBase const 16 ClientBase const 0 0 109 0 0 0 0 0 0 0 0 0 0
+
+123 16 CoordinateSystem 532480 16 CoordinateSystem 16 CoordinateSystem 0 0 0 0 0 0 0 0 0 0 6 10 CS_default 10 CS_default 0 12 CS_zup_right 12 CS_zup_right 1 12 CS_yup_right 12 CS_yup_right 2 11 CS_zup_left 11 CS_zup_left 3 11 CS_yup_left 11 CS_yup_left 4 10 CS_invalid 10 CS_invalid 5 0 0
+
+124 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+125 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+126 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 125 0 0 0 0 0 0 0 0 0 0
+
+127 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+128 12 AnalogNode * 8576 12 AnalogNode * 12 AnalogNode * 0 0 111 0 0 0 0 0 0 0 0 0 0
+
+129 18 AnalogNode const * 8576 18 AnalogNode const * 18 AnalogNode const * 0 0 130 0 0 0 0 0 0 0 0 0 0
+
+130 16 AnalogNode const 8832 16 AnalogNode const 16 AnalogNode const 0 0 111 0 0 0 0 0 0 0 0 0 0
+
+131 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+132 12 ButtonNode * 8576 12 ButtonNode * 12 ButtonNode * 0 0 113 0 0 0 0 0 0 0 0 0 0
+
+133 18 ButtonNode const * 8576 18 ButtonNode const * 18 ButtonNode const * 0 0 134 0 0 0 0 0 0 0 0 0 0
+
+134 16 ButtonNode const 8832 16 ButtonNode const 16 ButtonNode const 0 0 113 0 0 0 0 0 0 0 0 0 0
+
+135 14 ButtonHandle * 8576 14 ButtonHandle * 14 ButtonHandle * 0 0 136 0 0 0 0 0 0 0 0 0 0
+
+136 12 ButtonHandle 2048 12 ButtonHandle 12 ButtonHandle 0 0 0 0 0 0 0 0 0 0 0 0 364
+////////////////////////////////////////////////////////////////////
+//       Class : ButtonHandle
+// Description : A ButtonHandle represents a single button from any
+//               device, including keyboard buttons and mouse buttons
+//               (but see KeyboardButton and MouseButton).
+////////////////////////////////////////////////////////////////////
+
+137 10 DialNode * 8576 10 DialNode * 10 DialNode * 0 0 114 0 0 0 0 0 0 0 0 0 0
+
+138 16 DialNode const * 8576 16 DialNode const * 16 DialNode const * 0 0 139 0 0 0 0 0 0 0 0 0 0
+
+139 14 DialNode const 8832 14 DialNode const 14 DialNode const 0 0 114 0 0 0 0 0 0 0 0 0 0
+
+140 16 GraphicsWindow * 8576 16 GraphicsWindow * 16 GraphicsWindow * 0 0 141 0 0 0 0 0 0 0 0 0 0
+
+141 14 GraphicsWindow 2048 14 GraphicsWindow 14 GraphicsWindow 0 0 0 0 0 0 0 1 156 0 0 0 0 329
+////////////////////////////////////////////////////////////////////
+//       Class : GraphicsWindow
+// Description : A window, fullscreen or on a desktop, into which a
+//               graphics device sends its output for interactive
+//               display.
+////////////////////////////////////////////////////////////////////
+
+142 18 MouseAndKeyboard * 8576 18 MouseAndKeyboard * 18 MouseAndKeyboard * 0 0 115 0 0 0 0 0 0 0 0 0 0
+
+143 13 TrackerNode * 8576 13 TrackerNode * 13 TrackerNode * 0 0 116 0 0 0 0 0 0 0 0 0 0
+
+144 19 TrackerNode const * 8576 19 TrackerNode const * 19 TrackerNode const * 0 0 145 0 0 0 0 0 0 0 0 0 0
+
+145 17 TrackerNode const 8832 17 TrackerNode const 17 TrackerNode const 0 0 116 0 0 0 0 0 0 0 0 0 0
+
+146 16 LPoint3f const * 8576 16 LPoint3f const * 16 LPoint3f const * 0 0 147 0 0 0 0 0 0 0 0 0 0
+
+147 14 LPoint3f const 8832 14 LPoint3f const 14 LPoint3f const 0 0 148 0 0 0 0 0 0 0 0 0 0
+
+148 7 Vertexf 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 0 1083
+// Filename: lpoint3_src.h
+// Created by:  drose (25Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint3
+// Description : This is a three-component point in space (as opposed
+//               to a three-component vector, which represents a
+//               direction and a distance).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+149 21 LOrientationf const * 8576 21 LOrientationf const * 21 LOrientationf const * 0 0 150 0 0 0 0 0 0 0 0 0 0
+
+150 19 LOrientationf const 8832 19 LOrientationf const 19 LOrientationf const 0 0 151 0 0 0 0 0 0 0 0 0 0
+
+151 13 LOrientationf 2048 13 LOrientationf 13 LOrientationf 0 0 0 0 0 0 0 0 0 0 0 0 247
+////////////////////////////////////////////////////////////////////////
+//       Class : LOrientation
+// Description : This is a unit quaternion representing an orientation.
+////////////////////////////////////////////////////////////////////////
+
+152 17 LMatrix4f const * 8576 17 LMatrix4f const * 17 LMatrix4f const * 0 0 153 0 0 0 0 0 0 0 0 0 0
+
+153 15 LMatrix4f const 8832 15 LMatrix4f const 15 LMatrix4f const 0 0 154 0 0 0 0 0 0 0 0 0 0
+
+154 9 LMatrix4f 2048 9 LMatrix4f 9 LMatrix4f 0 0 0 0 0 0 0 3 157 158 159 0 0 0 0 703
+// Filename: lmatrix4_src.h
+// Created by:  drose (15Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix4
+// Description : This is a 4-by-4 transform matrix.
+////////////////////////////////////////////////////////////////////
+
+155 14 VirtualMouse * 8576 14 VirtualMouse * 14 VirtualMouse * 0 0 117 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+4
+156 0 120 22 get_input_device_names 21 get_num_input_devices 21 get_input_device_name 
+157 0 140 8 get_rows 4 size 7 get_row 
+158 0 140 8 get_cols 4 size 7 get_col 
+159 0 140 9 get_row3s 4 size 8 get_row3 

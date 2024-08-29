@@ -1,0 +1,638 @@
+1687214018
+2 2
+7 libsuit 4 dPJO 8 toontown 
+29
+28 8 get_type 4 57 17 SuitLeg::get_type 0 1 1 597
+// Filename: suitLeg.I
+// Created by:  drose (08Nov01)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_type
+//       Access: Published
+//  Description: Returns the type of this leg.  Most legs are of type
+//               T_bellicose, which corresponds to just plain walking
+//               down the street, but other legs particularly at both
+//               ends of the path may represent other modes.
+////////////////////////////////////////////////////////////////////
+51
+inline SuitLeg::Type SuitLeg::get_type(void) const;
+
+29 14 get_start_time 4 57 23 SuitLeg::get_start_time 0 1 2 335
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_start_time
+//       Access: Published
+//  Description: Returns the time (in seconds elapsed since the
+//               beginning of the path) at which this leg begins.
+////////////////////////////////////////////////////////////////////
+50
+inline double SuitLeg::get_start_time(void) const;
+
+30 12 get_leg_time 4 57 21 SuitLeg::get_leg_time 0 1 3 310
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_leg_time
+//       Access: Published
+//  Description: Returns the total length of time, in seconds, which
+//               this leg represents.
+////////////////////////////////////////////////////////////////////
+48
+inline double SuitLeg::get_leg_time(void) const;
+
+31 11 get_zone_id 4 57 20 SuitLeg::get_zone_id 0 1 4 265
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_zone_id
+//       Access: Published
+//  Description: Returns the Zone ID associated with this leg.
+////////////////////////////////////////////////////////////////////
+44
+inline int SuitLeg::get_zone_id(void) const;
+
+32 16 get_block_number 4 57 25 SuitLeg::get_block_number 0 1 5 462
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_block_number
+//       Access: Published
+//  Description: Returns the block number associated with this leg, if
+//               any.  Normally this is only relevant for CogHQ door
+//               type legs, in which it represents the particular door
+//               index we're going through.
+////////////////////////////////////////////////////////////////////
+49
+inline int SuitLeg::get_block_number(void) const;
+
+33 11 get_point_a 4 57 20 SuitLeg::get_point_a 0 1 6 383
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_point_a
+//       Access: Published
+//  Description: Returns the first DNASuitPoint associated with this
+//               leg.  In most cases, the leg represents the path
+//               between point A and point B.
+////////////////////////////////////////////////////////////////////
+44
+inline int SuitLeg::get_point_a(void) const;
+
+34 11 get_point_b 4 57 20 SuitLeg::get_point_b 0 1 7 384
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_point_b
+//       Access: Published
+//  Description: Returns the second DNASuitPoint associated with this
+//               leg.  In most cases, the leg represents the path
+//               between point A and point B.
+////////////////////////////////////////////////////////////////////
+44
+inline int SuitLeg::get_point_b(void) const;
+
+35 9 get_pos_a 4 57 18 SuitLeg::get_pos_a 0 1 8 269
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_pos_a
+//       Access: Published
+//  Description: Returns the point in space associated with point A.
+////////////////////////////////////////////////////////////////////
+47
+inline LPoint3f SuitLeg::get_pos_a(void) const;
+
+36 9 get_pos_b 4 57 18 SuitLeg::get_pos_b 0 1 9 269
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_pos_b
+//       Access: Published
+//  Description: Returns the point in space associated with point B.
+////////////////////////////////////////////////////////////////////
+47
+inline LPoint3f SuitLeg::get_pos_b(void) const;
+
+37 15 get_pos_at_time 4 57 24 SuitLeg::get_pos_at_time 0 1 10 370
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_pos_at_time
+//       Access: Published
+//  Description: Returns the expected position of the suit at the
+//               indicated time, in seconds elapsed since the start of
+//               this leg.
+////////////////////////////////////////////////////////////////////
+53
+LPoint3f SuitLeg::get_pos_at_time(double time) const;
+
+38 13 get_type_name 4 57 22 SuitLeg::get_type_name 0 1 11 394
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_type_name
+//       Access: Published, Static
+//  Description: Returns the string name associated with the indicated
+//               type.  This is also the name that corresponds to a
+//               state in DistributedSuit.
+////////////////////////////////////////////////////////////////////
+71
+static basic_string< char > SuitLeg::get_type_name(SuitLeg::Type type);
+
+39 6 output 4 57 15 SuitLeg::output 0 1 12 214
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::output
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+41
+void SuitLeg::output(ostream &out) const;
+
+40 8 ~SuitLeg 4 57 17 SuitLeg::~SuitLeg 0 0 0
+24
+SuitLeg::~SuitLeg(void);
+
+41 11 SuitLegList 4 59 24 SuitLegList::SuitLegList 0 1 13 1019
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::Constructor
+//       Access: Published
+//  Description: Fills up the list with the SuitLeg objects that
+//               reflect the indicated DNASuitPath.
+//
+//               The path is just a set of DNA points along the
+//               street; the legs define the actual timings and states
+//               for walking between those points.
+//
+//               We define one leg for each pair of points, plus an
+//               additional leg at the beginning and end of the path
+//               for transitioning in and out.  Finally, there is one
+//               additional "leg" at the end of the whole sequence,
+//               which marks the removal of the Suit.
+//
+//               The last five parameters are the lengths of time, in
+//               seconds, we should allow for each of the
+//               corresponding transitions.
+////////////////////////////////////////////////////////////////////
+235
+SuitLegList::SuitLegList(DNASuitPath const *path, DNAStorage const &storage, double suit_walk_speed, double from_sky_time, double to_sky_time, double from_suit_building_time, double to_suit_building_time, double to_toon_building_time);
+
+42 12 ~SuitLegList 4 59 25 SuitLegList::~SuitLegList 0 0 222
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::Destructor
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+32
+SuitLegList::~SuitLegList(void);
+
+43 12 get_num_legs 4 59 25 SuitLegList::get_num_legs 0 1 14 224
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_num_legs
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+42
+int SuitLegList::get_num_legs(void) const;
+
+44 7 get_leg 4 59 20 SuitLegList::get_leg 0 1 15 219
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_leg
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+49
+SuitLeg const &SuitLegList::get_leg(int n) const;
+
+45 11 operator [] 4 59 24 SuitLegList::operator [] 0 1 16 393
+// Filename: suitLegList.I
+// Created by:  drose (08Nov01)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::Indexing Operator
+//       Access: Published
+//  Description: Returns the nth leg of the list.
+////////////////////////////////////////////////////////////////////
+60
+inline SuitLeg const &SuitLegList::operator [](int n) const;
+
+46 21 get_leg_index_at_time 4 59 34 SuitLegList::get_leg_index_at_time 0 1 17 476
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_leg_index_at_time
+//       Access: Published
+//  Description: Returns the index of the leg within the list that
+//               covers the indicated elapsed time from the beginning
+//               of the path.
+//
+//               start is a hint, the index at which to start
+//               searching.
+////////////////////////////////////////////////////////////////////
+69
+int SuitLegList::get_leg_index_at_time(double time, int start) const;
+
+47 8 get_type 4 59 21 SuitLegList::get_type 0 1 18 474
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_type
+//       Access: Published
+//  Description: Returns the type of this leg.  Most legs are of type
+//               T_bellicose, which corresponds to just plain walking
+//               down the street, but other legs particularly at both
+//               ends of the path may represent other modes.
+////////////////////////////////////////////////////////////////////
+56
+inline SuitLeg::Type SuitLegList::get_type(int n) const;
+
+48 14 get_start_time 4 59 27 SuitLegList::get_start_time 0 1 19 339
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_start_time
+//       Access: Published
+//  Description: Returns the time (in seconds elapsed since the
+//               beginning of the path) at which this leg begins.
+////////////////////////////////////////////////////////////////////
+55
+inline double SuitLegList::get_start_time(int n) const;
+
+49 12 get_leg_time 4 59 25 SuitLegList::get_leg_time 0 1 20 314
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_leg_time
+//       Access: Published
+//  Description: Returns the total length of time, in seconds, which
+//               this leg represents.
+////////////////////////////////////////////////////////////////////
+53
+inline double SuitLegList::get_leg_time(int n) const;
+
+50 11 get_zone_id 4 59 24 SuitLegList::get_zone_id 0 1 21 594
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_zone_id
+//       Access: Published
+//  Description: Returns the Zone ID associated with this leg.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_zone_id
+//       Access: Private, Static
+//  Description: Returns the Zone ID associated with the edge defined
+//               by the two suit points.
+////////////////////////////////////////////////////////////////////
+49
+inline int SuitLegList::get_zone_id(int n) const;
+
+51 16 get_block_number 4 59 29 SuitLegList::get_block_number 0 1 22 466
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_block_number
+//       Access: Published
+//  Description: Returns the block number associated with this leg, if
+//               any.  Normally this is only relevant for CogHQ door
+//               type legs, in which it represents the particular door
+//               index we're going through.
+////////////////////////////////////////////////////////////////////
+54
+inline int SuitLegList::get_block_number(int n) const;
+
+52 11 get_point_a 4 59 24 SuitLegList::get_point_a 0 1 23 387
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_point_a
+//       Access: Published
+//  Description: Returns the first DNASuitPoint associated with this
+//               leg.  In most cases, the leg represents the path
+//               between point A and point B.
+////////////////////////////////////////////////////////////////////
+49
+inline int SuitLegList::get_point_a(int n) const;
+
+53 11 get_point_b 4 59 24 SuitLegList::get_point_b 0 1 24 387
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_point_b
+//       Access: Published
+//  Description: Returns the first DNASuitPoint associated with this
+//               leg.  In most cases, the leg represents the path
+//               between point A and point B.
+////////////////////////////////////////////////////////////////////
+49
+inline int SuitLegList::get_point_b(int n) const;
+
+54 17 is_point_in_range 4 59 30 SuitLegList::is_point_in_range 0 1 25 470
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::is_point_in_range
+//       Access: Published
+//  Description: Returns true if the indicated point lies on this
+//               path, between times begin and end, or false
+//               otherwise.  This is useful for ensuring two suits
+//               aren't assigned paths too close to each other.
+////////////////////////////////////////////////////////////////////
+95
+bool SuitLegList::is_point_in_range(DNASuitPoint const *point, double begin, double end) const;
+
+55 6 output 4 59 19 SuitLegList::output 0 1 26 218
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::output
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+45
+void SuitLegList::output(ostream &out) const;
+
+56 5 write 4 59 18 SuitLegList::write 0 1 27 217
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::write
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+44
+void SuitLegList::write(ostream &out) const;
+
+27
+1 14 Dtool_dPJOAZxb 6 3 58 0 14 Dtool_dPJOAZxb 597 // Filename: suitLeg.I
+// Created by:  drose (08Nov01)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_type
+//       Access: Published
+//  Description: Returns the type of this leg.  Most legs are of type
+//               T_bellicose, which corresponds to just plain walking
+//               down the street, but other legs particularly at both
+//               ends of the path may represent other modes.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 60  
+2 14 Dtool_dPJO5StD 6 4 62 0 14 Dtool_dPJO5StD 335 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_start_time
+//       Access: Published
+//  Description: Returns the time (in seconds elapsed since the
+//               beginning of the path) at which this leg begins.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 60  
+3 14 Dtool_dPJOtXv5 6 5 62 0 14 Dtool_dPJOtXv5 310 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_leg_time
+//       Access: Published
+//  Description: Returns the total length of time, in seconds, which
+//               this leg represents.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 60  
+4 14 Dtool_dPJOE_t_ 6 6 63 0 14 Dtool_dPJOE_t_ 265 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_zone_id
+//       Access: Published
+//  Description: Returns the Zone ID associated with this leg.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 60  
+5 14 Dtool_dPJOpS0S 6 7 63 0 14 Dtool_dPJOpS0S 462 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_block_number
+//       Access: Published
+//  Description: Returns the block number associated with this leg, if
+//               any.  Normally this is only relevant for CogHQ door
+//               type legs, in which it represents the particular door
+//               index we're going through.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 60  
+6 14 Dtool_dPJOBiby 6 8 63 0 14 Dtool_dPJOBiby 383 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_point_a
+//       Access: Published
+//  Description: Returns the first DNASuitPoint associated with this
+//               leg.  In most cases, the leg represents the path
+//               between point A and point B.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 60  
+7 14 Dtool_dPJOMFcS 6 9 63 0 14 Dtool_dPJOMFcS 384 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_point_b
+//       Access: Published
+//  Description: Returns the second DNASuitPoint associated with this
+//               leg.  In most cases, the leg represents the path
+//               between point A and point B.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 60  
+8 14 Dtool_dPJODQBi 7 10 65 0 14 Dtool_dPJODQBi 269 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_pos_a
+//       Access: Published
+//  Description: Returns the point in space associated with point A.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 60  
+9 14 Dtool_dPJOBQP_ 7 11 65 0 14 Dtool_dPJOBQP_ 269 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_pos_b
+//       Access: Published
+//  Description: Returns the point in space associated with point B.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 60  
+10 14 Dtool_dPJODQI5 7 12 65 0 14 Dtool_dPJODQI5 370 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_pos_at_time
+//       Access: Published
+//  Description: Returns the expected position of the suit at the
+//               indicated time, in seconds elapsed since the start of
+//               this leg.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 60  4 time 1 62  
+11 14 Dtool_dPJOrT06 6 13 66 0 14 Dtool_dPJOrT06 394 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::get_type_name
+//       Access: Published, Static
+//  Description: Returns the string name associated with the indicated
+//               type.  This is also the name that corresponds to a
+//               state in DistributedSuit.
+//////////////////////////////////////////////////////////////////// 1 4 type 1 58  
+12 14 Dtool_dPJO3B4j 4 14 69 0 14 Dtool_dPJO3B4j 214 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLeg::output
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 60  3 out 1 67  
+13 14 Dtool_dPJOzejz 7 17 76 42 14 Dtool_dPJOzejz 1019 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::Constructor
+//       Access: Published
+//  Description: Fills up the list with the SuitLeg objects that
+//               reflect the indicated DNASuitPath.
+//
+//               The path is just a set of DNA points along the
+//               street; the legs define the actual timings and states
+//               for walking between those points.
+//
+//               We define one leg for each pair of points, plus an
+//               additional leg at the beginning and end of the path
+//               for transitioning in and out.  Finally, there is one
+//               additional "leg" at the end of the whole sequence,
+//               which marks the removal of the Suit.
+//
+//               The last five parameters are the lengths of time, in
+//               seconds, we should allow for each of the
+//               corresponding transitions.
+//////////////////////////////////////////////////////////////////// 8 4 path 1 70  7 storage 1 73  15 suit_walk_speed 1 62  13 from_sky_time 1 62  11 to_sky_time 1 62  23 from_suit_building_time 1 62  21 to_suit_building_time 1 62  21 to_toon_building_time 1 62  
+14 14 Dtool_dPJOiBz_ 6 19 63 0 14 Dtool_dPJOiBz_ 224 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_num_legs
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 this 3 77  
+15 14 Dtool_dPJOfTx7 6 20 60 0 14 Dtool_dPJOfTx7 219 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_leg
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  1 n 1 63  
+16 14 Dtool_dPJOaX3E 6 21 60 0 14 Dtool_dPJOaX3E 393 // Filename: suitLegList.I
+// Created by:  drose (08Nov01)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::Indexing Operator
+//       Access: Published
+//  Description: Returns the nth leg of the list.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  1 n 1 63  
+17 14 Dtool_dPJODW6Z 6 22 63 0 14 Dtool_dPJODW6Z 476 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_leg_index_at_time
+//       Access: Published
+//  Description: Returns the index of the leg within the list that
+//               covers the indicated elapsed time from the beginning
+//               of the path.
+//
+//               start is a hint, the index at which to start
+//               searching.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 77  4 time 1 62  5 start 1 63  
+18 14 Dtool_dPJOOGbg 6 23 58 0 14 Dtool_dPJOOGbg 474 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_type
+//       Access: Published
+//  Description: Returns the type of this leg.  Most legs are of type
+//               T_bellicose, which corresponds to just plain walking
+//               down the street, but other legs particularly at both
+//               ends of the path may represent other modes.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  1 n 1 63  
+19 14 Dtool_dPJOdbo9 6 24 62 0 14 Dtool_dPJOdbo9 339 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_start_time
+//       Access: Published
+//  Description: Returns the time (in seconds elapsed since the
+//               beginning of the path) at which this leg begins.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  1 n 1 63  
+20 14 Dtool_dPJO6Pm1 6 25 62 0 14 Dtool_dPJO6Pm1 314 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_leg_time
+//       Access: Published
+//  Description: Returns the total length of time, in seconds, which
+//               this leg represents.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  1 n 1 63  
+21 14 Dtool_dPJOKCGY 6 26 63 0 14 Dtool_dPJOKCGY 269 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_zone_id
+//       Access: Published
+//  Description: Returns the Zone ID associated with this leg.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  1 n 1 63  
+22 14 Dtool_dPJO9bGq 6 27 63 0 14 Dtool_dPJO9bGq 466 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_block_number
+//       Access: Published
+//  Description: Returns the block number associated with this leg, if
+//               any.  Normally this is only relevant for CogHQ door
+//               type legs, in which it represents the particular door
+//               index we're going through.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  1 n 1 63  
+23 14 Dtool_dPJOYFQP 6 28 63 0 14 Dtool_dPJOYFQP 387 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_point_a
+//       Access: Published
+//  Description: Returns the first DNASuitPoint associated with this
+//               leg.  In most cases, the leg represents the path
+//               between point A and point B.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  1 n 1 63  
+24 14 Dtool_dPJOkGQd 6 29 63 0 14 Dtool_dPJOkGQd 387 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::get_point_b
+//       Access: Published
+//  Description: Returns the first DNASuitPoint associated with this
+//               leg.  In most cases, the leg represents the path
+//               between point A and point B.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  1 n 1 63  
+25 14 Dtool_dPJOIgCC 6 30 82 0 14 Dtool_dPJOIgCC 470 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::is_point_in_range
+//       Access: Published
+//  Description: Returns true if the indicated point lies on this
+//               path, between times begin and end, or false
+//               otherwise.  This is useful for ensuring two suits
+//               aren't assigned paths too close to each other.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 77  5 point 1 79  5 begin 1 62  3 end 1 62  
+26 14 Dtool_dPJOmAhd 4 31 69 0 14 Dtool_dPJOmAhd 218 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::output
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  3 out 1 67  
+27 14 Dtool_dPJOe8xK 4 32 69 0 14 Dtool_dPJOe8xK 217 ////////////////////////////////////////////////////////////////////
+//     Function: SuitLegList::write
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 77  3 out 1 67  
+26
+57 7 SuitLeg 141313 7 SuitLeg 7 SuitLeg 0 0 0 0 40 0 12 28 29 30 31 32 33 34 35 36 37 38 39 0 0 0 0 1 58 1269
+////////////////////////////////////////////////////////////////////
+//       Class : SuitLeg
+// Description : This class is used by SuitBase, which is the base for
+//               both DistributedSuit and DistributedSuitAI, to build
+//               up a list of legs along the suit's path.
+//
+//               Each leg corresponds to a small segment of the suit's
+//               path as it walks along the street.  Generally, there
+//               is one leg between each two DNASuitPoints that make
+//               up the path, with some additional legs at both ends
+//               to manage the transitions in and out of the world.
+//
+//               The client-side DistributedSuit object uses these
+//               legs to define intervals to lerp it from place to
+//               place, while the AI side is mainly concerned about
+//               setting the zone properly each time.
+//
+//               This class is defined in C++ instead of in Python
+//               because we have to create a long list of SuitLegs
+//               every time we encounter a new suit, a process which
+//               takes substantial time in Python but is negligible in
+//               C++.
+////////////////////////////////////////////////////////////////////
+
+58 4 Type 794624 13 SuitLeg::Type 13 SuitLeg::Type 57 0 0 0 0 0 0 0 0 0 11 18 T_walk_from_street 27 SuitLeg::T_walk_from_street 0 16 T_walk_to_street 25 SuitLeg::T_walk_to_street 1 6 T_walk 15 SuitLeg::T_walk 2 10 T_from_sky 19 SuitLeg::T_from_sky 3 8 T_to_sky 17 SuitLeg::T_to_sky 4 20 T_from_suit_building 29 SuitLeg::T_from_suit_building 5 18 T_to_suit_building 27 SuitLeg::T_to_suit_building 6 18 T_to_toon_building 27 SuitLeg::T_to_toon_building 7 12 T_from_coghq 21 SuitLeg::T_from_coghq 8 10 T_to_coghq 19 SuitLeg::T_to_coghq 9 5 T_off 14 SuitLeg::T_off 10 0 117
+// Various types of legs.  These leg types also correspond to named
+// states in the client-side DistributedSuit fsm.
+
+59 11 SuitLegList 26625 11 SuitLegList 11 SuitLegList 0 0 0 1 41 42 0 14 43 44 45 46 47 48 49 50 51 52 53 54 55 56 0 0 0 0 0 289
+////////////////////////////////////////////////////////////////////
+//       Class : SuitLegList
+// Description : This is a list of SuitLegs.  See SuitLeg for a more
+//               detailed explanation of its purpose.
+////////////////////////////////////////////////////////////////////
+
+60 15 SuitLeg const * 8576 15 SuitLeg const * 15 SuitLeg const * 0 0 61 0 0 0 0 0 0 0 0 0 0
+
+61 13 SuitLeg const 8832 13 SuitLeg const 13 SuitLeg const 0 0 57 0 0 0 0 0 0 0 0 0 0
+
+62 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+63 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+64 7 Vertexf 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 0 1083
+// Filename: lpoint3_src.h
+// Created by:  drose (25Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint3
+// Description : This is a three-component point in space (as opposed
+//               to a three-component vector, which represents a
+//               direction and a distance).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+65 10 LPoint3f * 8576 10 LPoint3f * 10 LPoint3f * 0 0 64 0 0 0 0 0 0 0 0 0 0
+
+66 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+67 9 ostream * 8576 9 ostream * 9 ostream * 0 0 68 0 0 0 0 0 0 0 0 0 0
+
+68 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+69 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+70 19 DNASuitPath const * 8576 19 DNASuitPath const * 19 DNASuitPath const * 0 0 71 0 0 0 0 0 0 0 0 0 0
+
+71 17 DNASuitPath const 8832 17 DNASuitPath const 17 DNASuitPath const 0 0 72 0 0 0 0 0 0 0 0 0 0
+
+72 11 DNASuitPath 2048 11 DNASuitPath 11 DNASuitPath 0 0 0 0 0 0 0 0 0 0 0 0 183
+////////////////////////////////////////////////////////////////////
+//       Class : DNASuitPath
+// Description :
+////////////////////////////////////////////////////////////////////
+
+73 18 DNAStorage const * 8576 18 DNAStorage const * 18 DNAStorage const * 0 0 74 0 0 0 0 0 0 0 0 0 0
+
+74 16 DNAStorage const 8832 16 DNAStorage const 16 DNAStorage const 0 0 75 0 0 0 0 0 0 0 0 0 0
+
+75 10 DNAStorage 2048 10 DNAStorage 10 DNAStorage 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+76 13 SuitLegList * 8576 13 SuitLegList * 13 SuitLegList * 0 0 59 0 0 0 0 0 0 0 0 0 0
+
+77 19 SuitLegList const * 8576 19 SuitLegList const * 19 SuitLegList const * 0 0 78 0 0 0 0 0 0 0 0 0 0
+
+78 17 SuitLegList const 8832 17 SuitLegList const 17 SuitLegList const 0 0 59 0 0 0 0 0 0 0 0 0 0
+
+79 20 DNASuitPoint const * 8576 20 DNASuitPoint const * 20 DNASuitPoint const * 0 0 80 0 0 0 0 0 0 0 0 0 0
+
+80 18 DNASuitPoint const 8832 18 DNASuitPoint const 18 DNASuitPoint const 0 0 81 0 0 0 0 0 0 0 0 0 0
+
+81 12 DNASuitPoint 2048 12 DNASuitPoint 12 DNASuitPoint 0 0 0 0 0 0 0 0 0 0 0 0 184
+////////////////////////////////////////////////////////////////////
+//       Class : DNASuitPoint
+// Description :
+////////////////////////////////////////////////////////////////////
+
+82 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+0

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="images" host="http://download.sunrise.games/runtime" seq="1">
+    <component filename="auth_click.png" />
+    <component filename="auth_ready.png" />
+    <component filename="auth_rollover.png" />
+    <component filename="download.png" />
+    <component filename="failed.png" />
+    <component filename="play_click.png" />
+    <component filename="play_ready.png" />
+    <component filename="play_rollover.png" />
+</package>

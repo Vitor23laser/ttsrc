@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="certlist" seq="1">
+    <uncompressed_archive filename="certlist.mf" size="22" timestamp="1687218637" hash="ef22d24cc462dcb6bc021418a3e2542c" />
+    <compressed_archive filename="certlist.mf.pz" size="19" timestamp="1687218637" hash="afd5b01fc22dd2dcc78d6e4f18402a61" />
+</package>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="numpy" version="Rocket_1.7" host="http://download.sunrise.games/runtime" seq="1">
+    <requires name="panda3d" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <module name="numpy" />
+</package>

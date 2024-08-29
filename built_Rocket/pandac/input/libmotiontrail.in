@@ -1,0 +1,326 @@
+1687213786
+2 2
+14 libmotiontrail 4 Cer8 8 p3direct 
+10
+11 12 CMotionTrail 4 21 26 CMotionTrail::CMotionTrail 0 1 1 236
+////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::Constructor
+//       Access: Published
+//  Description: Constructor
+////////////////////////////////////////////////////////////////////
+33
+CMotionTrail::CMotionTrail(void);
+
+12 5 reset 4 21 19 CMotionTrail::reset 0 1 2 250
+////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::reset
+//       Access: Published
+//  Description: Reset the frame sample history.
+////////////////////////////////////////////////////////////////////
+31
+void CMotionTrail::reset(void);
+
+13 17 reset_vertex_list 4 21 31 CMotionTrail::reset_vertex_list 0 1 3 253
+////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::reset_vertex_list
+//       Access: Published
+//  Description: Reset the vertex list.
+////////////////////////////////////////////////////////////////////
+43
+void CMotionTrail::reset_vertex_list(void);
+
+14 6 enable 4 21 20 CMotionTrail::enable 0 1 4 252
+////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::enable
+//       Access: Published
+//  Description: Enable/disable the motion trail.
+////////////////////////////////////////////////////////////////////
+39
+void CMotionTrail::enable(bool enable);
+
+15 13 set_geom_node 4 21 27 CMotionTrail::set_geom_node 0 1 5 244
+////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::set_geom_node
+//       Access: Published
+//  Description: Set the GeomNode.
+////////////////////////////////////////////////////////////////////
+66
+void CMotionTrail::set_geom_node(PointerTo< GeomNode > geom_node);
+
+16 10 add_vertex 4 21 24 CMotionTrail::add_vertex 0 1 6 237
+////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::add_vertex
+//       Access: Published
+//  Description: Add a vertex.
+////////////////////////////////////////////////////////////////////
+104
+void CMotionTrail::add_vertex(LVector4f *vertex, LVector4f *start_color, LVector4f *end_color, float v);
+
+17 14 set_parameters 4 21 28 CMotionTrail::set_parameters 0 1 7 1052
+////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::set_parameters
+//       Access: Published
+//  Description: Set motion trail parameters.
+//
+//               sampling_time = Can be used to specify a lower 
+//               sampling rate than the frame rate. Use 0.0 with 
+//               nurbs. 
+//
+//               time_window = a component for the "length" of the 
+//               motion trail.  The motion trail length = 
+//               time_window * velocity of the object.
+//
+//               use_texture = texture option on/off.
+//
+//               calculate_relative_matrix = calculate relative 
+//               matrix on/off.
+//
+//               use_nurbs = nurbs option on/off
+//
+//               resolution_distance = the distance used to 
+//               determine the number of geometry samples. 
+//               samples = motion trail length / resolution_distance.
+//               Applicable only if nurbs is on.
+////////////////////////////////////////////////////////////////////
+167
+void CMotionTrail::set_parameters(float sampling_time, float time_window, bool use_texture, bool calculate_relative_matrix, bool use_nurbs, float resolution_distance);
+
+18 16 check_for_update 4 21 30 CMotionTrail::check_for_update 0 1 8 265
+////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::check_for_update
+//       Access: Published
+//  Description: Check if a sample can be submitted.
+////////////////////////////////////////////////////////////////////
+55
+int CMotionTrail::check_for_update(float current_time);
+
+19 19 update_motion_trail 4 21 33 CMotionTrail::update_motion_trail 0 1 9 259
+////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::update_motion_trail
+//       Access: Published
+//  Description: See class header comments.
+////////////////////////////////////////////////////////////////////
+81
+void CMotionTrail::update_motion_trail(float current_time, LMatrix4f *transform);
+
+20 14 get_class_type 4 21 28 CMotionTrail::get_class_type 0 1 10 0
+53
+static TypeHandle CMotionTrail::get_class_type(void);
+
+10
+1 14 Dtool_Cer8L3Ff 7 3 23 0 14 Dtool_Cer8L3Ff 236 ////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::Constructor
+//       Access: Published
+//  Description: Constructor
+//////////////////////////////////////////////////////////////////// 0 
+2 14 Dtool_Cer8zAjt 4 4 24 0 14 Dtool_Cer8zAjt 250 ////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::reset
+//       Access: Published
+//  Description: Reset the frame sample history.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 23  
+3 14 Dtool_Cer803Yy 4 5 24 0 14 Dtool_Cer803Yy 253 ////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::reset_vertex_list
+//       Access: Published
+//  Description: Reset the vertex list.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 23  
+4 14 Dtool_Cer8eOId 4 6 24 0 14 Dtool_Cer8eOId 252 ////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::enable
+//       Access: Published
+//  Description: Enable/disable the motion trail.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 23  6 enable 1 25  
+5 14 Dtool_Cer8xLo_ 4 7 24 0 14 Dtool_Cer8xLo_ 244 ////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::set_geom_node
+//       Access: Published
+//  Description: Set the GeomNode.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 23  9 geom_node 1 26  
+6 14 Dtool_Cer8VPYh 4 8 24 0 14 Dtool_Cer8VPYh 237 ////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::add_vertex
+//       Access: Published
+//  Description: Add a vertex.
+//////////////////////////////////////////////////////////////////// 5 4 this 3 23  6 vertex 1 28  11 start_color 1 28  9 end_color 1 28  1 v 1 30  
+7 14 Dtool_Cer8eGI3 4 9 24 0 14 Dtool_Cer8eGI3 1052 ////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::set_parameters
+//       Access: Published
+//  Description: Set motion trail parameters.
+//
+//               sampling_time = Can be used to specify a lower 
+//               sampling rate than the frame rate. Use 0.0 with 
+//               nurbs. 
+//
+//               time_window = a component for the "length" of the 
+//               motion trail.  The motion trail length = 
+//               time_window * velocity of the object.
+//
+//               use_texture = texture option on/off.
+//
+//               calculate_relative_matrix = calculate relative 
+//               matrix on/off.
+//
+//               use_nurbs = nurbs option on/off
+//
+//               resolution_distance = the distance used to 
+//               determine the number of geometry samples. 
+//               samples = motion trail length / resolution_distance.
+//               Applicable only if nurbs is on.
+//////////////////////////////////////////////////////////////////// 7 4 this 3 23  13 sampling_time 1 30  11 time_window 1 30  11 use_texture 1 25  25 calculate_relative_matrix 1 25  9 use_nurbs 1 25  19 resolution_distance 1 30  
+8 14 Dtool_Cer8Mszv 6 10 31 0 14 Dtool_Cer8Mszv 265 ////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::check_for_update
+//       Access: Published
+//  Description: Check if a sample can be submitted.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 23  12 current_time 1 30  
+9 14 Dtool_Cer8rgDN 4 11 24 0 14 Dtool_Cer8rgDN 259 ////////////////////////////////////////////////////////////////////
+//     Function: CMotionTrail::update_motion_trail
+//       Access: Published
+//  Description: See class header comments.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 23  12 current_time 1 30  9 transform 1 32  
+10 14 Dtool_Cer8A5CE 7 12 35 0 14 Dtool_Cer8A5CE 0 0 
+15
+21 12 CMotionTrail 75777 12 CMotionTrail 12 CMotionTrail 0 0 0 1 11 0 0 9 12 13 14 15 16 17 18 19 20 0 0 1 0 22 0 0 0 0 2187
+////////////////////////////////////////////////////////////////////
+//       Class : CMotionTrail
+// Description : The method used in creating the motion trail is 
+//               based on taking samples of time and transformations 
+//               (the position and orientation matrix) in real-time.
+//               The method also requires a number of vertices 
+//               (positions) that determines "shape" of the motion 
+//               trail (i.e. the edge of a blade).  A start color 
+//               and end color is also required for each vertex. 
+//               The color is interpolated as function of time.
+//               The colors are typically used to fade the motion
+//               trail so the end color is typically black.
+//
+//               The vertices are submitted via the "add_vertex" 
+//               function.  For each frame, a sample is submited via 
+//               the "update_motion_trail" function.  During the 
+//               "update_motion_trail" function, the motion trail 
+//               geometry is created dynamically from the sample 
+//               history and the vertices.  
+//
+//               The user must specifiy a GeomNode via 
+//               "set_geom_node".
+//
+//               The duration of the sample history is specified by 
+//               a time window. A larger time window creates longer 
+//               motion trails (given constant speed).  Samples that 
+//               are no longer within the time window are 
+//               automatically discarded.
+//
+//               The nurbs option can be used to create smooth 
+//               interpolated curves from the samples.  The nurbs 
+//               option is useful for animations that lack sampling 
+//               to begin with, animations that move very quickly, 
+//               or low frame rates.
+//
+//               The texture option be used to create variation to 
+//               the motion trail.  The u coordinate of the texture 
+//               corresponds to time and the v coordinate 
+//               corresponds to the "shape" of the motion trail.
+////////////////////////////////////////////////////////////////////
+
+22 19 TypedReferenceCount 2049 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 710
+////////////////////////////////////////////////////////////////////
+//       Class : TypedReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedObject and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedObjects and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+23 14 CMotionTrail * 8576 14 CMotionTrail * 14 CMotionTrail * 0 0 21 0 0 0 0 0 0 0 0 0 0
+
+24 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+25 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+26 10 GeomNode * 8576 10 GeomNode * 10 GeomNode * 0 0 27 0 0 0 0 0 0 0 0 0 0
+
+27 8 GeomNode 2048 8 GeomNode 8 GeomNode 0 0 0 0 0 0 0 2 36 37 0 0 0 0 423
+////////////////////////////////////////////////////////////////////
+//       Class : GeomNode
+// Description : A node that holds Geom objects, renderable pieces of
+//               geometry.  This is the primary kind of leaf node in
+//               the scene graph; almost all visible objects will be
+//               contained in a GeomNode somewhere.
+////////////////////////////////////////////////////////////////////
+
+28 11 LVector4f * 8576 11 LVector4f * 11 LVector4f * 0 0 29 0 0 0 0 0 0 0 0 0 0
+
+29 9 LVector4f 2048 9 LVector4f 9 LVector4f 0 0 0 0 0 0 0 0 0 0 0 0 710
+// Filename: lvector4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector4
+// Description : This is a four-component vector distance.
+////////////////////////////////////////////////////////////////////
+
+30 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+31 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+32 11 LMatrix4f * 8576 11 LMatrix4f * 11 LMatrix4f * 0 0 33 0 0 0 0 0 0 0 0 0 0
+
+33 9 LMatrix4f 2048 9 LMatrix4f 9 LMatrix4f 0 0 0 0 0 0 0 3 38 39 40 0 0 0 0 703
+// Filename: lmatrix4_src.h
+// Created by:  drose (15Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix4
+// Description : This is a 4-by-4 transform matrix.
+////////////////////////////////////////////////////////////////////
+
+34 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+35 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 34 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+5
+36 0 22 9 get_geoms 13 get_num_geoms 8 get_geom 
+37 0 22 15 get_geom_states 13 get_num_geoms 14 get_geom_state 
+38 0 32 8 get_rows 4 size 7 get_row 
+39 0 32 8 get_cols 4 size 7 get_col 
+40 0 32 9 get_row3s 4 size 8 get_row3 

@@ -1,0 +1,625 @@
+1687213936
+2 2
+11 libmovement 4 Ye45 3 otp 
+33
+38 8 CImpulse 4 71 18 CImpulse::CImpulse 0 1 1 218
+////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::Constructor
+//       Access: Public
+//  Description: 
+////////////////////////////////////////////////////////////////////
+25
+CImpulse::CImpulse(void);
+
+39 7 process 4 71 17 CImpulse::process 0 1 2 313
+////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::process
+//       Access: Public, Virtual
+//  Description: override this and set your impulse's influence for
+//               this pass on its mover
+////////////////////////////////////////////////////////////////////
+41
+virtual void CImpulse::process(float dt);
+
+40 9 set_mover 4 71 19 CImpulse::set_mover 0 1 3 269
+////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::set_mover
+//       Access: Public, Virtual
+//  Description: called internally by cMover when we're added
+////////////////////////////////////////////////////////////////////
+48
+virtual void CImpulse::set_mover(CMover &mover);
+
+41 11 clear_mover 4 71 21 CImpulse::clear_mover 0 1 4 273
+////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::clear_mover
+//       Access: Public, Virtual
+//  Description: called internally by cMover when we're removed
+////////////////////////////////////////////////////////////////////
+50
+virtual void CImpulse::clear_mover(CMover &mover);
+
+42 9 get_mover 4 71 19 CImpulse::get_mover 0 1 5 427
+// Filename: cImpulse.I
+// Created by:  darren (13Jul04)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::get_mover
+//       Access: Published
+//  Description: Returns pointer to mover obj that we're attached to;
+//               may be 0.
+////////////////////////////////////////////////////////////////////
+47
+inline CMover *CImpulse::get_mover(void) const;
+
+43 13 get_node_path 4 71 23 CImpulse::get_node_path 0 1 6 272
+////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::get_node_path
+//       Access: Published
+//  Description: Returns NodePath that our mover is moving around.
+////////////////////////////////////////////////////////////////////
+52
+inline NodePath CImpulse::get_node_path(void) const;
+
+44 6 is_cpp 4 71 16 CImpulse::is_cpp 0 1 7 381
+////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::is_cpp
+//       Access: Published
+//  Description: Indicates the state the interval believes it is in:
+//               whether it has been started, is currently in the
+//               middle, or has been finalized.
+////////////////////////////////////////////////////////////////////
+41
+inline bool CImpulse::is_cpp(void) const;
+
+45 14 get_class_type 4 71 24 CImpulse::get_class_type 0 1 8 0
+49
+static TypeHandle CImpulse::get_class_type(void);
+
+46 6 CMover 4 73 14 CMover::CMover 0 3 9 10 11 0
+84
+CMover::CMover(NodePath &objNodePath, float fwd_speed = (1), float rot_speed = (1));
+
+47 13 set_fwd_speed 4 73 21 CMover::set_fwd_speed 0 1 12 424
+// Filename: cMover.I
+// Created by:  darren (13Jul04)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::set_fwd_speed
+//       Access: Published
+//  Description: Sets the speed that impulses should use when moving
+//               forward
+////////////////////////////////////////////////////////////////////
+51
+inline void CMover::set_fwd_speed(float fwd_speed);
+
+48 13 set_rot_speed 4 73 21 CMover::set_rot_speed 0 1 13 274
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::set_rot_speed
+//       Access: Published
+//  Description: Sets the speed that impulses should use when rotating
+////////////////////////////////////////////////////////////////////
+51
+inline void CMover::set_rot_speed(float rot_speed);
+
+49 13 get_fwd_speed 4 73 21 CMover::get_fwd_speed 0 1 14 300
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::get_fwd_speed
+//       Access: Published
+//  Description: Returns the speed that impulses should use when moving
+//               forward
+////////////////////////////////////////////////////////////////////
+47
+inline float CMover::get_fwd_speed(void) const;
+
+50 13 get_rot_speed 4 73 21 CMover::get_rot_speed 0 1 15 277
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::get_rot_speed
+//       Access: Published
+//  Description: Returns the speed that impulses should use when rotating
+////////////////////////////////////////////////////////////////////
+47
+inline float CMover::get_rot_speed(void) const;
+
+51 13 add_c_impulse 4 73 21 CMover::add_c_impulse 0 1 16 0
+80
+void CMover::add_c_impulse(basic_string< char > const &name, CImpulse *impulse);
+
+52 16 remove_c_impulse 4 73 24 CMover::remove_c_impulse 0 1 17 0
+64
+bool CMover::remove_c_impulse(basic_string< char > const &name);
+
+53 18 process_c_impulses 4 73 26 CMover::process_c_impulses 0 2 18 19 0
+49
+void CMover::process_c_impulses(float dt = (-1));
+
+54 9 integrate 4 73 17 CMover::integrate 0 1 20 0
+29
+void CMover::integrate(void);
+
+55 9 add_force 4 73 17 CMover::add_force 0 1 21 257
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::add_force
+//       Access: Published
+//  Description: Called by impulses during CMover::move()
+////////////////////////////////////////////////////////////////////
+54
+inline void CMover::add_force(LVector3f const &force);
+
+56 13 add_rot_force 4 73 21 CMover::add_rot_force 0 1 22 261
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::add_rot_force
+//       Access: Published
+//  Description: Called by impulses during CMover::move()
+////////////////////////////////////////////////////////////////////
+62
+inline void CMover::add_rot_force(LVector3f const &rot_force);
+
+57 9 add_shove 4 73 17 CMover::add_shove 0 1 23 257
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::add_shove
+//       Access: Published
+//  Description: Called by impulses during CMover::move()
+////////////////////////////////////////////////////////////////////
+54
+inline void CMover::add_shove(LVector3f const &shove);
+
+58 13 add_rot_shove 4 73 21 CMover::add_rot_shove 0 1 24 261
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::add_rot_shove
+//       Access: Published
+//  Description: Called by impulses during CMover::move()
+////////////////////////////////////////////////////////////////////
+62
+inline void CMover::add_rot_shove(LVector3f const &rot_shove);
+
+59 13 get_node_path 4 73 21 CMover::get_node_path 0 1 25 263
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::get_node_path
+//       Access: Published
+//  Description: Returns nodepath being moved by this mover
+////////////////////////////////////////////////////////////////////
+50
+inline NodePath CMover::get_node_path(void) const;
+
+60 6 get_dt 4 73 14 CMover::get_dt 0 1 26 249
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::get_dt
+//       Access: Published
+//  Description: Returns dt from last call to move()
+////////////////////////////////////////////////////////////////////
+40
+inline float CMover::get_dt(void) const;
+
+61 8 reset_dt 4 73 16 CMover::reset_dt 0 1 27 438
+////////////////////////////////////////////////////////////////////
+//     Function: CMoverGroup::reset_dt
+//       Access: Published
+//  Description: ignores time elapsed since last set_dt, call if
+//               mover group has not been moved in a long time
+//               and you don't want objects to move as if they
+//               were moving the whole time
+////////////////////////////////////////////////////////////////////
+35
+inline void CMover::reset_dt(void);
+
+62 14 get_class_type 4 73 22 CMover::get_class_type 0 1 28 0
+47
+static TypeHandle CMover::get_class_type(void);
+
+63 11 CMoverGroup 4 74 24 CMoverGroup::CMoverGroup 0 1 29 0
+31
+CMoverGroup::CMoverGroup(void);
+
+64 11 add_c_mover 4 74 24 CMoverGroup::add_c_mover 0 1 30 0
+79
+void CMoverGroup::add_c_mover(basic_string< char > const &name, CMover *mover);
+
+65 14 remove_c_mover 4 74 27 CMoverGroup::remove_c_mover 0 1 31 0
+67
+bool CMoverGroup::remove_c_mover(basic_string< char > const &name);
+
+66 6 set_dt 4 74 19 CMoverGroup::set_dt 0 2 32 33 318
+////////////////////////////////////////////////////////////////////
+//     Function: CMoverGroup::set_dt
+//       Access: Published
+//  Description: sets dt for current frame, calculates if -1 is passed
+//               returns dt for current frame
+////////////////////////////////////////////////////////////////////
+50
+inline float CMoverGroup::set_dt(float dt = (-1));
+
+67 6 get_dt 4 74 19 CMoverGroup::get_dt 0 1 34 386
+// Filename: cMoverGroup.I
+// Created by:  darren (13Mar07)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CMoverGroup::get_dt
+//       Access: Published
+//  Description: Returns dt from last call to set_dt
+////////////////////////////////////////////////////////////////////
+45
+inline float CMoverGroup::get_dt(void) const;
+
+68 8 reset_dt 4 74 21 CMoverGroup::reset_dt 0 1 35 438
+////////////////////////////////////////////////////////////////////
+//     Function: CMoverGroup::reset_dt
+//       Access: Published
+//  Description: ignores time elapsed since last set_dt, call if
+//               mover group has not been moved in a long time
+//               and you don't want objects to move as if they
+//               were moving the whole time
+////////////////////////////////////////////////////////////////////
+40
+inline void CMoverGroup::reset_dt(void);
+
+69 32 process_c_impulses_and_integrate 4 74 45 CMoverGroup::process_c_impulses_and_integrate 0 1 36 59
+// processes C++ impulses and integrates; call set_dt first
+57
+void CMoverGroup::process_c_impulses_and_integrate(void);
+
+70 14 get_class_type 4 74 27 CMoverGroup::get_class_type 0 1 37 0
+52
+static TypeHandle CMoverGroup::get_class_type(void);
+
+37
+1 14 Dtool_Ye454nMJ 7 3 75 0 14 Dtool_Ye454nMJ 218 ////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::Constructor
+//       Access: Public
+//  Description: 
+//////////////////////////////////////////////////////////////////// 0 
+2 14 Dtool_Ye45nedf 4 4 77 0 14 Dtool_Ye45nedf 313 ////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::process
+//       Access: Public, Virtual
+//  Description: override this and set your impulse's influence for
+//               this pass on its mover
+//////////////////////////////////////////////////////////////////// 2 4 this 3 75  2 dt 1 76  
+3 14 Dtool_Ye45WdFU 4 5 77 0 14 Dtool_Ye45WdFU 269 ////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::set_mover
+//       Access: Public, Virtual
+//  Description: called internally by cMover when we're added
+//////////////////////////////////////////////////////////////////// 2 4 this 3 75  5 mover 1 78  
+4 14 Dtool_Ye45TShj 4 6 77 0 14 Dtool_Ye45TShj 273 ////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::clear_mover
+//       Access: Public, Virtual
+//  Description: called internally by cMover when we're removed
+//////////////////////////////////////////////////////////////////// 2 4 this 3 75  5 mover 1 78  
+5 14 Dtool_Ye45jia4 7 7 78 0 14 Dtool_Ye45jia4 427 // Filename: cImpulse.I
+// Created by:  darren (13Jul04)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::get_mover
+//       Access: Published
+//  Description: Returns pointer to mover obj that we're attached to;
+//               may be 0.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 79  
+6 14 Dtool_Ye458u3U 7 8 82 0 14 Dtool_Ye458u3U 272 ////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::get_node_path
+//       Access: Published
+//  Description: Returns NodePath that our mover is moving around.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 79  
+7 14 Dtool_Ye45IytT 6 9 83 0 14 Dtool_Ye45IytT 381 ////////////////////////////////////////////////////////////////////
+//     Function: CImpulse::is_cpp
+//       Access: Published
+//  Description: Indicates the state the interval believes it is in:
+//               whether it has been started, is currently in the
+//               middle, or has been finalized.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 79  
+8 14 Dtool_Ye45380p 7 10 85 0 14 Dtool_Ye45380p 0 0 
+9 14 Dtool_Ye45g4dY 7 12 78 0 14 Dtool_Ye45g4dY 0 3 11 objNodePath 1 82  9 fwd_speed 1 76  9 rot_speed 1 76  
+10 14 Dtool_Ye457_Sr 7 12 78 0 14 Dtool_Ye457_Sr 0 2 11 objNodePath 1 82  9 fwd_speed 1 76  
+11 14 Dtool_Ye45Cqga 7 12 78 0 14 Dtool_Ye45Cqga 0 1 11 objNodePath 1 82  
+12 14 Dtool_Ye4528SC 4 13 77 0 14 Dtool_Ye4528SC 424 // Filename: cMover.I
+// Created by:  darren (13Jul04)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CMover::set_fwd_speed
+//       Access: Published
+//  Description: Sets the speed that impulses should use when moving
+//               forward
+//////////////////////////////////////////////////////////////////// 2 4 this 3 78  9 fwd_speed 1 76  
+13 14 Dtool_Ye45wyrP 4 14 77 0 14 Dtool_Ye45wyrP 274 ////////////////////////////////////////////////////////////////////
+//     Function: CMover::set_rot_speed
+//       Access: Published
+//  Description: Sets the speed that impulses should use when rotating
+//////////////////////////////////////////////////////////////////// 2 4 this 3 78  9 rot_speed 1 76  
+14 14 Dtool_Ye45SWm2 6 15 76 0 14 Dtool_Ye45SWm2 300 ////////////////////////////////////////////////////////////////////
+//     Function: CMover::get_fwd_speed
+//       Access: Published
+//  Description: Returns the speed that impulses should use when moving
+//               forward
+//////////////////////////////////////////////////////////////////// 1 4 this 3 86  
+15 14 Dtool_Ye45Vb_D 6 16 76 0 14 Dtool_Ye45Vb_D 277 ////////////////////////////////////////////////////////////////////
+//     Function: CMover::get_rot_speed
+//       Access: Published
+//  Description: Returns the speed that impulses should use when rotating
+//////////////////////////////////////////////////////////////////// 1 4 this 3 86  
+16 14 Dtool_Ye456CKx 4 17 77 0 14 Dtool_Ye456CKx 0 3 4 this 3 78  4 name 1 88  7 impulse 1 75  
+17 14 Dtool_Ye45IhB9 6 18 83 0 14 Dtool_Ye45IhB9 0 2 4 this 3 78  4 name 1 88  
+18 14 Dtool_Ye45oXrR 4 19 77 0 14 Dtool_Ye45oXrR 0 2 4 this 3 78  2 dt 1 76  
+19 14 Dtool_Ye45JjcH 4 19 77 0 14 Dtool_Ye45JjcH 0 1 4 this 3 78  
+20 14 Dtool_Ye45J0F6 4 20 77 0 14 Dtool_Ye45J0F6 0 1 4 this 3 78  
+21 14 Dtool_Ye45atG_ 4 21 77 0 14 Dtool_Ye45atG_ 257 ////////////////////////////////////////////////////////////////////
+//     Function: CMover::add_force
+//       Access: Published
+//  Description: Called by impulses during CMover::move()
+//////////////////////////////////////////////////////////////////// 2 4 this 3 78  5 force 1 89  
+22 14 Dtool_Ye453mQd 4 22 77 0 14 Dtool_Ye453mQd 261 ////////////////////////////////////////////////////////////////////
+//     Function: CMover::add_rot_force
+//       Access: Published
+//  Description: Called by impulses during CMover::move()
+//////////////////////////////////////////////////////////////////// 2 4 this 3 78  9 rot_force 1 89  
+23 14 Dtool_Ye45aq4P 4 23 77 0 14 Dtool_Ye45aq4P 257 ////////////////////////////////////////////////////////////////////
+//     Function: CMover::add_shove
+//       Access: Published
+//  Description: Called by impulses during CMover::move()
+//////////////////////////////////////////////////////////////////// 2 4 this 3 78  5 shove 1 89  
+24 14 Dtool_Ye45vGYi 4 24 77 0 14 Dtool_Ye45vGYi 261 ////////////////////////////////////////////////////////////////////
+//     Function: CMover::add_rot_shove
+//       Access: Published
+//  Description: Called by impulses during CMover::move()
+//////////////////////////////////////////////////////////////////// 2 4 this 3 78  9 rot_shove 1 89  
+25 14 Dtool_Ye45lqIw 7 25 82 0 14 Dtool_Ye45lqIw 263 ////////////////////////////////////////////////////////////////////
+//     Function: CMover::get_node_path
+//       Access: Published
+//  Description: Returns nodepath being moved by this mover
+//////////////////////////////////////////////////////////////////// 1 4 this 3 86  
+26 14 Dtool_Ye45cvr7 6 26 76 0 14 Dtool_Ye45cvr7 249 ////////////////////////////////////////////////////////////////////
+//     Function: CMover::get_dt
+//       Access: Published
+//  Description: Returns dt from last call to move()
+//////////////////////////////////////////////////////////////////// 1 4 this 3 86  
+27 14 Dtool_Ye45jaGK 4 27 77 0 14 Dtool_Ye45jaGK 438 ////////////////////////////////////////////////////////////////////
+//     Function: CMoverGroup::reset_dt
+//       Access: Published
+//  Description: ignores time elapsed since last set_dt, call if
+//               mover group has not been moved in a long time
+//               and you don't want objects to move as if they
+//               were moving the whole time
+//////////////////////////////////////////////////////////////////// 1 4 this 3 78  
+28 14 Dtool_Ye45xEsw 7 28 85 0 14 Dtool_Ye45xEsw 0 0 
+29 14 Dtool_Ye45_6lt 7 30 92 0 14 Dtool_Ye45_6lt 0 0 
+30 14 Dtool_Ye45OTjq 4 31 77 0 14 Dtool_Ye45OTjq 0 3 4 this 3 92  4 name 1 88  5 mover 1 78  
+31 14 Dtool_Ye45nLc3 6 32 83 0 14 Dtool_Ye45nLc3 0 2 4 this 3 92  4 name 1 88  
+32 14 Dtool_Ye45V2jz 6 33 76 0 14 Dtool_Ye45V2jz 318 ////////////////////////////////////////////////////////////////////
+//     Function: CMoverGroup::set_dt
+//       Access: Published
+//  Description: sets dt for current frame, calculates if -1 is passed
+//               returns dt for current frame
+//////////////////////////////////////////////////////////////////// 2 4 this 3 92  2 dt 1 76  
+33 14 Dtool_Ye45lwng 6 33 76 0 14 Dtool_Ye45lwng 318 ////////////////////////////////////////////////////////////////////
+//     Function: CMoverGroup::set_dt
+//       Access: Published
+//  Description: sets dt for current frame, calculates if -1 is passed
+//               returns dt for current frame
+//////////////////////////////////////////////////////////////////// 1 4 this 3 92  
+34 14 Dtool_Ye45EF31 6 34 76 0 14 Dtool_Ye45EF31 386 // Filename: cMoverGroup.I
+// Created by:  darren (13Mar07)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CMoverGroup::get_dt
+//       Access: Published
+//  Description: Returns dt from last call to set_dt
+//////////////////////////////////////////////////////////////////// 1 4 this 3 93  
+35 14 Dtool_Ye45ofsS 4 35 77 0 14 Dtool_Ye45ofsS 438 ////////////////////////////////////////////////////////////////////
+//     Function: CMoverGroup::reset_dt
+//       Access: Published
+//  Description: ignores time elapsed since last set_dt, call if
+//               mover group has not been moved in a long time
+//               and you don't want objects to move as if they
+//               were moving the whole time
+//////////////////////////////////////////////////////////////////// 1 4 this 3 92  
+36 14 Dtool_Ye45_v3M 4 36 77 0 14 Dtool_Ye45_v3M 59 // processes C++ impulses and integrates; call set_dt first 1 4 this 3 92  
+37 14 Dtool_Ye45135f 7 37 85 0 14 Dtool_Ye45135f 0 0 
+24
+71 8 CImpulse 75777 8 CImpulse 8 CImpulse 0 0 0 1 38 0 0 7 39 40 41 42 43 44 45 0 0 1 0 72 0 0 0 0 0
+
+72 19 TypedReferenceCount 2049 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 710
+////////////////////////////////////////////////////////////////////
+//       Class : TypedReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedObject and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedObjects and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+73 6 CMover 75777 6 CMover 6 CMover 0 0 0 1 46 0 0 16 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 0 0 1 0 72 0 0 0 0 0
+
+74 11 CMoverGroup 75777 11 CMoverGroup 11 CMoverGroup 0 0 0 1 63 0 0 7 64 65 66 67 68 69 70 0 0 1 0 72 0 0 0 0 0
+
+75 10 CImpulse * 8576 10 CImpulse * 10 CImpulse * 0 0 71 0 0 0 0 0 0 0 0 0 0
+
+76 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+77 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+78 8 CMover * 8576 8 CMover * 8 CMover * 0 0 73 0 0 0 0 0 0 0 0 0 0
+
+79 16 CImpulse const * 8576 16 CImpulse const * 16 CImpulse const * 0 0 80 0 0 0 0 0 0 0 0 0 0
+
+80 14 CImpulse const 8832 14 CImpulse const 14 CImpulse const 0 0 71 0 0 0 0 0 0 0 0 0 0
+
+81 8 NodePath 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 2 95 96 0 0 0 0 4938
+//
+// A NodePath is the fundamental unit of high-level interaction with
+// the scene graph.  It encapsulates the complete path down to a node
+// from some other node, usually the root of the scene graph.  This is
+// used to resolve ambiguities associated with instancing.
+//
+// NodePath also contains a number of handy high-level methods for
+// common scene-graph manipulations, such as reparenting, and common
+// state changes, such as repositioning.
+//
+// There are also a number of NodePath methods for finding nodes deep
+// within the tree by name or by type.  These take a path string,
+// which at its simplest consists of a series of node names separated
+// by slashes, like a directory pathname.
+//
+// Each component of the path string may optionally consist of one of
+// the following special names, instead of a node name:
+//
+//   *          -- matches exactly one node, with any name.
+//   **         -- matches any sequence of zero or more nodes.
+//   +typename  -- matches any node that is or derives from the given type.
+//   -typename  -- matches any node that is the given type exactly.
+//   =tag       -- matches any node that has the indicated tag.
+//   =tag=value -- matches any node whose tag matches the indicated value.
+//
+// Furthermore, a node name may itself contain standard filename
+// globbing characters, like *, ?, and [a-z], that will be accepted as
+// a partial match.  (In fact, the '*' special name may be seen as
+// just a special case of this.)  The globbing characters may not be
+// used with the typename matches or with tag matches, but they may
+// be used to match a tag's value in the =tag=value syntax.
+//
+// The special characters "@@", appearing at the beginning of a node
+// name, indicate a stashed node.  Normally, stashed nodes are not
+// returned by a find (but see the special flags, below), but a
+// stashed node may be found if it is explicitly named with its
+// leading @@ characters.  By extension, "@@*" may be used to identify
+// any stashed node.
+//
+// Examples:
+//
+// "room//graph" will look for a node named "graph", which is a child
+// of an unnamed node, which is a child of a node named "room", which
+// is a child of the starting path.
+//
+// "**/red*" will look for any node anywhere in the tree (below the
+// starting path) with a name that begins with "red".
+//
+// "**/+PartBundleNode/**/head" will look for a node named "head",
+// somewhere below a PartBundleNode anywhere in the tree.
+//
+//
+// The search is always potentially ambiguous, even if the special
+// wildcard operators are not used, because there may be multiple
+// nodes in the tree with the same name.  In general, in the case of
+// an ambiguity, the shortest path is preferred; when a method (such
+// as extend_by) must choose only only one of several possible paths,
+// it will choose the shortest available; on the other hand, when a
+// method (such as find_all_matches) is to return all of the matching
+// paths, it will sort them so that the shortest paths appear first in
+// the output.
+//
+//
+// Special flags.  The entire string may optionally be followed by the
+// ";" character, followed by one or more of the following special
+// control flags, with no intervening spaces or punctuation:
+//
+//    -h    Do not return hidden nodes.
+//    +h    Do return hidden nodes.
+//    -s    Do not return stashed nodes unless explicitly referenced with @@.
+//    +s    Return stashed nodes even without any explicit @@ characters.
+//    -i    Node name comparisons are not case insensitive: case must match
+//          exactly.
+//    +i    Node name comparisons are case insensitive: case is not important.
+//          This affects matches against the node name only; node type
+//          and tag strings are always case sensitive.
+//
+// The default flags are +h-s-i.
+//
+////////////////////////////////////////////////////////////////////
+//       Class : NodePath
+// Description : NodePath is the fundamental system for disambiguating
+//               instances, and also provides a higher-level interface
+//               for manipulating the scene graph.
+//
+//               A NodePath is a list of connected nodes from the root
+//               of the graph to any sub-node.  Each NodePath
+//               therefore uniquely describes one instance of a node.
+//
+//               NodePaths themselves are lightweight objects that may
+//               easily be copied and passed by value.  Their data is
+//               stored as a series of NodePathComponents that are
+//               stored on the nodes.  Holding a NodePath will keep a
+//               reference count to all the nodes in the path.
+//               However, if any node in the path is removed or
+//               reparented (perhaps through a different NodePath),
+//               the NodePath will automatically be updated to reflect
+//               the changes.
+////////////////////////////////////////////////////////////////////
+
+82 10 NodePath * 8576 10 NodePath * 10 NodePath * 0 0 81 0 0 0 0 0 0 0 0 0 0
+
+83 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+84 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+85 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 84 0 0 0 0 0 0 0 0 0 0
+
+86 14 CMover const * 8576 14 CMover const * 14 CMover const * 0 0 87 0 0 0 0 0 0 0 0 0 0
+
+87 12 CMover const 8832 12 CMover const 12 CMover const 0 0 73 0 0 0 0 0 0 0 0 0 0
+
+88 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+89 17 LVector3f const * 8576 17 LVector3f const * 17 LVector3f const * 0 0 90 0 0 0 0 0 0 0 0 0 0
+
+90 15 LVector3f const 8832 15 LVector3f const 15 LVector3f const 0 0 91 0 0 0 0 0 0 0 0 0 0
+
+91 7 Normalf 2048 9 LVector3f 9 LVector3f 0 0 0 0 0 0 0 0 0 0 0 0 1086
+// Filename: lvector3_src.h
+// Created by:  drose (24Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector3
+// Description : This is a three-component vector distance (as opposed
+//               to a three-component point, which represents a
+//               particular point in space).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+92 13 CMoverGroup * 8576 13 CMoverGroup * 13 CMoverGroup * 0 0 74 0 0 0 0 0 0 0 0 0 0
+
+93 19 CMoverGroup const * 8576 19 CMoverGroup const * 19 CMoverGroup const * 0 0 94 0 0 0 0 0 0 0 0 0 0
+
+94 17 CMoverGroup const 8832 17 CMoverGroup const 17 CMoverGroup const 0 0 74 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+2
+95 0 49 9 get_nodes 13 get_num_nodes 8 get_node 
+96 0 49 13 get_ancestors 13 get_num_nodes 12 get_ancestor 

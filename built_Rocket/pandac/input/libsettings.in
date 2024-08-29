@@ -1,0 +1,225 @@
+1687213941
+2 2
+11 libsettings 4 vzzk 3 otp 
+37
+37 9 ~Settings 4 74 19 Settings::~Settings 0 0 0
+34
+virtual Settings::~Settings(void);
+
+38 7 get_sfx 4 74 17 Settings::get_sfx 0 1 1 130
+// Filename: settingsFile.I
+// Created by:  cary (14Dec00)
+//
+////////////////////////////////////////////////////////////////////
+43
+static inline bool Settings::get_sfx(void);
+
+39 20 get_toon_chat_sounds 4 74 30 Settings::get_toon_chat_sounds 0 1 2 0
+56
+static inline bool Settings::get_toon_chat_sounds(void);
+
+40 9 get_music 4 74 19 Settings::get_music 0 1 3 0
+45
+static inline bool Settings::get_music(void);
+
+41 17 get_force_sw_midi 4 74 27 Settings::get_force_sw_midi 0 1 4 0
+53
+static inline bool Settings::get_force_sw_midi(void);
+
+42 17 get_windowed_mode 4 74 27 Settings::get_windowed_mode 0 1 5 0
+53
+static inline bool Settings::get_windowed_mode(void);
+
+43 13 want_chat_log 4 74 23 Settings::want_chat_log 0 1 6 0
+49
+static inline bool Settings::want_chat_log(void);
+
+44 17 get_show_fpsmeter 4 74 27 Settings::get_show_fpsmeter 0 1 7 0
+53
+static inline bool Settings::get_show_fpsmeter(void);
+
+45 24 want_custom_mouse_cursor 4 74 34 Settings::want_custom_mouse_cursor 0 1 8 0
+60
+static inline bool Settings::want_custom_mouse_cursor(void);
+
+46 14 get_sfx_volume 4 74 24 Settings::get_sfx_volume 0 1 9 0
+51
+static inline float Settings::get_sfx_volume(void);
+
+47 16 get_music_volume 4 74 26 Settings::get_music_volume 0 1 10 0
+53
+static inline float Settings::get_music_volume(void);
+
+48 14 display_driver 4 74 24 Settings::display_driver 0 1 11 0
+69
+static inline Settings::DisplayDriver Settings::display_driver(void);
+
+49 14 get_resolution 4 74 24 Settings::get_resolution 0 1 12 0
+66
+static inline Settings::Resolution Settings::get_resolution(void);
+
+50 11 server_type 4 74 21 Settings::server_type 0 1 13 0
+63
+static inline Settings::ServerType Settings::server_type(void);
+
+51 25 get_accepting_new_friends 4 74 35 Settings::get_accepting_new_friends 0 1 14 0
+61
+static inline bool Settings::get_accepting_new_friends(void);
+
+52 17 get_embedded_mode 4 74 27 Settings::get_embedded_mode 0 1 15 0
+53
+static inline bool Settings::get_embedded_mode(void);
+
+53 33 get_accepting_non_friend_whispers 4 74 43 Settings::get_accepting_non_friend_whispers 0 1 16 0
+69
+static inline bool Settings::get_accepting_non_friend_whispers(void);
+
+54 7 set_sfx 4 74 17 Settings::set_sfx 0 1 17 0
+44
+static inline void Settings::set_sfx(bool );
+
+55 20 set_toon_chat_sounds 4 74 30 Settings::set_toon_chat_sounds 0 1 18 0
+57
+static inline void Settings::set_toon_chat_sounds(bool );
+
+56 9 set_music 4 74 19 Settings::set_music 0 1 19 0
+46
+static inline void Settings::set_music(bool );
+
+57 17 set_force_sw_midi 4 74 27 Settings::set_force_sw_midi 0 1 20 0
+54
+static inline void Settings::set_force_sw_midi(bool );
+
+58 23 set_custom_mouse_cursor 4 74 33 Settings::set_custom_mouse_cursor 0 1 21 0
+60
+static inline void Settings::set_custom_mouse_cursor(bool );
+
+59 12 set_chat_log 4 74 22 Settings::set_chat_log 0 1 22 0
+49
+static inline void Settings::set_chat_log(bool );
+
+60 17 set_windowed_mode 4 74 27 Settings::set_windowed_mode 0 1 23 0
+54
+static inline void Settings::set_windowed_mode(bool );
+
+61 14 set_sfx_volume 4 74 24 Settings::set_sfx_volume 0 1 24 0
+52
+static inline void Settings::set_sfx_volume(float );
+
+62 16 set_music_volume 4 74 26 Settings::set_music_volume 0 1 25 0
+54
+static inline void Settings::set_music_volume(float );
+
+63 18 set_display_driver 4 74 28 Settings::set_display_driver 0 1 26 0
+74
+static inline void Settings::set_display_driver(Settings::DisplayDriver );
+
+64 14 set_resolution 4 74 24 Settings::set_resolution 0 1 27 0
+67
+static inline void Settings::set_resolution(Settings::Resolution );
+
+65 25 set_resolution_dimensions 4 74 35 Settings::set_resolution_dimensions 0 1 28 0
+88
+static void Settings::set_resolution_dimensions(unsigned int xsize, unsigned int ysize);
+
+66 15 set_server_type 4 74 25 Settings::set_server_type 0 1 29 0
+68
+static inline void Settings::set_server_type(Settings::ServerType );
+
+67 25 set_accepting_new_friends 4 74 35 Settings::set_accepting_new_friends 0 1 30 0
+62
+static inline void Settings::set_accepting_new_friends(bool );
+
+68 17 set_embedded_mode 4 74 27 Settings::set_embedded_mode 0 1 31 0
+54
+static inline void Settings::set_embedded_mode(bool );
+
+69 33 set_accepting_non_friend_whispers 4 74 43 Settings::set_accepting_non_friend_whispers 0 1 32 0
+70
+static inline void Settings::set_accepting_non_friend_whispers(bool );
+
+70 17 set_show_fpsmeter 4 74 27 Settings::set_show_fpsmeter 0 1 33 0
+54
+static inline void Settings::set_show_fpsmeter(bool );
+
+71 20 doSavedSettingsExist 4 74 30 Settings::doSavedSettingsExist 0 1 34 0
+56
+static inline bool Settings::doSavedSettingsExist(void);
+
+72 14 write_settings 4 74 24 Settings::write_settings 0 1 35 38
+// does the saved settings file exist?
+50
+static inline void Settings::write_settings(void);
+
+73 13 read_settings 4 74 23 Settings::read_settings 0 1 36 38
+// does the saved settings file exist?
+49
+static inline void Settings::read_settings(void);
+
+36
+1 14 Dtool_vzzks4E_ 6 6 78 0 14 Dtool_vzzks4E_ 130 // Filename: settingsFile.I
+// Created by:  cary (14Dec00)
+//
+//////////////////////////////////////////////////////////////////// 0 
+2 14 Dtool_vzzkoE0G 6 7 78 0 14 Dtool_vzzkoE0G 0 0 
+3 14 Dtool_vzzkepCV 6 8 78 0 14 Dtool_vzzkepCV 0 0 
+4 14 Dtool_vzzk236s 6 9 78 0 14 Dtool_vzzk236s 0 0 
+5 14 Dtool_vzzk2FPf 6 10 78 0 14 Dtool_vzzk2FPf 0 0 
+6 14 Dtool_vzzku4rU 6 11 78 0 14 Dtool_vzzku4rU 0 0 
+7 14 Dtool_vzzkRscm 6 12 78 0 14 Dtool_vzzkRscm 0 0 
+8 14 Dtool_vzzk4lpw 6 13 78 0 14 Dtool_vzzk4lpw 0 0 
+9 14 Dtool_vzzkuR_I 6 14 79 0 14 Dtool_vzzkuR_I 0 0 
+10 14 Dtool_vzzk_80e 6 15 79 0 14 Dtool_vzzk_80e 0 0 
+11 14 Dtool_vzzkioaR 6 16 75 0 14 Dtool_vzzkioaR 0 0 
+12 14 Dtool_vzzkSKJ6 6 17 77 0 14 Dtool_vzzkSKJ6 0 0 
+13 14 Dtool_vzzkj_Ac 6 18 76 0 14 Dtool_vzzkj_Ac 0 0 
+14 14 Dtool_vzzkZV_0 6 19 78 0 14 Dtool_vzzkZV_0 0 0 
+15 14 Dtool_vzzkzWP0 6 20 78 0 14 Dtool_vzzkzWP0 0 0 
+16 14 Dtool_vzzkxDlE 6 21 78 0 14 Dtool_vzzkxDlE 0 0 
+17 14 Dtool_vzzkucU5 4 22 80 0 14 Dtool_vzzkucU5 0 1 6 param0 0 78  
+18 14 Dtool_vzzkoMqQ 4 23 80 0 14 Dtool_vzzkoMqQ 0 1 6 param0 0 78  
+19 14 Dtool_vzzktTiE 4 24 80 0 14 Dtool_vzzktTiE 0 1 6 param0 0 78  
+20 14 Dtool_vzzku1SX 4 25 80 0 14 Dtool_vzzku1SX 0 1 6 param0 0 78  
+21 14 Dtool_vzzkanHQ 4 26 80 0 14 Dtool_vzzkanHQ 0 1 6 param0 0 78  
+22 14 Dtool_vzzkWMX_ 4 27 80 0 14 Dtool_vzzkWMX_ 0 1 6 param0 0 78  
+23 14 Dtool_vzzkX2kJ 4 28 80 0 14 Dtool_vzzkX2kJ 0 1 6 param0 0 78  
+24 14 Dtool_vzzkWXyv 4 29 80 0 14 Dtool_vzzkWXyv 0 1 6 param0 0 79  
+25 14 Dtool_vzzkUR8p 4 30 80 0 14 Dtool_vzzkUR8p 0 1 6 param0 0 79  
+26 14 Dtool_vzzkh3tg 4 31 80 0 14 Dtool_vzzkh3tg 0 1 6 param0 0 75  
+27 14 Dtool_vzzksPdA 4 32 80 0 14 Dtool_vzzksPdA 0 1 6 param0 0 77  
+28 14 Dtool_vzzkN9or 4 33 80 0 14 Dtool_vzzkN9or 0 2 5 xsize 1 81  5 ysize 1 81  
+29 14 Dtool_vzzkbcgR 4 34 80 0 14 Dtool_vzzkbcgR 0 1 6 param0 0 76  
+30 14 Dtool_vzzka6yH 4 35 80 0 14 Dtool_vzzka6yH 0 1 6 param0 0 78  
+31 14 Dtool_vzzkKJle 4 36 80 0 14 Dtool_vzzkKJle 0 1 6 param0 0 78  
+32 14 Dtool_vzzkiXD0 4 37 80 0 14 Dtool_vzzkiXD0 0 1 6 param0 0 78  
+33 14 Dtool_vzzk1bzQ 4 38 80 0 14 Dtool_vzzk1bzQ 0 1 6 param0 0 78  
+34 14 Dtool_vzzkqBON 6 39 78 0 14 Dtool_vzzkqBON 0 0 
+35 14 Dtool_vzzkHhMG 4 40 80 0 14 Dtool_vzzkHhMG 38 // does the saved settings file exist? 0 
+36 14 Dtool_vzzkuDbS 4 41 80 0 14 Dtool_vzzkuDbS 38 // does the saved settings file exist? 0 
+8
+74 8 Settings 26625 8 Settings 8 Settings 0 0 0 0 37 0 36 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 0 0 0 0 3 75 76 77 0
+
+75 13 DisplayDriver 794624 23 Settings::DisplayDriver 23 Settings::DisplayDriver 74 0 0 0 0 0 0 0 0 0 6 2 GL 12 Settings::GL 0 3 DX7 13 Settings::DX7 1 9 D_DEFAULT 19 Settings::D_DEFAULT 2 3 DX9 13 Settings::DX9 3 6 D_NONE 16 Settings::D_NONE 4 3 DX8 13 Settings::DX8 5 0 272
+// The DisplayDriver option is written to the useropt file by value.
+// Don't reorder or remove items from this list, and add all new
+// options to the end, unless you are prepared to remap the old
+// options to the new options based on the useropt file version
+// number.
+
+76 10 ServerType 794624 20 Settings::ServerType 20 Settings::ServerType 74 0 0 0 0 0 0 0 0 0 4 10 PRODUCTION 20 Settings::PRODUCTION 0 11 DEVELOPMENT 21 Settings::DEVELOPMENT 1 5 DEBUG 15 Settings::DEBUG 2 6 S_NONE 16 Settings::S_NONE 3 0 0
+
+77 10 Resolution 794624 20 Settings::Resolution 20 Settings::Resolution 74 0 0 0 0 0 0 0 0 0 7 8 R640x480 18 Settings::R640x480 0 8 R800x600 18 Settings::R800x600 1 9 R1024x768 19 Settings::R1024x768 2 10 R1280x1024 20 Settings::R1280x1024 3 10 R1600x1200 20 Settings::R1600x1200 4 9 R1280x720 19 Settings::R1280x720 5 6 R_NONE 16 Settings::R_NONE 6 0 129
+// it would be simpler to just store the actual res sizes, but abstracting them makes
+// it harder to crash with a bad resolution
+
+78 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+79 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+80 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+81 12 unsigned int 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+0

@@ -1,0 +1,1576 @@
+1687213742
+2 2
+14 libdistributed 4 iutg 8 p3direct 
+68
+70 21 CConnectionRepository 4 138 44 CConnectionRepository::CConnectionRepository 0 3 1 2 3 234
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+97
+CConnectionRepository::CConnectionRepository(bool has_owner_view = (0), bool threaded_net = (0));
+
+71 22 ~CConnectionRepository 4 138 45 CConnectionRepository::~CConnectionRepository 0 0 233
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::Destructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+52
+CConnectionRepository::~CConnectionRepository(void);
+
+72 11 get_dc_file 4 138 34 CConnectionRepository::get_dc_file 0 1 4 1346
+// Any methods of this class that acquire _lock (which is most of
+// them) *must* be tagged BLOCKING, to avoid risk of a race
+// condition in Python when running in true threaded mode.  The
+// BLOCKING tag releases the Python GIL during the function call,
+// and we re-acquire it when needed within these functions to call
+// out to Python.  If any functions acquire _lock while already
+// holding the Python GIL, there could be a deadlock between these
+// functions and the ones that are acquiring the GIL while already
+// holding _lock.
+
+// Filename: cConnectionRepository.I
+// Created by:  drose (17May04)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_dc_file
+//       Access: Published
+//  Description: Returns the DCFile object associated with this
+//               repository.
+////////////////////////////////////////////////////////////////////
+56
+inline DCFile &CConnectionRepository::get_dc_file(void);
+
+73 14 has_owner_view 4 138 37 CConnectionRepository::has_owner_view 0 1 5 332
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::has_owner_view
+//       Access: Published
+//  Description: Returns true if this repository can have 'owner'
+//               views of distributed objects.
+////////////////////////////////////////////////////////////////////
+62
+inline bool CConnectionRepository::has_owner_view(void) const;
+
+74 20 set_handle_c_updates 4 138 43 CConnectionRepository::set_handle_c_updates 0 1 6 416
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_handle_c_updates
+//       Access: Published
+//  Description: Set true to specify this repository should process
+//               distributed updates internally in C++ code, or false
+//               if it should return them to Python.
+////////////////////////////////////////////////////////////////////
+79
+inline void CConnectionRepository::set_handle_c_updates(bool handle_c_updates);
+
+75 20 get_handle_c_updates 4 138 43 CConnectionRepository::get_handle_c_updates 0 1 7 408
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_handle_c_updates
+//       Access: Published
+//  Description: Returns true if this repository will process
+//               distributed updates internally in C++ code, or false
+//               if it will return them to Python.
+////////////////////////////////////////////////////////////////////
+68
+inline bool CConnectionRepository::get_handle_c_updates(void) const;
+
+76 19 set_client_datagram 4 138 42 CConnectionRepository::set_client_datagram 0 1 8 588
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_client_datagram
+//       Access: Published
+//  Description: Sets the client_datagram flag.  If this is true,
+//               incoming datagrams are not expected to be prefixed
+//               with the server routing information like message
+//               sender, channel number, etc.; otherwise, these server
+//               fields are parsed and removed from each incoming
+//               datagram.
+////////////////////////////////////////////////////////////////////
+77
+inline void CConnectionRepository::set_client_datagram(bool client_datagram);
+
+77 19 get_client_datagram 4 138 42 CConnectionRepository::get_client_datagram 0 1 9 275
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_client_datagram
+//       Access: Published
+//  Description: Returns the client_datagram flag.
+////////////////////////////////////////////////////////////////////
+67
+inline bool CConnectionRepository::get_client_datagram(void) const;
+
+78 31 set_handle_datagrams_internally 4 138 54 CConnectionRepository::set_handle_datagrams_internally 0 1 10 654
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_handle_datagrams_internally
+//       Access: Published
+//  Description: Sets the handle_datagrams_internally flag.  When
+//               true, certain message types can be handled by the C++
+//               code in in this module.  When false, all datagrams,
+//               regardless of message type, are passed up to Python
+//               for processing.
+//
+//               The CMU distributed-object implementation requires
+//               this to be set false.
+////////////////////////////////////////////////////////////////////
+101
+inline void CConnectionRepository::set_handle_datagrams_internally(bool handle_datagrams_internally);
+
+79 31 get_handle_datagrams_internally 4 138 54 CConnectionRepository::get_handle_datagrams_internally 0 1 11 299
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_handle_datagrams_internally
+//       Access: Published
+//  Description: Returns the handle_datagrams_internally flag.
+////////////////////////////////////////////////////////////////////
+79
+inline bool CConnectionRepository::get_handle_datagrams_internally(void) const;
+
+80 17 set_track_clsends 4 138 40 CConnectionRepository::set_track_clsends 0 1 12 544
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_handle_datagrams_internally
+//       Access: Published
+//  Description: Sets the handle_datagrams_internally flag.  When
+//               true, certain message types can be handled by the C++
+//               code in in this module.  When false, all datagrams,
+//               regardless of message type, are passed up to Python
+//               for processing.
+////////////////////////////////////////////////////////////////////
+73
+inline void CConnectionRepository::set_track_clsends(bool track_clsends);
+
+81 17 get_track_clsends 4 138 40 CConnectionRepository::get_track_clsends 0 1 13 299
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_handle_datagrams_internally
+//       Access: Published
+//  Description: Returns the handle_datagrams_internally flag.
+////////////////////////////////////////////////////////////////////
+65
+inline bool CConnectionRepository::get_track_clsends(void) const;
+
+82 19 set_tcp_header_size 4 138 42 CConnectionRepository::set_tcp_header_size 0 1 14 557
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_tcp_header_size
+//       Access: Public
+//  Description: Sets the header size of TCP packets.  At the present,
+//               legal values for this are 0, 2, or 4; this specifies
+//               the number of bytes to use encode the datagram length
+//               at the start of each TCP datagram.  Sender and
+//               receiver must independently agree on this.
+////////////////////////////////////////////////////////////////////
+69
+void CConnectionRepository::set_tcp_header_size(int tcp_header_size);
+
+83 19 get_tcp_header_size 4 138 42 CConnectionRepository::get_tcp_header_size 0 1 15 330
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_tcp_header_size
+//       Access: Public
+//  Description: Returns the current setting of TCP header size.
+//               See set_tcp_header_size().
+////////////////////////////////////////////////////////////////////
+66
+inline int CConnectionRepository::get_tcp_header_size(void) const;
+
+84 21 set_python_repository 4 138 44 CConnectionRepository::set_python_repository 0 1 16 478
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_python_repository
+//       Access: Published
+//  Description: Records the pointer to the Python class that derives
+//               from CConnectionRepository.  This allows the C++
+//               implementation to directly manipulation some python
+//               structures on the repository.
+////////////////////////////////////////////////////////////////////
+86
+inline void CConnectionRepository::set_python_repository(PyObject *python_repository);
+
+85 19 set_connection_http 4 138 42 CConnectionRepository::set_connection_http 0 1 17 476
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_connection_http
+//       Access: Published
+//  Description: Once a connection has been established via the HTTP
+//               interface, gets the connection and uses it.  The
+//               supplied HTTPChannel object must have a connection
+//               available via get_connection().
+////////////////////////////////////////////////////////////////////
+70
+void CConnectionRepository::set_connection_http(HTTPChannel *channel);
+
+86 10 get_stream 4 138 33 CConnectionRepository::get_stream 0 1 18 413
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_stream
+//       Access: Published
+//  Description: Returns the SocketStream that internally represents
+//               the already-established HTTP connection.  Returns
+//               NULL if there is no current HTTP connection.
+////////////////////////////////////////////////////////////////////
+54
+SocketStream *CConnectionRepository::get_stream(void);
+
+87 15 try_connect_net 4 138 38 CConnectionRepository::try_connect_net 0 1 19 413
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::try_connect_net
+//       Access: Published
+//  Description: Uses Panda's "net" library to try to connect to the
+//               server and port named in the indicated URL.  Returns
+//               true if successful, false otherwise.
+////////////////////////////////////////////////////////////////////
+64
+bool CConnectionRepository::try_connect_net(URLSpec const &url);
+
+88 7 get_qcm 4 138 30 CConnectionRepository::get_qcm 0 1 20 321
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_qcm
+//       Access: Published
+//  Description: Returns the QueuedConnectionManager object associated
+//               with the repository.
+////////////////////////////////////////////////////////////////////
+69
+inline QueuedConnectionManager &CConnectionRepository::get_qcm(void);
+
+89 6 get_cw 4 138 29 CConnectionRepository::get_cw 0 1 21 313
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_cw
+//       Access: Published
+//  Description: Returns the ConnectionWriter object associated
+//               with the repository.
+////////////////////////////////////////////////////////////////////
+61
+inline ConnectionWriter &CConnectionRepository::get_cw(void);
+
+90 7 get_qcr 4 138 30 CConnectionRepository::get_qcr 0 1 22 320
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_qcr
+//       Access: Published
+//  Description: Returns the QueuedConnectionReader object associated
+//               with the repository.
+////////////////////////////////////////////////////////////////////
+68
+inline QueuedConnectionReader &CConnectionRepository::get_qcr(void);
+
+91 14 connect_native 4 138 37 CConnectionRepository::connect_native 0 1 23 331
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::connect_native
+//       Access: Published
+//  Description: Connects to the server using Panda's low-level and
+//               fast "native net" library.
+////////////////////////////////////////////////////////////////////
+63
+bool CConnectionRepository::connect_native(URLSpec const &url);
+
+92 7 get_bdc 4 138 30 CConnectionRepository::get_bdc 0 1 24 325
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_bdc
+//       Access: Published
+//  Description: Returns the Buffered_DatagramConnection object associated
+//               with the repository.
+////////////////////////////////////////////////////////////////////
+73
+inline Buffered_DatagramConnection &CConnectionRepository::get_bdc(void);
+
+93 14 check_datagram 4 138 37 CConnectionRepository::check_datagram 0 1 25 514
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::check_datagram
+//       Access: Published
+//  Description: Returns true if a new datagram is available, false
+//               otherwise.  If the return value is true, the new
+//               datagram may be retrieved via get_datagram(), or
+//               preferably, with get_datagram_iterator() and
+//               get_msg_type().
+////////////////////////////////////////////////////////////////////
+49
+bool CConnectionRepository::check_datagram(void);
+
+94 17 check_datagram_ai 4 138 40 CConnectionRepository::check_datagram_ai 0 1 26 0
+76
+bool CConnectionRepository::check_datagram_ai(PyObject *PycallBackFunction);
+
+95 32 network_based_reader_and_yielder 4 138 55 CConnectionRepository::network_based_reader_and_yielder 0 1 27 0
+127
+bool CConnectionRepository::network_based_reader_and_yielder(PyObject *PycallBackFunction, ClockObject &clock, float returnBy);
+
+96 12 get_datagram 4 138 35 CConnectionRepository::get_datagram 0 1 28 340
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_datagram
+//       Access: Published
+//  Description: Fills the datagram object with the datagram most
+//               recently retrieved by check_datagram().
+////////////////////////////////////////////////////////////////////
+62
+inline void CConnectionRepository::get_datagram(Datagram &dg);
+
+97 21 get_datagram_iterator 4 138 44 CConnectionRepository::get_datagram_iterator 0 1 29 548
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_datagram_iterator
+//       Access: Published
+//  Description: Fills the DatagramIterator object with the iterator
+//               for the datagram most recently retrieved by
+//               check_datagram().  This iterator has already read
+//               past the datagram header and the message type, and is
+//               positioned at the beginning of data.
+////////////////////////////////////////////////////////////////////
+79
+inline void CConnectionRepository::get_datagram_iterator(DatagramIterator &di);
+
+98 15 get_msg_channel 4 138 38 CConnectionRepository::get_msg_channel 0 2 30 31 418
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_msg_channel
+//       Access: Published
+//  Description: Returns the channel(s) to which the current message
+//               was sent, according to the datagram headers.  This
+//               information is not available to the client.
+////////////////////////////////////////////////////////////////////
+87
+inline unsigned __int64 CConnectionRepository::get_msg_channel(int offset = (0)) const;
+
+99 21 get_msg_channel_count 4 138 44 CConnectionRepository::get_msg_channel_count 0 1 32 0
+68
+inline int CConnectionRepository::get_msg_channel_count(void) const;
+
+100 14 get_msg_sender 4 138 37 CConnectionRepository::get_msg_sender 0 1 33 401
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_msg_sender
+//       Access: Published
+//  Description: Returns the sender ID of the current message,
+//               according to the datagram headers.  This information
+//               is not available to the client.
+////////////////////////////////////////////////////////////////////
+74
+inline unsigned __int64 CConnectionRepository::get_msg_sender(void) const;
+
+101 12 get_msg_type 4 138 35 CConnectionRepository::get_msg_type 0 1 34 893
+//  INLINE unsigned char get_sec_code() const;
+
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_sec_code
+//       Access: Published
+//  Description: Returns the security code associated with the current
+//               message, according to the datagram headers.  This
+//               information is not available to the client.
+////////////////////////////////////////////////////////////////////
+//INLINE unsigned char CConnectionRepository::
+//get_sec_code() const {
+//  return _sec_code;
+//}
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_msg_type
+//       Access: Published
+//  Description: Returns the type ID of the current message,
+//               according to the datagram headers.
+////////////////////////////////////////////////////////////////////
+68
+inline unsigned int CConnectionRepository::get_msg_type(void) const;
+
+102 23 get_overflow_event_name 4 138 46 CConnectionRepository::get_overflow_event_name 0 1 35 343
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_overflow_event_name
+//       Access: Published
+//  Description: Returns event string that will be thrown if the
+//               datagram reader queue overflows.
+////////////////////////////////////////////////////////////////////
+95
+static inline basic_string< char > const &CConnectionRepository::get_overflow_event_name(void);
+
+103 12 is_connected 4 138 35 CConnectionRepository::is_connected 0 1 36 603
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::is_connected
+//       Access: Published
+//  Description: Returns true if the connection to the gameserver is
+//               established and still good, false if we are not
+//               connected.  A false value means either (a) we never
+//               successfully connected, (b) we explicitly called
+//               disconnect(), or (c) we were connected, but the
+//               connection was spontaneously lost.
+////////////////////////////////////////////////////////////////////
+47
+bool CConnectionRepository::is_connected(void);
+
+104 13 send_datagram 4 138 36 CConnectionRepository::send_datagram 0 1 37 447
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::send_datagram
+//       Access: Published
+//  Description: Queues the indicated datagram for sending to the
+//               server.  It may not get sent immediately if
+//               collect_tcp is in effect; call flush() to guarantee
+//               it is sent now.
+////////////////////////////////////////////////////////////////////
+62
+bool CConnectionRepository::send_datagram(Datagram const &dg);
+
+105 25 set_want_message_bundling 4 138 48 CConnectionRepository::set_want_message_bundling 0 1 38 288
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_want_message_bundling
+//       Access: Published
+//  Description: Enable/disable outbound message bundling
+////////////////////////////////////////////////////////////////////
+72
+inline void CConnectionRepository::set_want_message_bundling(bool flag);
+
+106 25 get_want_message_bundling 4 138 48 CConnectionRepository::get_want_message_bundling 0 1 39 288
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_want_message_bundling
+//       Access: Published
+//  Description: Returns true if message bundling enabled
+////////////////////////////////////////////////////////////////////
+73
+inline bool CConnectionRepository::get_want_message_bundling(void) const;
+
+107 17 set_in_quiet_zone 4 138 40 CConnectionRepository::set_in_quiet_zone 0 1 40 272
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_in_quiet_zone
+//       Access: Published
+//  Description: Enables/disables quiet zone mode
+////////////////////////////////////////////////////////////////////
+64
+inline void CConnectionRepository::set_in_quiet_zone(bool flag);
+
+108 17 get_in_quiet_zone 4 138 40 CConnectionRepository::get_in_quiet_zone 0 1 41 288
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_in_quiet_zone
+//       Access: Published
+//  Description: Returns true if repository is in quiet zone mode
+////////////////////////////////////////////////////////////////////
+65
+inline bool CConnectionRepository::get_in_quiet_zone(void) const;
+
+109 20 start_message_bundle 4 138 43 CConnectionRepository::start_message_bundle 0 1 42 608
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::start_message_bundle
+//       Access: Published
+//  Description: Send a set of messages to the state server that will
+//               be processed atomically.  For instance, you can do a
+//               combined setLocation/setPos and prevent race
+//               conditions where clients briefly get the setLocation
+//               but not the setPos, because the state server hasn't
+//               processed the setPos yet
+////////////////////////////////////////////////////////////////////
+55
+void CConnectionRepository::start_message_bundle(void);
+
+110 20 is_bundling_messages 4 138 43 CConnectionRepository::is_bundling_messages 0 1 43 338
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::is_bundling_messages
+//       Access: Published
+//  Description: Returns true if repository is queueing outgoing messages
+//               into a message bundle
+////////////////////////////////////////////////////////////////////
+68
+inline bool CConnectionRepository::is_bundling_messages(void) const;
+
+111 19 send_message_bundle 4 138 42 CConnectionRepository::send_message_bundle 0 1 44 327
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::send_message_bundle
+//       Access: Published
+//  Description: Send network messages queued up since
+//               startMessageBundle was called.
+////////////////////////////////////////////////////////////////////
+99
+void CConnectionRepository::send_message_bundle(unsigned int channel, unsigned int sender_channel);
+
+112 23 abandon_message_bundles 4 138 46 CConnectionRepository::abandon_message_bundles 0 1 45 326
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::abandon_message_bundles
+//       Access: Published
+//  Description: throw out any msgs that have been queued up for
+//               message bundles
+////////////////////////////////////////////////////////////////////
+58
+void CConnectionRepository::abandon_message_bundles(void);
+
+113 10 bundle_msg 4 138 33 CConnectionRepository::bundle_msg 0 1 46 232
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::bundle_msg
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+59
+void CConnectionRepository::bundle_msg(Datagram const &dg);
+
+114 14 consider_flush 4 138 37 CConnectionRepository::consider_flush 0 1 47 400
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::consider_flush
+//       Access: Published
+//  Description: Sends the most recently queued data if enough time
+//               has elapsed.  This only has meaning if
+//               set_collect_tcp() has been set to true.
+////////////////////////////////////////////////////////////////////
+49
+bool CConnectionRepository::consider_flush(void);
+
+115 5 flush 4 138 28 CConnectionRepository::flush 0 1 48 368
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::flush
+//       Access: Published
+//  Description: Sends the most recently queued data now.  This only
+//               has meaning if set_collect_tcp() has been set to
+//               true.
+////////////////////////////////////////////////////////////////////
+40
+bool CConnectionRepository::flush(void);
+
+116 10 disconnect 4 138 33 CConnectionRepository::disconnect 0 1 49 269
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::disconnect
+//       Access: Published
+//  Description: Closes the connection to the server.
+////////////////////////////////////////////////////////////////////
+45
+void CConnectionRepository::disconnect(void);
+
+117 8 shutdown 4 138 31 CConnectionRepository::shutdown 0 1 50 323
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::shutdown
+//       Access: Published
+//  Description: May be called at application shutdown to ensure all
+//               threads are cleaned up.
+////////////////////////////////////////////////////////////////////
+43
+void CConnectionRepository::shutdown(void);
+
+118 24 set_simulated_disconnect 4 138 47 CConnectionRepository::set_simulated_disconnect 0 1 51 466
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_simulated_disconnect
+//       Access: Published
+//  Description: Sets the simulated disconnect flag.  While this is
+//               true, no datagrams will be retrieved from or sent to
+//               the server.  The idea is to simulate a temporary
+//               network outage.
+////////////////////////////////////////////////////////////////////
+87
+inline void CConnectionRepository::set_simulated_disconnect(bool simulated_disconnect);
+
+119 24 get_simulated_disconnect 4 138 47 CConnectionRepository::get_simulated_disconnect 0 1 52 469
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_simulated_disconnect
+//       Access: Published
+//  Description: Returns the simulated disconnect flag.  While this is
+//               true, no datagrams will be retrieved from or sent to
+//               the server.  The idea is to simulate a temporary
+//               network outage.
+////////////////////////////////////////////////////////////////////
+72
+inline bool CConnectionRepository::get_simulated_disconnect(void) const;
+
+120 14 toggle_verbose 4 138 37 CConnectionRepository::toggle_verbose 0 1 53 393
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::toggle_verbose
+//       Access: Published
+//  Description: Toggles the current setting of the verbose flag.
+//               When true, this describes every message going back
+//               and forth on the wire.
+////////////////////////////////////////////////////////////////////
+56
+inline void CConnectionRepository::toggle_verbose(void);
+
+121 11 set_verbose 4 138 34 CConnectionRepository::set_verbose 0 1 54 374
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_verbose
+//       Access: Published
+//  Description: Directly sets the verbose flag.  When true, this
+//               describes every message going back and forth on the
+//               wire.
+////////////////////////////////////////////////////////////////////
+61
+inline void CConnectionRepository::set_verbose(bool verbose);
+
+122 11 get_verbose 4 138 34 CConnectionRepository::get_verbose 0 1 55 390
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_verbose
+//       Access: Published
+//  Description: Returns the current setting of the verbose flag.
+//               When true, this describes every message going back
+//               and forth on the wire.
+////////////////////////////////////////////////////////////////////
+59
+inline bool CConnectionRepository::get_verbose(void) const;
+
+123 16 set_time_warning 4 138 39 CConnectionRepository::set_time_warning 0 1 56 426
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_time_warning
+//       Access: Published
+//  Description: Directly sets the time_warning field.  When non zero, this
+//               describes every message going back and forth on the
+//               wire when the msg handling time is over it
+////////////////////////////////////////////////////////////////////
+72
+inline void CConnectionRepository::set_time_warning(float time_warning);
+
+124 16 get_time_warning 4 138 39 CConnectionRepository::get_time_warning 0 1 57 293
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_time_warning
+//       Access: Published
+//  Description: Returns the current setting of the time_warning field.
+////////////////////////////////////////////////////////////////////
+65
+inline float CConnectionRepository::get_time_warning(void) const;
+
+125 17 describe_datagram 4 138 40 CConnectionRepository::describe_datagram 0 1 58 286
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::describe_datagram
+//       Access: Published
+//  Description: Prints user-friendly description of a datagram
+////////////////////////////////////////////////////////////////////
+79
+inline void CConnectionRepository::describe_datagram(Datagram const &dg) const;
+
+126 16 describe_message 4 138 39 CConnectionRepository::describe_message 0 1 59 385
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::describe_message
+//       Access: Published
+//  Description: Unpacks the message and reformats it for user
+//               consumption, writing a description on the indicated
+//               output stream.
+////////////////////////////////////////////////////////////////////
+121
+void CConnectionRepository::describe_message(ostream &out, basic_string< char > const &prefix, Datagram const &dg) const;
+
+127 26 CDistributedSmoothNodeBase 4 139 54 CDistributedSmoothNodeBase::CDistributedSmoothNodeBase 0 1 60 239
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+61
+CDistributedSmoothNodeBase::CDistributedSmoothNodeBase(void);
+
+128 27 ~CDistributedSmoothNodeBase 4 139 55 CDistributedSmoothNodeBase::~CDistributedSmoothNodeBase 0 0 238
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::Destructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+62
+CDistributedSmoothNodeBase::~CDistributedSmoothNodeBase(void);
+
+129 14 set_repository 4 139 42 CDistributedSmoothNodeBase::set_repository 0 1 61 862
+// Filename: cDistributedSmoothNodeBase.I
+// Created by:  drose (03Sep04)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::set_repository
+//       Access: Published, Static
+//  Description: Tells the C++ class definition about the AI or Client
+//               repository, used for sending datagrams.
+////////////////////////////////////////////////////////////////////
+133
+static inline void CDistributedSmoothNodeBase::set_repository(CConnectionRepository *repository, bool is_ai, unsigned __int64 ai_id);
+
+130 15 set_clock_delta 4 139 43 CDistributedSmoothNodeBase::set_clock_delta 0 1 62 334
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::set_clock_delta
+//       Access: Published, Static
+//  Description: Tells the C++ class definition about the global
+//               ClockDelta object.
+////////////////////////////////////////////////////////////////////
+86
+static inline void CDistributedSmoothNodeBase::set_clock_delta(PyObject *clock_delta);
+
+131 10 initialize 4 139 38 CDistributedSmoothNodeBase::initialize 0 1 63 533
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::initialize
+//       Access: Published
+//  Description: Initializes the internal structures from some
+//               constructs that are normally stored only in Python.
+//               Also reads the current node's pos & hpr values in
+//               preparation for transmitting them via one of the
+//               broadcast_pos_hpr_*() methods.
+////////////////////////////////////////////////////////////////////
+112
+void CDistributedSmoothNodeBase::initialize(NodePath const &node_path, DCClass *dclass, unsigned __int64 do_id);
+
+132 15 send_everything 4 139 43 CDistributedSmoothNodeBase::send_everything 0 1 64 295
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::send_everything
+//       Access: Published
+//  Description: Broadcasts the current pos/hpr in its complete form.
+////////////////////////////////////////////////////////////////////
+55
+void CDistributedSmoothNodeBase::send_everything(void);
+
+133 22 broadcast_pos_hpr_full 4 139 50 CDistributedSmoothNodeBase::broadcast_pos_hpr_full 0 1 65 413
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::broadcast_pos_hpr_full
+//       Access: Published
+//  Description: Examines the complete pos/hpr information to see
+//               which of the six elements have changed, and
+//               broadcasts the appropriate messages.
+////////////////////////////////////////////////////////////////////
+62
+void CDistributedSmoothNodeBase::broadcast_pos_hpr_full(void);
+
+134 21 broadcast_pos_hpr_xyh 4 139 49 CDistributedSmoothNodeBase::broadcast_pos_hpr_xyh 0 1 66 360
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::broadcast_pos_hpr_xyh
+//       Access: Published
+//  Description: Examines only X, Y, and H of the pos/hpr information,
+//               and broadcasts the appropriate messages.
+////////////////////////////////////////////////////////////////////
+61
+void CDistributedSmoothNodeBase::broadcast_pos_hpr_xyh(void);
+
+135 20 broadcast_pos_hpr_xy 4 139 48 CDistributedSmoothNodeBase::broadcast_pos_hpr_xy 0 1 67 355
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::broadcast_pos_hpr_xy
+//       Access: Published
+//  Description: Examines only X and Y of the pos/hpr information,
+//               and broadcasts the appropriate messages.
+////////////////////////////////////////////////////////////////////
+60
+void CDistributedSmoothNodeBase::broadcast_pos_hpr_xy(void);
+
+136 10 set_curr_l 4 139 38 CDistributedSmoothNodeBase::set_curr_l 0 1 68 466
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::set_curr_l
+//                 published function to set current location for
+//                 this object, this location is then sent out along
+//                 with the next position broadcast
+//       Access: Private
+//  Description: Appends the timestamp and sends the update.
+////////////////////////////////////////////////////////////////////
+64
+void CDistributedSmoothNodeBase::set_curr_l(unsigned __int64 l);
+
+137 12 print_curr_l 4 139 40 CDistributedSmoothNodeBase::print_curr_l 0 1 69 0
+52
+void CDistributedSmoothNodeBase::print_curr_l(void);
+
+69
+1 14 Dtool_iutg0z1p 7 2 141 71 14 Dtool_iutg0z1p 234 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::Constructor
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 14 has_owner_view 1 140  12 threaded_net 1 140  
+2 14 Dtool_iutg51_T 7 2 141 71 14 Dtool_iutg51_T 234 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::Constructor
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 1 14 has_owner_view 1 140  
+3 14 Dtool_iutgJJvB 7 2 141 71 14 Dtool_iutgJJvB 234 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::Constructor
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 0 
+4 14 Dtool_iutgWMFU 6 4 142 0 14 Dtool_iutgWMFU 806 // Filename: cConnectionRepository.I
+// Created by:  drose (17May04)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_dc_file
+//       Access: Published
+//  Description: Returns the DCFile object associated with this
+//               repository.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+5 14 Dtool_iutgqawY 6 5 140 0 14 Dtool_iutgqawY 332 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::has_owner_view
+//       Access: Published
+//  Description: Returns true if this repository can have 'owner'
+//               views of distributed objects.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+6 14 Dtool_iutg8J2J 4 6 146 0 14 Dtool_iutg8J2J 416 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_handle_c_updates
+//       Access: Published
+//  Description: Set true to specify this repository should process
+//               distributed updates internally in C++ code, or false
+//               if it should return them to Python.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  16 handle_c_updates 1 140  
+7 14 Dtool_iutgB_jy 6 7 140 0 14 Dtool_iutgB_jy 408 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_handle_c_updates
+//       Access: Published
+//  Description: Returns true if this repository will process
+//               distributed updates internally in C++ code, or false
+//               if it will return them to Python.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+8 14 Dtool_iutgglKQ 4 8 146 0 14 Dtool_iutgglKQ 588 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_client_datagram
+//       Access: Published
+//  Description: Sets the client_datagram flag.  If this is true,
+//               incoming datagrams are not expected to be prefixed
+//               with the server routing information like message
+//               sender, channel number, etc.; otherwise, these server
+//               fields are parsed and removed from each incoming
+//               datagram.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  15 client_datagram 1 140  
+9 14 Dtool_iutg9Vry 6 9 140 0 14 Dtool_iutg9Vry 275 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_client_datagram
+//       Access: Published
+//  Description: Returns the client_datagram flag.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+10 14 Dtool_iutgLowN 4 10 146 0 14 Dtool_iutgLowN 654 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_handle_datagrams_internally
+//       Access: Published
+//  Description: Sets the handle_datagrams_internally flag.  When
+//               true, certain message types can be handled by the C++
+//               code in in this module.  When false, all datagrams,
+//               regardless of message type, are passed up to Python
+//               for processing.
+//
+//               The CMU distributed-object implementation requires
+//               this to be set false.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  27 handle_datagrams_internally 1 140  
+11 14 Dtool_iutg5Cm_ 6 11 140 0 14 Dtool_iutg5Cm_ 299 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_handle_datagrams_internally
+//       Access: Published
+//  Description: Returns the handle_datagrams_internally flag.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+12 14 Dtool_iutg8gzb 4 12 146 0 14 Dtool_iutg8gzb 544 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_handle_datagrams_internally
+//       Access: Published
+//  Description: Sets the handle_datagrams_internally flag.  When
+//               true, certain message types can be handled by the C++
+//               code in in this module.  When false, all datagrams,
+//               regardless of message type, are passed up to Python
+//               for processing.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  13 track_clsends 1 140  
+13 14 Dtool_iutgxlKX 6 13 140 0 14 Dtool_iutgxlKX 299 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_handle_datagrams_internally
+//       Access: Published
+//  Description: Returns the handle_datagrams_internally flag.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+14 14 Dtool_iutg8QMi 4 14 146 0 14 Dtool_iutg8QMi 557 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_tcp_header_size
+//       Access: Public
+//  Description: Sets the header size of TCP packets.  At the present,
+//               legal values for this are 0, 2, or 4; this specifies
+//               the number of bytes to use encode the datagram length
+//               at the start of each TCP datagram.  Sender and
+//               receiver must independently agree on this.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  15 tcp_header_size 1 147  
+15 14 Dtool_iutgypd3 6 15 147 0 14 Dtool_iutgypd3 330 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_tcp_header_size
+//       Access: Public
+//  Description: Returns the current setting of TCP header size.
+//               See set_tcp_header_size().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+16 14 Dtool_iutgfmXG 4 16 146 0 14 Dtool_iutgfmXG 478 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_python_repository
+//       Access: Published
+//  Description: Records the pointer to the Python class that derives
+//               from CConnectionRepository.  This allows the C++
+//               implementation to directly manipulation some python
+//               structures on the repository.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  17 python_repository 1 148  
+17 14 Dtool_iutgqdPr 4 17 146 0 14 Dtool_iutgqdPr 476 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_connection_http
+//       Access: Published
+//  Description: Once a connection has been established via the HTTP
+//               interface, gets the connection and uses it.  The
+//               supplied HTTPChannel object must have a connection
+//               available via get_connection().
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  7 channel 1 150  
+18 14 Dtool_iutgnV65 6 18 152 0 14 Dtool_iutgnV65 413 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_stream
+//       Access: Published
+//  Description: Returns the SocketStream that internally represents
+//               the already-established HTTP connection.  Returns
+//               NULL if there is no current HTTP connection.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+19 14 Dtool_iutgtkG6 6 19 140 0 14 Dtool_iutgtkG6 413 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::try_connect_net
+//       Access: Published
+//  Description: Uses Panda's "net" library to try to connect to the
+//               server and port named in the indicated URL.  Returns
+//               true if successful, false otherwise.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  3 url 1 154  
+20 14 Dtool_iutgTpeE 6 20 157 0 14 Dtool_iutgTpeE 321 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_qcm
+//       Access: Published
+//  Description: Returns the QueuedConnectionManager object associated
+//               with the repository.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+21 14 Dtool_iutgUglF 6 21 159 0 14 Dtool_iutgUglF 313 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_cw
+//       Access: Published
+//  Description: Returns the ConnectionWriter object associated
+//               with the repository.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+22 14 Dtool_iutgJkqE 6 22 161 0 14 Dtool_iutgJkqE 320 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_qcr
+//       Access: Published
+//  Description: Returns the QueuedConnectionReader object associated
+//               with the repository.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+23 14 Dtool_iutg7PQS 6 23 140 0 14 Dtool_iutg7PQS 331 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::connect_native
+//       Access: Published
+//  Description: Connects to the server using Panda's low-level and
+//               fast "native net" library.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  3 url 1 154  
+24 14 Dtool_iutgBK9C 6 24 163 0 14 Dtool_iutgBK9C 325 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_bdc
+//       Access: Published
+//  Description: Returns the Buffered_DatagramConnection object associated
+//               with the repository.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+25 14 Dtool_iutgg_F4 6 25 140 0 14 Dtool_iutgg_F4 514 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::check_datagram
+//       Access: Published
+//  Description: Returns true if a new datagram is available, false
+//               otherwise.  If the return value is true, the new
+//               datagram may be retrieved via get_datagram(), or
+//               preferably, with get_datagram_iterator() and
+//               get_msg_type().
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+26 14 Dtool_iutgCrRC 6 26 140 0 14 Dtool_iutgCrRC 0 2 4 this 3 141  18 PycallBackFunction 1 148  
+27 14 Dtool_iutgIHlU 6 27 140 0 14 Dtool_iutgIHlU 0 4 4 this 3 141  18 PycallBackFunction 1 148  5 clock 1 165  8 returnBy 1 167  
+28 14 Dtool_iutg3q1u 4 28 146 0 14 Dtool_iutg3q1u 340 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_datagram
+//       Access: Published
+//  Description: Fills the datagram object with the datagram most
+//               recently retrieved by check_datagram().
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  2 dg 1 168  
+29 14 Dtool_iutgfoW8 4 29 146 0 14 Dtool_iutgfoW8 548 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_datagram_iterator
+//       Access: Published
+//  Description: Fills the DatagramIterator object with the iterator
+//               for the datagram most recently retrieved by
+//               check_datagram().  This iterator has already read
+//               past the datagram header and the message type, and is
+//               positioned at the beginning of data.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  2 di 1 170  
+30 14 Dtool_iutgbgej 6 30 172 0 14 Dtool_iutgbgej 418 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_msg_channel
+//       Access: Published
+//  Description: Returns the channel(s) to which the current message
+//               was sent, according to the datagram headers.  This
+//               information is not available to the client.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 144  6 offset 1 147  
+31 14 Dtool_iutgOsSR 6 30 172 0 14 Dtool_iutgOsSR 418 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_msg_channel
+//       Access: Published
+//  Description: Returns the channel(s) to which the current message
+//               was sent, according to the datagram headers.  This
+//               information is not available to the client.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+32 14 Dtool_iutgo6VW 6 31 147 0 14 Dtool_iutgo6VW 0 1 4 this 3 144  
+33 14 Dtool_iutg3Atc 6 32 172 0 14 Dtool_iutg3Atc 401 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_msg_sender
+//       Access: Published
+//  Description: Returns the sender ID of the current message,
+//               according to the datagram headers.  This information
+//               is not available to the client.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+34 14 Dtool_iutglfYY 6 33 173 0 14 Dtool_iutglfYY 845 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_sec_code
+//       Access: Published
+//  Description: Returns the security code associated with the current
+//               message, according to the datagram headers.  This
+//               information is not available to the client.
+////////////////////////////////////////////////////////////////////
+//INLINE unsigned char CConnectionRepository::
+//get_sec_code() const {
+//  return _sec_code;
+//}
+////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_msg_type
+//       Access: Published
+//  Description: Returns the type ID of the current message,
+//               according to the datagram headers.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+35 14 Dtool_iutg1_hh 6 34 174 0 14 Dtool_iutg1_hh 343 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_overflow_event_name
+//       Access: Published
+//  Description: Returns event string that will be thrown if the
+//               datagram reader queue overflows.
+//////////////////////////////////////////////////////////////////// 0 
+36 14 Dtool_iutgd16m 6 35 140 0 14 Dtool_iutgd16m 603 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::is_connected
+//       Access: Published
+//  Description: Returns true if the connection to the gameserver is
+//               established and still good, false if we are not
+//               connected.  A false value means either (a) we never
+//               successfully connected, (b) we explicitly called
+//               disconnect(), or (c) we were connected, but the
+//               connection was spontaneously lost.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+37 14 Dtool_iutg1hI9 6 36 140 0 14 Dtool_iutg1hI9 447 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::send_datagram
+//       Access: Published
+//  Description: Queues the indicated datagram for sending to the
+//               server.  It may not get sent immediately if
+//               collect_tcp is in effect; call flush() to guarantee
+//               it is sent now.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  2 dg 1 175  
+38 14 Dtool_iutgffNO 4 37 146 0 14 Dtool_iutgffNO 288 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_want_message_bundling
+//       Access: Published
+//  Description: Enable/disable outbound message bundling
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  4 flag 1 140  
+39 14 Dtool_iutge5mH 6 38 140 0 14 Dtool_iutge5mH 288 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_want_message_bundling
+//       Access: Published
+//  Description: Returns true if message bundling enabled
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+40 14 Dtool_iutgELtE 4 39 146 0 14 Dtool_iutgELtE 272 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_in_quiet_zone
+//       Access: Published
+//  Description: Enables/disables quiet zone mode
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  4 flag 1 140  
+41 14 Dtool_iutg33FA 6 40 140 0 14 Dtool_iutg33FA 288 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_in_quiet_zone
+//       Access: Published
+//  Description: Returns true if repository is in quiet zone mode
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+42 14 Dtool_iutgq0kf 4 41 146 0 14 Dtool_iutgq0kf 608 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::start_message_bundle
+//       Access: Published
+//  Description: Send a set of messages to the state server that will
+//               be processed atomically.  For instance, you can do a
+//               combined setLocation/setPos and prevent race
+//               conditions where clients briefly get the setLocation
+//               but not the setPos, because the state server hasn't
+//               processed the setPos yet
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+43 14 Dtool_iutgqaJD 6 42 140 0 14 Dtool_iutgqaJD 338 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::is_bundling_messages
+//       Access: Published
+//  Description: Returns true if repository is queueing outgoing messages
+//               into a message bundle
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+44 14 Dtool_iutgCGVX 4 43 146 0 14 Dtool_iutgCGVX 327 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::send_message_bundle
+//       Access: Published
+//  Description: Send network messages queued up since
+//               startMessageBundle was called.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 141  7 channel 1 173  14 sender_channel 1 173  
+45 14 Dtool_iutgAYZH 4 44 146 0 14 Dtool_iutgAYZH 326 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::abandon_message_bundles
+//       Access: Published
+//  Description: throw out any msgs that have been queued up for
+//               message bundles
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+46 14 Dtool_iutgxi1a 4 45 146 0 14 Dtool_iutgxi1a 232 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::bundle_msg
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  2 dg 1 175  
+47 14 Dtool_iutgz8dn 6 46 140 0 14 Dtool_iutgz8dn 400 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::consider_flush
+//       Access: Published
+//  Description: Sends the most recently queued data if enough time
+//               has elapsed.  This only has meaning if
+//               set_collect_tcp() has been set to true.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+48 14 Dtool_iutgiJJd 6 47 140 0 14 Dtool_iutgiJJd 368 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::flush
+//       Access: Published
+//  Description: Sends the most recently queued data now.  This only
+//               has meaning if set_collect_tcp() has been set to
+//               true.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+49 14 Dtool_iutgggLs 4 48 146 0 14 Dtool_iutgggLs 269 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::disconnect
+//       Access: Published
+//  Description: Closes the connection to the server.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+50 14 Dtool_iutg98Wy 4 49 146 0 14 Dtool_iutg98Wy 323 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::shutdown
+//       Access: Published
+//  Description: May be called at application shutdown to ensure all
+//               threads are cleaned up.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+51 14 Dtool_iutgTlnx 4 50 146 0 14 Dtool_iutgTlnx 466 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_simulated_disconnect
+//       Access: Published
+//  Description: Sets the simulated disconnect flag.  While this is
+//               true, no datagrams will be retrieved from or sent to
+//               the server.  The idea is to simulate a temporary
+//               network outage.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  20 simulated_disconnect 1 140  
+52 14 Dtool_iutgtFqe 6 51 140 0 14 Dtool_iutgtFqe 469 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_simulated_disconnect
+//       Access: Published
+//  Description: Returns the simulated disconnect flag.  While this is
+//               true, no datagrams will be retrieved from or sent to
+//               the server.  The idea is to simulate a temporary
+//               network outage.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+53 14 Dtool_iutgbrp_ 4 52 146 0 14 Dtool_iutgbrp_ 393 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::toggle_verbose
+//       Access: Published
+//  Description: Toggles the current setting of the verbose flag.
+//               When true, this describes every message going back
+//               and forth on the wire.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 141  
+54 14 Dtool_iutgtKzq 4 53 146 0 14 Dtool_iutgtKzq 374 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_verbose
+//       Access: Published
+//  Description: Directly sets the verbose flag.  When true, this
+//               describes every message going back and forth on the
+//               wire.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  7 verbose 1 140  
+55 14 Dtool_iutgF3VI 6 54 140 0 14 Dtool_iutgF3VI 390 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_verbose
+//       Access: Published
+//  Description: Returns the current setting of the verbose flag.
+//               When true, this describes every message going back
+//               and forth on the wire.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+56 14 Dtool_iutgVjcE 4 55 146 0 14 Dtool_iutgVjcE 426 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::set_time_warning
+//       Access: Published
+//  Description: Directly sets the time_warning field.  When non zero, this
+//               describes every message going back and forth on the
+//               wire when the msg handling time is over it
+//////////////////////////////////////////////////////////////////// 2 4 this 3 141  12 time_warning 1 167  
+57 14 Dtool_iutghglh 6 56 167 0 14 Dtool_iutghglh 293 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::get_time_warning
+//       Access: Published
+//  Description: Returns the current setting of the time_warning field.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 144  
+58 14 Dtool_iutg8_Fh 4 57 146 0 14 Dtool_iutg8_Fh 286 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::describe_datagram
+//       Access: Published
+//  Description: Prints user-friendly description of a datagram
+//////////////////////////////////////////////////////////////////// 2 4 this 3 144  2 dg 1 175  
+59 14 Dtool_iutgjlc_ 4 58 146 0 14 Dtool_iutgjlc_ 385 ////////////////////////////////////////////////////////////////////
+//     Function: CConnectionRepository::describe_message
+//       Access: Published
+//  Description: Unpacks the message and reformats it for user
+//               consumption, writing a description on the indicated
+//               output stream.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 144  3 out 1 177  6 prefix 1 174  2 dg 1 175  
+60 14 Dtool_iutgYl7d 7 60 179 128 14 Dtool_iutgYl7d 239 ////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::Constructor
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 0 
+61 14 Dtool_iutg9rX6 4 62 146 0 14 Dtool_iutg9rX6 862 // Filename: cDistributedSmoothNodeBase.I
+// Created by:  drose (03Sep04)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::set_repository
+//       Access: Published, Static
+//  Description: Tells the C++ class definition about the AI or Client
+//               repository, used for sending datagrams.
+//////////////////////////////////////////////////////////////////// 3 10 repository 1 141  5 is_ai 1 140  5 ai_id 1 172  
+62 14 Dtool_iutg1CY3 4 63 146 0 14 Dtool_iutg1CY3 334 ////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::set_clock_delta
+//       Access: Published, Static
+//  Description: Tells the C++ class definition about the global
+//               ClockDelta object.
+//////////////////////////////////////////////////////////////////// 1 11 clock_delta 1 148  
+63 14 Dtool_iutglODQ 4 64 146 0 14 Dtool_iutglODQ 533 ////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::initialize
+//       Access: Published
+//  Description: Initializes the internal structures from some
+//               constructs that are normally stored only in Python.
+//               Also reads the current node's pos & hpr values in
+//               preparation for transmitting them via one of the
+//               broadcast_pos_hpr_*() methods.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 179  9 node_path 1 180  6 dclass 1 183  5 do_id 1 172  
+64 14 Dtool_iutgkeGE 4 65 146 0 14 Dtool_iutgkeGE 295 ////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::send_everything
+//       Access: Published
+//  Description: Broadcasts the current pos/hpr in its complete form.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 179  
+65 14 Dtool_iutguy5e 4 66 146 0 14 Dtool_iutguy5e 413 ////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::broadcast_pos_hpr_full
+//       Access: Published
+//  Description: Examines the complete pos/hpr information to see
+//               which of the six elements have changed, and
+//               broadcasts the appropriate messages.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 179  
+66 14 Dtool_iutgCz2k 4 67 146 0 14 Dtool_iutgCz2k 360 ////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::broadcast_pos_hpr_xyh
+//       Access: Published
+//  Description: Examines only X, Y, and H of the pos/hpr information,
+//               and broadcasts the appropriate messages.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 179  
+67 14 Dtool_iutg_vnD 4 68 146 0 14 Dtool_iutg_vnD 355 ////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::broadcast_pos_hpr_xy
+//       Access: Published
+//  Description: Examines only X and Y of the pos/hpr information,
+//               and broadcasts the appropriate messages.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 179  
+68 14 Dtool_iutgXnA3 4 69 146 0 14 Dtool_iutgXnA3 466 ////////////////////////////////////////////////////////////////////
+//     Function: CDistributedSmoothNodeBase::set_curr_l
+//                 published function to set current location for
+//                 this object, this location is then sent out along
+//                 with the next position broadcast
+//       Access: Private
+//  Description: Appends the timestamp and sends the update.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 179  1 l 1 172  
+69 14 Dtool_iutgoMEN 4 70 146 0 14 Dtool_iutgoMEN 0 1 4 this 3 179  
+47
+138 21 CConnectionRepository 26625 21 CConnectionRepository 21 CConnectionRepository 0 0 0 1 70 71 0 55 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 0 0 0 0 0 900
+////////////////////////////////////////////////////////////////////
+//       Class : CConnectionRepository
+// Description : This class implements the C++ side of the
+//               ConnectionRepository object.  In particular, it
+//               manages the connection to the server once it has been
+//               opened (but does not open it directly).  It manages
+//               reading and writing datagrams on the connection and
+//               monitoring for unexpected disconnects as well as
+//               handling intentional disconnects.
+//
+//               Certain server messages, like field updates, are
+//               handled entirely within the C++ layer, while server
+//               messages that are not understood by the C++ layer are
+//               returned up to the Python layer for processing.
+////////////////////////////////////////////////////////////////////
+
+139 26 CDistributedSmoothNodeBase 26625 26 CDistributedSmoothNodeBase 26 CDistributedSmoothNodeBase 0 0 0 1 127 128 0 9 129 130 131 132 133 134 135 136 137 0 0 0 0 0 361
+////////////////////////////////////////////////////////////////////
+//       Class : CDistributedSmoothNodeBase
+// Description : This class defines some basic methods of
+//               DistributedSmoothNodeBase which have been moved into
+//               C++ as a performance optimization.
+////////////////////////////////////////////////////////////////////
+
+140 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+141 23 CConnectionRepository * 8576 23 CConnectionRepository * 23 CConnectionRepository * 0 0 138 0 0 0 0 0 0 0 0 0 0
+
+142 8 DCFile * 8576 8 DCFile * 8 DCFile * 0 0 143 0 0 0 0 0 0 0 0 0 0
+
+143 6 DCFile 2048 6 DCFile 6 DCFile 0 0 0 0 0 0 0 0 0 0 0 0 283
+////////////////////////////////////////////////////////////////////
+//       Class : DCFile
+// Description : Represents the complete list of Distributed Class
+//               descriptions as read from a .dc file.
+////////////////////////////////////////////////////////////////////
+
+144 29 CConnectionRepository const * 8576 29 CConnectionRepository const * 29 CConnectionRepository const * 0 0 145 0 0 0 0 0 0 0 0 0 0
+
+145 27 CConnectionRepository const 8832 27 CConnectionRepository const 27 CConnectionRepository const 0 0 138 0 0 0 0 0 0 0 0 0 0
+
+146 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+147 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+148 10 PyObject * 8576 10 PyObject * 10 PyObject * 0 0 149 0 0 0 0 0 0 0 0 0 0
+
+149 8 PyObject 2048 8 PyObject 8 PyObject 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+150 13 HTTPChannel * 8576 13 HTTPChannel * 13 HTTPChannel * 0 0 151 0 0 0 0 0 0 0 0 0 0
+
+151 11 HTTPChannel 2048 11 HTTPChannel 11 HTTPChannel 0 0 0 0 0 0 0 0 0 0 0 0 875
+////////////////////////////////////////////////////////////////////
+//       Class : HTTPChannel
+// Description : A single channel of communication from an HTTPClient.
+//               This is similar to the concept of a 'connection',
+//               except that HTTP is technically connectionless; in
+//               fact, a channel may represent one unbroken connection
+//               or it may transparently close and reopen a new
+//               connection with each request.
+//
+//               A channel is conceptually a single thread of I/O.
+//               One document at a time may be requested using a
+//               channel; a new document may (in general) not be
+//               requested from the same HTTPChannel until the first
+//               document has been fully retrieved.
+////////////////////////////////////////////////////////////////////
+
+152 14 SocketStream * 8576 14 SocketStream * 14 SocketStream * 0 0 153 0 0 0 0 0 0 0 0 0 0
+
+153 12 SocketStream 2048 12 SocketStream 12 SocketStream 0 0 0 0 0 0 0 0 0 0 0 0 285
+////////////////////////////////////////////////////////////////////
+//       Class : SocketStream
+// Description : A base class for iostreams that read and write to a
+//               (possibly non-blocking) socket.
+////////////////////////////////////////////////////////////////////
+
+154 15 URLSpec const * 8576 15 URLSpec const * 15 URLSpec const * 0 0 155 0 0 0 0 0 0 0 0 0 0
+
+155 13 URLSpec const 8832 13 URLSpec const 13 URLSpec const 0 0 156 0 0 0 0 0 0 0 0 0 0
+
+156 7 URLSpec 2048 7 URLSpec 7 URLSpec 0 0 0 0 0 0 0 0 0 0 0 0 437
+////////////////////////////////////////////////////////////////////
+//       Class : URLSpec
+// Description : A container for a URL, e.g. "http://server:port/path".
+//
+//               The URLSpec object is similar to a Filename in that
+//               it contains logic to identify the various parts of a
+//               URL and return (or modify) them separately.
+////////////////////////////////////////////////////////////////////
+
+157 25 QueuedConnectionManager * 8576 25 QueuedConnectionManager * 25 QueuedConnectionManager * 0 0 158 0 0 0 0 0 0 0 0 0 0
+
+158 23 QueuedConnectionManager 2048 23 QueuedConnectionManager 23 QueuedConnectionManager 0 0 0 0 0 0 0 0 0 0 0 0 726
+////////////////////////////////////////////////////////////////////
+//       Class : QueuedConnectionManager
+// Description : This flavor of ConnectionManager will queue up all of
+//               the reset-connection messages from the
+//               ConnectionReaders and ConnectionWriters and report
+//               them to the client on demand.
+//
+//               When a reset connection has been discovered via
+//               reset_connection_available()/get_reset_connection(),
+//               it is still the responsibility of the client to call
+//               close_connection() on that connection to free up its
+//               resources.
+////////////////////////////////////////////////////////////////////
+
+159 18 ConnectionWriter * 8576 18 ConnectionWriter * 18 ConnectionWriter * 0 0 160 0 0 0 0 0 0 0 0 0 0
+
+160 16 ConnectionWriter 2048 16 ConnectionWriter 16 ConnectionWriter 0 0 0 0 0 0 0 0 0 0 0 0 545
+////////////////////////////////////////////////////////////////////
+//       Class : ConnectionWriter
+// Description : This class handles threaded delivery of datagrams to
+//               various TCP or UDP sockets.
+//
+//               A ConnectionWriter may define an arbitrary number of
+//               threads (0 or more) to write its datagrams to
+//               sockets.  The number of threads is specified at
+//               construction time and cannot be changed.
+////////////////////////////////////////////////////////////////////
+
+161 24 QueuedConnectionReader * 8576 24 QueuedConnectionReader * 24 QueuedConnectionReader * 0 0 162 0 0 0 0 0 0 0 0 0 0
+
+162 22 QueuedConnectionReader 2048 22 QueuedConnectionReader 22 QueuedConnectionReader 0 0 0 0 0 0 0 0 0 0 0 0 551
+////////////////////////////////////////////////////////////////////
+//       Class : QueuedConnectionReader
+// Description : This flavor of ConnectionReader will read from its
+//               sockets and queue up all of the datagrams read for
+//               later receipt by the client code.  This class is
+//               useful for client code that doesn't want to deal with
+//               threading and is willing to poll for datagrams at its
+//               convenience.
+////////////////////////////////////////////////////////////////////
+
+163 29 Buffered_DatagramConnection * 8576 29 Buffered_DatagramConnection * 29 Buffered_DatagramConnection * 0 0 164 0 0 0 0 0 0 0 0 0 0
+
+164 27 Buffered_DatagramConnection 2048 27 Buffered_DatagramConnection 27 Buffered_DatagramConnection 0 0 0 0 0 0 0 0 0 0 0 0 332
+////////////////////////////////////////////////////////////////
+// there are 3 states   
+//
+//      1. Socket not even assigned,,,,
+//      2. Socket Assigned and trying to get a active connect open
+//      3. Socket is open and  writable.. ( Fully powered up )...
+//
+///////////////////////////////////////////////////////////////
+
+165 13 ClockObject * 8576 13 ClockObject * 13 ClockObject * 0 0 166 0 0 0 0 0 0 0 0 0 0
+
+166 11 ClockObject 2048 11 ClockObject 11 ClockObject 0 0 0 0 0 0 0 0 0 0 0 0 1457
+////////////////////////////////////////////////////////////////////
+//       Class : ClockObject
+// Description : A ClockObject keeps track of elapsed real time and
+//               discrete time.  In normal mode, get_frame_time()
+//               returns the time as of the last time tick() was
+//               called.  This is the "discrete" time, and is usually
+//               used to get the time as of, for instance, the
+//               beginning of the current frame.
+//
+//               In other modes, as set by set_mode() or the
+//               clock-mode config variable, get_frame_time() may
+//               return other values to simulate different timing
+//               effects, for instance to perform non-real-time
+//               animation.  See set_mode().
+//
+//               In all modes, get_real_time() always returns the
+//               elapsed real time in seconds since the ClockObject
+//               was constructed, or since it was last reset.
+//
+//               You can create your own ClockObject whenever you want
+//               to have your own local timer.  There is also a
+//               default, global ClockObject intended to represent
+//               global time for the application; this is normally set
+//               up to tick every frame so that its get_frame_time()
+//               will return the time for the current frame.
+////////////////////////////////////////////////////////////////////
+
+167 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+168 10 Datagram * 8576 10 Datagram * 10 Datagram * 0 0 169 0 0 0 0 0 0 0 0 0 0
+
+169 8 Datagram 2048 8 Datagram 8 Datagram 0 0 0 0 0 0 0 0 0 0 0 0 900
+////////////////////////////////////////////////////////////////////
+//       Class : Datagram
+// Description : An ordered list of data elements, formatted in memory
+//               for transmission over a socket or writing to a data
+//               file.
+//
+//               Data elements should be added one at a time, in
+//               order, to the Datagram.  The nature and contents of
+//               the data elements are totally up to the user.  When a
+//               Datagram has been transmitted and received, its data
+//               elements may be extracted using a DatagramIterator;
+//               it is up to the caller to know the correct type of
+//               each data element in order.
+//
+//               A Datagram is itself headerless; it is simply a
+//               collection of data elements.
+////////////////////////////////////////////////////////////////////
+
+170 18 DatagramIterator * 8576 18 DatagramIterator * 18 DatagramIterator * 0 0 171 0 0 0 0 0 0 0 0 0 0
+
+171 16 DatagramIterator 2048 16 DatagramIterator 16 DatagramIterator 0 0 0 0 0 0 0 0 0 0 0 0 438
+////////////////////////////////////////////////////////////////////
+//       Class : DatagramIterator
+// Description : A class to retrieve the individual data elements
+//               previously stored in a Datagram.  Elements may be
+//               retrieved one at a time; it is up to the caller to
+//               know the correct type and order of each element.
+////////////////////////////////////////////////////////////////////
+
+172 16 unsigned __int64 8230 16 unsigned __int64 16 unsigned __int64 0 8 0 0 0 0 0 0 0 0 0 0 0
+
+173 12 unsigned int 8198 12 unsigned int 12 unsigned int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+174 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+175 16 Datagram const * 8576 16 Datagram const * 16 Datagram const * 0 0 176 0 0 0 0 0 0 0 0 0 0
+
+176 14 Datagram const 8832 14 Datagram const 14 Datagram const 0 0 169 0 0 0 0 0 0 0 0 0 0
+
+177 9 ostream * 8576 9 ostream * 9 ostream * 0 0 178 0 0 0 0 0 0 0 0 0 0
+
+178 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+179 28 CDistributedSmoothNodeBase * 8576 28 CDistributedSmoothNodeBase * 28 CDistributedSmoothNodeBase * 0 0 139 0 0 0 0 0 0 0 0 0 0
+
+180 16 NodePath const * 8576 16 NodePath const * 16 NodePath const * 0 0 181 0 0 0 0 0 0 0 0 0 0
+
+181 14 NodePath const 8832 14 NodePath const 14 NodePath const 0 0 182 0 0 0 0 0 0 0 0 0 0
+
+182 8 NodePath 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 2 185 186 0 0 0 0 4938
+//
+// A NodePath is the fundamental unit of high-level interaction with
+// the scene graph.  It encapsulates the complete path down to a node
+// from some other node, usually the root of the scene graph.  This is
+// used to resolve ambiguities associated with instancing.
+//
+// NodePath also contains a number of handy high-level methods for
+// common scene-graph manipulations, such as reparenting, and common
+// state changes, such as repositioning.
+//
+// There are also a number of NodePath methods for finding nodes deep
+// within the tree by name or by type.  These take a path string,
+// which at its simplest consists of a series of node names separated
+// by slashes, like a directory pathname.
+//
+// Each component of the path string may optionally consist of one of
+// the following special names, instead of a node name:
+//
+//   *          -- matches exactly one node, with any name.
+//   **         -- matches any sequence of zero or more nodes.
+//   +typename  -- matches any node that is or derives from the given type.
+//   -typename  -- matches any node that is the given type exactly.
+//   =tag       -- matches any node that has the indicated tag.
+//   =tag=value -- matches any node whose tag matches the indicated value.
+//
+// Furthermore, a node name may itself contain standard filename
+// globbing characters, like *, ?, and [a-z], that will be accepted as
+// a partial match.  (In fact, the '*' special name may be seen as
+// just a special case of this.)  The globbing characters may not be
+// used with the typename matches or with tag matches, but they may
+// be used to match a tag's value in the =tag=value syntax.
+//
+// The special characters "@@", appearing at the beginning of a node
+// name, indicate a stashed node.  Normally, stashed nodes are not
+// returned by a find (but see the special flags, below), but a
+// stashed node may be found if it is explicitly named with its
+// leading @@ characters.  By extension, "@@*" may be used to identify
+// any stashed node.
+//
+// Examples:
+//
+// "room//graph" will look for a node named "graph", which is a child
+// of an unnamed node, which is a child of a node named "room", which
+// is a child of the starting path.
+//
+// "**/red*" will look for any node anywhere in the tree (below the
+// starting path) with a name that begins with "red".
+//
+// "**/+PartBundleNode/**/head" will look for a node named "head",
+// somewhere below a PartBundleNode anywhere in the tree.
+//
+//
+// The search is always potentially ambiguous, even if the special
+// wildcard operators are not used, because there may be multiple
+// nodes in the tree with the same name.  In general, in the case of
+// an ambiguity, the shortest path is preferred; when a method (such
+// as extend_by) must choose only only one of several possible paths,
+// it will choose the shortest available; on the other hand, when a
+// method (such as find_all_matches) is to return all of the matching
+// paths, it will sort them so that the shortest paths appear first in
+// the output.
+//
+//
+// Special flags.  The entire string may optionally be followed by the
+// ";" character, followed by one or more of the following special
+// control flags, with no intervening spaces or punctuation:
+//
+//    -h    Do not return hidden nodes.
+//    +h    Do return hidden nodes.
+//    -s    Do not return stashed nodes unless explicitly referenced with @@.
+//    +s    Return stashed nodes even without any explicit @@ characters.
+//    -i    Node name comparisons are not case insensitive: case must match
+//          exactly.
+//    +i    Node name comparisons are case insensitive: case is not important.
+//          This affects matches against the node name only; node type
+//          and tag strings are always case sensitive.
+//
+// The default flags are +h-s-i.
+//
+////////////////////////////////////////////////////////////////////
+//       Class : NodePath
+// Description : NodePath is the fundamental system for disambiguating
+//               instances, and also provides a higher-level interface
+//               for manipulating the scene graph.
+//
+//               A NodePath is a list of connected nodes from the root
+//               of the graph to any sub-node.  Each NodePath
+//               therefore uniquely describes one instance of a node.
+//
+//               NodePaths themselves are lightweight objects that may
+//               easily be copied and passed by value.  Their data is
+//               stored as a series of NodePathComponents that are
+//               stored on the nodes.  Holding a NodePath will keep a
+//               reference count to all the nodes in the path.
+//               However, if any node in the path is removed or
+//               reparented (perhaps through a different NodePath),
+//               the NodePath will automatically be updated to reflect
+//               the changes.
+////////////////////////////////////////////////////////////////////
+
+183 9 DCClass * 8576 9 DCClass * 9 DCClass * 0 0 184 0 0 0 0 0 0 0 0 0 0
+
+184 7 DCClass 2048 7 DCClass 7 DCClass 0 0 0 0 0 0 0 0 0 0 0 0 266
+////////////////////////////////////////////////////////////////////
+//       Class : DCClass
+// Description : Defines a particular DistributedClass as read from an
+//               input .dc file.
+////////////////////////////////////////////////////////////////////
+
+0
+0
+2
+185 0 176 9 get_nodes 13 get_num_nodes 8 get_node 
+186 0 176 13 get_ancestors 13 get_num_nodes 12 get_ancestor 

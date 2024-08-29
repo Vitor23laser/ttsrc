@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="panda3d" platform="win32" version="Rocket_1.7" seq="1">
+    <config display_name="Panda3D" />
+    <uncompressed_archive filename="panda3d.Rocket_1.7.win32.mf" size="57081270" timestamp="1687218584" hash="f3f9b0e6eded99636b2d16f7f70df93f" />
+    <compressed_archive filename="panda3d.Rocket_1.7.win32.mf.pz" size="18318937" timestamp="1687218587" hash="411fa0abd52bad6d97d8a24c8cdfe24e" />
+    <extract filename="_hashlib.pyd" size="286208" timestamp="1636127687" hash="007383c998fb18d992b1414b53f63235" />
+    <extract filename="_socket.pyd" size="40448" timestamp="1636127687" hash="f9a0a88e589786b19ed95a00bc7bca44" />
+    <extract filename="_ssl.pyd" size="665600" timestamp="1636127687" hash="da31674eeb793e3da651b86b9c021bdb" />
+    <extract filename="_vfsimporter.pyd" size="525312" timestamp="1687218539" hash="5e64b49b5658a995d30d5bb75155f8d0" />
+    <extract filename="api-ms-win-core-errorhandling-l1-1-0.dll" size="11984" timestamp="1631685806" hash="08c520131c06f5183ae80be050499c4d" />
+    <extract filename="api-ms-win-core-handle-l1-1-0.dll" size="11984" timestamp="1631685818" hash="9bef76d66de9769909e2e18b0e1aa7cf" />
+    <extract filename="api-ms-win-core-heap-l1-1-0.dll" size="12496" timestamp="1631685820" hash="0377992c6e3ee6fb9ab5ed0997a1b802" />
+    <extract filename="api-ms-win-core-localization-l1-2-0.dll" size="14544" timestamp="1631685830" hash="92e1d34c29a63f4f2e02ade582d106ac" />
+    <extract filename="api-ms-win-core-processthreads-l1-1-0.dll" size="14032" timestamp="1631685842" hash="b7436b7e5e75b4659a621376308be8c8" />
+    <extract filename="api-ms-win-core-processthreads-l1-1-1.dll" size="12496" timestamp="1631685844" hash="0c8270c108676ba0f0a8f0afc4f82dbd" />
+    <extract filename="api-ms-win-core-profile-l1-1-0.dll" size="11472" timestamp="1631685848" hash="18fac4f212c1f4a965c320a767365f2e" />
+    <extract filename="api-ms-win-core-string-l1-1-0.dll" size="11984" timestamp="1631685854" hash="99802a4026524f8ef8b7bb753e3111df" />
+    <extract filename="api-ms-win-core-synch-l1-1-0.dll" size="14032" timestamp="1631685856" hash="13d0fc58831898dfc6d97c3c2828a938" />
+    <extract filename="api-ms-win-core-synch-l1-2-0.dll" size="12496" timestamp="1631685860" hash="19b8736336b223c88fc492a7651f36fb" />
+    <extract filename="api-ms-win-core-sysinfo-l1-1-0.dll" size="13008" timestamp="1631685862" hash="c1d5b58845dc072cc18b0b40be5ea606" />
+    <extract filename="api-ms-win-core-util-l1-1-0.dll" size="11984" timestamp="1631685868" hash="560fc901072789166dd8f511eded6307" />
+    <extract filename="avcodec-51-panda.dll" size="2799762" timestamp="1687212761" hash="1c89c331429ba189f6764d516a8d1bfa" />
+    <extract filename="avformat-50-panda.dll" size="488802" timestamp="1687212761" hash="fdccac5acf0dea08a118839b84d596db" />
+    <extract filename="avutil-49-panda.dll" size="30693" timestamp="1687212761" hash="fadc838d63ba9d4e6e6d533363e0c1c2" />
+    <extract filename="cg.dll" size="6388328" timestamp="1687212761" hash="7401c600b165bed127f246147bc7334f" />
+    <extract filename="cgGL.dll" size="363112" timestamp="1687212761" hash="1aca5665979d2c675acfe6bfd12a6435" />
+    <extract filename="Config.prc" size="179" timestamp="1687218543" hash="d8ebdf49a343a47b9d59fba685812065" />
+    <extract filename="IPHLPAPI.DLL" size="133264" timestamp="1686278001" hash="3640212906004ac7ec69045a925019cd" />
+    <extract filename="libotp.dll" size="541696" timestamp="1687213953" hash="07413dcb27bb4e65e20e6ee0070a3092" />
+    <extract filename="libp3direct.dll" size="1249792" timestamp="1687213823" hash="d445a1afa2c353fed227ce50255da920" />
+    <extract filename="libp3dpython.dll" size="119808" timestamp="1687213840" hash="ad2ff5c80e46bf1bd35682ed4a2909d5" />
+    <extract filename="libp3dtool.dll" size="270336" timestamp="1687215922" hash="c2155cdc9956ab9e786db12c7678dafb" />
+    <extract filename="libp3dtoolconfig.dll" size="953344" timestamp="1687212795" hash="088e98c2add3f6010669be4be9e460a3" />
+    <extract filename="libp3windisplay.dll" size="141312" timestamp="1687213527" hash="ea5834adb5244ca317890426a15552d4" />
+    <extract filename="libpanda.dll" size="21446144" timestamp="1687213500" hash="aa12e5738e015a25f5104e67526c02f3" />
+    <extract filename="libpandaexpress.dll" size="3150336" timestamp="1687212842" hash="1882f7574f36858e113559072d007fac" />
+    <extract filename="libpandafx.dll" size="200704" timestamp="1687213516" hash="f31a9d563966a1c0177f685259f9d949" />
+    <extract filename="libpandagl.dll" size="432640" timestamp="1687213572" hash="72dba7bcc41e991649f5f59a47cf4d13" />
+    <extract filename="libpandaphysics.dll" size="1185280" timestamp="1687213640" hash="56c55d46b6038e60e8b81b7ee6f00a4e" />
+    <extract filename="libtinydisplay.dll" size="6284288" timestamp="1687213703" hash="2ac16a3f632c40c5098ef78998bc7c75" />
+    <extract filename="libtoontown.dll" size="1006080" timestamp="1687214031" hash="ae8ee05d5983f8a48372905c27a64d05" />
+    <extract filename="Microsoft.VC90.CRT.manifest" size="524" timestamp="1687212761" hash="6bb5d2aad0ae1b4a82e7ddf7cf58802a" />
+    <extract filename="mscoree.dll" size="324096" timestamp="1686278005" hash="1073acbaa2cc08fc0314e4f468498f45" />
+    <extract filename="msvcm90.dll" size="224768" timestamp="1687212761" hash="4a8bc195abdc93f0db5dab7f5093c52f" />
+    <extract filename="msvcp90.dll" size="568832" timestamp="1687212761" hash="6de5c66e434a9c1729575763d891c6c2" />
+    <extract filename="MSVCR90.dll" size="655872" timestamp="1687212761" hash="e7d91d008fe76423962b91c43c88e4eb" />
+    <extract filename="msvcrt.dll" size="323072" timestamp="1687212761" hash="886a6c3c185aaedecd00477f72279b07" />
+    <extract filename="p3dpython.exe" size="173568" timestamp="1687213839" hash="ed17de9c51e09153d7283c7b8b6ac9a1" />
+    <extract filename="p3dpythonw.exe" size="178176" timestamp="1687213843" hash="7ea68684003cefb8ff8d0485aa5ffccc" />
+    <extract filename="pyexpat.pyd" size="153088" timestamp="1636127687" hash="651839910db9be2107324d16cd796813" />
+    <extract filename="python26.dll" size="2145280" timestamp="1687212761" hash="09b9dfb3d28ad01259b2537747f77697" />
+    <extract filename="select.pyd" size="11776" timestamp="1636127687" hash="d0ae011a5efbff56d0a178eb3b2cb034" />
+    <extract filename="unicodedata.pyd" size="585728" timestamp="1636127687" hash="a0f6c6ece86e92d31ec913aaa7516650" />
+</package>

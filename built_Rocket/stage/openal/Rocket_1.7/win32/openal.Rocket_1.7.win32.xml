@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="openal" platform="win32" version="Rocket_1.7" seq="1">
+    <config display_name="OpenAL audio library" />
+    <requires name="panda3d" platform="win32" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <uncompressed_archive filename="openal.Rocket_1.7.win32.mf" size="428730" timestamp="1687218616" hash="9ef00dceeac6d764d99ef234b53e51bc" />
+    <compressed_archive filename="openal.Rocket_1.7.win32.mf.pz" size="147814" timestamp="1687218616" hash="9e9287a8870e398acd5d8b8dfd1ad6db" />
+    <extract filename="libp3openal_audio.dll" size="106496" timestamp="1687213517" hash="b364b3113c22c018581c2707347d42fc" />
+    <extract filename="openal.prc" size="61" timestamp="1687218616" hash="e484c716b6cb08f320a922d73559be7c" />
+    <extract filename="OpenAL32.dll" size="322048" timestamp="1687212761" hash="9a4de41391ff1f11e6bce11c85b0133b" />
+</package>

@@ -1,0 +1,1806 @@
+1687212888
+2 2
+9 libmovies 4 mouF 5 panda 
+81
+85 37 upcast_to_TypedWritableReferenceCount 12 166 49 MovieVideo::upcast_to_TypedWritableReferenceCount 0 1 7 53
+upcast from MovieVideo to TypedWritableReferenceCount
+85
+TypedWritableReferenceCount *MovieVideo::upcast_to_TypedWritableReferenceCount(void);
+
+86 22 downcast_to_MovieVideo 12 167 51 TypedWritableReferenceCount::downcast_to_MovieVideo 0 1 8 55
+downcast from TypedWritableReferenceCount to MovieVideo
+70
+MovieVideo *TypedWritableReferenceCount::downcast_to_MovieVideo(void);
+
+87 17 upcast_to_Namable 12 166 29 MovieVideo::upcast_to_Namable 0 1 9 33
+upcast from MovieVideo to Namable
+45
+Namable *MovieVideo::upcast_to_Namable(void);
+
+88 22 downcast_to_MovieVideo 12 168 31 Namable::downcast_to_MovieVideo 0 1 10 35
+downcast from Namable to MovieVideo
+50
+MovieVideo *Namable::downcast_to_MovieVideo(void);
+
+89 10 MovieVideo 4 166 22 MovieVideo::MovieVideo 0 2 1 2 465
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::Constructor
+//       Access: Public
+//  Description: This constructor returns a null video stream --- a
+//               stream of plain blue and white frames that last one
+//               second each. To get more interesting video, you need
+//               to construct a subclass of this class.
+////////////////////////////////////////////////////////////////////
+75
+MovieVideo::MovieVideo(basic_string< char > const &name = ("Blank Video"));
+
+90 11 ~MovieVideo 4 166 23 MovieVideo::~MovieVideo 0 0 228
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::Destructor
+//       Access: Public, Virtual
+//  Description: 
+////////////////////////////////////////////////////////////////////
+38
+virtual MovieVideo::~MovieVideo(void);
+
+91 4 open 4 166 16 MovieVideo::open 0 1 3 271
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::open
+//       Access: Published, Virtual
+//  Description: Open this video, returning a MovieVideoCursor.
+////////////////////////////////////////////////////////////////////
+61
+virtual PointerTo< MovieVideoCursor > MovieVideo::open(void);
+
+92 3 get 4 166 15 MovieVideo::get 0 1 4 267
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::get
+//       Access: Published, Static
+//  Description: Obtains a MovieVideo that references a file.
+////////////////////////////////////////////////////////////////////
+69
+static PointerTo< MovieVideo > MovieVideo::get(Filename const &name);
+
+93 12 get_filename 4 166 24 MovieVideo::get_filename 0 1 5 872
+// Filename: movieVideo.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::get_filename
+//       Access: Published
+//  Description: Returns the movie's filename.  A movie is not
+//               guaranteed to have a filename, if not, then this
+//               function returns a null filename.
+////////////////////////////////////////////////////////////////////
+60
+inline Filename const &MovieVideo::get_filename(void) const;
+
+94 14 get_class_type 4 166 26 MovieVideo::get_class_type 0 1 6 0
+51
+static TypeHandle MovieVideo::get_class_type(void);
+
+95 16 MovieVideoCursor 4 169 34 MovieVideoCursor::MovieVideoCursor 0 1 11 471
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::Constructor
+//       Access: Public
+//  Description: This constructor returns a null video stream --- a
+//               stream of plain blue and white frames that last one
+//               second each. To get more interesting video, you need
+//               to construct a subclass of this class.
+////////////////////////////////////////////////////////////////////
+52
+MovieVideoCursor::MovieVideoCursor(MovieVideo *src);
+
+96 10 get_source 4 169 28 MovieVideoCursor::get_source 0 1 12 768
+// Filename: movieVideoCursor.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::get_source
+//       Access: Published
+//  Description: Get the MovieVideo which this cursor references.
+////////////////////////////////////////////////////////////////////
+65
+PointerTo< MovieVideo > MovieVideoCursor::get_source(void) const;
+
+97 6 size_x 4 169 24 MovieVideoCursor::size_x 0 1 13 261
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::size_x
+//       Access: Published
+//  Description: Get the horizontal size of the movie.
+////////////////////////////////////////////////////////////////////
+48
+inline int MovieVideoCursor::size_x(void) const;
+
+98 6 size_y 4 169 24 MovieVideoCursor::size_y 0 1 14 259
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::size_y
+//       Access: Published
+//  Description: Get the vertical size of the movie.
+////////////////////////////////////////////////////////////////////
+48
+inline int MovieVideoCursor::size_y(void) const;
+
+99 18 get_num_components 4 169 36 MovieVideoCursor::get_num_components 0 1 15 310
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::get_num_components
+//       Access: Published
+//  Description: Returns 4 if the movie has an alpha
+//               channel, 3 otherwise.
+////////////////////////////////////////////////////////////////////
+60
+inline int MovieVideoCursor::get_num_components(void) const;
+
+100 6 length 4 169 24 MovieVideoCursor::length 0 1 16 1709
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::length
+//       Access: Published
+//  Description: Returns the length of the movie.
+//
+//               Some kinds of Movie, such as internet TV station, 
+//               might not have a predictable length.  In that case,
+//               the length will be set to a very large number: 1.0E10.
+//               If the internet TV station goes offline, the video
+//               or audio stream will set its abort flag.  Reaching the
+//               end of the movie (ie, the specified length) normally
+//               does not cause the abort flag to be set.
+//
+//               The video and audio streams produced by get_video and
+//               get_audio are always of unlimited duration - you can
+//               always read another video frame or another audio
+//               sample.  This is true even if the specified length
+//               is reached, or an abort is flagged. If either stream
+//               runs out of data, it will synthesize blank video
+//               frames and silent audio samples as necessary to
+//               satisfy read requests.
+//
+//               Some AVI files have incorrect length values encoded
+//               into them - usually, they're a second or two long or
+//               short.  When playing such an AVI using the Movie class,
+//               you may see a slightly truncated video, or a slightly
+//               elongated video (padded with black frames).  There are
+//               utilities out there to fix the length values in AVI
+//               files.
+//
+////////////////////////////////////////////////////////////////////
+51
+inline double MovieVideoCursor::length(void) const;
+
+101 8 can_seek 4 169 26 MovieVideoCursor::can_seek 0 1 17 748
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::can_seek
+//       Access: Published
+//  Description: Returns true if the movie can seek.  If this is
+//               true, seeking is still not guaranteed to be fast:
+//               for some movies, seeking is implemented by rewinding
+//               to the beginning and then fast-forwarding to the
+//               desired location.  Even if the movie cannot seek,
+//               the fetch methods can still advance to an arbitrary
+//               location by reading frames and discarding them.
+//               However, to move backward, can_seek must return true.
+////////////////////////////////////////////////////////////////////
+51
+inline bool MovieVideoCursor::can_seek(void) const;
+
+102 13 can_seek_fast 4 169 31 MovieVideoCursor::can_seek_fast 0 1 18 281
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::can_seek_fast
+//       Access: Published
+//  Description: Returns true if seek operations are constant time.
+////////////////////////////////////////////////////////////////////
+56
+inline bool MovieVideoCursor::can_seek_fast(void) const;
+
+103 7 aborted 4 169 25 MovieVideoCursor::aborted 0 1 19 531
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::aborted
+//       Access: Published
+//  Description: Returns true if the video has aborted prematurely.
+//               For example, this could occur if the Movie was actually
+//               an internet TV station, and the connection was lost.
+//               Reaching the normal end of the video does not
+//               constitute an 'abort' condition.
+////////////////////////////////////////////////////////////////////
+50
+inline bool MovieVideoCursor::aborted(void) const;
+
+104 10 last_start 4 169 28 MovieVideoCursor::last_start 0 1 20 493
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::last_start
+//       Access: Published
+//  Description: Returns the start time of the last frame you read.
+//
+//               MovieVideoCursor streams have variable frame rates.  Each
+//               frame will specify how long it is to be displayed.
+//               These lengths may not be equal from frame to frame.
+////////////////////////////////////////////////////////////////////
+55
+inline double MovieVideoCursor::last_start(void) const;
+
+105 10 next_start 4 169 28 MovieVideoCursor::next_start 0 1 21 497
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::next_start
+//       Access: Published
+//  Description: Returns the start time of the next frame you can read.
+//
+//               MovieVideoCursor streams have variable frame rates.  Each
+//               frame will specify how long it is to be displayed.
+//               These lengths may not be equal from frame to frame.
+////////////////////////////////////////////////////////////////////
+55
+inline double MovieVideoCursor::next_start(void) const;
+
+106 5 ready 4 169 23 MovieVideoCursor::ready 0 1 22 399
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::ready
+//       Access: Published
+//  Description: Returns true if the cursor is a streaming source, and
+//               if a video frame is ready to be read.  For non-
+//               streaming sources, this is always false.
+////////////////////////////////////////////////////////////////////
+48
+inline bool MovieVideoCursor::ready(void) const;
+
+107 9 streaming 4 169 27 MovieVideoCursor::streaming 0 1 23 894
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::streaming
+//       Access: Published
+//  Description: Returns true if the video frames are being "pushed"
+//               at us by something that operates at its own speed - 
+//               for example, a webcam.  In this case, the frames come
+//               when they're ready to come.  Attempting to read too
+//               soon will produce nothing, reading too late will cause
+//               frames to be dropped.  In this case, the ready flag
+//               can be used to determine whether or not a frame is
+//               ready for reading.
+//
+//               When streaming, you should still pay attention to
+//               last_start, but the value of next_start is only a
+//               guess.
+////////////////////////////////////////////////////////////////////
+52
+inline bool MovieVideoCursor::streaming(void) const;
+
+108 13 setup_texture 4 169 31 MovieVideoCursor::setup_texture 0 1 24 382
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::setup_texture
+//       Access: Published
+//  Description: Set up the specified Texture object to contain
+//               content from this movie.  This should be called
+//               once, not every frame.
+////////////////////////////////////////////////////////////////////
+57
+void MovieVideoCursor::setup_texture(Texture *tex) const;
+
+109 20 fetch_into_bitbucket 4 169 38 MovieVideoCursor::fetch_into_bitbucket 0 1 25 393
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::fetch_into_bitbucket
+//       Access: Published, Virtual
+//  Description: Discards the next video frame.  Still sets
+//               last_start and next_start.
+//
+//               See fetch_into_buffer for more details.
+////////////////////////////////////////////////////////////////////
+65
+virtual void MovieVideoCursor::fetch_into_bitbucket(double time);
+
+110 18 fetch_into_texture 4 169 36 MovieVideoCursor::fetch_into_texture 0 1 26 382
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::fetch_into_texture
+//       Access: Published, Virtual
+//  Description: Reads the specified video frame into 
+//               the specified texture.
+//
+//               See fetch_into_buffer for more details.
+////////////////////////////////////////////////////////////////////
+85
+virtual void MovieVideoCursor::fetch_into_texture(double time, Texture *t, int page);
+
+111 22 fetch_into_texture_rgb 4 169 40 MovieVideoCursor::fetch_into_texture_rgb 0 1 27 471
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::fetch_into_texture_rgb
+//       Access: Published, Virtual
+//  Description: Reads the specified video frame into
+//               the RGB channels of the supplied texture.  The alpha
+//               channel of the texture is not touched.
+//
+//               See fetch_into_buffer for more details.
+////////////////////////////////////////////////////////////////////
+89
+virtual void MovieVideoCursor::fetch_into_texture_rgb(double time, Texture *t, int page);
+
+112 24 fetch_into_texture_alpha 4 169 42 MovieVideoCursor::fetch_into_texture_alpha 0 1 28 475
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::fetch_into_texture_alpha
+//       Access: Published, Virtual
+//  Description: Reads the specified video frame into 
+//               the alpha channel of the supplied texture.  The
+//               RGB channels of the texture are not touched.
+//
+//               See fetch_into_buffer for more details.
+////////////////////////////////////////////////////////////////////
+106
+virtual void MovieVideoCursor::fetch_into_texture_alpha(double time, Texture *t, int page, int alpha_src);
+
+113 14 get_class_type 4 169 32 MovieVideoCursor::get_class_type 0 1 29 0
+57
+static TypeHandle MovieVideoCursor::get_class_type(void);
+
+114 37 upcast_to_TypedWritableReferenceCount 12 170 49 MovieAudio::upcast_to_TypedWritableReferenceCount 0 1 36 53
+upcast from MovieAudio to TypedWritableReferenceCount
+85
+TypedWritableReferenceCount *MovieAudio::upcast_to_TypedWritableReferenceCount(void);
+
+115 22 downcast_to_MovieAudio 12 167 51 TypedWritableReferenceCount::downcast_to_MovieAudio 0 1 37 55
+downcast from TypedWritableReferenceCount to MovieAudio
+70
+MovieAudio *TypedWritableReferenceCount::downcast_to_MovieAudio(void);
+
+116 17 upcast_to_Namable 12 170 29 MovieAudio::upcast_to_Namable 0 1 38 33
+upcast from MovieAudio to Namable
+45
+Namable *MovieAudio::upcast_to_Namable(void);
+
+117 22 downcast_to_MovieAudio 12 168 31 Namable::downcast_to_MovieAudio 0 1 39 35
+downcast from Namable to MovieAudio
+50
+MovieAudio *Namable::downcast_to_MovieAudio(void);
+
+118 10 MovieAudio 4 170 22 MovieAudio::MovieAudio 0 2 30 31 453
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::Constructor
+//       Access: Public
+//  Description: This constructor returns a null audio stream --- a
+//               stream of total silence, at 8000 samples per second.
+//               To get more interesting audio, you need to construct
+//               a subclass of this class.
+////////////////////////////////////////////////////////////////////
+75
+MovieAudio::MovieAudio(basic_string< char > const &name = ("Blank Audio"));
+
+119 11 ~MovieAudio 4 170 23 MovieAudio::~MovieAudio 0 0 228
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::Destructor
+//       Access: Public, Virtual
+//  Description: 
+////////////////////////////////////////////////////////////////////
+38
+virtual MovieAudio::~MovieAudio(void);
+
+120 4 open 4 170 16 MovieAudio::open 0 1 32 270
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::open
+//       Access: Published, Virtual
+//  Description: Open this audio, returning a MovieAudioCursor
+////////////////////////////////////////////////////////////////////
+61
+virtual PointerTo< MovieAudioCursor > MovieAudio::open(void);
+
+121 3 get 4 170 15 MovieAudio::get 0 1 33 267
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::get
+//       Access: Published, Static
+//  Description: Obtains a MovieAudio that references a file.
+////////////////////////////////////////////////////////////////////
+69
+static PointerTo< MovieAudio > MovieAudio::get(Filename const &name);
+
+122 12 get_filename 4 170 24 MovieAudio::get_filename 0 1 34 872
+// Filename: movieAudio.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::get_filename
+//       Access: Published
+//  Description: Returns the movie's filename.  A movie is not
+//               guaranteed to have a filename, if not, then this
+//               function returns a null filename.
+////////////////////////////////////////////////////////////////////
+60
+inline Filename const &MovieAudio::get_filename(void) const;
+
+123 14 get_class_type 4 170 26 MovieAudio::get_class_type 0 1 35 0
+51
+static TypeHandle MovieAudio::get_class_type(void);
+
+124 16 MovieAudioCursor 4 171 34 MovieAudioCursor::MovieAudioCursor 0 1 40 459
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::Constructor
+//       Access: Public
+//  Description: This constructor returns a null audio stream --- a
+//               stream of total silence, at 8000 samples per second.
+//               To get more interesting audio, you need to construct
+//               a subclass of this class.
+////////////////////////////////////////////////////////////////////
+52
+MovieAudioCursor::MovieAudioCursor(MovieAudio *src);
+
+125 10 get_source 4 171 28 MovieAudioCursor::get_source 0 1 41 769
+// Filename: movieAudioCursor.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::get_source
+//       Access: Public
+//  Description: Returns the MovieAudio which this cursor references.
+////////////////////////////////////////////////////////////////////
+72
+inline PointerTo< MovieAudio > MovieAudioCursor::get_source(void) const;
+
+126 10 audio_rate 4 171 28 MovieAudioCursor::audio_rate 0 1 42 255
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::audio_rate
+//       Access: Public
+//  Description: Returns the audio sample rate.
+////////////////////////////////////////////////////////////////////
+52
+inline int MovieAudioCursor::audio_rate(void) const;
+
+127 14 audio_channels 4 171 32 MovieAudioCursor::audio_channels 0 1 43 318
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::audio_channels
+//       Access: Public
+//  Description: Returns the number of audio channels (ie, two for
+//               stereo, one for mono).
+////////////////////////////////////////////////////////////////////
+56
+inline int MovieAudioCursor::audio_channels(void) const;
+
+128 6 length 4 171 24 MovieAudioCursor::length 0 1 44 1159
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::length
+//       Access: Public
+//  Description: Returns the length of the movie.  Attempting to read
+//               audio samples beyond the specified length will produce 
+//               silent samples.
+//
+//               Some kinds of Movie, such as internet TV station, 
+//               might not have a predictable length.  In that case,
+//               the length will be set to a very large number: 1.0E10.
+//
+//               Some AVI files have incorrect length values encoded
+//               into them - they may be a second or two long or
+//               short.  When playing such an AVI using the Movie class,
+//               you may see a slightly truncated video, or a slightly
+//               elongated video (padded with black frames).  There are
+//               utilities out there to fix the length values in AVI
+//               files.
+//
+//               An audio consumer needs to check the length, the
+//               ready status, and the aborted flag.
+////////////////////////////////////////////////////////////////////
+51
+inline double MovieAudioCursor::length(void) const;
+
+129 8 can_seek 4 171 26 MovieAudioCursor::can_seek 0 1 45 744
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::can_seek
+//       Access: Public
+//  Description: Returns true if the movie can seek.  If this is
+//               true, seeking is still not guaranteed to be fast:
+//               for some movies, seeking is implemented by rewinding
+//               to the beginning and then fast-forwarding to the
+//               desired location.  Even if the movie cannot seek,
+//               the seek method can still advance to an arbitrary
+//               location by reading samples and discarding them.
+//               However, to move backward, can_seek must return true.
+////////////////////////////////////////////////////////////////////
+51
+inline bool MovieAudioCursor::can_seek(void) const;
+
+130 13 can_seek_fast 4 171 31 MovieAudioCursor::can_seek_fast 0 1 46 278
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::can_seek_fast
+//       Access: Public
+//  Description: Returns true if seek operations are constant time.
+////////////////////////////////////////////////////////////////////
+56
+inline bool MovieAudioCursor::can_seek_fast(void) const;
+
+131 4 tell 4 171 22 MovieAudioCursor::tell 0 1 47 262
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::tell
+//       Access: Public
+//  Description: Returns the current offset within the file.
+////////////////////////////////////////////////////////////////////
+49
+inline double MovieAudioCursor::tell(void) const;
+
+132 12 skip_samples 4 171 30 MovieAudioCursor::skip_samples 0 1 48 322
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::skip_samples
+//       Access: Published
+//  Description: Skip audio samples from the stream.  This is mostly
+//               for debugging purposes.
+////////////////////////////////////////////////////////////////////
+50
+inline void MovieAudioCursor::skip_samples(int n);
+
+133 7 aborted 4 171 25 MovieAudioCursor::aborted 0 1 49 380
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::aborted
+//       Access: Public
+//  Description: If aborted is true, it means that the "ready" samples
+//               are not being replenished.  See the method "ready"
+//               for an explanation.
+////////////////////////////////////////////////////////////////////
+50
+inline bool MovieAudioCursor::aborted(void) const;
+
+134 5 ready 4 171 23 MovieAudioCursor::ready 0 1 50 1643
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::ready
+//       Access: Public
+//  Description: Returns the number of audio samples that are ready
+//               to read.  This is primarily relevant for sources like
+//               microphones which produce samples at a fixed rate.
+//               If you try to read more samples than are ready, the
+//               result will be silent samples.  
+//
+//               Some audio streams do not have a limit on how fast 
+//               they can produce samples.  Such streams will always
+//               return 0x40000000 as the ready-count.  This may well
+//               exceed the length of the audio stream.  You therefore
+//               need to check length separately.
+//
+//               If the aborted flag is set, that means the ready count
+//               is no longer being replenished.  For example, a
+//               MovieAudioCursor might be reading from an internet
+//               radio station, and it might buffer data to avoid 
+//               underruns.  If it loses connection to the radio
+//               station, it will set the aborted flag to indicate that
+//               the buffer is no longer being replenished.  But it is
+//               still ok to read the samples that are in the buffer,
+//               at least until they run out.  Once those are gone,
+//               there will be no more.
+//
+//               An audio consumer needs to check the length, the
+//               ready status, and the aborted flag.
+////////////////////////////////////////////////////////////////////
+48
+virtual int MovieAudioCursor::ready(void) const;
+
+135 4 seek 4 171 22 MovieAudioCursor::seek 0 1 51 1171
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::seek
+//       Access: Published, Virtual
+//  Description: Skips to the specified offset within the file.
+//
+//               If the movie reports that it cannot seek, then
+//               this method can still advance by reading samples
+//               and discarding them.  However, to move backward,
+//               can_seek must be true.
+//
+//               If the movie reports that it can_seek, it doesn't
+//               mean that it can do so quickly.  It may have to
+//               rewind the movie and then fast forward to the
+//               desired location.  Only if can_seek_fast returns
+//               true can seek operations be done in constant time.
+//
+//               Seeking may not be precise, because AVI files 
+//               often have inaccurate indices.  After
+//               seeking, tell will indicate that the cursor is
+//               at the target location. However, in truth, the data
+//               you read may come from a slightly offset location.
+////////////////////////////////////////////////////////////////////
+51
+virtual void MovieAudioCursor::seek(double offset);
+
+136 12 read_samples 4 171 30 MovieAudioCursor::read_samples 0 2 52 53 1642
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::read_samples
+//       Access: Public, Virtual
+//  Description: Read audio samples from the stream.  N is the
+//               number of samples you wish to read.  Your buffer
+//               must be equal in size to N * channels.  
+//               Multiple-channel audio will be interleaved. 
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::read_samples
+//       Access: Published
+//  Description: Read audio samples from the stream into a 
+//               Datagram.  N is the number of samples you wish
+//               to read. Multiple-channel audio will be interleaved. 
+//
+//               This is not particularly efficient, but it may be
+//               a convenient way to manipulate samples in python.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::read_samples
+//       Access: Published
+//  Description: Read audio samples from the stream and returns
+//               them as a string.  The samples are stored little-endian
+//               in the string.  N is the number of samples you wish
+//               to read.  Multiple-channel audio will be interleaved. 
+//
+//               This is not particularly efficient, but it may be
+//               a convenient way to manipulate samples in python.
+////////////////////////////////////////////////////////////////////
+117
+void MovieAudioCursor::read_samples(int n, Datagram *dg);
+basic_string< char > MovieAudioCursor::read_samples(int n);
+
+137 14 get_class_type 4 171 32 MovieAudioCursor::get_class_type 0 1 54 0
+57
+static TypeHandle MovieAudioCursor::get_class_type(void);
+
+138 12 InkblotVideo 4 172 26 InkblotVideo::InkblotVideo 0 1 55 225
+////////////////////////////////////////////////////////////////////
+//     Function: InkblotVideo::Constructor
+//       Access: Public
+//  Description: xxx
+////////////////////////////////////////////////////////////////////
+50
+InkblotVideo::InkblotVideo(int x, int y, int fps);
+
+139 4 open 4 172 18 InkblotVideo::open 0 1 56 273
+////////////////////////////////////////////////////////////////////
+//     Function: InkblotVideo::open
+//       Access: Published, Virtual
+//  Description: Open this video, returning a MovieVideoCursor.
+////////////////////////////////////////////////////////////////////
+63
+virtual PointerTo< MovieVideoCursor > InkblotVideo::open(void);
+
+140 14 get_class_type 4 172 28 InkblotVideo::get_class_type 0 1 57 0
+53
+static TypeHandle InkblotVideo::get_class_type(void);
+
+141 18 InkblotVideoCursor 4 173 38 InkblotVideoCursor::InkblotVideoCursor 0 1 58 231
+////////////////////////////////////////////////////////////////////
+//     Function: InkblotVideoCursor::Constructor
+//       Access: Public
+//  Description: xxx
+////////////////////////////////////////////////////////////////////
+58
+InkblotVideoCursor::InkblotVideoCursor(InkblotVideo *src);
+
+142 14 get_class_type 4 173 34 InkblotVideoCursor::get_class_type 0 1 59 0
+59
+static TypeHandle InkblotVideoCursor::get_class_type(void);
+
+143 11 FfmpegVideo 4 174 24 FfmpegVideo::FfmpegVideo 0 1 60 224
+////////////////////////////////////////////////////////////////////
+//     Function: FfmpegVideo::Constructor
+//       Access: Public
+//  Description: xxx
+////////////////////////////////////////////////////////////////////
+47
+FfmpegVideo::FfmpegVideo(Filename const &name);
+
+144 4 open 4 174 17 FfmpegVideo::open 0 1 61 272
+////////////////////////////////////////////////////////////////////
+//     Function: FfmpegVideo::open
+//       Access: Published, Virtual
+//  Description: Open this video, returning a MovieVideoCursor.
+////////////////////////////////////////////////////////////////////
+62
+virtual PointerTo< MovieVideoCursor > FfmpegVideo::open(void);
+
+145 14 get_class_type 4 174 27 FfmpegVideo::get_class_type 0 1 62 0
+52
+static TypeHandle FfmpegVideo::get_class_type(void);
+
+146 17 FfmpegVideoCursor 4 175 36 FfmpegVideoCursor::FfmpegVideoCursor 0 1 63 230
+////////////////////////////////////////////////////////////////////
+//     Function: FfmpegVideoCursor::Constructor
+//       Access: Public
+//  Description: xxx
+////////////////////////////////////////////////////////////////////
+55
+FfmpegVideoCursor::FfmpegVideoCursor(FfmpegVideo *src);
+
+147 14 get_class_type 4 175 33 FfmpegVideoCursor::get_class_type 0 1 64 0
+58
+static TypeHandle FfmpegVideoCursor::get_class_type(void);
+
+148 11 FfmpegAudio 4 176 24 FfmpegAudio::FfmpegAudio 0 1 65 227
+////////////////////////////////////////////////////////////////////
+//     Function: FfmpegAudio::Constructor
+//       Access: Protected
+//  Description: xxx
+////////////////////////////////////////////////////////////////////
+47
+FfmpegAudio::FfmpegAudio(Filename const &name);
+
+149 4 open 4 176 17 FfmpegAudio::open 0 1 66 271
+////////////////////////////////////////////////////////////////////
+//     Function: FfmpegAudio::open
+//       Access: Published, Virtual
+//  Description: Open this audio, returning a MovieAudioCursor
+////////////////////////////////////////////////////////////////////
+62
+virtual PointerTo< MovieAudioCursor > FfmpegAudio::open(void);
+
+150 14 get_class_type 4 176 27 FfmpegAudio::get_class_type 0 1 67 0
+52
+static TypeHandle FfmpegAudio::get_class_type(void);
+
+151 17 FfmpegAudioCursor 4 177 36 FfmpegAudioCursor::FfmpegAudioCursor 0 1 68 233
+////////////////////////////////////////////////////////////////////
+//     Function: FfmpegAudioCursor::Constructor
+//       Access: Protected
+//  Description: xxx
+////////////////////////////////////////////////////////////////////
+55
+FfmpegAudioCursor::FfmpegAudioCursor(FfmpegAudio *src);
+
+152 14 get_class_type 4 177 33 FfmpegAudioCursor::get_class_type 0 1 69 0
+58
+static TypeHandle FfmpegAudioCursor::get_class_type(void);
+
+153 15 get_num_options 4 178 32 MicrophoneAudio::get_num_options 0 1 70 481
+////////////////////////////////////////////////////////////////////
+//     Function: MicrophoneAudio::get_num_options
+//       Access: Public
+//  Description: Returns the number of microphone options.  An "option"
+//               consists of a device plus a set of configuration
+//               parameters.  For example, "Soundblaster Audigy Line in
+//               at 44,100 samples/sec" would be an option.
+////////////////////////////////////////////////////////////////////
+50
+static int MicrophoneAudio::get_num_options(void);
+
+154 10 get_option 4 178 27 MicrophoneAudio::get_option 0 1 71 258
+////////////////////////////////////////////////////////////////////
+//     Function: MicrophoneAudio::get_option
+//       Access: Public
+//  Description: Returns the nth microphone option.
+////////////////////////////////////////////////////////////////////
+71
+static PointerTo< MicrophoneAudio > MicrophoneAudio::get_option(int n);
+
+155 12 get_channels 4 178 29 MicrophoneAudio::get_channels 0 1 72 751
+// Filename: microphoneAudio.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MicrophoneAudio::get_channels
+//       Access: Published
+//  Description: Returns the number of channels.
+////////////////////////////////////////////////////////////////////
+53
+inline int MicrophoneAudio::get_channels(void) const;
+
+156 8 get_rate 4 178 25 MicrophoneAudio::get_rate 0 1 73 249
+////////////////////////////////////////////////////////////////////
+//     Function: MicrophoneAudio::get_rate
+//       Access: Published
+//  Description: Returns the sample rate.
+////////////////////////////////////////////////////////////////////
+49
+inline int MicrophoneAudio::get_rate(void) const;
+
+157 4 open 4 178 21 MicrophoneAudio::open 0 1 74 0
+70
+virtual PointerTo< MovieAudioCursor > MicrophoneAudio::open(void) = 0;
+
+158 14 get_class_type 4 178 31 MicrophoneAudio::get_class_type 0 1 75 0
+56
+static TypeHandle MicrophoneAudio::get_class_type(void);
+
+159 13 UserDataAudio 4 179 28 UserDataAudio::UserDataAudio 0 1 76 331
+////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::Constructor
+//       Access: Public
+//  Description: This constructor returns a UserDataAudio --- 
+//               a means to supply raw audio samples manually.
+////////////////////////////////////////////////////////////////////
+53
+UserDataAudio::UserDataAudio(int rate, int channels);
+
+160 4 open 4 179 19 UserDataAudio::open 0 1 77 374
+////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::open
+//       Access: Published, Virtual
+//  Description: Open this audio, returning a UserDataAudioCursor.  A
+//               UserDataAudio can only be opened by one consumer
+//               at a time.
+////////////////////////////////////////////////////////////////////
+64
+virtual PointerTo< MovieAudioCursor > UserDataAudio::open(void);
+
+161 6 append 4 179 21 UserDataAudio::append 0 3 78 79 80 1136
+////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::append
+//       Access: Public
+//  Description: Appends audio samples to the buffer.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::append
+//       Access: Published
+//  Description: Appends audio samples to the buffer from a 
+//               datagram.  This is intended to make it easy to 
+//               send streaming raw audio over a network.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::append
+//       Access: Published
+//  Description: Appends audio samples to the buffer from a 
+//               string.  The samples must be stored little-endian
+//               in the string.  This is not particularly efficient,
+//               but it may be convenient to deal with samples in
+//               python.
+////////////////////////////////////////////////////////////////////
+187
+void UserDataAudio::append(short int *data, int n);
+void UserDataAudio::append(DatagramIterator *src, int len = (1073741824));
+void UserDataAudio::append(basic_string< char > const &str);
+
+162 4 done 4 179 19 UserDataAudio::done 0 1 81 320
+////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::done
+//       Access: Published
+//  Description: Promises not to append any more samples, ie, this
+//               marks the end of the audio stream.
+////////////////////////////////////////////////////////////////////
+31
+void UserDataAudio::done(void);
+
+163 14 get_class_type 4 179 29 UserDataAudio::get_class_type 0 1 82 0
+54
+static TypeHandle UserDataAudio::get_class_type(void);
+
+164 19 UserDataAudioCursor 4 180 40 UserDataAudioCursor::UserDataAudioCursor 0 1 83 223
+////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudioCursor::Constructor
+//       Access: 
+//  Description: 
+////////////////////////////////////////////////////////////////////
+61
+UserDataAudioCursor::UserDataAudioCursor(UserDataAudio *src);
+
+165 14 get_class_type 4 180 35 UserDataAudioCursor::get_class_type 0 1 84 0
+60
+static TypeHandle UserDataAudioCursor::get_class_type(void);
+
+84
+1 14 Dtool_mouF7cnR 7 8 182 90 14 Dtool_mouF7cnR 465 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::Constructor
+//       Access: Public
+//  Description: This constructor returns a null video stream --- a
+//               stream of plain blue and white frames that last one
+//               second each. To get more interesting video, you need
+//               to construct a subclass of this class.
+//////////////////////////////////////////////////////////////////// 1 4 name 1 181  
+2 14 Dtool_mouFEqwy 7 8 182 90 14 Dtool_mouFEqwy 465 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::Constructor
+//       Access: Public
+//  Description: This constructor returns a null video stream --- a
+//               stream of plain blue and white frames that last one
+//               second each. To get more interesting video, you need
+//               to construct a subclass of this class.
+//////////////////////////////////////////////////////////////////// 0 
+3 14 Dtool_mouFvz98 7 10 183 0 14 Dtool_mouFvz98 271 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::open
+//       Access: Published, Virtual
+//  Description: Open this video, returning a MovieVideoCursor.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 182  
+4 14 Dtool_mouFtekD 7 11 182 90 14 Dtool_mouFtekD 267 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::get
+//       Access: Published, Static
+//  Description: Obtains a MovieVideo that references a file.
+//////////////////////////////////////////////////////////////////// 1 4 name 1 184  
+5 14 Dtool_mouF_nr_ 6 12 184 0 14 Dtool_mouF_nr_ 872 // Filename: movieVideo.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideo::get_filename
+//       Access: Published
+//  Description: Returns the movie's filename.  A movie is not
+//               guaranteed to have a filename, if not, then this
+//               function returns a null filename.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 187  
+6 14 Dtool_mouFVeVS 7 13 190 0 14 Dtool_mouFVeVS 0 0 
+7 14 Dtool_mouFQQdE 7 3 191 0 14 Dtool_mouFQQdE 0 1 4 this 3 182  
+8 14 Dtool_mouFxguY 7 4 182 90 14 Dtool_mouFxguY 0 1 4 this 3 191  
+9 14 Dtool_mouF3iAT 6 6 192 0 14 Dtool_mouF3iAT 0 1 4 this 3 182  
+10 14 Dtool_mouFRWtN 7 7 182 90 14 Dtool_mouFRWtN 0 1 4 this 3 192  
+11 14 Dtool_mouFsfnC 7 15 183 0 14 Dtool_mouFsfnC 471 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::Constructor
+//       Access: Public
+//  Description: This constructor returns a null video stream --- a
+//               stream of plain blue and white frames that last one
+//               second each. To get more interesting video, you need
+//               to construct a subclass of this class.
+//////////////////////////////////////////////////////////////////// 1 3 src 1 182  
+12 14 Dtool_mouFF_3S 7 16 182 90 14 Dtool_mouFF_3S 768 // Filename: movieVideoCursor.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::get_source
+//       Access: Published
+//  Description: Get the MovieVideo which this cursor references.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+13 14 Dtool_mouFxQ_5 6 17 195 0 14 Dtool_mouFxQ_5 261 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::size_x
+//       Access: Published
+//  Description: Get the horizontal size of the movie.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+14 14 Dtool_mouFMv_H 6 18 195 0 14 Dtool_mouFMv_H 259 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::size_y
+//       Access: Published
+//  Description: Get the vertical size of the movie.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+15 14 Dtool_mouFlF0p 6 19 195 0 14 Dtool_mouFlF0p 310 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::get_num_components
+//       Access: Published
+//  Description: Returns 4 if the movie has an alpha
+//               channel, 3 otherwise.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+16 14 Dtool_mouFG8Aa 6 20 196 0 14 Dtool_mouFG8Aa 1709 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::length
+//       Access: Published
+//  Description: Returns the length of the movie.
+//
+//               Some kinds of Movie, such as internet TV station, 
+//               might not have a predictable length.  In that case,
+//               the length will be set to a very large number: 1.0E10.
+//               If the internet TV station goes offline, the video
+//               or audio stream will set its abort flag.  Reaching the
+//               end of the movie (ie, the specified length) normally
+//               does not cause the abort flag to be set.
+//
+//               The video and audio streams produced by get_video and
+//               get_audio are always of unlimited duration - you can
+//               always read another video frame or another audio
+//               sample.  This is true even if the specified length
+//               is reached, or an abort is flagged. If either stream
+//               runs out of data, it will synthesize blank video
+//               frames and silent audio samples as necessary to
+//               satisfy read requests.
+//
+//               Some AVI files have incorrect length values encoded
+//               into them - usually, they're a second or two long or
+//               short.  When playing such an AVI using the Movie class,
+//               you may see a slightly truncated video, or a slightly
+//               elongated video (padded with black frames).  There are
+//               utilities out there to fix the length values in AVI
+//               files.
+//
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+17 14 Dtool_mouFaKIT 6 21 197 0 14 Dtool_mouFaKIT 748 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::can_seek
+//       Access: Published
+//  Description: Returns true if the movie can seek.  If this is
+//               true, seeking is still not guaranteed to be fast:
+//               for some movies, seeking is implemented by rewinding
+//               to the beginning and then fast-forwarding to the
+//               desired location.  Even if the movie cannot seek,
+//               the fetch methods can still advance to an arbitrary
+//               location by reading frames and discarding them.
+//               However, to move backward, can_seek must return true.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+18 14 Dtool_mouFvhX3 6 22 197 0 14 Dtool_mouFvhX3 281 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::can_seek_fast
+//       Access: Published
+//  Description: Returns true if seek operations are constant time.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+19 14 Dtool_mouFA9Oi 6 23 197 0 14 Dtool_mouFA9Oi 531 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::aborted
+//       Access: Published
+//  Description: Returns true if the video has aborted prematurely.
+//               For example, this could occur if the Movie was actually
+//               an internet TV station, and the connection was lost.
+//               Reaching the normal end of the video does not
+//               constitute an 'abort' condition.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+20 14 Dtool_mouFwPdJ 6 24 196 0 14 Dtool_mouFwPdJ 493 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::last_start
+//       Access: Published
+//  Description: Returns the start time of the last frame you read.
+//
+//               MovieVideoCursor streams have variable frame rates.  Each
+//               frame will specify how long it is to be displayed.
+//               These lengths may not be equal from frame to frame.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+21 14 Dtool_mouFSABZ 6 25 196 0 14 Dtool_mouFSABZ 497 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::next_start
+//       Access: Published
+//  Description: Returns the start time of the next frame you can read.
+//
+//               MovieVideoCursor streams have variable frame rates.  Each
+//               frame will specify how long it is to be displayed.
+//               These lengths may not be equal from frame to frame.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+22 14 Dtool_mouFOQVR 6 26 197 0 14 Dtool_mouFOQVR 399 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::ready
+//       Access: Published
+//  Description: Returns true if the cursor is a streaming source, and
+//               if a video frame is ready to be read.  For non-
+//               streaming sources, this is always false.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+23 14 Dtool_mouF_Xew 6 27 197 0 14 Dtool_mouF_Xew 894 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::streaming
+//       Access: Published
+//  Description: Returns true if the video frames are being "pushed"
+//               at us by something that operates at its own speed - 
+//               for example, a webcam.  In this case, the frames come
+//               when they're ready to come.  Attempting to read too
+//               soon will produce nothing, reading too late will cause
+//               frames to be dropped.  In this case, the ready flag
+//               can be used to determine whether or not a frame is
+//               ready for reading.
+//
+//               When streaming, you should still pay attention to
+//               last_start, but the value of next_start is only a
+//               guess.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 193  
+24 14 Dtool_mouFrq5v 4 28 200 0 14 Dtool_mouFrq5v 382 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::setup_texture
+//       Access: Published
+//  Description: Set up the specified Texture object to contain
+//               content from this movie.  This should be called
+//               once, not every frame.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 193  3 tex 1 198  
+25 14 Dtool_mouFArnh 4 29 200 0 14 Dtool_mouFArnh 393 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::fetch_into_bitbucket
+//       Access: Published, Virtual
+//  Description: Discards the next video frame.  Still sets
+//               last_start and next_start.
+//
+//               See fetch_into_buffer for more details.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 183  4 time 1 196  
+26 14 Dtool_mouFp5_1 4 30 200 0 14 Dtool_mouFp5_1 382 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::fetch_into_texture
+//       Access: Published, Virtual
+//  Description: Reads the specified video frame into 
+//               the specified texture.
+//
+//               See fetch_into_buffer for more details.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 183  4 time 1 196  1 t 1 198  4 page 1 195  
+27 14 Dtool_mouFDEa_ 4 31 200 0 14 Dtool_mouFDEa_ 471 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::fetch_into_texture_rgb
+//       Access: Published, Virtual
+//  Description: Reads the specified video frame into
+//               the RGB channels of the supplied texture.  The alpha
+//               channel of the texture is not touched.
+//
+//               See fetch_into_buffer for more details.
+//////////////////////////////////////////////////////////////////// 4 4 this 3 183  4 time 1 196  1 t 1 198  4 page 1 195  
+28 14 Dtool_mouFaBnU 4 32 200 0 14 Dtool_mouFaBnU 475 ////////////////////////////////////////////////////////////////////
+//     Function: MovieVideoCursor::fetch_into_texture_alpha
+//       Access: Published, Virtual
+//  Description: Reads the specified video frame into 
+//               the alpha channel of the supplied texture.  The
+//               RGB channels of the texture are not touched.
+//
+//               See fetch_into_buffer for more details.
+//////////////////////////////////////////////////////////////////// 5 4 this 3 183  4 time 1 196  1 t 1 198  4 page 1 195  9 alpha_src 1 195  
+29 14 Dtool_mouFjF2f 7 33 190 0 14 Dtool_mouFjF2f 0 0 
+30 14 Dtool_mouFh6Gr 7 39 201 119 14 Dtool_mouFh6Gr 453 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::Constructor
+//       Access: Public
+//  Description: This constructor returns a null audio stream --- a
+//               stream of total silence, at 8000 samples per second.
+//               To get more interesting audio, you need to construct
+//               a subclass of this class.
+//////////////////////////////////////////////////////////////////// 1 4 name 1 181  
+31 14 Dtool_mouFxuOM 7 39 201 119 14 Dtool_mouFxuOM 453 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::Constructor
+//       Access: Public
+//  Description: This constructor returns a null audio stream --- a
+//               stream of total silence, at 8000 samples per second.
+//               To get more interesting audio, you need to construct
+//               a subclass of this class.
+//////////////////////////////////////////////////////////////////// 0 
+32 14 Dtool_mouFWPyR 7 41 202 0 14 Dtool_mouFWPyR 270 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::open
+//       Access: Published, Virtual
+//  Description: Open this audio, returning a MovieAudioCursor
+//////////////////////////////////////////////////////////////////// 1 4 this 3 201  
+33 14 Dtool_mouFhRaY 7 42 201 119 14 Dtool_mouFhRaY 267 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::get
+//       Access: Published, Static
+//  Description: Obtains a MovieAudio that references a file.
+//////////////////////////////////////////////////////////////////// 1 4 name 1 184  
+34 14 Dtool_mouFWjhU 6 43 184 0 14 Dtool_mouFWjhU 872 // Filename: movieAudio.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudio::get_filename
+//       Access: Published
+//  Description: Returns the movie's filename.  A movie is not
+//               guaranteed to have a filename, if not, then this
+//               function returns a null filename.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 203  
+35 14 Dtool_mouFJYLn 7 44 190 0 14 Dtool_mouFJYLn 0 0 
+36 14 Dtool_mouFEOTZ 7 35 191 0 14 Dtool_mouFEOTZ 0 1 4 this 3 201  
+37 14 Dtool_mouFly_h 7 36 201 119 14 Dtool_mouFly_h 0 1 4 this 3 191  
+38 14 Dtool_mouFfg2n 6 37 192 0 14 Dtool_mouFfg2n 0 1 4 this 3 201  
+39 14 Dtool_mouFnTQ_ 7 38 201 119 14 Dtool_mouFnTQ_ 0 1 4 this 3 192  
+40 14 Dtool_mouFar8r 7 46 202 0 14 Dtool_mouFar8r 459 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::Constructor
+//       Access: Public
+//  Description: This constructor returns a null audio stream --- a
+//               stream of total silence, at 8000 samples per second.
+//               To get more interesting audio, you need to construct
+//               a subclass of this class.
+//////////////////////////////////////////////////////////////////// 1 3 src 1 201  
+41 14 Dtool_mouFRwtn 7 47 201 119 14 Dtool_mouFRwtn 769 // Filename: movieAudioCursor.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::get_source
+//       Access: Public
+//  Description: Returns the MovieAudio which this cursor references.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 205  
+42 14 Dtool_mouF7TYa 6 48 195 0 14 Dtool_mouF7TYa 255 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::audio_rate
+//       Access: Public
+//  Description: Returns the audio sample rate.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 205  
+43 14 Dtool_mouFgtX4 6 49 195 0 14 Dtool_mouFgtX4 318 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::audio_channels
+//       Access: Public
+//  Description: Returns the number of audio channels (ie, two for
+//               stereo, one for mono).
+//////////////////////////////////////////////////////////////////// 1 4 this 3 205  
+44 14 Dtool_mouFOi2u 6 50 196 0 14 Dtool_mouFOi2u 1159 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::length
+//       Access: Public
+//  Description: Returns the length of the movie.  Attempting to read
+//               audio samples beyond the specified length will produce 
+//               silent samples.
+//
+//               Some kinds of Movie, such as internet TV station, 
+//               might not have a predictable length.  In that case,
+//               the length will be set to a very large number: 1.0E10.
+//
+//               Some AVI files have incorrect length values encoded
+//               into them - they may be a second or two long or
+//               short.  When playing such an AVI using the Movie class,
+//               you may see a slightly truncated video, or a slightly
+//               elongated video (padded with black frames).  There are
+//               utilities out there to fix the length values in AVI
+//               files.
+//
+//               An audio consumer needs to check the length, the
+//               ready status, and the aborted flag.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 205  
+45 14 Dtool_mouFqX_n 6 51 197 0 14 Dtool_mouFqX_n 744 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::can_seek
+//       Access: Public
+//  Description: Returns true if the movie can seek.  If this is
+//               true, seeking is still not guaranteed to be fast:
+//               for some movies, seeking is implemented by rewinding
+//               to the beginning and then fast-forwarding to the
+//               desired location.  Even if the movie cannot seek,
+//               the seek method can still advance to an arbitrary
+//               location by reading samples and discarding them.
+//               However, to move backward, can_seek must return true.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 205  
+46 14 Dtool_mouFmiNM 6 52 197 0 14 Dtool_mouFmiNM 278 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::can_seek_fast
+//       Access: Public
+//  Description: Returns true if seek operations are constant time.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 205  
+47 14 Dtool_mouF9J2Y 6 53 196 0 14 Dtool_mouF9J2Y 262 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::tell
+//       Access: Public
+//  Description: Returns the current offset within the file.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 205  
+48 14 Dtool_mouF2mru 4 54 200 0 14 Dtool_mouF2mru 322 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::skip_samples
+//       Access: Published
+//  Description: Skip audio samples from the stream.  This is mostly
+//               for debugging purposes.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 202  1 n 1 195  
+49 14 Dtool_mouF0CF3 6 55 197 0 14 Dtool_mouF0CF3 380 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::aborted
+//       Access: Public
+//  Description: If aborted is true, it means that the "ready" samples
+//               are not being replenished.  See the method "ready"
+//               for an explanation.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 205  
+50 14 Dtool_mouFGSLm 6 56 195 0 14 Dtool_mouFGSLm 1643 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::ready
+//       Access: Public
+//  Description: Returns the number of audio samples that are ready
+//               to read.  This is primarily relevant for sources like
+//               microphones which produce samples at a fixed rate.
+//               If you try to read more samples than are ready, the
+//               result will be silent samples.  
+//
+//               Some audio streams do not have a limit on how fast 
+//               they can produce samples.  Such streams will always
+//               return 0x40000000 as the ready-count.  This may well
+//               exceed the length of the audio stream.  You therefore
+//               need to check length separately.
+//
+//               If the aborted flag is set, that means the ready count
+//               is no longer being replenished.  For example, a
+//               MovieAudioCursor might be reading from an internet
+//               radio station, and it might buffer data to avoid 
+//               underruns.  If it loses connection to the radio
+//               station, it will set the aborted flag to indicate that
+//               the buffer is no longer being replenished.  But it is
+//               still ok to read the samples that are in the buffer,
+//               at least until they run out.  Once those are gone,
+//               there will be no more.
+//
+//               An audio consumer needs to check the length, the
+//               ready status, and the aborted flag.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 205  
+51 14 Dtool_mouF9c_h 4 57 200 0 14 Dtool_mouF9c_h 1171 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::seek
+//       Access: Published, Virtual
+//  Description: Skips to the specified offset within the file.
+//
+//               If the movie reports that it cannot seek, then
+//               this method can still advance by reading samples
+//               and discarding them.  However, to move backward,
+//               can_seek must be true.
+//
+//               If the movie reports that it can_seek, it doesn't
+//               mean that it can do so quickly.  It may have to
+//               rewind the movie and then fast forward to the
+//               desired location.  Only if can_seek_fast returns
+//               true can seek operations be done in constant time.
+//
+//               Seeking may not be precise, because AVI files 
+//               often have inaccurate indices.  After
+//               seeking, tell will indicate that the cursor is
+//               at the target location. However, in truth, the data
+//               you read may come from a slightly offset location.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 202  6 offset 1 196  
+52 14 Dtool_mouFTfBw 6 58 181 0 14 Dtool_mouFTfBw 627 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::read_samples
+//       Access: Published
+//  Description: Read audio samples from the stream and returns
+//               them as a string.  The samples are stored little-endian
+//               in the string.  N is the number of samples you wish
+//               to read.  Multiple-channel audio will be interleaved. 
+//
+//               This is not particularly efficient, but it may be
+//               a convenient way to manipulate samples in python.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 202  1 n 1 195  
+53 14 Dtool_mouF8NPe 4 58 200 0 14 Dtool_mouF8NPe 544 ////////////////////////////////////////////////////////////////////
+//     Function: MovieAudioCursor::read_samples
+//       Access: Published
+//  Description: Read audio samples from the stream into a 
+//               Datagram.  N is the number of samples you wish
+//               to read. Multiple-channel audio will be interleaved. 
+//
+//               This is not particularly efficient, but it may be
+//               a convenient way to manipulate samples in python.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 202  1 n 1 195  2 dg 1 207  
+54 14 Dtool_mouFbKs0 7 59 190 0 14 Dtool_mouFbKs0 0 0 
+55 14 Dtool_mouFCokz 7 61 209 90 14 Dtool_mouFCokz 225 ////////////////////////////////////////////////////////////////////
+//     Function: InkblotVideo::Constructor
+//       Access: Public
+//  Description: xxx
+//////////////////////////////////////////////////////////////////// 3 1 x 1 195  1 y 1 195  3 fps 1 195  
+56 14 Dtool_mouFeMZX 7 62 183 0 14 Dtool_mouFeMZX 273 ////////////////////////////////////////////////////////////////////
+//     Function: InkblotVideo::open
+//       Access: Published, Virtual
+//  Description: Open this video, returning a MovieVideoCursor.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 209  
+57 14 Dtool_mouFMLJD 7 63 190 0 14 Dtool_mouFMLJD 0 0 
+58 14 Dtool_mouFzSgu 7 65 210 0 14 Dtool_mouFzSgu 231 ////////////////////////////////////////////////////////////////////
+//     Function: InkblotVideoCursor::Constructor
+//       Access: Public
+//  Description: xxx
+//////////////////////////////////////////////////////////////////// 1 3 src 1 209  
+59 14 Dtool_mouF_Vdw 7 66 190 0 14 Dtool_mouF_Vdw 0 0 
+60 14 Dtool_mouFUKv_ 7 68 211 90 14 Dtool_mouFUKv_ 224 ////////////////////////////////////////////////////////////////////
+//     Function: FfmpegVideo::Constructor
+//       Access: Public
+//  Description: xxx
+//////////////////////////////////////////////////////////////////// 1 4 name 1 184  
+61 14 Dtool_mouFiLn0 7 69 183 0 14 Dtool_mouFiLn0 272 ////////////////////////////////////////////////////////////////////
+//     Function: FfmpegVideo::open
+//       Access: Published, Virtual
+//  Description: Open this video, returning a MovieVideoCursor.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 211  
+62 14 Dtool_mouFvS8h 7 70 190 0 14 Dtool_mouFvS8h 0 0 
+63 14 Dtool_mouFMKo5 7 72 212 0 14 Dtool_mouFMKo5 230 ////////////////////////////////////////////////////////////////////
+//     Function: FfmpegVideoCursor::Constructor
+//       Access: Public
+//  Description: xxx
+//////////////////////////////////////////////////////////////////// 1 3 src 1 211  
+64 14 Dtool_mouFPpVT 7 73 190 0 14 Dtool_mouFPpVT 0 0 
+65 14 Dtool_mouFP_8f 7 75 213 119 14 Dtool_mouFP_8f 227 ////////////////////////////////////////////////////////////////////
+//     Function: FfmpegAudio::Constructor
+//       Access: Protected
+//  Description: xxx
+//////////////////////////////////////////////////////////////////// 1 4 name 1 184  
+66 14 Dtool_mouFiRpP 7 76 202 0 14 Dtool_mouFiRpP 271 ////////////////////////////////////////////////////////////////////
+//     Function: FfmpegAudio::open
+//       Access: Published, Virtual
+//  Description: Open this audio, returning a MovieAudioCursor
+//////////////////////////////////////////////////////////////////// 1 4 this 3 213  
+67 14 Dtool_mouFeB_8 7 77 190 0 14 Dtool_mouFeB_8 0 0 
+68 14 Dtool_mouFqtYn 7 79 214 0 14 Dtool_mouFqtYn 233 ////////////////////////////////////////////////////////////////////
+//     Function: FfmpegAudioCursor::Constructor
+//       Access: Protected
+//  Description: xxx
+//////////////////////////////////////////////////////////////////// 1 3 src 1 213  
+69 14 Dtool_mouF_PZu 7 80 190 0 14 Dtool_mouF_PZu 0 0 
+70 14 Dtool_mouFHsFA 6 82 195 0 14 Dtool_mouFHsFA 481 ////////////////////////////////////////////////////////////////////
+//     Function: MicrophoneAudio::get_num_options
+//       Access: Public
+//  Description: Returns the number of microphone options.  An "option"
+//               consists of a device plus a set of configuration
+//               parameters.  For example, "Soundblaster Audigy Line in
+//               at 44,100 samples/sec" would be an option.
+//////////////////////////////////////////////////////////////////// 0 
+71 14 Dtool_mouFMUdn 7 83 215 119 14 Dtool_mouFMUdn 258 ////////////////////////////////////////////////////////////////////
+//     Function: MicrophoneAudio::get_option
+//       Access: Public
+//  Description: Returns the nth microphone option.
+//////////////////////////////////////////////////////////////////// 1 1 n 1 195  
+72 14 Dtool_mouFsjnl 6 84 195 0 14 Dtool_mouFsjnl 751 // Filename: microphoneAudio.I
+// Created by: jyelon (02Jul07)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: MicrophoneAudio::get_channels
+//       Access: Published
+//  Description: Returns the number of channels.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 216  
+73 14 Dtool_mouFHJIm 6 85 195 0 14 Dtool_mouFHJIm 249 ////////////////////////////////////////////////////////////////////
+//     Function: MicrophoneAudio::get_rate
+//       Access: Published
+//  Description: Returns the sample rate.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 216  
+74 14 Dtool_mouFSzZq 7 86 202 0 14 Dtool_mouFSzZq 0 1 4 this 3 215  
+75 14 Dtool_mouFLVOV 7 87 190 0 14 Dtool_mouFLVOV 0 0 
+76 14 Dtool_mouFd_xn 7 89 218 119 14 Dtool_mouFd_xn 331 ////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::Constructor
+//       Access: Public
+//  Description: This constructor returns a UserDataAudio --- 
+//               a means to supply raw audio samples manually.
+//////////////////////////////////////////////////////////////////// 2 4 rate 1 195  8 channels 1 195  
+77 14 Dtool_mouFB0gt 7 90 202 0 14 Dtool_mouFB0gt 374 ////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::open
+//       Access: Published, Virtual
+//  Description: Open this audio, returning a UserDataAudioCursor.  A
+//               UserDataAudio can only be opened by one consumer
+//               at a time.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 218  
+78 14 Dtool_mouF1A0Y 4 91 200 0 14 Dtool_mouF1A0Y 387 ////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::append
+//       Access: Published
+//  Description: Appends audio samples to the buffer from a 
+//               datagram.  This is intended to make it easy to 
+//               send streaming raw audio over a network.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 218  3 src 1 219  3 len 1 195  
+79 14 Dtool_mouFcLbv 4 91 200 0 14 Dtool_mouFcLbv 387 ////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::append
+//       Access: Published
+//  Description: Appends audio samples to the buffer from a 
+//               datagram.  This is intended to make it easy to 
+//               send streaming raw audio over a network.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 218  3 src 1 219  
+80 14 Dtool_mouFQG1O 4 91 200 0 14 Dtool_mouFQG1O 491 ////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::append
+//       Access: Published
+//  Description: Appends audio samples to the buffer from a 
+//               string.  The samples must be stored little-endian
+//               in the string.  This is not particularly efficient,
+//               but it may be convenient to deal with samples in
+//               python.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 218  3 str 1 181  
+81 14 Dtool_mouFPL6l 4 92 200 0 14 Dtool_mouFPL6l 320 ////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudio::done
+//       Access: Published
+//  Description: Promises not to append any more samples, ie, this
+//               marks the end of the audio stream.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 218  
+82 14 Dtool_mouF2DZm 7 93 190 0 14 Dtool_mouF2DZm 0 0 
+83 14 Dtool_mouFT7Mu 7 95 221 0 14 Dtool_mouFT7Mu 223 ////////////////////////////////////////////////////////////////////
+//     Function: UserDataAudioCursor::Constructor
+//       Access: 
+//  Description: 
+//////////////////////////////////////////////////////////////////// 1 3 src 1 218  
+84 14 Dtool_mouFfQjQ 7 96 190 0 14 Dtool_mouFfQjQ 0 0 
+57
+166 10 MovieVideo 26625 10 MovieVideo 10 MovieVideo 0 0 0 1 89 90 0 4 91 92 93 94 0 0 2 3 167 85 86 3 168 87 88 0 0 676
+////////////////////////////////////////////////////////////////////
+//       Class : MovieVideo
+// Description : A MovieVideo is actually any source that provides
+//               a sequence of video frames.  That could include an
+//               AVI file, a digital camera, or an internet TV station.
+//
+//               The difference between a MovieVideo and a
+//               MovieVideoCursor is like the difference between a
+//               filename and a file handle.  The MovieVideo just
+//               indicates a particular movie.  The MovieVideoCursor
+//               is what allows access.
+////////////////////////////////////////////////////////////////////
+
+167 27 TypedWritableReferenceCount 2049 27 TypedWritableReferenceCount 27 TypedWritableReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 722
+////////////////////////////////////////////////////////////////////
+//       Class : TypedWritableReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedWritable and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedWritables and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+168 7 Namable 2049 7 Namable 7 Namable 0 0 0 0 0 0 0 0 0 0 0 0 324
+////////////////////////////////////////////////////////////////////
+//       Class : Namable
+// Description : A base class for all things which can have a name.
+//               The name is either empty or nonempty, but it is never
+//               NULL.
+////////////////////////////////////////////////////////////////////
+
+169 16 MovieVideoCursor 75777 16 MovieVideoCursor 16 MovieVideoCursor 0 0 0 1 95 0 0 18 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 0 0 1 0 167 0 0 0 0 812
+////////////////////////////////////////////////////////////////////
+//       Class : MovieVideoCursor
+// Description : A MovieVideo is actually any source that provides
+//               a sequence of video frames.  That could include an
+//               AVI file, a digital camera, or an internet TV station.
+//               A MovieVideoCursor is a handle that lets you read
+//               data sequentially from a MovieVideo.
+//
+//               Thread safety: each individual MovieVideoCursor
+//               must be owned and accessed by a single thread.
+//               It is OK for two different threads to open
+//               the same file at the same time, as long as they
+//               use separate MovieVideoCursor objects.
+////////////////////////////////////////////////////////////////////
+
+170 10 MovieAudio 26625 10 MovieAudio 10 MovieAudio 0 0 0 1 118 119 0 4 120 121 122 123 0 0 2 3 167 114 115 3 168 116 117 0 0 677
+//]
+////////////////////////////////////////////////////////////////////
+//       Class : MovieAudio
+// Description : A MovieAudio is actually any source that provides
+//               a sequence of audio samples.  That could include an
+//               AVI file, a microphone, or an internet TV station.
+//
+//               The difference between a MovieAudio and a
+//               MovieAudioCursor is like the difference between a
+//               filename and a file handle.  The MovieAudio just
+//               indicates a particular movie.  The MovieAudioCursor
+//               is what allows access.
+////////////////////////////////////////////////////////////////////
+
+171 16 MovieAudioCursor 75777 16 MovieAudioCursor 16 MovieAudioCursor 0 0 0 1 124 0 0 13 125 126 127 128 129 130 131 132 133 134 135 136 137 0 0 1 0 167 0 0 0 0 809
+////////////////////////////////////////////////////////////////////
+//       Class : MovieAudioCursor
+// Description : A MovieAudio is actually any source that provides
+//               a sequence of audio samples.  That could include an
+//               AVI file, a microphone, or an internet TV station.
+//               A MovieAudioCursor is a handle that lets you read
+//               data sequentially from a MovieAudio.
+//
+//               Thread safety: each individual MovieAudioCursor
+//               must be owned and accessed by a single thread.
+//               It is OK for two different threads to open
+//               the same file at the same time, as long as they
+//               use separate MovieAudioCursor objects.
+////////////////////////////////////////////////////////////////////
+
+172 12 InkblotVideo 75777 12 InkblotVideo 12 InkblotVideo 0 0 0 1 138 90 0 2 139 140 0 0 1 0 166 0 0 0 0 276
+////////////////////////////////////////////////////////////////////
+//       Class : InkblotVideo
+// Description : A cellular automaton that generates an amusing
+//               pattern of swirling colors.
+////////////////////////////////////////////////////////////////////
+
+173 18 InkblotVideoCursor 75777 18 InkblotVideoCursor 18 InkblotVideoCursor 0 0 0 1 141 0 0 1 142 0 0 1 0 169 0 0 0 0 282
+////////////////////////////////////////////////////////////////////
+//       Class : InkblotVideoCursor
+// Description : A cellular automaton that generates an amusing
+//               pattern of swirling colors.
+////////////////////////////////////////////////////////////////////
+
+174 11 FfmpegVideo 75777 11 FfmpegVideo 11 FfmpegVideo 0 0 0 1 143 90 0 2 144 145 0 0 1 0 166 0 0 0 0 184
+////////////////////////////////////////////////////////////////////
+//       Class : FfmpegVideo
+// Description : 
+////////////////////////////////////////////////////////////////////
+
+175 17 FfmpegVideoCursor 75777 17 FfmpegVideoCursor 17 FfmpegVideoCursor 0 0 0 1 146 0 0 1 147 0 0 1 0 169 0 0 0 0 190
+////////////////////////////////////////////////////////////////////
+//       Class : FfmpegVideoCursor
+// Description : 
+////////////////////////////////////////////////////////////////////
+
+176 11 FfmpegAudio 75777 11 FfmpegAudio 11 FfmpegAudio 0 0 0 1 148 119 0 2 149 150 0 0 1 0 170 0 0 0 0 236
+////////////////////////////////////////////////////////////////////
+//       Class : FfmpegAudio
+// Description : A stream that generates a sequence of audio samples.
+////////////////////////////////////////////////////////////////////
+
+177 17 FfmpegAudioCursor 75777 17 FfmpegAudioCursor 17 FfmpegAudioCursor 0 0 0 1 151 0 0 1 152 0 0 1 0 171 0 0 0 0 242
+////////////////////////////////////////////////////////////////////
+//       Class : FfmpegAudioCursor
+// Description : A stream that generates a sequence of audio samples.
+////////////////////////////////////////////////////////////////////
+
+178 15 MicrophoneAudio 75777 15 MicrophoneAudio 15 MicrophoneAudio 0 0 0 0 119 0 6 153 154 155 156 157 158 1 223 0 1 0 170 0 0 0 0 290
+////////////////////////////////////////////////////////////////////
+//       Class : MicrophoneAudio
+// Description : Class MicrophoneAudio provides the means to read
+//               raw audio samples from a microphone.
+////////////////////////////////////////////////////////////////////
+
+179 13 UserDataAudio 75777 13 UserDataAudio 13 UserDataAudio 0 0 0 1 159 119 0 4 160 161 162 163 0 0 1 0 170 0 0 0 0 279
+////////////////////////////////////////////////////////////////////
+//       Class : UserDataAudio
+// Description : A UserDataAudio is a way for the user to manually
+//               supply raw audio samples. 
+////////////////////////////////////////////////////////////////////
+
+180 19 UserDataAudioCursor 75777 19 UserDataAudioCursor 19 UserDataAudioCursor 0 0 0 1 164 0 0 1 165 0 0 1 0 171 0 0 0 0 293
+////////////////////////////////////////////////////////////////////
+//       Class : UserDataAudioCursor
+// Description : A UserDataAudioCursor is a means to manually
+//               supply a sequence of raw audio samples.
+////////////////////////////////////////////////////////////////////
+
+181 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+182 12 MovieVideo * 8576 12 MovieVideo * 12 MovieVideo * 0 0 166 0 0 0 0 0 0 0 0 0 0
+
+183 18 MovieVideoCursor * 8576 18 MovieVideoCursor * 18 MovieVideoCursor * 0 0 169 0 0 0 0 0 0 0 0 0 0
+
+184 16 Filename const * 8576 16 Filename const * 16 Filename const * 0 0 185 0 0 0 0 0 0 0 0 0 0
+
+185 14 Filename const 8832 14 Filename const 14 Filename const 0 0 186 0 0 0 0 0 0 0 0 0 0
+
+186 8 Filename 2048 8 Filename 8 Filename 0 0 0 0 0 0 0 0 0 0 0 0 869
+////////////////////////////////////////////////////////////////////
+//       Class : Filename
+// Description : The name of a file, such as a texture file or an Egg
+//               file.  Stores the full pathname, and includes
+//               functions for extracting out the directory prefix
+//               part and the file extension and stuff.
+//
+//               A Filename is also aware of the mapping between the
+//               Unix-like filename convention we use internally, and
+//               the local OS's specific filename convention, and it
+//               knows how to perform basic OS-specific I/O, like
+//               testing for file existence and searching a
+//               searchpath, as well as the best way to open an
+//               fstream for reading or writing.
+////////////////////////////////////////////////////////////////////
+
+187 18 MovieVideo const * 8576 18 MovieVideo const * 18 MovieVideo const * 0 0 188 0 0 0 0 0 0 0 0 0 0
+
+188 16 MovieVideo const 8832 16 MovieVideo const 16 MovieVideo const 0 0 166 0 0 0 0 0 0 0 0 0 0
+
+189 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+190 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 189 0 0 0 0 0 0 0 0 0 0
+
+191 29 TypedWritableReferenceCount * 8576 29 TypedWritableReferenceCount * 29 TypedWritableReferenceCount * 0 0 167 0 0 0 0 0 0 0 0 0 0
+
+192 9 Namable * 8576 9 Namable * 9 Namable * 0 0 168 0 0 0 0 0 0 0 0 0 0
+
+193 24 MovieVideoCursor const * 8576 24 MovieVideoCursor const * 24 MovieVideoCursor const * 0 0 194 0 0 0 0 0 0 0 0 0 0
+
+194 22 MovieVideoCursor const 8832 22 MovieVideoCursor const 22 MovieVideoCursor const 0 0 169 0 0 0 0 0 0 0 0 0 0
+
+195 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+196 6 double 8194 6 double 6 double 0 3 0 0 0 0 0 0 0 0 0 0 0
+
+197 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+198 9 Texture * 8576 9 Texture * 9 Texture * 0 0 199 0 0 0 0 0 0 0 0 0 0
+
+199 7 Texture 2048 7 Texture 7 Texture 0 0 0 0 0 0 0 0 0 0 0 0 1051
+////////////////////////////////////////////////////////////////////
+//       Class : Texture
+// Description : Represents a texture object, which is typically a
+//               single 2-d image but may also represent a 1-d or 3-d
+//               texture image, or the six 2-d faces of a cube map
+//               texture.
+//
+//               A texture's image data might be stored in system RAM
+//               (see get_ram_image()) or its image may be represented
+//               in texture memory on one or more
+//               GraphicsStateGuardians (see prepare()), or both.  The
+//               typical usage pattern is that a texture is loaded
+//               from an image file on disk, which copies its image
+//               data into system RAM; then the first time the texture
+//               is rendered its image data is copied to texture
+//               memory (actually, to the graphics API), and the
+//               system RAM image is automatically freed.
+////////////////////////////////////////////////////////////////////
+
+200 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+201 12 MovieAudio * 8576 12 MovieAudio * 12 MovieAudio * 0 0 170 0 0 0 0 0 0 0 0 0 0
+
+202 18 MovieAudioCursor * 8576 18 MovieAudioCursor * 18 MovieAudioCursor * 0 0 171 0 0 0 0 0 0 0 0 0 0
+
+203 18 MovieAudio const * 8576 18 MovieAudio const * 18 MovieAudio const * 0 0 204 0 0 0 0 0 0 0 0 0 0
+
+204 16 MovieAudio const 8832 16 MovieAudio const 16 MovieAudio const 0 0 170 0 0 0 0 0 0 0 0 0 0
+
+205 24 MovieAudioCursor const * 8576 24 MovieAudioCursor const * 24 MovieAudioCursor const * 0 0 206 0 0 0 0 0 0 0 0 0 0
+
+206 22 MovieAudioCursor const 8832 22 MovieAudioCursor const 22 MovieAudioCursor const 0 0 171 0 0 0 0 0 0 0 0 0 0
+
+207 10 Datagram * 8576 10 Datagram * 10 Datagram * 0 0 208 0 0 0 0 0 0 0 0 0 0
+
+208 8 Datagram 2048 8 Datagram 8 Datagram 0 0 0 0 0 0 0 0 0 0 0 0 900
+////////////////////////////////////////////////////////////////////
+//       Class : Datagram
+// Description : An ordered list of data elements, formatted in memory
+//               for transmission over a socket or writing to a data
+//               file.
+//
+//               Data elements should be added one at a time, in
+//               order, to the Datagram.  The nature and contents of
+//               the data elements are totally up to the user.  When a
+//               Datagram has been transmitted and received, its data
+//               elements may be extracted using a DatagramIterator;
+//               it is up to the caller to know the correct type of
+//               each data element in order.
+//
+//               A Datagram is itself headerless; it is simply a
+//               collection of data elements.
+////////////////////////////////////////////////////////////////////
+
+209 14 InkblotVideo * 8576 14 InkblotVideo * 14 InkblotVideo * 0 0 172 0 0 0 0 0 0 0 0 0 0
+
+210 20 InkblotVideoCursor * 8576 20 InkblotVideoCursor * 20 InkblotVideoCursor * 0 0 173 0 0 0 0 0 0 0 0 0 0
+
+211 13 FfmpegVideo * 8576 13 FfmpegVideo * 13 FfmpegVideo * 0 0 174 0 0 0 0 0 0 0 0 0 0
+
+212 19 FfmpegVideoCursor * 8576 19 FfmpegVideoCursor * 19 FfmpegVideoCursor * 0 0 175 0 0 0 0 0 0 0 0 0 0
+
+213 13 FfmpegAudio * 8576 13 FfmpegAudio * 13 FfmpegAudio * 0 0 176 0 0 0 0 0 0 0 0 0 0
+
+214 19 FfmpegAudioCursor * 8576 19 FfmpegAudioCursor * 19 FfmpegAudioCursor * 0 0 177 0 0 0 0 0 0 0 0 0 0
+
+215 17 MicrophoneAudio * 8576 17 MicrophoneAudio * 17 MicrophoneAudio * 0 0 178 0 0 0 0 0 0 0 0 0 0
+
+216 23 MicrophoneAudio const * 8576 23 MicrophoneAudio const * 23 MicrophoneAudio const * 0 0 217 0 0 0 0 0 0 0 0 0 0
+
+217 21 MicrophoneAudio const 8832 21 MicrophoneAudio const 21 MicrophoneAudio const 0 0 178 0 0 0 0 0 0 0 0 0 0
+
+218 15 UserDataAudio * 8576 15 UserDataAudio * 15 UserDataAudio * 0 0 179 0 0 0 0 0 0 0 0 0 0
+
+219 18 DatagramIterator * 8576 18 DatagramIterator * 18 DatagramIterator * 0 0 220 0 0 0 0 0 0 0 0 0 0
+
+220 16 DatagramIterator 2048 16 DatagramIterator 16 DatagramIterator 0 0 0 0 0 0 0 0 0 0 0 0 438
+////////////////////////////////////////////////////////////////////
+//       Class : DatagramIterator
+// Description : A class to retrieve the individual data elements
+//               previously stored in a Datagram.  Elements may be
+//               retrieved one at a time; it is up to the caller to
+//               know the correct type and order of each element.
+////////////////////////////////////////////////////////////////////
+
+221 21 UserDataAudioCursor * 8576 21 UserDataAudioCursor * 21 UserDataAudioCursor * 0 0 180 0 0 0 0 0 0 0 0 0 0
+
+222 6 string 2048 20 basic_string< char > 20 basic_string< char > 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+1
+223 0 81 11 get_options 15 get_num_options 10 get_option 

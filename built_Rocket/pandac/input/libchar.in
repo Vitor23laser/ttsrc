@@ -1,0 +1,1332 @@
+1687212864
+2 2
+7 libchar 4 nRYR 5 panda 
+44
+46 14 CharacterJoint 4 90 30 CharacterJoint::CharacterJoint 0 1 1 715
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::Default Constructor
+//       Access: Protected
+//  Description: For internal use only.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::Copy Constructor
+//       Access: Protected
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+156
+CharacterJoint::CharacterJoint(Character *character, PartBundle *root, PartGroup *parent, basic_string< char > const &name, LMatrix4f const &default_value);
+
+47 17 add_net_transform 4 90 33 CharacterJoint::add_net_transform 0 1 2 646
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::add_net_transform
+//       Access: Published
+//  Description: Adds the indicated node to the list of nodes that will
+//               be updated each frame with the joint's net transform
+//               from the root.  Returns true if the node is
+//               successfully added, false if it had already been
+//               added.
+//
+//               A CharacterJointEffect for this joint's Character
+//               will automatically be added to the specified node.
+////////////////////////////////////////////////////////////////////
+56
+bool CharacterJoint::add_net_transform(PandaNode *node);
+
+48 20 remove_net_transform 4 90 36 CharacterJoint::remove_net_transform 0 1 3 648
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::remove_net_transform
+//       Access: Published
+//  Description: Removes the indicated node from the list of nodes that
+//               will be updated each frame with the joint's net
+//               transform from the root.  Returns true if the node is
+//               successfully removed, false if it was not on the
+//               list.
+//
+//               If the node has a CharacterJointEffect that matches
+//               this joint's Character, it will be cleared.
+////////////////////////////////////////////////////////////////////
+59
+bool CharacterJoint::remove_net_transform(PandaNode *node);
+
+49 17 has_net_transform 4 90 33 CharacterJoint::has_net_transform 0 1 4 410
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::has_net_transform
+//       Access: Published
+//  Description: Returns true if the node is on the list of nodes that
+//               will be updated each frame with the joint's net
+//               transform from the root, false otherwise.
+////////////////////////////////////////////////////////////////////
+62
+bool CharacterJoint::has_net_transform(PandaNode *node) const;
+
+50 20 clear_net_transforms 4 90 36 CharacterJoint::clear_net_transforms 0 1 5 388
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::clear_net_transforms
+//       Access: Published
+//  Description: Removes all nodes from the list of nodes that will be
+//               updated each frame with the joint's net transform
+//               from the root.
+////////////////////////////////////////////////////////////////////
+48
+void CharacterJoint::clear_net_transforms(void);
+
+51 18 get_net_transforms 4 90 34 CharacterJoint::get_net_transforms 0 1 6 451
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_net_transforms
+//       Access: Published
+//  Description: Returns a list of the net transforms set for this
+//               node.  Note that this returns a list of NodePaths,
+//               even though the net transforms are actually a list of
+//               PandaNodes.
+////////////////////////////////////////////////////////////////////
+60
+NodePathCollection CharacterJoint::get_net_transforms(void);
+
+52 19 add_local_transform 4 90 35 CharacterJoint::add_local_transform 0 1 7 912
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::add_local_transform
+//       Access: Published
+//  Description: Adds the indicated node to the list of nodes that will
+//               be updated each frame with the joint's local
+//               transform from its parent.  Returns true if the node
+//               is successfully added, false if it had already been
+//               added.
+//
+//               The Character pointer should be the Character object
+//               that owns this joint; this will be used to create a
+//               CharacterJointEffect for this node.  If it is NULL,
+//               no such effect will be created.
+//
+//               A CharacterJointEffect for this joint's Character
+//               will automatically be added to the specified node.
+////////////////////////////////////////////////////////////////////
+58
+bool CharacterJoint::add_local_transform(PandaNode *node);
+
+53 22 remove_local_transform 4 90 38 CharacterJoint::remove_local_transform 0 1 8 654
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::remove_local_transform
+//       Access: Published
+//  Description: Removes the indicated node from the list of nodes that
+//               will be updated each frame with the joint's local
+//               transform from its parent.  Returns true if the node
+//               is successfully removed, false if it was not on the
+//               list.
+//
+//               If the node has a CharacterJointEffect that matches
+//               this joint's Character, it will be cleared.
+////////////////////////////////////////////////////////////////////
+61
+bool CharacterJoint::remove_local_transform(PandaNode *node);
+
+54 19 has_local_transform 4 90 35 CharacterJoint::has_local_transform 0 1 9 416
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::has_local_transform
+//       Access: Published
+//  Description: Returns true if the node is on the list of nodes that
+//               will be updated each frame with the joint's local
+//               transform from its parent, false otherwise.
+////////////////////////////////////////////////////////////////////
+64
+bool CharacterJoint::has_local_transform(PandaNode *node) const;
+
+55 22 clear_local_transforms 4 90 38 CharacterJoint::clear_local_transforms 0 1 10 394
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::clear_local_transforms
+//       Access: Published
+//  Description: Removes all nodes from the list of nodes that will be
+//               updated each frame with the joint's local transform
+//               from its parent.
+////////////////////////////////////////////////////////////////////
+50
+void CharacterJoint::clear_local_transforms(void);
+
+56 20 get_local_transforms 4 90 36 CharacterJoint::get_local_transforms 0 1 11 457
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_local_transforms
+//       Access: Published
+//  Description: Returns a list of the local transforms set for this
+//               node.  Note that this returns a list of NodePaths,
+//               even though the local transforms are actually a list of
+//               PandaNodes.
+////////////////////////////////////////////////////////////////////
+62
+NodePathCollection CharacterJoint::get_local_transforms(void);
+
+57 13 get_transform 4 90 29 CharacterJoint::get_transform 0 1 12 309
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_transform
+//       Access: Published
+//  Description: Copies the joint's current transform into the
+//               indicated matrix.
+////////////////////////////////////////////////////////////////////
+63
+void CharacterJoint::get_transform(LMatrix4f &transform) const;
+
+58 17 get_net_transform 4 90 33 CharacterJoint::get_net_transform 0 1 13 392
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_net_transform
+//       Access: Published
+//  Description: Copies the joint's current net transform (composed
+//               from the root of the character joint hierarchy) into
+//               the indicated matrix.
+////////////////////////////////////////////////////////////////////
+67
+void CharacterJoint::get_net_transform(LMatrix4f &transform) const;
+
+59 13 get_character 4 90 29 CharacterJoint::get_character 0 1 14 272
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_character
+//       Access: Published
+//  Description: Returns the Character that owns this joint.
+////////////////////////////////////////////////////////////////////
+53
+Character *CharacterJoint::get_character(void) const;
+
+60 14 get_class_type 4 90 30 CharacterJoint::get_class_type 0 1 15 0
+55
+static TypeHandle CharacterJoint::get_class_type(void);
+
+61 15 CharacterSlider 4 92 32 CharacterSlider::CharacterSlider 0 1 16 718
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterSlider::Default Constructor
+//       Access: Protected
+//  Description: For internal use only.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterSlider::Copy Constructor
+//       Access: Protected
+//  Description:
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterSlider::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+86
+CharacterSlider::CharacterSlider(PartGroup *parent, basic_string< char > const &name);
+
+62 16 update_internals 4 92 33 CharacterSlider::update_internals 0 1 17 603
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterSlider::update_internals
+//       Access: Public, Virtual
+//  Description: This is called by do_update() whenever the part or
+//               some ancestor has changed values.  It is a hook for
+//               derived classes to update whatever cache they may
+//               have that depends on these.
+//
+//               The return value is true if the part has changed as a
+//               result of the update, or false otherwise.
+////////////////////////////////////////////////////////////////////
+148
+virtual bool CharacterSlider::update_internals(PartBundle *root, PartGroup *parent, bool self_changed, bool parent_changed, Thread *current_thread);
+
+63 14 get_class_type 4 92 31 CharacterSlider::get_class_type 0 1 18 0
+56
+static TypeHandle CharacterSlider::get_class_type(void);
+
+64 21 CharacterVertexSlider 4 94 44 CharacterVertexSlider::CharacterVertexSlider 0 1 19 716
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterVertexSlider::Default Constructor
+//       Access: Private
+//  Description: Constructs an invalid object; used only by the bam
+//               loader.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterVertexSlider::Constructor
+//       Access: Published
+//  Description: Constructs a new object that converts vertices from
+//               the indicated joint's coordinate space, into the
+//               other indicated joint's space.
+////////////////////////////////////////////////////////////////////
+75
+CharacterVertexSlider::CharacterVertexSlider(CharacterSlider *char_slider);
+
+65 15 get_char_slider 4 94 38 CharacterVertexSlider::get_char_slider 0 1 20 834
+// Filename: characterVertexSlider.I
+// Created by:  drose (28Mar05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterVertexSlider::get_char_slider
+//       Access: Published
+//  Description: Returns the CharacterSlider object for which this
+//               object returns the slider value.
+////////////////////////////////////////////////////////////////////
+81
+inline CharacterSlider const *CharacterVertexSlider::get_char_slider(void) const;
+
+66 14 get_class_type 4 94 37 CharacterVertexSlider::get_class_type 0 1 21 0
+62
+static TypeHandle CharacterVertexSlider::get_class_type(void);
+
+67 20 JointVertexTransform 4 96 42 JointVertexTransform::JointVertexTransform 0 1 22 714
+////////////////////////////////////////////////////////////////////
+//     Function: JointVertexTransform::Default Constructor
+//       Access: Private
+//  Description: Constructs an invalid object; used only by the bam
+//               loader.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: JointVertexTransform::Constructor
+//       Access: Published
+//  Description: Constructs a new object that converts vertices from
+//               the indicated joint's coordinate space, into the
+//               other indicated joint's space.
+////////////////////////////////////////////////////////////////////
+66
+JointVertexTransform::JointVertexTransform(CharacterJoint *joint);
+
+68 9 get_joint 4 96 31 JointVertexTransform::get_joint 0 1 23 806
+// Filename: jointVertexTransform.I
+// Created by:  drose (24Mar05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: JointVertexTransform::get_joint
+//       Access: Published
+//  Description: Returns the joint for which this object returns the
+//               transform.
+////////////////////////////////////////////////////////////////////
+73
+inline CharacterJoint const *JointVertexTransform::get_joint(void) const;
+
+69 14 get_class_type 4 96 36 JointVertexTransform::get_class_type 0 1 24 0
+61
+static TypeHandle JointVertexTransform::get_class_type(void);
+
+70 9 Character 4 98 20 Character::Character 0 1 25 502
+////////////////////////////////////////////////////////////////////
+//     Function: Character::Copy Constructor
+//       Access: Protected
+//  Description: Use make_copy() or copy_subgraph() to copy a Character.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Character::Constructor
+//       Access: Public
+//  Description:
+////////////////////////////////////////////////////////////////////
+55
+Character::Character(basic_string< char > const &name);
+
+71 10 get_bundle 4 98 21 Character::get_bundle 0 1 26 220
+////////////////////////////////////////////////////////////////////
+//     Function: Character::get_bundle
+//       Access: Published
+//  Description:
+////////////////////////////////////////////////////////////////////
+64
+inline CharacterJointBundle *Character::get_bundle(int i) const;
+
+72 13 merge_bundles 4 98 24 Character::merge_bundles 0 2 27 28 2157
+////////////////////////////////////////////////////////////////////
+//     Function: Character::merge_bundles
+//       Access: Published
+//  Description: Merges old_bundle with new_bundle.  old_bundle
+//               must be one of the PartBundles within this node.  At
+//               the end of this call, the old_bundle pointer within
+//               this node will be replaced with the new_bundle
+//               pointer, and all geometry within this node will be
+//               updated to reference new_bundle.
+//
+//               This method is deprecated.  Use the newer version of
+//               this method, below.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: Character::merge_bundles
+//       Access: Published
+//  Description: Merges old_bundle_handle->get_bundle() with
+//               new_bundle.  old_bundle_handle must be one of the
+//               PartBundleHandle within this node.  At the end of
+//               this call, the bundle pointer within the
+//               old_bundle_handle will be replaced with that within
+//               the new_bundle_handle pointer, and all geometry
+//               within this node will be updated to reference
+//               new_bundle.
+//
+//               Normally, this is called when the two bundles have
+//               the same, or nearly the same, hierarchies.  In this
+//               case, new_bundle will simply be assigned over the
+//               old_bundle position.  However, if any joints are
+//               present in one bundle or the other, new_bundle will
+//               be modified to contain the union of all joints.
+//               
+//               The geometry below this node is also updated to
+//               reference new_bundle, instead of the original
+//               old_bundle.
+//
+//               This method is intended to unify two different models
+//               that share a common skeleton, for instance, different
+//               LOD's of the same model.
+////////////////////////////////////////////////////////////////////
+187
+void Character::merge_bundles(PartBundle *old_bundle, PartBundle *other_bundle);
+void Character::merge_bundles(PartBundleHandle *old_bundle_handle, PartBundleHandle *other_bundle_handle);
+
+73 17 set_lod_animation 4 98 28 Character::set_lod_animation 0 1 29 1731
+////////////////////////////////////////////////////////////////////
+//     Function: Character::set_lod_animation
+//       Access: Published
+//  Description: Activates a special mode in which the character
+//               animates less frequently as it gets further from the
+//               camera.  This is intended as a simple optimization to
+//               minimize the effort of computing animation for lots
+//               of characters that may not necessarily be very
+//               important to animate every frame.
+//
+//               If the character is closer to the camera than
+//               near_distance, then it is animated its normal rate,
+//               every frame.  If the character is exactly
+//               far_distance away, it is animated only every
+//               delay_factor seconds (which should be a number
+//               greater than 0).  If the character is between
+//               near_distance and far_distance, its animation rate is
+//               linearly interpolated according to its distance
+//               between the two.  The interpolation function
+//               continues beyond far_distance, so that the character
+//               is animated increasingly less frequently as it gets
+//               farther away.
+//
+//               The distance calculations are made from center, which
+//               is a fixed point relative to the character node, to
+//               the camera's lod center or cull center node (or to
+//               the camera node itself).
+//
+//               If multiple cameras are viewing the character in any
+//               given frame, the closest one counts.
+////////////////////////////////////////////////////////////////////
+119
+void Character::set_lod_animation(LPoint3f const &center, float far_distance, float near_distance, float delay_factor);
+
+74 19 clear_lod_animation 4 98 30 Character::clear_lod_animation 0 1 30 436
+////////////////////////////////////////////////////////////////////
+//     Function: Character::clear_lod_animation
+//       Access: Published
+//  Description: Undoes the effect of a recent call to
+//               set_lod_animation().  Henceforth, the character will
+//               animate every frame, regardless of its distance from
+//               the camera.
+////////////////////////////////////////////////////////////////////
+42
+void Character::clear_lod_animation(void);
+
+75 10 find_joint 4 98 21 Character::find_joint 0 1 31 412
+////////////////////////////////////////////////////////////////////
+//     Function: Character::find_joint
+//       Access: Published
+//  Description: Returns a pointer to the joint with the given name,
+//               if there is such a joint, or NULL if there is no such
+//               joint.  This will not return a pointer to a slider.
+////////////////////////////////////////////////////////////////////
+78
+CharacterJoint *Character::find_joint(basic_string< char > const &name) const;
+
+76 11 find_slider 4 98 22 Character::find_slider 0 1 32 415
+////////////////////////////////////////////////////////////////////
+//     Function: Character::find_slider
+//       Access: Published
+//  Description: Returns a pointer to the slider with the given name,
+//               if there is such a slider, or NULL if there is no such
+//               slider.  This will not return a pointer to a joint.
+////////////////////////////////////////////////////////////////////
+80
+CharacterSlider *Character::find_slider(basic_string< char > const &name) const;
+
+77 11 write_parts 4 98 22 Character::write_parts 0 1 33 371
+////////////////////////////////////////////////////////////////////
+//     Function: Character::write_parts
+//       Access: Published
+//  Description: Writes a list of the Character's joints and sliders,
+//               in their hierchical structure, to the indicated
+//               output stream.
+////////////////////////////////////////////////////////////////////
+48
+void Character::write_parts(ostream &out) const;
+
+78 17 write_part_values 4 98 28 Character::write_part_values 0 1 34 411
+////////////////////////////////////////////////////////////////////
+//     Function: Character::write_part_values
+//       Access: Published
+//  Description: Writes a list of the Character's joints and sliders,
+//               along with each current position, in their hierchical
+//               structure, to the indicated output stream.
+////////////////////////////////////////////////////////////////////
+54
+void Character::write_part_values(ostream &out) const;
+
+79 13 update_to_now 4 98 24 Character::update_to_now 0 1 35 612
+////////////////////////////////////////////////////////////////////
+//     Function: Character::update_to_now
+//       Access: Published
+//  Description: Advances the character's frame to the current time,
+//               and then calls update().  This can be used by show
+//               code to force an update of the character's position
+//               to the current frame, regardless of whether the
+//               character is currently onscreen and animating.
+//
+//               This method is deprecated.  Call update() instead.
+////////////////////////////////////////////////////////////////////
+36
+void Character::update_to_now(void);
+
+80 6 update 4 98 17 Character::update 0 1 36 434
+////////////////////////////////////////////////////////////////////
+//     Function: Character::update
+//       Access: Published
+//  Description: Recalculates the Character's joints and vertices for
+//               the current frame.  Normally this is performed
+//               automatically during the render and need not be
+//               called explicitly.
+////////////////////////////////////////////////////////////////////
+29
+void Character::update(void);
+
+81 12 force_update 4 98 23 Character::force_update 0 1 37 303
+////////////////////////////////////////////////////////////////////
+//     Function: Character::force_update
+//       Access: Published
+//  Description: Recalculates the character even if we think it
+//               doesn't need it.
+////////////////////////////////////////////////////////////////////
+35
+void Character::force_update(void);
+
+82 14 get_class_type 4 98 25 Character::get_class_type 0 1 38 0
+50
+static TypeHandle Character::get_class_type(void);
+
+83 20 CharacterJointBundle 4 100 42 CharacterJointBundle::CharacterJointBundle 0 2 39 40 723
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointBundle::Copy Constructor
+//       Access: Public
+//  Description: Normally, you'd use make_copy() or copy_subgraph() to
+//               make a copy of this.
+////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointBundle::Constructor
+//       Access: Public
+//  Description: Normally, there is no need to create a
+//               CharacterJointBundle directly.  The Character node
+//               will automatically create one for itself.
+////////////////////////////////////////////////////////////////////
+84
+CharacterJointBundle::CharacterJointBundle(basic_string< char > const &name = (""));
+
+84 8 get_node 4 100 30 CharacterJointBundle::get_node 0 1 41 302
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointBundle::get_node
+//       Access: Public
+//  Description: Returns the nth Character associated with
+//               this PartBundle.
+////////////////////////////////////////////////////////////////////
+62
+inline Character *CharacterJointBundle::get_node(int n) const;
+
+85 14 get_class_type 4 100 36 CharacterJointBundle::get_class_type 0 1 42 0
+61
+static TypeHandle CharacterJointBundle::get_class_type(void);
+
+86 4 make 4 102 26 CharacterJointEffect::make 0 1 43 533
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointEffect::make
+//       Access: Published, Static
+//  Description: Constructs a new CharacterJointEffect object that
+//               references the indicated character.  When a relative
+//               get_transform() is called on the node that contains
+//               the CharacterJointEffect, it will implicitly call
+//               character->update() first.
+////////////////////////////////////////////////////////////////////
+87
+static ConstPointerTo< RenderEffect > CharacterJointEffect::make(Character *character);
+
+87 13 get_character 4 102 35 CharacterJointEffect::get_character 0 1 44 413
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointEffect::get_character
+//       Access: Published
+//  Description: Returns the Character that will get update() called
+//               on it when this node's relative transform is queried,
+//               or NULL if there is no such character.
+////////////////////////////////////////////////////////////////////
+66
+inline Character *CharacterJointEffect::get_character(void) const;
+
+88 14 get_class_type 4 102 36 CharacterJointEffect::get_class_type 0 1 45 0
+61
+static TypeHandle CharacterJointEffect::get_class_type(void);
+
+89 21 ~CharacterJointEffect 4 102 43 CharacterJointEffect::~CharacterJointEffect 0 0 0
+50
+CharacterJointEffect::~CharacterJointEffect(void);
+
+45
+1 14 Dtool_nRYRA22U 7 3 112 0 14 Dtool_nRYRA22U 223 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 5 9 character 1 104  4 root 1 105  6 parent 1 106  4 name 1 108  13 default_value 1 109  
+2 14 Dtool_nRYR0hP_ 6 4 115 0 14 Dtool_nRYR0hP_ 646 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::add_net_transform
+//       Access: Published
+//  Description: Adds the indicated node to the list of nodes that will
+//               be updated each frame with the joint's net transform
+//               from the root.  Returns true if the node is
+//               successfully added, false if it had already been
+//               added.
+//
+//               A CharacterJointEffect for this joint's Character
+//               will automatically be added to the specified node.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 112  4 node 1 113  
+3 14 Dtool_nRYR6yW0 6 5 115 0 14 Dtool_nRYR6yW0 648 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::remove_net_transform
+//       Access: Published
+//  Description: Removes the indicated node from the list of nodes that
+//               will be updated each frame with the joint's net
+//               transform from the root.  Returns true if the node is
+//               successfully removed, false if it was not on the
+//               list.
+//
+//               If the node has a CharacterJointEffect that matches
+//               this joint's Character, it will be cleared.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 112  4 node 1 113  
+4 14 Dtool_nRYRHxNe 6 6 115 0 14 Dtool_nRYRHxNe 410 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::has_net_transform
+//       Access: Published
+//  Description: Returns true if the node is on the list of nodes that
+//               will be updated each frame with the joint's net
+//               transform from the root, false otherwise.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 116  4 node 1 113  
+5 14 Dtool_nRYRLDWU 4 7 118 0 14 Dtool_nRYRLDWU 388 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::clear_net_transforms
+//       Access: Published
+//  Description: Removes all nodes from the list of nodes that will be
+//               updated each frame with the joint's net transform
+//               from the root.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 112  
+6 14 Dtool_nRYReulW 7 8 120 0 14 Dtool_nRYReulW 451 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_net_transforms
+//       Access: Published
+//  Description: Returns a list of the net transforms set for this
+//               node.  Note that this returns a list of NodePaths,
+//               even though the net transforms are actually a list of
+//               PandaNodes.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 112  
+7 14 Dtool_nRYRDPic 6 9 115 0 14 Dtool_nRYRDPic 912 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::add_local_transform
+//       Access: Published
+//  Description: Adds the indicated node to the list of nodes that will
+//               be updated each frame with the joint's local
+//               transform from its parent.  Returns true if the node
+//               is successfully added, false if it had already been
+//               added.
+//
+//               The Character pointer should be the Character object
+//               that owns this joint; this will be used to create a
+//               CharacterJointEffect for this node.  If it is NULL,
+//               no such effect will be created.
+//
+//               A CharacterJointEffect for this joint's Character
+//               will automatically be added to the specified node.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 112  4 node 1 113  
+8 14 Dtool_nRYRosae 6 10 115 0 14 Dtool_nRYRosae 654 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::remove_local_transform
+//       Access: Published
+//  Description: Removes the indicated node from the list of nodes that
+//               will be updated each frame with the joint's local
+//               transform from its parent.  Returns true if the node
+//               is successfully removed, false if it was not on the
+//               list.
+//
+//               If the node has a CharacterJointEffect that matches
+//               this joint's Character, it will be cleared.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 112  4 node 1 113  
+9 14 Dtool_nRYRPfag 6 11 115 0 14 Dtool_nRYRPfag 416 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::has_local_transform
+//       Access: Published
+//  Description: Returns true if the node is on the list of nodes that
+//               will be updated each frame with the joint's local
+//               transform from its parent, false otherwise.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 116  4 node 1 113  
+10 14 Dtool_nRYRGw1l 4 12 118 0 14 Dtool_nRYRGw1l 394 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::clear_local_transforms
+//       Access: Published
+//  Description: Removes all nodes from the list of nodes that will be
+//               updated each frame with the joint's local transform
+//               from its parent.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 112  
+11 14 Dtool_nRYRL8vA 7 13 120 0 14 Dtool_nRYRL8vA 457 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_local_transforms
+//       Access: Published
+//  Description: Returns a list of the local transforms set for this
+//               node.  Note that this returns a list of NodePaths,
+//               even though the local transforms are actually a list of
+//               PandaNodes.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 112  
+12 14 Dtool_nRYRDAfP 4 14 118 0 14 Dtool_nRYRDAfP 309 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_transform
+//       Access: Published
+//  Description: Copies the joint's current transform into the
+//               indicated matrix.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 116  9 transform 1 121  
+13 14 Dtool_nRYR3CE8 4 15 118 0 14 Dtool_nRYR3CE8 392 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_net_transform
+//       Access: Published
+//  Description: Copies the joint's current net transform (composed
+//               from the root of the character joint hierarchy) into
+//               the indicated matrix.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 116  9 transform 1 121  
+14 14 Dtool_nRYRGjty 7 16 104 0 14 Dtool_nRYRGjty 272 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJoint::get_character
+//       Access: Published
+//  Description: Returns the Character that owns this joint.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 116  
+15 14 Dtool_nRYRp_fE 7 17 123 0 14 Dtool_nRYRp_fE 0 0 
+16 14 Dtool_nRYRoGHY 7 20 124 0 14 Dtool_nRYRoGHY 224 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterSlider::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 6 parent 1 106  4 name 1 108  
+17 14 Dtool_nRYRkkgC 6 21 115 0 14 Dtool_nRYRkkgC 603 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterSlider::update_internals
+//       Access: Public, Virtual
+//  Description: This is called by do_update() whenever the part or
+//               some ancestor has changed values.  It is a hook for
+//               derived classes to update whatever cache they may
+//               have that depends on these.
+//
+//               The return value is true if the part has changed as a
+//               result of the update, or false otherwise.
+//////////////////////////////////////////////////////////////////// 6 4 this 3 124  4 root 1 105  6 parent 1 106  12 self_changed 1 115  14 parent_changed 1 115  14 current_thread 1 125  
+18 14 Dtool_nRYRC18r 7 22 123 0 14 Dtool_nRYRC18r 0 0 
+19 14 Dtool_nRYR_y8G 7 25 127 0 14 Dtool_nRYR_y8G 399 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterVertexSlider::Constructor
+//       Access: Published
+//  Description: Constructs a new object that converts vertices from
+//               the indicated joint's coordinate space, into the
+//               other indicated joint's space.
+//////////////////////////////////////////////////////////////////// 1 11 char_slider 1 124  
+20 14 Dtool_nRYRGzr0 7 26 131 0 14 Dtool_nRYRGzr0 834 // Filename: characterVertexSlider.I
+// Created by:  drose (28Mar05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CharacterVertexSlider::get_char_slider
+//       Access: Published
+//  Description: Returns the CharacterSlider object for which this
+//               object returns the slider value.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 129  
+21 14 Dtool_nRYR0Nq1 7 27 123 0 14 Dtool_nRYR0Nq1 0 0 
+22 14 Dtool_nRYR1hyI 7 30 132 0 14 Dtool_nRYR1hyI 398 ////////////////////////////////////////////////////////////////////
+//     Function: JointVertexTransform::Constructor
+//       Access: Published
+//  Description: Constructs a new object that converts vertices from
+//               the indicated joint's coordinate space, into the
+//               other indicated joint's space.
+//////////////////////////////////////////////////////////////////// 1 5 joint 1 112  
+23 14 Dtool_nRYRewMf 7 31 116 0 14 Dtool_nRYRewMf 806 // Filename: jointVertexTransform.I
+// Created by:  drose (24Mar05)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: JointVertexTransform::get_joint
+//       Access: Published
+//  Description: Returns the joint for which this object returns the
+//               transform.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 133  
+24 14 Dtool_nRYRjhsr 7 32 123 0 14 Dtool_nRYRjhsr 0 0 
+25 14 Dtool_nRYRhs8D 7 35 104 0 14 Dtool_nRYRhs8D 218 ////////////////////////////////////////////////////////////////////
+//     Function: Character::Constructor
+//       Access: Public
+//  Description:
+//////////////////////////////////////////////////////////////////// 1 4 name 1 108  
+26 14 Dtool_nRYRJw7_ 7 36 138 0 14 Dtool_nRYRJw7_ 220 ////////////////////////////////////////////////////////////////////
+//     Function: Character::get_bundle
+//       Access: Published
+//  Description:
+//////////////////////////////////////////////////////////////////// 2 4 this 3 135  1 i 1 137  
+27 14 Dtool_nRYR36Qi 4 37 118 0 14 Dtool_nRYR36Qi 701 ////////////////////////////////////////////////////////////////////
+//     Function: Character::merge_bundles
+//       Access: Published
+//  Description: Merges old_bundle with new_bundle.  old_bundle
+//               must be one of the PartBundles within this node.  At
+//               the end of this call, the old_bundle pointer within
+//               this node will be replaced with the new_bundle
+//               pointer, and all geometry within this node will be
+//               updated to reference new_bundle.
+//
+//               This method is deprecated.  Use the newer version of
+//               this method, below.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 104  10 old_bundle 1 105  12 other_bundle 1 105  
+28 14 Dtool_nRYRFU2c 4 37 118 0 14 Dtool_nRYRFU2c 1454 ////////////////////////////////////////////////////////////////////
+//     Function: Character::merge_bundles
+//       Access: Published
+//  Description: Merges old_bundle_handle->get_bundle() with
+//               new_bundle.  old_bundle_handle must be one of the
+//               PartBundleHandle within this node.  At the end of
+//               this call, the bundle pointer within the
+//               old_bundle_handle will be replaced with that within
+//               the new_bundle_handle pointer, and all geometry
+//               within this node will be updated to reference
+//               new_bundle.
+//
+//               Normally, this is called when the two bundles have
+//               the same, or nearly the same, hierarchies.  In this
+//               case, new_bundle will simply be assigned over the
+//               old_bundle position.  However, if any joints are
+//               present in one bundle or the other, new_bundle will
+//               be modified to contain the union of all joints.
+//               
+//               The geometry below this node is also updated to
+//               reference new_bundle, instead of the original
+//               old_bundle.
+//
+//               This method is intended to unify two different models
+//               that share a common skeleton, for instance, different
+//               LOD's of the same model.
+//////////////////////////////////////////////////////////////////// 3 4 this 3 104  17 old_bundle_handle 1 139  19 other_bundle_handle 1 139  
+29 14 Dtool_nRYRndlW 4 38 118 0 14 Dtool_nRYRndlW 1731 ////////////////////////////////////////////////////////////////////
+//     Function: Character::set_lod_animation
+//       Access: Published
+//  Description: Activates a special mode in which the character
+//               animates less frequently as it gets further from the
+//               camera.  This is intended as a simple optimization to
+//               minimize the effort of computing animation for lots
+//               of characters that may not necessarily be very
+//               important to animate every frame.
+//
+//               If the character is closer to the camera than
+//               near_distance, then it is animated its normal rate,
+//               every frame.  If the character is exactly
+//               far_distance away, it is animated only every
+//               delay_factor seconds (which should be a number
+//               greater than 0).  If the character is between
+//               near_distance and far_distance, its animation rate is
+//               linearly interpolated according to its distance
+//               between the two.  The interpolation function
+//               continues beyond far_distance, so that the character
+//               is animated increasingly less frequently as it gets
+//               farther away.
+//
+//               The distance calculations are made from center, which
+//               is a fixed point relative to the character node, to
+//               the camera's lod center or cull center node (or to
+//               the camera node itself).
+//
+//               If multiple cameras are viewing the character in any
+//               given frame, the closest one counts.
+//////////////////////////////////////////////////////////////////// 5 4 this 3 104  6 center 1 141  12 far_distance 1 144  13 near_distance 1 144  12 delay_factor 1 144  
+30 14 Dtool_nRYRJ9zR 4 39 118 0 14 Dtool_nRYRJ9zR 436 ////////////////////////////////////////////////////////////////////
+//     Function: Character::clear_lod_animation
+//       Access: Published
+//  Description: Undoes the effect of a recent call to
+//               set_lod_animation().  Henceforth, the character will
+//               animate every frame, regardless of its distance from
+//               the camera.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 104  
+31 14 Dtool_nRYRv8ZU 7 40 112 0 14 Dtool_nRYRv8ZU 412 ////////////////////////////////////////////////////////////////////
+//     Function: Character::find_joint
+//       Access: Published
+//  Description: Returns a pointer to the joint with the given name,
+//               if there is such a joint, or NULL if there is no such
+//               joint.  This will not return a pointer to a slider.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 135  4 name 1 108  
+32 14 Dtool_nRYRypWE 7 41 124 0 14 Dtool_nRYRypWE 415 ////////////////////////////////////////////////////////////////////
+//     Function: Character::find_slider
+//       Access: Published
+//  Description: Returns a pointer to the slider with the given name,
+//               if there is such a slider, or NULL if there is no such
+//               slider.  This will not return a pointer to a joint.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 135  4 name 1 108  
+33 14 Dtool_nRYRoBhZ 4 42 118 0 14 Dtool_nRYRoBhZ 371 ////////////////////////////////////////////////////////////////////
+//     Function: Character::write_parts
+//       Access: Published
+//  Description: Writes a list of the Character's joints and sliders,
+//               in their hierchical structure, to the indicated
+//               output stream.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 135  3 out 1 145  
+34 14 Dtool_nRYR2iP2 4 43 118 0 14 Dtool_nRYR2iP2 411 ////////////////////////////////////////////////////////////////////
+//     Function: Character::write_part_values
+//       Access: Published
+//  Description: Writes a list of the Character's joints and sliders,
+//               along with each current position, in their hierchical
+//               structure, to the indicated output stream.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 135  3 out 1 145  
+35 14 Dtool_nRYR_b_8 4 44 118 0 14 Dtool_nRYR_b_8 612 ////////////////////////////////////////////////////////////////////
+//     Function: Character::update_to_now
+//       Access: Published
+//  Description: Advances the character's frame to the current time,
+//               and then calls update().  This can be used by show
+//               code to force an update of the character's position
+//               to the current frame, regardless of whether the
+//               character is currently onscreen and animating.
+//
+//               This method is deprecated.  Call update() instead.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 104  
+36 14 Dtool_nRYRoVfb 4 45 118 0 14 Dtool_nRYRoVfb 434 ////////////////////////////////////////////////////////////////////
+//     Function: Character::update
+//       Access: Published
+//  Description: Recalculates the Character's joints and vertices for
+//               the current frame.  Normally this is performed
+//               automatically during the render and need not be
+//               called explicitly.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 104  
+37 14 Dtool_nRYRCgKI 4 46 118 0 14 Dtool_nRYRCgKI 303 ////////////////////////////////////////////////////////////////////
+//     Function: Character::force_update
+//       Access: Published
+//  Description: Recalculates the character even if we think it
+//               doesn't need it.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 104  
+38 14 Dtool_nRYRBCxW 7 47 123 0 14 Dtool_nRYRBCxW 0 0 
+39 14 Dtool_nRYRDlKr 7 50 138 0 14 Dtool_nRYRDlKr 395 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointBundle::Constructor
+//       Access: Public
+//  Description: Normally, there is no need to create a
+//               CharacterJointBundle directly.  The Character node
+//               will automatically create one for itself.
+//////////////////////////////////////////////////////////////////// 1 4 name 1 108  
+40 14 Dtool_nRYRhKD8 7 50 138 0 14 Dtool_nRYRhKD8 395 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointBundle::Constructor
+//       Access: Public
+//  Description: Normally, there is no need to create a
+//               CharacterJointBundle directly.  The Character node
+//               will automatically create one for itself.
+//////////////////////////////////////////////////////////////////// 0 
+41 14 Dtool_nRYRf0ve 7 51 104 0 14 Dtool_nRYRf0ve 302 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointBundle::get_node
+//       Access: Public
+//  Description: Returns the nth Character associated with
+//               this PartBundle.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 147  1 n 1 137  
+42 14 Dtool_nRYRalYp 7 52 123 0 14 Dtool_nRYRalYp 0 0 
+43 14 Dtool_nRYRZ_sz 7 55 150 0 14 Dtool_nRYRZ_sz 533 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointEffect::make
+//       Access: Published, Static
+//  Description: Constructs a new CharacterJointEffect object that
+//               references the indicated character.  When a relative
+//               get_transform() is called on the node that contains
+//               the CharacterJointEffect, it will implicitly call
+//               character->update() first.
+//////////////////////////////////////////////////////////////////// 1 9 character 1 104  
+44 14 Dtool_nRYRc3hd 7 56 104 0 14 Dtool_nRYRc3hd 413 ////////////////////////////////////////////////////////////////////
+//     Function: CharacterJointEffect::get_character
+//       Access: Published
+//  Description: Returns the Character that will get update() called
+//               on it when this node's relative transform is queried,
+//               or NULL if there is no such character.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 151  
+45 14 Dtool_nRYR8jbN 7 57 123 0 14 Dtool_nRYR8jbN 0 0 
+63
+90 14 CharacterJoint 75777 14 CharacterJoint 14 CharacterJoint 0 0 0 1 46 0 0 14 47 48 49 50 51 52 53 54 55 56 57 58 59 60 0 0 1 0 91 0 0 0 0 301
+////////////////////////////////////////////////////////////////////
+//       Class : CharacterJoint
+// Description : This represents one joint of the character's
+//               animation, containing an animating transform matrix.
+////////////////////////////////////////////////////////////////////
+
+91 16 MovingPartMatrix 2049 16 MovingPartMatrix 16 MovingPartMatrix 0 0 0 0 0 0 0 0 0 0 0 0 279
+////////////////////////////////////////////////////////////////////
+//       Class : MovingPartMatrix
+// Description : This is a particular kind of MovingPart that accepts
+//               a matrix each frame.
+////////////////////////////////////////////////////////////////////
+
+92 15 CharacterSlider 75777 15 CharacterSlider 15 CharacterSlider 0 0 0 1 61 0 0 2 62 63 0 0 1 0 93 0 0 0 0 437
+////////////////////////////////////////////////////////////////////
+//       Class : CharacterSlider
+// Description : This is a morph slider within the character.  It's
+//               simply a single floating-point value that animates
+//               generally between 0 and 1, that controls the effects
+//               of one or more morphs within the character.
+////////////////////////////////////////////////////////////////////
+
+93 16 MovingPartScalar 2049 16 MovingPartScalar 16 MovingPartScalar 0 0 0 0 0 0 0 0 0 0 0 0 279
+////////////////////////////////////////////////////////////////////
+//       Class : MovingPartScalar
+// Description : This is a particular kind of MovingPart that accepts
+//               a scalar each frame.
+////////////////////////////////////////////////////////////////////
+
+94 21 CharacterVertexSlider 75777 21 CharacterVertexSlider 21 CharacterVertexSlider 0 0 0 1 64 0 0 2 65 66 0 0 1 0 95 0 0 0 0 351
+////////////////////////////////////////////////////////////////////
+//       Class : CharacterVertexSlider
+// Description : This is a specialization on VertexSlider that
+//               returns the slider value associated with a particular
+//               CharacterSlider object.
+////////////////////////////////////////////////////////////////////
+
+95 12 VertexSlider 2049 12 VertexSlider 12 VertexSlider 0 0 0 0 0 0 0 0 0 0 0 0 607
+////////////////////////////////////////////////////////////////////
+//       Class : VertexSlider
+// Description : This is an abstract base class that retains some
+//               slider value, which is a linear value that typically
+//               ranges from 0.0 to 1.0, and is used to control the
+//               animation of morphs (blend shapes).
+//
+//               It is similar to VertexTransform, which keeps a full
+//               4x4 transform matrix, but the VertexSlider only keeps
+//               a single float value.
+////////////////////////////////////////////////////////////////////
+
+96 20 JointVertexTransform 75777 20 JointVertexTransform 20 JointVertexTransform 0 0 0 1 67 0 0 2 68 69 0 0 1 0 97 0 0 0 0 804
+////////////////////////////////////////////////////////////////////
+//       Class : JointVertexTransform
+// Description : This is a specialization on VertexTransform that
+//               returns the transform necessary to move vertices as
+//               if they were assigned to the indicated joint.  The
+//               geometry itself should be parented to the scene graph
+//               at the level of the character's root joint; that is,
+//               it should not be parented under a node directly
+//               animated by any joints.
+//
+//               Multiple combinations of these with different weights
+//               are used to implement soft-skinned vertices for an
+//               animated character.
+////////////////////////////////////////////////////////////////////
+
+97 15 VertexTransform 2049 15 VertexTransform 15 VertexTransform 0 0 0 0 0 0 0 0 0 0 0 0 558
+////////////////////////////////////////////////////////////////////
+//       Class : VertexTransform
+// Description : This is an abstract base class that holds a pointer
+//               to some transform, computed in some arbitrary way,
+//               that is to be applied to vertices during rendering.
+//               This is used to implement soft-skinned and animated
+//               vertices.  Derived classes will define how the
+//               transform is actually computed.
+////////////////////////////////////////////////////////////////////
+
+98 9 Character 75777 9 Character 9 Character 0 0 0 1 70 0 0 12 71 72 73 74 75 76 77 78 79 80 81 82 0 0 1 0 99 0 0 0 0 301
+////////////////////////////////////////////////////////////////////
+//       Class : Character
+// Description : An animated character, with skeleton-morph animation
+//               and either soft-skinned or hard-skinned vertices.
+////////////////////////////////////////////////////////////////////
+
+99 14 PartBundleNode 2049 14 PartBundleNode 14 PartBundleNode 0 0 0 0 0 0 0 2 153 154 0 0 0 0 605
+////////////////////////////////////////////////////////////////////
+//       Class : PartBundleNode
+// Description : This is a node that contains a pointer to an
+//               PartBundle.  Like AnimBundleNode, it exists to make
+//               it easy to store PartBundles in the scene graph.
+//
+//               (Unlike AnimBundleNode, however, PartBundleNode has
+//               an additional function: it is also the base class of
+//               the Character node type, which adds additional
+//               functionality.)
+////////////////////////////////////////////////////////////////////
+
+100 20 CharacterJointBundle 75777 20 CharacterJointBundle 20 CharacterJointBundle 0 0 0 1 83 0 0 2 84 85 0 0 1 0 101 0 0 0 0 272
+////////////////////////////////////////////////////////////////////
+//       Class : CharacterJointBundle
+// Description : The collection of all the joints and sliders in the
+//               character.
+////////////////////////////////////////////////////////////////////
+
+101 10 PartBundle 2049 10 PartBundle 10 PartBundle 0 0 0 0 0 0 0 1 155 0 0 0 0 337
+////////////////////////////////////////////////////////////////////
+//       Class : PartBundle
+// Description : This is the root of a MovingPart hierarchy.  It
+//               defines the hierarchy of moving parts that make up an
+//               animatable object.
+////////////////////////////////////////////////////////////////////
+
+102 20 CharacterJointEffect 141313 20 CharacterJointEffect 20 CharacterJointEffect 0 0 0 0 89 0 3 86 87 88 0 0 1 0 103 0 0 0 0 609
+////////////////////////////////////////////////////////////////////
+//       Class : CharacterJointEffect
+// Description : This effect will be added automatically to a node by
+//               CharacterJoint::add_net_transform() and
+//               CharacterJoint::add_local_transform().
+//
+//               The effect binds the node back to the character, so
+//               that querying the relative transform of the affected
+//               node will automatically force the indicated character
+//               to be updated first.
+////////////////////////////////////////////////////////////////////
+
+103 12 RenderEffect 2049 12 RenderEffect 12 RenderEffect 0 0 0 0 0 0 0 0 0 0 0 0 1346
+////////////////////////////////////////////////////////////////////
+//       Class : RenderEffect
+// Description : This is the base class for a number of special render
+//               effects that may be set on scene graph nodes to
+//               change the way they render.  This includes
+//               BillboardEffect, DecalEffect, etc.
+//
+//               RenderEffect represents render properties that must
+//               be applied as soon as they are encountered in the
+//               scene graph, rather than propagating down to the
+//               leaves.  This is different from RenderAttrib, which
+//               represents properties like color and texture that
+//               don't do anything until they propagate down to a
+//               GeomNode.
+//
+//               You should not attempt to create or modify a
+//               RenderEffect directly; instead, use the make() method
+//               of the appropriate kind of effect you want.  This
+//               will allocate and return a new RenderEffect of the
+//               appropriate type, and it may share pointers if
+//               possible.  Do not modify the new RenderEffect if you
+//               wish to change its properties; instead, create a new
+//               one.
+////////////////////////////////////////////////////////////////////
+
+104 11 Character * 8576 11 Character * 11 Character * 0 0 98 0 0 0 0 0 0 0 0 0 0
+
+105 12 PartBundle * 8576 12 PartBundle * 12 PartBundle * 0 0 101 0 0 0 0 0 0 0 0 0 0
+
+106 11 PartGroup * 8576 11 PartGroup * 11 PartGroup * 0 0 107 0 0 0 0 0 0 0 0 0 0
+
+107 9 PartGroup 2048 9 PartGroup 9 PartGroup 0 0 0 0 0 0 0 1 156 0 0 0 0 290
+////////////////////////////////////////////////////////////////////
+//       Class : PartGroup
+// Description : This is the base class for PartRoot and
+//               MovingPart.  It defines a hierarchy of MovingParts.
+////////////////////////////////////////////////////////////////////
+
+108 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+109 17 LMatrix4f const * 8576 17 LMatrix4f const * 17 LMatrix4f const * 0 0 110 0 0 0 0 0 0 0 0 0 0
+
+110 15 LMatrix4f const 8832 15 LMatrix4f const 15 LMatrix4f const 0 0 111 0 0 0 0 0 0 0 0 0 0
+
+111 9 LMatrix4f 2048 9 LMatrix4f 9 LMatrix4f 0 0 0 0 0 0 0 3 157 158 159 0 0 0 0 703
+// Filename: lmatrix4_src.h
+// Created by:  drose (15Jan99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LMatrix4
+// Description : This is a 4-by-4 transform matrix.
+////////////////////////////////////////////////////////////////////
+
+112 16 CharacterJoint * 8576 16 CharacterJoint * 16 CharacterJoint * 0 0 90 0 0 0 0 0 0 0 0 0 0
+
+113 11 PandaNode * 8576 11 PandaNode * 11 PandaNode * 0 0 114 0 0 0 0 0 0 0 0 0 0
+
+114 9 PandaNode 2048 9 PandaNode 9 PandaNode 0 0 0 0 0 0 0 0 0 0 0 0 374
+////////////////////////////////////////////////////////////////////
+//       Class : PandaNode
+// Description : A basic node of the scene graph or data graph.  This
+//               is the base class of all specialized nodes, and also
+//               serves as a generic node with no special properties.
+////////////////////////////////////////////////////////////////////
+
+115 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+116 22 CharacterJoint const * 8576 22 CharacterJoint const * 22 CharacterJoint const * 0 0 117 0 0 0 0 0 0 0 0 0 0
+
+117 20 CharacterJoint const 8832 20 CharacterJoint const 20 CharacterJoint const 0 0 90 0 0 0 0 0 0 0 0 0 0
+
+118 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+119 18 NodePathCollection 2048 18 NodePathCollection 18 NodePathCollection 0 0 0 0 0 0 0 1 160 0 0 0 0 403
+////////////////////////////////////////////////////////////////////
+//       Class : NodePathCollection
+// Description : This is a set of zero or more NodePaths.  It's handy
+//               for returning from functions that need to return
+//               multiple NodePaths (for instance,
+//               NodePaths::get_children).
+////////////////////////////////////////////////////////////////////
+
+120 20 NodePathCollection * 8576 20 NodePathCollection * 20 NodePathCollection * 0 0 119 0 0 0 0 0 0 0 0 0 0
+
+121 11 LMatrix4f * 8576 11 LMatrix4f * 11 LMatrix4f * 0 0 111 0 0 0 0 0 0 0 0 0 0
+
+122 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+123 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 122 0 0 0 0 0 0 0 0 0 0
+
+124 17 CharacterSlider * 8576 17 CharacterSlider * 17 CharacterSlider * 0 0 92 0 0 0 0 0 0 0 0 0 0
+
+125 8 Thread * 8576 8 Thread * 8 Thread * 0 0 126 0 0 0 0 0 0 0 0 0 0
+
+126 6 Thread 2048 6 Thread 6 Thread 0 0 0 0 0 0 0 0 0 0 0 0 668
+////////////////////////////////////////////////////////////////////
+//       Class : Thread
+// Description : A thread; that is, a lightweight process.  This is an
+//               abstract base class; to use it, you must subclass
+//               from it and redefine thread_main().
+//
+//               The thread itself will keep a reference count on the
+//               Thread object while it is running; when the thread
+//               returns from its root function, the Thread object
+//               will automatically be destructed if no other pointers
+//               are referencing it.
+////////////////////////////////////////////////////////////////////
+
+127 23 CharacterVertexSlider * 8576 23 CharacterVertexSlider * 23 CharacterVertexSlider * 0 0 94 0 0 0 0 0 0 0 0 0 0
+
+128 21 CharacterSlider const 8832 21 CharacterSlider const 21 CharacterSlider const 0 0 92 0 0 0 0 0 0 0 0 0 0
+
+129 29 CharacterVertexSlider const * 8576 29 CharacterVertexSlider const * 29 CharacterVertexSlider const * 0 0 130 0 0 0 0 0 0 0 0 0 0
+
+130 27 CharacterVertexSlider const 8832 27 CharacterVertexSlider const 27 CharacterVertexSlider const 0 0 94 0 0 0 0 0 0 0 0 0 0
+
+131 23 CharacterSlider const * 8576 23 CharacterSlider const * 23 CharacterSlider const * 0 0 128 0 0 0 0 0 0 0 0 0 0
+
+132 22 JointVertexTransform * 8576 22 JointVertexTransform * 22 JointVertexTransform * 0 0 96 0 0 0 0 0 0 0 0 0 0
+
+133 28 JointVertexTransform const * 8576 28 JointVertexTransform const * 28 JointVertexTransform const * 0 0 134 0 0 0 0 0 0 0 0 0 0
+
+134 26 JointVertexTransform const 8832 26 JointVertexTransform const 26 JointVertexTransform const 0 0 96 0 0 0 0 0 0 0 0 0 0
+
+135 17 Character const * 8576 17 Character const * 17 Character const * 0 0 136 0 0 0 0 0 0 0 0 0 0
+
+136 15 Character const 8832 15 Character const 15 Character const 0 0 98 0 0 0 0 0 0 0 0 0 0
+
+137 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+138 22 CharacterJointBundle * 8576 22 CharacterJointBundle * 22 CharacterJointBundle * 0 0 100 0 0 0 0 0 0 0 0 0 0
+
+139 18 PartBundleHandle * 8576 18 PartBundleHandle * 18 PartBundleHandle * 0 0 140 0 0 0 0 0 0 0 0 0 0
+
+140 16 PartBundleHandle 2048 16 PartBundleHandle 16 PartBundleHandle 0 0 0 0 0 0 0 0 0 0 0 0 890
+////////////////////////////////////////////////////////////////////
+//       Class : PartBundleHandle
+// Description : This is a trivial class returned by
+//               PartBundleNode::get_bundle().  Its purpose is to hold
+//               the actual PartBundle pointer contained within the
+//               PartBundleNode, so that scene graph flatten
+//               operations can safely combine or duplicate
+//               PartBundles as necessary without affecting high-level
+//               bundle operations.
+//
+//               The high-level Actor class defined in
+//               direct/src/actor, for instance, will store a list of
+//               PartBundleHandles instead of on actual PartBundles,
+//               so that it will be immune to changes from these
+//               flatten operations.
+////////////////////////////////////////////////////////////////////
+
+141 16 LPoint3f const * 8576 16 LPoint3f const * 16 LPoint3f const * 0 0 142 0 0 0 0 0 0 0 0 0 0
+
+142 14 LPoint3f const 8832 14 LPoint3f const 14 LPoint3f const 0 0 143 0 0 0 0 0 0 0 0 0 0
+
+143 7 Vertexf 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 0 1083
+// Filename: lpoint3_src.h
+// Created by:  drose (25Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint3
+// Description : This is a three-component point in space (as opposed
+//               to a three-component vector, which represents a
+//               direction and a distance).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+144 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+145 9 ostream * 8576 9 ostream * 9 ostream * 0 0 146 0 0 0 0 0 0 0 0 0 0
+
+146 7 ostream 2048 7 ostream 7 ostream 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+147 28 CharacterJointBundle const * 8576 28 CharacterJointBundle const * 28 CharacterJointBundle const * 0 0 148 0 0 0 0 0 0 0 0 0 0
+
+148 26 CharacterJointBundle const 8832 26 CharacterJointBundle const 26 CharacterJointBundle const 0 0 100 0 0 0 0 0 0 0 0 0 0
+
+149 18 RenderEffect const 8832 18 RenderEffect const 18 RenderEffect const 0 0 103 0 0 0 0 0 0 0 0 0 0
+
+150 20 RenderEffect const * 8576 20 RenderEffect const * 20 RenderEffect const * 0 0 149 0 0 0 0 0 0 0 0 0 0
+
+151 28 CharacterJointEffect const * 8576 28 CharacterJointEffect const * 28 CharacterJointEffect const * 0 0 152 0 0 0 0 0 0 0 0 0 0
+
+152 26 CharacterJointEffect const 8832 26 CharacterJointEffect const 26 CharacterJointEffect const 0 0 102 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+8
+153 0 34 11 get_bundles 15 get_num_bundles 10 get_bundle 
+154 0 34 18 get_bundle_handles 15 get_num_bundles 17 get_bundle_handle 
+155 0 49 9 get_nodes 13 get_num_nodes 8 get_node 
+156 0 63 12 get_children 16 get_num_children 9 get_child 
+157 0 67 8 get_rows 4 size 7 get_row 
+158 0 67 8 get_cols 4 size 7 get_col 
+159 0 67 9 get_row3s 4 size 8 get_row3 
+160 0 79 9 get_paths 13 get_num_paths 8 get_path 

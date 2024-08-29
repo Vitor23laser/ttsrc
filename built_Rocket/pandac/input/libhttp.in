@@ -1,0 +1,115 @@
+1687213772
+2 2
+7 libhttp 4 ncDU 8 p3direct 
+14
+15 14 GetRequestType 4 29 28 Http_Request::GetRequestType 0 1 1 0
+56
+basic_string< char > Http_Request::GetRequestType(void);
+
+16 13 GetRawRequest 4 29 27 Http_Request::GetRawRequest 0 1 2 0
+55
+basic_string< char > Http_Request::GetRawRequest(void);
+
+17 13 GetRequestURL 4 29 27 Http_Request::GetRequestURL 0 1 3 0
+55
+basic_string< char > Http_Request::GetRequestURL(void);
+
+18 16 GetSourceAddress 4 29 30 Http_Request::GetSourceAddress 0 1 4 0
+58
+basic_string< char > Http_Request::GetSourceAddress(void);
+
+19 16 AppendToResponse 4 29 30 Http_Request::AppendToResponse 0 1 5 0
+68
+void Http_Request::AppendToResponse(basic_string< char > const &in);
+
+20 16 SendThisResponse 4 29 30 Http_Request::SendThisResponse 0 1 6 0
+68
+void Http_Request::SendThisResponse(basic_string< char > const &in);
+
+21 6 Finish 4 29 20 Http_Request::Finish 0 1 7 0
+32
+void Http_Request::Finish(void);
+
+22 5 Abort 4 29 19 Http_Request::Abort 0 1 8 0
+31
+void Http_Request::Abort(void);
+
+23 9 HasOption 4 29 23 Http_Request::HasOption 0 1 9 0
+54
+bool Http_Request::HasOption(basic_string< char > in);
+
+24 9 GetOption 4 29 23 Http_Request::GetOption 0 1 10 0
+61
+char const *Http_Request::GetOption(basic_string< char > in);
+
+25 22 GetRequestOptionString 4 29 36 Http_Request::GetRequestOptionString 0 1 11 0
+64
+basic_string< char > Http_Request::GetRequestOptionString(void);
+
+26 22 HttpManager_Initialize 4 29 36 Http_Request::HttpManager_Initialize 0 1 12 0
+74
+static bool Http_Request::HttpManager_Initialize(unsigned short int port);
+
+27 23 HttpManager_GetARequest 4 29 37 Http_Request::HttpManager_GetARequest 0 1 13 0
+65
+static Http_Request *Http_Request::HttpManager_GetARequest(void);
+
+28 14 get_class_type 4 29 28 Http_Request::get_class_type 0 1 14 0
+53
+static TypeHandle Http_Request::get_class_type(void);
+
+14
+1 14 Dtool_ncDUPB_9 6 3 32 0 14 Dtool_ncDUPB_9 0 1 4 this 3 31  
+2 14 Dtool_ncDUEvS0 6 4 32 0 14 Dtool_ncDUEvS0 0 1 4 this 3 31  
+3 14 Dtool_ncDU1PQc 6 5 32 0 14 Dtool_ncDU1PQc 0 1 4 this 3 31  
+4 14 Dtool_ncDUfMKv 6 6 32 0 14 Dtool_ncDUfMKv 0 1 4 this 3 31  
+5 14 Dtool_ncDUaMOr 4 7 33 0 14 Dtool_ncDUaMOr 0 2 4 this 3 31  2 in 1 32  
+6 14 Dtool_ncDUgrJb 4 8 33 0 14 Dtool_ncDUgrJb 0 2 4 this 3 31  2 in 1 32  
+7 14 Dtool_ncDUqMFo 4 9 33 0 14 Dtool_ncDUqMFo 0 1 4 this 3 31  
+8 14 Dtool_ncDUsqPw 4 10 33 0 14 Dtool_ncDUsqPw 0 1 4 this 3 31  
+9 14 Dtool_ncDUB9L7 6 11 34 0 14 Dtool_ncDUB9L7 0 2 4 this 3 31  2 in 1 32  
+10 14 Dtool_ncDUF_pQ 6 12 32 0 14 Dtool_ncDUF_pQ 0 2 4 this 3 31  2 in 1 32  
+11 14 Dtool_ncDU_Rxv 6 13 32 0 14 Dtool_ncDU_Rxv 0 1 4 this 3 31  
+12 14 Dtool_ncDUmyEx 6 14 34 0 14 Dtool_ncDUmyEx 0 1 4 port 1 35  
+13 14 Dtool_ncDUn0Oj 6 15 31 0 14 Dtool_ncDUn0Oj 0 0 
+14 14 Dtool_ncDUI6Hc 7 16 37 0 14 Dtool_ncDUI6Hc 0 0 
+9
+29 12 Http_Request 75777 12 Http_Request 12 Http_Request 0 0 0 0 0 0 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 0 0 1 0 30 0 0 0 0 0
+
+30 14 HttpConnection 1050625 14 HttpConnection 14 HttpConnection 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+31 14 Http_Request * 8576 14 Http_Request * 14 Http_Request * 0 0 29 0 0 0 0 0 0 0 0 0 0
+
+32 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+33 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+34 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+35 18 unsigned short int 8262 18 unsigned short int 18 unsigned short int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+36 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+37 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 36 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+0

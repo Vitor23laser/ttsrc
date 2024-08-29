@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="models" version="Rocket_1.7" seq="1">
+    <config display_name="Standard models" />
+    <uncompressed_archive filename="models.Rocket_1.7.mf" size="22" timestamp="1687218612" hash="ef22d24cc462dcb6bc021418a3e2542c" />
+    <compressed_archive filename="models.Rocket_1.7.mf.pz" size="19" timestamp="1687218612" hash="afd5b01fc22dd2dcc78d6e4f18402a61" />
+</package>

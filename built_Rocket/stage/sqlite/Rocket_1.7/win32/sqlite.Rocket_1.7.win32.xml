@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="sqlite" platform="win32" version="Rocket_1.7" seq="1">
+    <config display_name="SQLite Interface" />
+    <requires name="panda3d" platform="win32" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <uncompressed_archive filename="sqlite.Rocket_1.7.win32.mf" size="628993" timestamp="1687218656" hash="2be1d2d8c404062543c708fd83123e3f" />
+    <compressed_archive filename="sqlite.Rocket_1.7.win32.mf.pz" size="356505" timestamp="1687218656" hash="c64ab14199286f3e91a1e6450c365e56" />
+    <extract filename="_sqlite3.pyd" size="53760" timestamp="1636127687" hash="21c9e54038aeac9c570dbf4e8e25ddd9" />
+    <extract filename="sqlite3.dll" size="571904" timestamp="1636127687" hash="c81e02ee95d8e736fa8958ce0ab69338" />
+</package>

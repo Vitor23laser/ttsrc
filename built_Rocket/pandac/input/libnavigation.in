@@ -1,0 +1,46 @@
+1687213916
+2 2
+13 libnavigation 4 nZdk 3 otp 
+4
+5 9 PathTable 4 9 20 PathTable::PathTable 0 2 1 2 0
+92
+PathTable::PathTable(void);
+PathTable::PathTable(PyObject *pathData, PyObject *connections);
+
+6 10 ~PathTable 4 9 21 PathTable::~PathTable 0 0 0
+28
+PathTable::~PathTable(void);
+
+7 9 initTable 4 9 20 PathTable::initTable 0 1 3 0
+69
+void PathTable::initTable(PyObject *pathData, PyObject *connections);
+
+8 9 findRoute 4 9 20 PathTable::findRoute 0 1 4 77
+// findRoute: Finds all nodes in the optimal path from startNode to goalNode.
+97
+inline PyObject *PathTable::findRoute(unsigned short int startNode, unsigned short int goalNode);
+
+4
+1 14 Dtool_nZdkeGKz 7 2 10 6 14 Dtool_nZdkeGKz 0 0 
+2 14 Dtool_nZdkcSmG 7 2 10 6 14 Dtool_nZdkcSmG 0 2 8 pathData 1 11  11 connections 1 11  
+3 14 Dtool_nZdkCBmU 4 4 13 0 14 Dtool_nZdkCBmU 0 3 4 this 3 10  8 pathData 1 11  11 connections 1 11  
+4 14 Dtool_nZdkshio 6 5 11 0 14 Dtool_nZdkshio 77 // findRoute: Finds all nodes in the optimal path from startNode to goalNode. 3 4 this 3 10  9 startNode 1 14  8 goalNode 1 14  
+6
+9 9 PathTable 26625 9 PathTable 9 PathTable 0 0 0 1 5 6 0 2 7 8 0 0 0 0 0 164
+////////////////////////////////////////////////////////////////////
+//       Class : PathTable
+////////////////////////////////////////////////////////////////////
+
+10 11 PathTable * 8576 11 PathTable * 11 PathTable * 0 0 9 0 0 0 0 0 0 0 0 0 0
+
+11 10 PyObject * 8576 10 PyObject * 10 PyObject * 0 0 12 0 0 0 0 0 0 0 0 0 0
+
+12 8 PyObject 2048 8 PyObject 8 PyObject 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+13 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+14 18 unsigned short int 8262 18 unsigned short int 18 unsigned short int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+0

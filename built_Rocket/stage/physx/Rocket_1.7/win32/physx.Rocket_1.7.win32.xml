@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="physx" platform="win32" version="Rocket_1.7" seq="1">
+    <config display_name="Panda3D PhysX integration" />
+    <requires name="panda3d" platform="win32" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <uncompressed_archive filename="physx.Rocket_1.7.win32.mf" size="659209" timestamp="1687218623" hash="ce57ec56751d57fe232ba7af9683e089" />
+    <compressed_archive filename="physx.Rocket_1.7.win32.mf.pz" size="147837" timestamp="1687218623" hash="0e87b6578f1cbda07c0d8027875e2024" />
+    <extract filename="PhysXDevice.dll" size="659152" timestamp="1633568325" hash="f9a0149623b15dcc5ea2e0831a44e50e" />
+</package>

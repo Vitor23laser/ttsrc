@@ -1,0 +1,60 @@
+1687213946
+2 2
+9 libsecure 4 w_HE 3 otp 
+2
+3 14 prepare_avatar 1 0 14 prepare_avatar 0 1 1 316
+// This function loads the (encrypted) client certificate into the
+// indicated HTTPClient.  It should be called something like
+// load_client_certificate(), but that name would then be visible to a
+// hacker scanning the Python code, so we call it something
+// misleading just to make it a teeny bit harder to find.
+38
+void prepare_avatar(HTTPClient *http);
+
+4 13 preload_cache 1 0 13 preload_cache 0 1 2 274
+// This function returns a string that should be unique to each
+// computer (currently, it returns the MAC address).  As with
+// loadClientCertificate, it should be named get_fingerprint(), but we
+// call it something misleading instead to distract curious
+// code-browsers.
+41
+basic_string< char > preload_cache(void);
+
+2
+1 14 Dtool_w_HEnYec 4 1 7 0 14 Dtool_w_HEnYec 316 // This function loads the (encrypted) client certificate into the
+// indicated HTTPClient.  It should be called something like
+// load_client_certificate(), but that name would then be visible to a
+// hacker scanning the Python code, so we call it something
+// misleading just to make it a teeny bit harder to find. 1 4 http 1 5  
+2 14 Dtool_w_HECSpS 6 2 8 0 14 Dtool_w_HECSpS 274 // This function returns a string that should be unique to each
+// computer (currently, it returns the MAC address).  As with
+// loadClientCertificate, it should be named get_fingerprint(), but we
+// call it something misleading instead to distract curious
+// code-browsers. 0 
+4
+5 12 HTTPClient * 8576 12 HTTPClient * 12 HTTPClient * 0 0 6 0 0 0 0 0 0 0 0 0 0
+
+6 10 HTTPClient 2048 10 HTTPClient 10 HTTPClient 0 0 0 0 0 0 0 0 0 0 0 0 871
+////////////////////////////////////////////////////////////////////
+//       Class : HTTPClient
+// Description : Handles contacting an HTTP server and retrieving a
+//               document.  Each HTTPClient object represents a
+//               separate context, and stores its own list of cookies,
+//               passwords, and certificates; however, a given
+//               HTTPClient is capable of making multiple simultaneous
+//               requests to the same or different servers.
+//
+//               It is up to the programmer whether one HTTPClient
+//               should be used to retrieve all documents, or a
+//               separate one should be created each time.  There is a
+//               default, global HTTPClient available in
+//               HTTPClient::get_global_ptr().
+////////////////////////////////////////////////////////////////////
+
+7 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+8 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+0

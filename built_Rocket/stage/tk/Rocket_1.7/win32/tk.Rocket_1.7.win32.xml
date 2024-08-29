@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="tk" platform="win32" version="Rocket_1.7" seq="1">
+    <config display_name="Tk GUI Toolkit" />
+    <requires name="panda3d" platform="win32" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <uncompressed_archive filename="tk.Rocket_1.7.win32.mf" size="2676022" timestamp="1687218654" hash="5f870d20577c9c5f3d3b8f1147f4e44c" />
+    <compressed_archive filename="tk.Rocket_1.7.win32.mf.pz" size="1134432" timestamp="1687218654" hash="8efbd1431518ad10fa30a542a3531e6d" />
+    <extract filename="_ctypes.pyd" size="73728" timestamp="1636127687" hash="cfefe68bdf7ba88538b9a0386ea46364" />
+    <extract filename="_tkinter.pyd" size="30208" timestamp="1636127687" hash="58311317ad08de11faaeea72ee364ba7" />
+    <extract filename="tcl85.dll" size="867328" timestamp="1636127687" hash="e86ea681c97f48a082610c9b6e38834e" />
+    <extract filename="tk85.dll" size="1319936" timestamp="1636127687" hash="72f95604065ab9f1bfb3ff0475a417dd" />
+</package>

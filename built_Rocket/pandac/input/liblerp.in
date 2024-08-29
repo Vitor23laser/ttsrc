@@ -1,0 +1,1012 @@
+1687212835
+2 2
+7 liblerp 4 jRdz 5 panda 
+102
+107 14 get_class_type 4 209 27 LerpFunctor::get_class_type 0 1 1 0
+52
+static TypeHandle LerpFunctor::get_class_type(void);
+
+108 11 interpolate 4 211 37 SimpleLerpFunctor< int >::interpolate 0 1 2 0
+52
+int ::SimpleLerpFunctor< int >::interpolate(float );
+
+109 9 get_start 4 211 35 SimpleLerpFunctor< int >::get_start 0 1 3 0
+68
+inline int const &::SimpleLerpFunctor< int >::get_start(void) const;
+
+110 7 get_end 4 211 33 SimpleLerpFunctor< int >::get_end 0 1 4 0
+66
+inline int const &::SimpleLerpFunctor< int >::get_end(void) const;
+
+111 14 get_class_type 4 211 40 SimpleLerpFunctor< int >::get_class_type 0 1 5 0
+67
+static TypeHandle ::SimpleLerpFunctor< int >::get_class_type(void);
+
+112 11 interpolate 4 212 39 SimpleLerpFunctor< float >::interpolate 0 1 6 0
+56
+float ::SimpleLerpFunctor< float >::interpolate(float );
+
+113 9 get_start 4 212 37 SimpleLerpFunctor< float >::get_start 0 1 7 0
+72
+inline float const &::SimpleLerpFunctor< float >::get_start(void) const;
+
+114 7 get_end 4 212 35 SimpleLerpFunctor< float >::get_end 0 1 8 0
+70
+inline float const &::SimpleLerpFunctor< float >::get_end(void) const;
+
+115 14 get_class_type 4 212 42 SimpleLerpFunctor< float >::get_class_type 0 1 9 0
+69
+static TypeHandle ::SimpleLerpFunctor< float >::get_class_type(void);
+
+116 11 interpolate 4 213 42 SimpleLerpFunctor< LPoint2f >::interpolate 0 1 10 0
+62
+LPoint2f ::SimpleLerpFunctor< LPoint2f >::interpolate(float );
+
+117 9 get_start 4 213 40 SimpleLerpFunctor< LPoint2f >::get_start 0 1 11 0
+78
+inline LPoint2f const &::SimpleLerpFunctor< LPoint2f >::get_start(void) const;
+
+118 7 get_end 4 213 38 SimpleLerpFunctor< LPoint2f >::get_end 0 1 12 0
+76
+inline LPoint2f const &::SimpleLerpFunctor< LPoint2f >::get_end(void) const;
+
+119 14 get_class_type 4 213 45 SimpleLerpFunctor< LPoint2f >::get_class_type 0 1 13 0
+72
+static TypeHandle ::SimpleLerpFunctor< LPoint2f >::get_class_type(void);
+
+120 11 interpolate 4 214 42 SimpleLerpFunctor< LPoint3f >::interpolate 0 1 14 0
+62
+LPoint3f ::SimpleLerpFunctor< LPoint3f >::interpolate(float );
+
+121 9 get_start 4 214 40 SimpleLerpFunctor< LPoint3f >::get_start 0 1 15 0
+78
+inline LPoint3f const &::SimpleLerpFunctor< LPoint3f >::get_start(void) const;
+
+122 7 get_end 4 214 38 SimpleLerpFunctor< LPoint3f >::get_end 0 1 16 0
+76
+inline LPoint3f const &::SimpleLerpFunctor< LPoint3f >::get_end(void) const;
+
+123 14 get_class_type 4 214 45 SimpleLerpFunctor< LPoint3f >::get_class_type 0 1 17 0
+72
+static TypeHandle ::SimpleLerpFunctor< LPoint3f >::get_class_type(void);
+
+124 11 interpolate 4 215 42 SimpleLerpFunctor< LPoint4f >::interpolate 0 1 18 0
+62
+LPoint4f ::SimpleLerpFunctor< LPoint4f >::interpolate(float );
+
+125 9 get_start 4 215 40 SimpleLerpFunctor< LPoint4f >::get_start 0 1 19 0
+78
+inline LPoint4f const &::SimpleLerpFunctor< LPoint4f >::get_start(void) const;
+
+126 7 get_end 4 215 38 SimpleLerpFunctor< LPoint4f >::get_end 0 1 20 0
+76
+inline LPoint4f const &::SimpleLerpFunctor< LPoint4f >::get_end(void) const;
+
+127 14 get_class_type 4 215 45 SimpleLerpFunctor< LPoint4f >::get_class_type 0 1 21 0
+72
+static TypeHandle ::SimpleLerpFunctor< LPoint4f >::get_class_type(void);
+
+128 11 interpolate 4 216 44 SimpleLerpFunctor< LVecBase2f >::interpolate 0 1 22 0
+66
+LVecBase2f ::SimpleLerpFunctor< LVecBase2f >::interpolate(float );
+
+129 9 get_start 4 216 42 SimpleLerpFunctor< LVecBase2f >::get_start 0 1 23 0
+82
+inline LVecBase2f const &::SimpleLerpFunctor< LVecBase2f >::get_start(void) const;
+
+130 7 get_end 4 216 40 SimpleLerpFunctor< LVecBase2f >::get_end 0 1 24 0
+80
+inline LVecBase2f const &::SimpleLerpFunctor< LVecBase2f >::get_end(void) const;
+
+131 14 get_class_type 4 216 47 SimpleLerpFunctor< LVecBase2f >::get_class_type 0 1 25 0
+74
+static TypeHandle ::SimpleLerpFunctor< LVecBase2f >::get_class_type(void);
+
+132 11 interpolate 4 217 44 SimpleLerpFunctor< LVecBase3f >::interpolate 0 1 26 0
+66
+LVecBase3f ::SimpleLerpFunctor< LVecBase3f >::interpolate(float );
+
+133 9 get_start 4 217 42 SimpleLerpFunctor< LVecBase3f >::get_start 0 1 27 0
+82
+inline LVecBase3f const &::SimpleLerpFunctor< LVecBase3f >::get_start(void) const;
+
+134 7 get_end 4 217 40 SimpleLerpFunctor< LVecBase3f >::get_end 0 1 28 0
+80
+inline LVecBase3f const &::SimpleLerpFunctor< LVecBase3f >::get_end(void) const;
+
+135 14 get_class_type 4 217 47 SimpleLerpFunctor< LVecBase3f >::get_class_type 0 1 29 0
+74
+static TypeHandle ::SimpleLerpFunctor< LVecBase3f >::get_class_type(void);
+
+136 11 interpolate 4 218 44 SimpleLerpFunctor< LVecBase4f >::interpolate 0 1 30 0
+66
+LVecBase4f ::SimpleLerpFunctor< LVecBase4f >::interpolate(float );
+
+137 9 get_start 4 218 42 SimpleLerpFunctor< LVecBase4f >::get_start 0 1 31 0
+82
+inline LVecBase4f const &::SimpleLerpFunctor< LVecBase4f >::get_start(void) const;
+
+138 7 get_end 4 218 40 SimpleLerpFunctor< LVecBase4f >::get_end 0 1 32 0
+80
+inline LVecBase4f const &::SimpleLerpFunctor< LVecBase4f >::get_end(void) const;
+
+139 14 get_class_type 4 218 47 SimpleLerpFunctor< LVecBase4f >::get_class_type 0 1 33 0
+74
+static TypeHandle ::SimpleLerpFunctor< LVecBase4f >::get_class_type(void);
+
+140 11 interpolate 4 219 43 SimpleLerpFunctor< LVector2f >::interpolate 0 1 34 0
+64
+LVector2f ::SimpleLerpFunctor< LVector2f >::interpolate(float );
+
+141 9 get_start 4 219 41 SimpleLerpFunctor< LVector2f >::get_start 0 1 35 0
+80
+inline LVector2f const &::SimpleLerpFunctor< LVector2f >::get_start(void) const;
+
+142 7 get_end 4 219 39 SimpleLerpFunctor< LVector2f >::get_end 0 1 36 0
+78
+inline LVector2f const &::SimpleLerpFunctor< LVector2f >::get_end(void) const;
+
+143 14 get_class_type 4 219 46 SimpleLerpFunctor< LVector2f >::get_class_type 0 1 37 0
+73
+static TypeHandle ::SimpleLerpFunctor< LVector2f >::get_class_type(void);
+
+144 11 interpolate 4 220 43 SimpleLerpFunctor< LVector3f >::interpolate 0 1 38 0
+64
+LVector3f ::SimpleLerpFunctor< LVector3f >::interpolate(float );
+
+145 9 get_start 4 220 41 SimpleLerpFunctor< LVector3f >::get_start 0 1 39 0
+80
+inline LVector3f const &::SimpleLerpFunctor< LVector3f >::get_start(void) const;
+
+146 7 get_end 4 220 39 SimpleLerpFunctor< LVector3f >::get_end 0 1 40 0
+78
+inline LVector3f const &::SimpleLerpFunctor< LVector3f >::get_end(void) const;
+
+147 14 get_class_type 4 220 46 SimpleLerpFunctor< LVector3f >::get_class_type 0 1 41 0
+73
+static TypeHandle ::SimpleLerpFunctor< LVector3f >::get_class_type(void);
+
+148 11 interpolate 4 221 43 SimpleLerpFunctor< LVector4f >::interpolate 0 1 42 0
+64
+LVector4f ::SimpleLerpFunctor< LVector4f >::interpolate(float );
+
+149 9 get_start 4 221 41 SimpleLerpFunctor< LVector4f >::get_start 0 1 43 0
+80
+inline LVector4f const &::SimpleLerpFunctor< LVector4f >::get_start(void) const;
+
+150 7 get_end 4 221 39 SimpleLerpFunctor< LVector4f >::get_end 0 1 44 0
+78
+inline LVector4f const &::SimpleLerpFunctor< LVector4f >::get_end(void) const;
+
+151 14 get_class_type 4 221 46 SimpleLerpFunctor< LVector4f >::get_class_type 0 1 45 0
+73
+static TypeHandle ::SimpleLerpFunctor< LVector4f >::get_class_type(void);
+
+152 9 get_value 4 222 40 SimpleQueryLerpFunctor< int >::get_value 0 1 46 0
+53
+int ::SimpleQueryLerpFunctor< int >::get_value(void);
+
+153 14 get_class_type 4 222 45 SimpleQueryLerpFunctor< int >::get_class_type 0 1 47 0
+72
+static TypeHandle ::SimpleQueryLerpFunctor< int >::get_class_type(void);
+
+154 9 get_value 4 223 42 SimpleQueryLerpFunctor< float >::get_value 0 1 48 0
+57
+float ::SimpleQueryLerpFunctor< float >::get_value(void);
+
+155 14 get_class_type 4 223 47 SimpleQueryLerpFunctor< float >::get_class_type 0 1 49 0
+74
+static TypeHandle ::SimpleQueryLerpFunctor< float >::get_class_type(void);
+
+156 9 get_value 4 224 45 SimpleQueryLerpFunctor< LPoint2f >::get_value 0 1 50 0
+63
+LPoint2f ::SimpleQueryLerpFunctor< LPoint2f >::get_value(void);
+
+157 14 get_class_type 4 224 50 SimpleQueryLerpFunctor< LPoint2f >::get_class_type 0 1 51 0
+77
+static TypeHandle ::SimpleQueryLerpFunctor< LPoint2f >::get_class_type(void);
+
+158 9 get_value 4 225 45 SimpleQueryLerpFunctor< LPoint3f >::get_value 0 1 52 0
+63
+LPoint3f ::SimpleQueryLerpFunctor< LPoint3f >::get_value(void);
+
+159 14 get_class_type 4 225 50 SimpleQueryLerpFunctor< LPoint3f >::get_class_type 0 1 53 0
+77
+static TypeHandle ::SimpleQueryLerpFunctor< LPoint3f >::get_class_type(void);
+
+160 9 get_value 4 226 45 SimpleQueryLerpFunctor< LPoint4f >::get_value 0 1 54 0
+63
+LPoint4f ::SimpleQueryLerpFunctor< LPoint4f >::get_value(void);
+
+161 14 get_class_type 4 226 50 SimpleQueryLerpFunctor< LPoint4f >::get_class_type 0 1 55 0
+77
+static TypeHandle ::SimpleQueryLerpFunctor< LPoint4f >::get_class_type(void);
+
+162 9 get_value 4 227 47 SimpleQueryLerpFunctor< LVecBase2f >::get_value 0 1 56 0
+67
+LVecBase2f ::SimpleQueryLerpFunctor< LVecBase2f >::get_value(void);
+
+163 14 get_class_type 4 227 52 SimpleQueryLerpFunctor< LVecBase2f >::get_class_type 0 1 57 0
+79
+static TypeHandle ::SimpleQueryLerpFunctor< LVecBase2f >::get_class_type(void);
+
+164 9 get_value 4 228 47 SimpleQueryLerpFunctor< LVecBase3f >::get_value 0 1 58 0
+67
+LVecBase3f ::SimpleQueryLerpFunctor< LVecBase3f >::get_value(void);
+
+165 14 get_class_type 4 228 52 SimpleQueryLerpFunctor< LVecBase3f >::get_class_type 0 1 59 0
+79
+static TypeHandle ::SimpleQueryLerpFunctor< LVecBase3f >::get_class_type(void);
+
+166 9 get_value 4 229 47 SimpleQueryLerpFunctor< LVecBase4f >::get_value 0 1 60 0
+67
+LVecBase4f ::SimpleQueryLerpFunctor< LVecBase4f >::get_value(void);
+
+167 14 get_class_type 4 229 52 SimpleQueryLerpFunctor< LVecBase4f >::get_class_type 0 1 61 0
+79
+static TypeHandle ::SimpleQueryLerpFunctor< LVecBase4f >::get_class_type(void);
+
+168 9 get_value 4 230 46 SimpleQueryLerpFunctor< LVector2f >::get_value 0 1 62 0
+65
+LVector2f ::SimpleQueryLerpFunctor< LVector2f >::get_value(void);
+
+169 14 get_class_type 4 230 51 SimpleQueryLerpFunctor< LVector2f >::get_class_type 0 1 63 0
+78
+static TypeHandle ::SimpleQueryLerpFunctor< LVector2f >::get_class_type(void);
+
+170 9 get_value 4 231 46 SimpleQueryLerpFunctor< LVector3f >::get_value 0 1 64 0
+65
+LVector3f ::SimpleQueryLerpFunctor< LVector3f >::get_value(void);
+
+171 14 get_class_type 4 231 51 SimpleQueryLerpFunctor< LVector3f >::get_class_type 0 1 65 0
+78
+static TypeHandle ::SimpleQueryLerpFunctor< LVector3f >::get_class_type(void);
+
+172 9 get_value 4 232 46 SimpleQueryLerpFunctor< LVector4f >::get_value 0 1 66 0
+65
+LVector4f ::SimpleQueryLerpFunctor< LVector4f >::get_value(void);
+
+173 14 get_class_type 4 232 51 SimpleQueryLerpFunctor< LVector4f >::get_class_type 0 1 67 0
+78
+static TypeHandle ::SimpleQueryLerpFunctor< LVector4f >::get_class_type(void);
+
+174 14 get_class_type 4 233 32 MultiLerpFunctor::get_class_type 0 1 68 0
+57
+static TypeHandle MultiLerpFunctor::get_class_type(void);
+
+175 11 operator () 4 234 26 LerpBlendType::operator () 0 1 69 0
+53
+virtual float LerpBlendType::operator ()(float ) = 0;
+
+176 14 get_class_type 4 234 29 LerpBlendType::get_class_type 0 1 70 27
+// now for typehandle stuff
+54
+static TypeHandle LerpBlendType::get_class_type(void);
+
+177 15 EaseInBlendType 4 235 32 EaseInBlendType::EaseInBlendType 0 1 71 0
+39
+EaseInBlendType::EaseInBlendType(void);
+
+178 14 get_class_type 4 235 31 EaseInBlendType::get_class_type 0 1 72 27
+// now for typehandle stuff
+56
+static TypeHandle EaseInBlendType::get_class_type(void);
+
+179 16 EaseOutBlendType 4 236 34 EaseOutBlendType::EaseOutBlendType 0 1 73 0
+41
+EaseOutBlendType::EaseOutBlendType(void);
+
+180 14 get_class_type 4 236 32 EaseOutBlendType::get_class_type 0 1 74 27
+// now for typehandle stuff
+57
+static TypeHandle EaseOutBlendType::get_class_type(void);
+
+181 18 EaseInOutBlendType 4 237 38 EaseInOutBlendType::EaseInOutBlendType 0 1 75 0
+45
+EaseInOutBlendType::EaseInOutBlendType(void);
+
+182 14 get_class_type 4 237 34 EaseInOutBlendType::get_class_type 0 1 76 27
+// now for typehandle stuff
+59
+static TypeHandle EaseInOutBlendType::get_class_type(void);
+
+183 11 NoBlendType 4 238 24 NoBlendType::NoBlendType 0 1 77 0
+31
+NoBlendType::NoBlendType(void);
+
+184 14 get_class_type 4 238 27 NoBlendType::get_class_type 0 1 78 27
+// now for typehandle stuff
+52
+static TypeHandle NoBlendType::get_class_type(void);
+
+185 4 Lerp 4 239 10 Lerp::Lerp 0 3 79 80 81 0
+169
+Lerp::Lerp(LerpFunctor *func, float endt, LerpBlendType *blend);
+Lerp::Lerp(LerpFunctor *func, float startt, float endt, LerpBlendType *blend);
+Lerp::Lerp(Lerp const &);
+
+186 10 operator = 4 239 16 Lerp::operator = 0 1 82 0
+37
+Lerp &Lerp::operator =(Lerp const &);
+
+187 4 step 4 239 10 Lerp::step 0 1 83 0
+22
+void Lerp::step(void);
+
+188 13 set_step_size 4 239 19 Lerp::set_step_size 0 1 84 0
+33
+void Lerp::set_step_size(float );
+
+189 13 get_step_size 4 239 19 Lerp::get_step_size 0 1 85 0
+38
+float Lerp::get_step_size(void) const;
+
+190 5 set_t 4 239 11 Lerp::set_t 0 1 86 0
+25
+void Lerp::set_t(float );
+
+191 5 get_t 4 239 11 Lerp::get_t 0 1 87 0
+30
+float Lerp::get_t(void) const;
+
+192 7 is_done 4 239 13 Lerp::is_done 0 1 88 0
+31
+bool Lerp::is_done(void) const;
+
+193 11 get_functor 4 239 17 Lerp::get_functor 0 1 89 0
+43
+LerpFunctor *Lerp::get_functor(void) const;
+
+194 13 set_end_event 4 239 19 Lerp::set_end_event 0 1 90 0
+55
+void Lerp::set_end_event(basic_string< char > const &);
+
+195 13 get_end_event 4 239 19 Lerp::get_end_event 0 1 91 0
+53
+basic_string< char > Lerp::get_end_event(void) const;
+
+196 14 get_class_type 4 239 20 Lerp::get_class_type 0 1 92 27
+// now for typehandle stuff
+45
+static TypeHandle Lerp::get_class_type(void);
+
+197 14 AutonomousLerp 4 240 30 AutonomousLerp::AutonomousLerp 0 3 93 94 95 0
+285
+AutonomousLerp::AutonomousLerp(LerpFunctor *func, float endt, LerpBlendType *blend, EventHandler *handler);
+AutonomousLerp::AutonomousLerp(LerpFunctor *func, float startt, float endt, LerpBlendType *blend, EventHandler *handler);
+AutonomousLerp::AutonomousLerp(AutonomousLerp const &);
+
+198 10 operator = 4 240 26 AutonomousLerp::operator = 0 1 96 0
+67
+AutonomousLerp &AutonomousLerp::operator =(AutonomousLerp const &);
+
+199 5 start 4 240 21 AutonomousLerp::start 0 1 97 0
+33
+void AutonomousLerp::start(void);
+
+200 4 stop 4 240 20 AutonomousLerp::stop 0 1 98 0
+32
+void AutonomousLerp::stop(void);
+
+201 6 resume 4 240 22 AutonomousLerp::resume 0 1 99 0
+34
+void AutonomousLerp::resume(void);
+
+202 7 is_done 4 240 23 AutonomousLerp::is_done 0 1 100 0
+41
+bool AutonomousLerp::is_done(void) const;
+
+203 11 get_functor 4 240 27 AutonomousLerp::get_functor 0 1 101 0
+53
+LerpFunctor *AutonomousLerp::get_functor(void) const;
+
+204 5 set_t 4 240 21 AutonomousLerp::set_t 0 1 102 0
+35
+void AutonomousLerp::set_t(float );
+
+205 5 get_t 4 240 21 AutonomousLerp::get_t 0 1 103 0
+40
+float AutonomousLerp::get_t(void) const;
+
+206 13 set_end_event 4 240 29 AutonomousLerp::set_end_event 0 1 104 0
+65
+void AutonomousLerp::set_end_event(basic_string< char > const &);
+
+207 13 get_end_event 4 240 29 AutonomousLerp::get_end_event 0 1 105 0
+63
+basic_string< char > AutonomousLerp::get_end_event(void) const;
+
+208 14 get_class_type 4 240 30 AutonomousLerp::get_class_type 0 1 106 27
+// now for typehandle stuff
+55
+static TypeHandle AutonomousLerp::get_class_type(void);
+
+106
+1 14 Dtool_jRdz7_ye 7 3 242 0 14 Dtool_jRdz7_ye 0 0 
+2 14 Dtool_jRdz8OrC 6 5 245 0 14 Dtool_jRdz8OrC 0 2 4 this 3 243  6 param0 0 244  
+3 14 Dtool_jRdzQgxe 6 6 245 0 14 Dtool_jRdzQgxe 0 1 4 this 3 246  
+4 14 Dtool_jRdzACE8 6 7 245 0 14 Dtool_jRdzACE8 0 1 4 this 3 246  
+5 14 Dtool_jRdzARss 7 8 242 0 14 Dtool_jRdzARss 0 0 
+6 14 Dtool_jRdzgNcu 6 10 244 0 14 Dtool_jRdzgNcu 0 2 4 this 3 248  6 param0 0 244  
+7 14 Dtool_jRdz2qEQ 6 11 244 0 14 Dtool_jRdz2qEQ 0 1 4 this 3 249  
+8 14 Dtool_jRdzc62_ 6 12 244 0 14 Dtool_jRdzc62_ 0 1 4 this 3 249  
+9 14 Dtool_jRdzfhH1 7 13 242 0 14 Dtool_jRdzfhH1 0 0 
+10 14 Dtool_jRdziDFn 7 15 253 0 14 Dtool_jRdziDFn 0 2 4 this 3 252  6 param0 0 244  
+11 14 Dtool_jRdzSIRf 6 16 256 0 14 Dtool_jRdzSIRf 0 1 4 this 3 254  
+12 14 Dtool_jRdzVF2Z 6 17 256 0 14 Dtool_jRdzVF2Z 0 1 4 this 3 254  
+13 14 Dtool_jRdzL5G7 7 18 242 0 14 Dtool_jRdzL5G7 0 0 
+14 14 Dtool_jRdzcC9X 7 20 260 0 14 Dtool_jRdzcC9X 0 2 4 this 3 259  6 param0 0 244  
+15 14 Dtool_jRdzcIJQ 6 21 263 0 14 Dtool_jRdzcIJQ 0 1 4 this 3 261  
+16 14 Dtool_jRdzfFuK 6 22 263 0 14 Dtool_jRdzfFuK 0 1 4 this 3 261  
+17 14 Dtool_jRdz15_r 7 23 242 0 14 Dtool_jRdz15_r 0 0 
+18 14 Dtool_jRdzWC1I 7 25 267 0 14 Dtool_jRdzWC1I 0 2 4 this 3 266  6 param0 0 244  
+19 14 Dtool_jRdzGIBB 6 26 270 0 14 Dtool_jRdzGIBB 0 1 4 this 3 268  
+20 14 Dtool_jRdzmFm7 6 27 270 0 14 Dtool_jRdzmFm7 0 1 4 this 3 268  
+21 14 Dtool_jRdz_52c 7 28 242 0 14 Dtool_jRdz_52c 0 0 
+22 14 Dtool_jRdzVNnZ 7 30 274 0 14 Dtool_jRdzVNnZ 0 2 4 this 3 273  6 param0 0 244  
+23 14 Dtool_jRdzWc5c 6 31 277 0 14 Dtool_jRdzWc5c 0 1 4 this 3 275  
+24 14 Dtool_jRdz9hZ8 6 32 277 0 14 Dtool_jRdz9hZ8 0 1 4 this 3 275  
+25 14 Dtool_jRdzOH8m 7 33 242 0 14 Dtool_jRdzOH8m 0 0 
+26 14 Dtool_jRdzbppZ 7 35 281 0 14 Dtool_jRdzbppZ 0 2 4 this 3 280  6 param0 0 244  
+27 14 Dtool_jRdzEA7c 6 36 284 0 14 Dtool_jRdzEA7c 0 1 4 this 3 282  
+28 14 Dtool_jRdzvFa8 6 37 284 0 14 Dtool_jRdzvFa8 0 1 4 this 3 282  
+29 14 Dtool_jRdzcr_m 7 38 242 0 14 Dtool_jRdzcr_m 0 0 
+30 14 Dtool_jRdzp1rZ 7 40 288 0 14 Dtool_jRdzp1rZ 0 2 4 this 3 287  6 param0 0 244  
+31 14 Dtool_jRdzyn9c 6 41 291 0 14 Dtool_jRdzyn9c 0 1 4 this 3 289  
+32 14 Dtool_jRdzhZc8 6 42 291 0 14 Dtool_jRdzhZc8 0 1 4 this 3 289  
+33 14 Dtool_jRdziIBn 7 43 242 0 14 Dtool_jRdziIBn 0 0 
+34 14 Dtool_jRdzPI7a 7 45 295 0 14 Dtool_jRdzPI7a 0 2 4 this 3 294  6 param0 0 244  
+35 14 Dtool_jRdzk6Bh 6 46 298 0 14 Dtool_jRdzk6Bh 0 1 4 this 3 296  
+36 14 Dtool_jRdzErB0 6 47 298 0 14 Dtool_jRdzErB0 0 1 4 this 3 296  
+37 14 Dtool_jRdzsKVb 7 48 242 0 14 Dtool_jRdzsKVb 0 0 
+38 14 Dtool_jRdzXz62 7 50 302 0 14 Dtool_jRdzXz62 0 2 4 this 3 301  6 param0 0 244  
+39 14 Dtool_jRdz81B9 6 51 305 0 14 Dtool_jRdz81B9 0 1 4 this 3 303  
+40 14 Dtool_jRdzdmBQ 6 52 305 0 14 Dtool_jRdzdmBQ 0 1 4 this 3 303  
+41 14 Dtool_jRdzkBV3 7 53 242 0 14 Dtool_jRdzkBV3 0 0 
+42 14 Dtool_jRdze26S 7 55 309 0 14 Dtool_jRdze26S 0 2 4 this 3 308  6 param0 0 244  
+43 14 Dtool_jRdz1wBZ 6 56 312 0 14 Dtool_jRdz1wBZ 0 1 4 this 3 310  
+44 14 Dtool_jRdzVdAs 6 57 312 0 14 Dtool_jRdzVdAs 0 1 4 this 3 310  
+45 14 Dtool_jRdz7EVT 7 58 242 0 14 Dtool_jRdz7EVT 0 0 
+46 14 Dtool_jRdzOXj4 6 60 245 0 14 Dtool_jRdzOXj4 0 1 4 this 3 314  
+47 14 Dtool_jRdzaj6G 7 61 242 0 14 Dtool_jRdzaj6G 0 0 
+48 14 Dtool_jRdzGyN0 6 63 244 0 14 Dtool_jRdzGyN0 0 1 4 this 3 315  
+49 14 Dtool_jRdzOmwX 7 64 242 0 14 Dtool_jRdzOmwX 0 0 
+50 14 Dtool_jRdz87AH 7 66 253 0 14 Dtool_jRdz87AH 0 1 4 this 3 316  
+51 14 Dtool_jRdzhFsj 7 67 242 0 14 Dtool_jRdzhFsj 0 0 
+52 14 Dtool_jRdzr7wo 7 69 260 0 14 Dtool_jRdzr7wo 0 1 4 this 3 317  
+53 14 Dtool_jRdzVCcF 7 70 242 0 14 Dtool_jRdzVCcF 0 0 
+54 14 Dtool_jRdzX7gK 7 72 267 0 14 Dtool_jRdzX7gK 0 1 4 this 3 318  
+55 14 Dtool_jRdz4CMn 7 73 242 0 14 Dtool_jRdz4CMn 0 0 
+56 14 Dtool_jRdzQVU0 7 75 274 0 14 Dtool_jRdzQVU0 0 1 4 this 3 319  
+57 14 Dtool_jRdzrZa7 7 76 242 0 14 Dtool_jRdzrZa7 0 0 
+58 14 Dtool_jRdz8KZ0 7 78 281 0 14 Dtool_jRdz8KZ0 0 1 4 this 3 320  
+59 14 Dtool_jRdz3Rf7 7 79 242 0 14 Dtool_jRdz3Rf7 0 0 
+60 14 Dtool_jRdzYCe0 7 81 288 0 14 Dtool_jRdzYCe0 0 1 4 this 3 321  
+61 14 Dtool_jRdzTqj7 7 82 242 0 14 Dtool_jRdzTqj7 0 0 
+62 14 Dtool_jRdzZ__N 7 84 295 0 14 Dtool_jRdzZ__N 0 1 4 this 3 322  
+63 14 Dtool_jRdzM6Kk 7 85 242 0 14 Dtool_jRdzM6Kk 0 0 
+64 14 Dtool_jRdzIE_F 7 87 302 0 14 Dtool_jRdzIE_F 0 1 4 this 3 323  
+65 14 Dtool_jRdzdwKc 7 88 242 0 14 Dtool_jRdzdwKc 0 0 
+66 14 Dtool_jRdz4S_9 7 90 309 0 14 Dtool_jRdz4S_9 0 1 4 this 3 324  
+67 14 Dtool_jRdzn8LU 7 91 242 0 14 Dtool_jRdzn8LU 0 0 
+68 14 Dtool_jRdzgiHl 7 93 242 0 14 Dtool_jRdzgiHl 0 0 
+69 14 Dtool_jRdzzKhT 6 95 244 0 14 Dtool_jRdzzKhT 0 2 4 this 3 325  6 param0 0 244  
+70 14 Dtool_jRdz1CYW 7 96 242 0 14 Dtool_jRdz1CYW 27 // now for typehandle stuff 0 
+71 14 Dtool_jRdztdxY 7 98 326 0 14 Dtool_jRdztdxY 0 0 
+72 14 Dtool_jRdz1xwc 7 99 242 0 14 Dtool_jRdz1xwc 27 // now for typehandle stuff 0 
+73 14 Dtool_jRdzACbp 7 101 327 0 14 Dtool_jRdzACbp 0 0 
+74 14 Dtool_jRdz6XjB 7 102 242 0 14 Dtool_jRdz6XjB 27 // now for typehandle stuff 0 
+75 14 Dtool_jRdzgLjm 7 104 328 0 14 Dtool_jRdzgLjm 0 0 
+76 14 Dtool_jRdzq6CW 7 105 242 0 14 Dtool_jRdzq6CW 27 // now for typehandle stuff 0 
+77 14 Dtool_jRdz1n4q 7 107 329 0 14 Dtool_jRdz1n4q 0 0 
+78 14 Dtool_jRdzjFol 7 108 242 0 14 Dtool_jRdzjFol 27 // now for typehandle stuff 0 
+79 14 Dtool_jRdzQD6d 7 110 332 0 14 Dtool_jRdzQD6d 0 1 6 param0 0 330  
+80 14 Dtool_jRdzs6jr 7 110 332 0 14 Dtool_jRdzs6jr 0 3 4 func 1 333  4 endt 1 244  5 blend 1 325  
+81 14 Dtool_jRdzeiEF 7 110 332 0 14 Dtool_jRdzeiEF 0 4 4 func 1 333  6 startt 1 244  4 endt 1 244  5 blend 1 325  
+82 14 Dtool_jRdz7tt_ 7 111 332 0 14 Dtool_jRdz7tt_ 0 2 4 this 3 332  6 param0 0 330  
+83 14 Dtool_jRdziuTk 4 112 334 0 14 Dtool_jRdziuTk 0 1 4 this 3 332  
+84 14 Dtool_jRdzARoq 4 113 334 0 14 Dtool_jRdzARoq 0 2 4 this 3 332  6 param0 0 244  
+85 14 Dtool_jRdzMVTI 6 114 244 0 14 Dtool_jRdzMVTI 0 1 4 this 3 330  
+86 14 Dtool_jRdzlUwT 4 115 334 0 14 Dtool_jRdzlUwT 0 2 4 this 3 332  6 param0 0 244  
+87 14 Dtool_jRdzDscX 6 116 244 0 14 Dtool_jRdzDscX 0 1 4 this 3 330  
+88 14 Dtool_jRdz7Ojs 6 117 335 0 14 Dtool_jRdz7Ojs 0 1 4 this 3 330  
+89 14 Dtool_jRdz7rPj 7 118 333 0 14 Dtool_jRdz7rPj 0 1 4 this 3 330  
+90 14 Dtool_jRdzg2aG 4 119 334 0 14 Dtool_jRdzg2aG 0 2 4 this 3 332  6 param0 0 336  
+91 14 Dtool_jRdzyUUS 6 120 336 0 14 Dtool_jRdzyUUS 0 1 4 this 3 330  
+92 14 Dtool_jRdzz5da 7 121 242 0 14 Dtool_jRdzz5da 27 // now for typehandle stuff 0 
+93 14 Dtool_jRdzn1mi 7 123 339 0 14 Dtool_jRdzn1mi 0 1 6 param0 0 337  
+94 14 Dtool_jRdzyGSy 7 123 339 0 14 Dtool_jRdzyGSy 0 4 4 func 1 333  4 endt 1 244  5 blend 1 325  7 handler 1 340  
+95 14 Dtool_jRdzIqNi 7 123 339 0 14 Dtool_jRdzIqNi 0 5 4 func 1 333  6 startt 1 244  4 endt 1 244  5 blend 1 325  7 handler 1 340  
+96 14 Dtool_jRdzk3L_ 7 124 339 0 14 Dtool_jRdzk3L_ 0 2 4 this 3 339  6 param0 0 337  
+97 14 Dtool_jRdzubE1 4 125 334 0 14 Dtool_jRdzubE1 0 1 4 this 3 339  
+98 14 Dtool_jRdz__s_ 4 126 334 0 14 Dtool_jRdz__s_ 0 1 4 this 3 339  
+99 14 Dtool_jRdzf999 4 127 334 0 14 Dtool_jRdzf999 0 1 4 this 3 339  
+100 14 Dtool_jRdzch0a 6 128 335 0 14 Dtool_jRdzch0a 0 1 4 this 3 337  
+101 14 Dtool_jRdzkqo1 7 129 333 0 14 Dtool_jRdzkqo1 0 1 4 this 3 337  
+102 14 Dtool_jRdzUKt3 4 130 334 0 14 Dtool_jRdzUKt3 0 2 4 this 3 339  6 param0 0 244  
+103 14 Dtool_jRdzTsbG 6 131 244 0 14 Dtool_jRdzTsbG 0 1 4 this 3 337  
+104 14 Dtool_jRdzkmdC 4 132 334 0 14 Dtool_jRdzkmdC 0 2 4 this 3 339  6 param0 0 336  
+105 14 Dtool_jRdzIF7x 6 133 336 0 14 Dtool_jRdzIF7x 0 1 4 this 3 337  
+106 14 Dtool_jRdznSlS 7 134 242 0 14 Dtool_jRdznSlS 27 // now for typehandle stuff 0 
+133
+209 11 LerpFunctor 75777 11 LerpFunctor 11 LerpFunctor 0 0 0 0 0 0 1 107 0 0 1 0 210 0 0 0 0 0
+
+210 19 TypedReferenceCount 2049 19 TypedReferenceCount 19 TypedReferenceCount 0 0 0 0 0 0 0 0 0 0 0 0 710
+////////////////////////////////////////////////////////////////////
+//       Class : TypedReferenceCount
+// Description : A base class for things which need to inherit from
+//               both TypedObject and from ReferenceCount.  It's
+//               convenient to define this intermediate base class
+//               instead of multiply inheriting from the two classes
+//               each time they are needed, so that we can sensibly
+//               pass around pointers to things which are both
+//               TypedObjects and ReferenceCounters.
+//               
+//               See also TypedObject for detailed instructions.
+////////////////////////////////////////////////////////////////////
+
+211 14 IntLerpFunctor 75777 24 SimpleLerpFunctor< int > 24 SimpleLerpFunctor< int > 0 0 0 0 0 0 4 108 109 110 111 0 0 1 0 209 0 0 0 0 0
+
+212 16 FloatLerpFunctor 75777 26 SimpleLerpFunctor< float > 26 SimpleLerpFunctor< float > 0 0 0 0 0 0 4 112 113 114 115 0 0 1 0 209 0 0 0 0 0
+
+213 29 SimpleLerpFunctor< LPoint2f > 75777 29 SimpleLerpFunctor< LPoint2f > 29 SimpleLerpFunctor< LPoint2f > 0 0 0 0 0 0 4 116 117 118 119 0 0 1 0 209 0 0 0 0 0
+
+214 29 SimpleLerpFunctor< LPoint3f > 75777 29 SimpleLerpFunctor< LPoint3f > 29 SimpleLerpFunctor< LPoint3f > 0 0 0 0 0 0 4 120 121 122 123 0 0 1 0 209 0 0 0 0 0
+
+215 29 SimpleLerpFunctor< LPoint4f > 75777 29 SimpleLerpFunctor< LPoint4f > 29 SimpleLerpFunctor< LPoint4f > 0 0 0 0 0 0 4 124 125 126 127 0 0 1 0 209 0 0 0 0 0
+
+216 31 SimpleLerpFunctor< LVecBase2f > 75777 31 SimpleLerpFunctor< LVecBase2f > 31 SimpleLerpFunctor< LVecBase2f > 0 0 0 0 0 0 4 128 129 130 131 0 0 1 0 209 0 0 0 0 0
+
+217 31 SimpleLerpFunctor< LVecBase3f > 75777 31 SimpleLerpFunctor< LVecBase3f > 31 SimpleLerpFunctor< LVecBase3f > 0 0 0 0 0 0 4 132 133 134 135 0 0 1 0 209 0 0 0 0 0
+
+218 31 SimpleLerpFunctor< LVecBase4f > 75777 31 SimpleLerpFunctor< LVecBase4f > 31 SimpleLerpFunctor< LVecBase4f > 0 0 0 0 0 0 4 136 137 138 139 0 0 1 0 209 0 0 0 0 0
+
+219 30 SimpleLerpFunctor< LVector2f > 75777 30 SimpleLerpFunctor< LVector2f > 30 SimpleLerpFunctor< LVector2f > 0 0 0 0 0 0 4 140 141 142 143 0 0 1 0 209 0 0 0 0 0
+
+220 30 SimpleLerpFunctor< LVector3f > 75777 30 SimpleLerpFunctor< LVector3f > 30 SimpleLerpFunctor< LVector3f > 0 0 0 0 0 0 4 144 145 146 147 0 0 1 0 209 0 0 0 0 0
+
+221 30 SimpleLerpFunctor< LVector4f > 75777 30 SimpleLerpFunctor< LVector4f > 30 SimpleLerpFunctor< LVector4f > 0 0 0 0 0 0 4 148 149 150 151 0 0 1 0 209 0 0 0 0 0
+
+222 19 IntQueryLerpFunctor 75777 29 SimpleQueryLerpFunctor< int > 29 SimpleQueryLerpFunctor< int > 0 0 0 0 0 0 2 152 153 0 0 1 0 211 0 0 0 0 0
+
+223 21 FloatQueryLerpFunctor 75777 31 SimpleQueryLerpFunctor< float > 31 SimpleQueryLerpFunctor< float > 0 0 0 0 0 0 2 154 155 0 0 1 0 212 0 0 0 0 0
+
+224 34 SimpleQueryLerpFunctor< LPoint2f > 75777 34 SimpleQueryLerpFunctor< LPoint2f > 34 SimpleQueryLerpFunctor< LPoint2f > 0 0 0 0 0 0 2 156 157 0 0 1 0 213 0 0 0 0 0
+
+225 34 SimpleQueryLerpFunctor< LPoint3f > 75777 34 SimpleQueryLerpFunctor< LPoint3f > 34 SimpleQueryLerpFunctor< LPoint3f > 0 0 0 0 0 0 2 158 159 0 0 1 0 214 0 0 0 0 0
+
+226 34 SimpleQueryLerpFunctor< LPoint4f > 75777 34 SimpleQueryLerpFunctor< LPoint4f > 34 SimpleQueryLerpFunctor< LPoint4f > 0 0 0 0 0 0 2 160 161 0 0 1 0 215 0 0 0 0 0
+
+227 36 SimpleQueryLerpFunctor< LVecBase2f > 75777 36 SimpleQueryLerpFunctor< LVecBase2f > 36 SimpleQueryLerpFunctor< LVecBase2f > 0 0 0 0 0 0 2 162 163 0 0 1 0 216 0 0 0 0 0
+
+228 36 SimpleQueryLerpFunctor< LVecBase3f > 75777 36 SimpleQueryLerpFunctor< LVecBase3f > 36 SimpleQueryLerpFunctor< LVecBase3f > 0 0 0 0 0 0 2 164 165 0 0 1 0 217 0 0 0 0 0
+
+229 36 SimpleQueryLerpFunctor< LVecBase4f > 75777 36 SimpleQueryLerpFunctor< LVecBase4f > 36 SimpleQueryLerpFunctor< LVecBase4f > 0 0 0 0 0 0 2 166 167 0 0 1 0 218 0 0 0 0 0
+
+230 35 SimpleQueryLerpFunctor< LVector2f > 75777 35 SimpleQueryLerpFunctor< LVector2f > 35 SimpleQueryLerpFunctor< LVector2f > 0 0 0 0 0 0 2 168 169 0 0 1 0 219 0 0 0 0 0
+
+231 35 SimpleQueryLerpFunctor< LVector3f > 75777 35 SimpleQueryLerpFunctor< LVector3f > 35 SimpleQueryLerpFunctor< LVector3f > 0 0 0 0 0 0 2 170 171 0 0 1 0 220 0 0 0 0 0
+
+232 35 SimpleQueryLerpFunctor< LVector4f > 75777 35 SimpleQueryLerpFunctor< LVector4f > 35 SimpleQueryLerpFunctor< LVector4f > 0 0 0 0 0 0 2 172 173 0 0 1 0 221 0 0 0 0 0
+
+233 16 MultiLerpFunctor 75777 16 MultiLerpFunctor 16 MultiLerpFunctor 0 0 0 0 0 0 1 174 0 0 1 0 209 0 0 0 0 0
+
+234 13 LerpBlendType 75777 13 LerpBlendType 13 LerpBlendType 0 0 0 0 0 0 2 175 176 0 0 1 0 210 0 0 0 0 0
+
+235 15 EaseInBlendType 75777 15 EaseInBlendType 15 EaseInBlendType 0 0 0 1 177 0 0 1 178 0 0 1 0 234 0 0 0 0 0
+
+236 16 EaseOutBlendType 75777 16 EaseOutBlendType 16 EaseOutBlendType 0 0 0 1 179 0 0 1 180 0 0 1 0 234 0 0 0 0 0
+
+237 18 EaseInOutBlendType 75777 18 EaseInOutBlendType 18 EaseInOutBlendType 0 0 0 1 181 0 0 1 182 0 0 1 0 234 0 0 0 0 0
+
+238 11 NoBlendType 75777 11 NoBlendType 11 NoBlendType 0 0 0 1 183 0 0 1 184 0 0 1 0 234 0 0 0 0 0
+
+239 4 Lerp 75777 4 Lerp 4 Lerp 0 0 0 1 185 0 0 11 186 187 188 189 190 191 192 193 194 195 196 0 0 1 0 210 0 0 0 0 0
+
+240 14 AutonomousLerp 75777 14 AutonomousLerp 14 AutonomousLerp 0 0 0 1 197 0 0 11 198 199 200 201 202 203 204 205 206 207 208 0 0 1 0 210 0 0 0 0 0
+
+241 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+242 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 241 0 0 0 0 0 0 0 0 0 0
+
+243 26 SimpleLerpFunctor< int > * 8576 26 SimpleLerpFunctor< int > * 26 SimpleLerpFunctor< int > * 0 0 211 0 0 0 0 0 0 0 0 0 0
+
+244 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+245 3 int 8194 3 int 3 int 0 1 0 0 0 0 0 0 0 0 0 0 0
+
+246 32 SimpleLerpFunctor< int > const * 8576 32 SimpleLerpFunctor< int > const * 32 SimpleLerpFunctor< int > const * 0 0 247 0 0 0 0 0 0 0 0 0 0
+
+247 30 SimpleLerpFunctor< int > const 8832 30 SimpleLerpFunctor< int > const 30 SimpleLerpFunctor< int > const 0 0 211 0 0 0 0 0 0 0 0 0 0
+
+248 28 SimpleLerpFunctor< float > * 8576 28 SimpleLerpFunctor< float > * 28 SimpleLerpFunctor< float > * 0 0 212 0 0 0 0 0 0 0 0 0 0
+
+249 34 SimpleLerpFunctor< float > const * 8576 34 SimpleLerpFunctor< float > const * 34 SimpleLerpFunctor< float > const * 0 0 250 0 0 0 0 0 0 0 0 0 0
+
+250 32 SimpleLerpFunctor< float > const 8832 32 SimpleLerpFunctor< float > const 32 SimpleLerpFunctor< float > const 0 0 212 0 0 0 0 0 0 0 0 0 0
+
+251 9 TexCoordf 2048 8 LPoint2f 8 LPoint2f 0 0 0 0 0 0 0 0 0 0 0 0 706
+// Filename: lpoint2_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint2
+// Description : This is a two-component point in space.
+////////////////////////////////////////////////////////////////////
+
+252 31 SimpleLerpFunctor< LPoint2f > * 8576 31 SimpleLerpFunctor< LPoint2f > * 31 SimpleLerpFunctor< LPoint2f > * 0 0 213 0 0 0 0 0 0 0 0 0 0
+
+253 10 LPoint2f * 8576 10 LPoint2f * 10 LPoint2f * 0 0 251 0 0 0 0 0 0 0 0 0 0
+
+254 37 SimpleLerpFunctor< LPoint2f > const * 8576 37 SimpleLerpFunctor< LPoint2f > const * 37 SimpleLerpFunctor< LPoint2f > const * 0 0 255 0 0 0 0 0 0 0 0 0 0
+
+255 35 SimpleLerpFunctor< LPoint2f > const 8832 35 SimpleLerpFunctor< LPoint2f > const 35 SimpleLerpFunctor< LPoint2f > const 0 0 213 0 0 0 0 0 0 0 0 0 0
+
+256 16 LPoint2f const * 8576 16 LPoint2f const * 16 LPoint2f const * 0 0 257 0 0 0 0 0 0 0 0 0 0
+
+257 14 LPoint2f const 8832 14 LPoint2f const 14 LPoint2f const 0 0 251 0 0 0 0 0 0 0 0 0 0
+
+258 7 Vertexf 2048 8 LPoint3f 8 LPoint3f 0 0 0 0 0 0 0 0 0 0 0 0 1083
+// Filename: lpoint3_src.h
+// Created by:  drose (25Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint3
+// Description : This is a three-component point in space (as opposed
+//               to a three-component vector, which represents a
+//               direction and a distance).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+259 31 SimpleLerpFunctor< LPoint3f > * 8576 31 SimpleLerpFunctor< LPoint3f > * 31 SimpleLerpFunctor< LPoint3f > * 0 0 214 0 0 0 0 0 0 0 0 0 0
+
+260 10 LPoint3f * 8576 10 LPoint3f * 10 LPoint3f * 0 0 258 0 0 0 0 0 0 0 0 0 0
+
+261 37 SimpleLerpFunctor< LPoint3f > const * 8576 37 SimpleLerpFunctor< LPoint3f > const * 37 SimpleLerpFunctor< LPoint3f > const * 0 0 262 0 0 0 0 0 0 0 0 0 0
+
+262 35 SimpleLerpFunctor< LPoint3f > const 8832 35 SimpleLerpFunctor< LPoint3f > const 35 SimpleLerpFunctor< LPoint3f > const 0 0 214 0 0 0 0 0 0 0 0 0 0
+
+263 16 LPoint3f const * 8576 16 LPoint3f const * 16 LPoint3f const * 0 0 264 0 0 0 0 0 0 0 0 0 0
+
+264 14 LPoint3f const 8832 14 LPoint3f const 14 LPoint3f const 0 0 258 0 0 0 0 0 0 0 0 0 0
+
+265 8 LPoint4f 2048 8 LPoint4f 8 LPoint4f 0 0 0 0 0 0 0 0 0 0 0 0 707
+// Filename: lpoint4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LPoint4
+// Description : This is a four-component point in space.
+////////////////////////////////////////////////////////////////////
+
+266 31 SimpleLerpFunctor< LPoint4f > * 8576 31 SimpleLerpFunctor< LPoint4f > * 31 SimpleLerpFunctor< LPoint4f > * 0 0 215 0 0 0 0 0 0 0 0 0 0
+
+267 10 LPoint4f * 8576 10 LPoint4f * 10 LPoint4f * 0 0 265 0 0 0 0 0 0 0 0 0 0
+
+268 37 SimpleLerpFunctor< LPoint4f > const * 8576 37 SimpleLerpFunctor< LPoint4f > const * 37 SimpleLerpFunctor< LPoint4f > const * 0 0 269 0 0 0 0 0 0 0 0 0 0
+
+269 35 SimpleLerpFunctor< LPoint4f > const 8832 35 SimpleLerpFunctor< LPoint4f > const 35 SimpleLerpFunctor< LPoint4f > const 0 0 215 0 0 0 0 0 0 0 0 0 0
+
+270 16 LPoint4f const * 8576 16 LPoint4f const * 16 LPoint4f const * 0 0 271 0 0 0 0 0 0 0 0 0 0
+
+271 14 LPoint4f const 8832 14 LPoint4f const 14 LPoint4f const 0 0 265 0 0 0 0 0 0 0 0 0 0
+
+272 10 LVecBase2f 2048 10 LVecBase2f 10 LVecBase2f 0 0 0 0 0 0 0 0 0 0 0 0 805
+// Filename: lvecBase2_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+//typedef struct {FLOATTYPE _0, _1} FLOATNAME(data);
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase2
+// Description : This is the base class for all two-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+273 33 SimpleLerpFunctor< LVecBase2f > * 8576 33 SimpleLerpFunctor< LVecBase2f > * 33 SimpleLerpFunctor< LVecBase2f > * 0 0 216 0 0 0 0 0 0 0 0 0 0
+
+274 12 LVecBase2f * 8576 12 LVecBase2f * 12 LVecBase2f * 0 0 272 0 0 0 0 0 0 0 0 0 0
+
+275 39 SimpleLerpFunctor< LVecBase2f > const * 8576 39 SimpleLerpFunctor< LVecBase2f > const * 39 SimpleLerpFunctor< LVecBase2f > const * 0 0 276 0 0 0 0 0 0 0 0 0 0
+
+276 37 SimpleLerpFunctor< LVecBase2f > const 8832 37 SimpleLerpFunctor< LVecBase2f > const 37 SimpleLerpFunctor< LVecBase2f > const 0 0 216 0 0 0 0 0 0 0 0 0 0
+
+277 18 LVecBase2f const * 8576 18 LVecBase2f const * 18 LVecBase2f const * 0 0 278 0 0 0 0 0 0 0 0 0 0
+
+278 16 LVecBase2f const 8832 16 LVecBase2f const 16 LVecBase2f const 0 0 272 0 0 0 0 0 0 0 0 0 0
+
+279 9 RGBColorf 2048 10 LVecBase3f 10 LVecBase3f 0 0 0 0 0 0 0 0 0 0 0 0 754
+// Filename: lvecBase3_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase3
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+280 33 SimpleLerpFunctor< LVecBase3f > * 8576 33 SimpleLerpFunctor< LVecBase3f > * 33 SimpleLerpFunctor< LVecBase3f > * 0 0 217 0 0 0 0 0 0 0 0 0 0
+
+281 12 LVecBase3f * 8576 12 LVecBase3f * 12 LVecBase3f * 0 0 279 0 0 0 0 0 0 0 0 0 0
+
+282 39 SimpleLerpFunctor< LVecBase3f > const * 8576 39 SimpleLerpFunctor< LVecBase3f > const * 39 SimpleLerpFunctor< LVecBase3f > const * 0 0 283 0 0 0 0 0 0 0 0 0 0
+
+283 37 SimpleLerpFunctor< LVecBase3f > const 8832 37 SimpleLerpFunctor< LVecBase3f > const 37 SimpleLerpFunctor< LVecBase3f > const 0 0 217 0 0 0 0 0 0 0 0 0 0
+
+284 18 LVecBase3f const * 8576 18 LVecBase3f const * 18 LVecBase3f const * 0 0 285 0 0 0 0 0 0 0 0 0 0
+
+285 16 LVecBase3f const 8832 16 LVecBase3f const 16 LVecBase3f const 0 0 279 0 0 0 0 0 0 0 0 0 0
+
+286 6 Colorf 2048 10 LVecBase4f 10 LVecBase4f 0 0 0 0 0 0 0 0 0 0 0 0 754
+// Filename: lvecBase4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVecBase4
+// Description : This is the base class for all three-component
+//               vectors and points.
+////////////////////////////////////////////////////////////////////
+
+287 33 SimpleLerpFunctor< LVecBase4f > * 8576 33 SimpleLerpFunctor< LVecBase4f > * 33 SimpleLerpFunctor< LVecBase4f > * 0 0 218 0 0 0 0 0 0 0 0 0 0
+
+288 12 LVecBase4f * 8576 12 LVecBase4f * 12 LVecBase4f * 0 0 286 0 0 0 0 0 0 0 0 0 0
+
+289 39 SimpleLerpFunctor< LVecBase4f > const * 8576 39 SimpleLerpFunctor< LVecBase4f > const * 39 SimpleLerpFunctor< LVecBase4f > const * 0 0 290 0 0 0 0 0 0 0 0 0 0
+
+290 37 SimpleLerpFunctor< LVecBase4f > const 8832 37 SimpleLerpFunctor< LVecBase4f > const 37 SimpleLerpFunctor< LVecBase4f > const 0 0 218 0 0 0 0 0 0 0 0 0 0
+
+291 18 LVecBase4f const * 8576 18 LVecBase4f const * 18 LVecBase4f const * 0 0 292 0 0 0 0 0 0 0 0 0 0
+
+292 16 LVecBase4f const 8832 16 LVecBase4f const 16 LVecBase4f const 0 0 286 0 0 0 0 0 0 0 0 0 0
+
+293 9 LVector2f 2048 9 LVector2f 9 LVector2f 0 0 0 0 0 0 0 0 0 0 0 0 707
+// Filename: lvector2_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector2
+// Description : This is a two-component vector offset.
+////////////////////////////////////////////////////////////////////
+
+294 32 SimpleLerpFunctor< LVector2f > * 8576 32 SimpleLerpFunctor< LVector2f > * 32 SimpleLerpFunctor< LVector2f > * 0 0 219 0 0 0 0 0 0 0 0 0 0
+
+295 11 LVector2f * 8576 11 LVector2f * 11 LVector2f * 0 0 293 0 0 0 0 0 0 0 0 0 0
+
+296 38 SimpleLerpFunctor< LVector2f > const * 8576 38 SimpleLerpFunctor< LVector2f > const * 38 SimpleLerpFunctor< LVector2f > const * 0 0 297 0 0 0 0 0 0 0 0 0 0
+
+297 36 SimpleLerpFunctor< LVector2f > const 8832 36 SimpleLerpFunctor< LVector2f > const 36 SimpleLerpFunctor< LVector2f > const 0 0 219 0 0 0 0 0 0 0 0 0 0
+
+298 17 LVector2f const * 8576 17 LVector2f const * 17 LVector2f const * 0 0 299 0 0 0 0 0 0 0 0 0 0
+
+299 15 LVector2f const 8832 15 LVector2f const 15 LVector2f const 0 0 293 0 0 0 0 0 0 0 0 0 0
+
+300 7 Normalf 2048 9 LVector3f 9 LVector3f 0 0 0 0 0 0 0 0 0 0 0 0 1086
+// Filename: lvector3_src.h
+// Created by:  drose (24Sep99)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector3
+// Description : This is a three-component vector distance (as opposed
+//               to a three-component point, which represents a
+//               particular point in space).  Some of the methods are
+//               slightly different between LPoint3 and LVector3; in
+//               particular, subtraction of two points yields a
+//               vector, while addition of a vector and a point yields
+//               a point.
+////////////////////////////////////////////////////////////////////
+
+301 32 SimpleLerpFunctor< LVector3f > * 8576 32 SimpleLerpFunctor< LVector3f > * 32 SimpleLerpFunctor< LVector3f > * 0 0 220 0 0 0 0 0 0 0 0 0 0
+
+302 11 LVector3f * 8576 11 LVector3f * 11 LVector3f * 0 0 300 0 0 0 0 0 0 0 0 0 0
+
+303 38 SimpleLerpFunctor< LVector3f > const * 8576 38 SimpleLerpFunctor< LVector3f > const * 38 SimpleLerpFunctor< LVector3f > const * 0 0 304 0 0 0 0 0 0 0 0 0 0
+
+304 36 SimpleLerpFunctor< LVector3f > const 8832 36 SimpleLerpFunctor< LVector3f > const 36 SimpleLerpFunctor< LVector3f > const 0 0 220 0 0 0 0 0 0 0 0 0 0
+
+305 17 LVector3f const * 8576 17 LVector3f const * 17 LVector3f const * 0 0 306 0 0 0 0 0 0 0 0 0 0
+
+306 15 LVector3f const 8832 15 LVector3f const 15 LVector3f const 0 0 300 0 0 0 0 0 0 0 0 0 0
+
+307 9 LVector4f 2048 9 LVector4f 9 LVector4f 0 0 0 0 0 0 0 0 0 0 0 0 710
+// Filename: lvector4_src.h
+// Created by:  drose (08Mar00)
+//
+////////////////////////////////////////////////////////////////////
+//
+// PANDA 3D SOFTWARE
+// Copyright (c) Carnegie Mellon University.  All rights reserved.
+//
+// All use of this software is subject to the terms of the revised BSD
+// license.  You should have received a copy of this license along
+// with this source code in a file named "LICENSE."
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//       Class : LVector4
+// Description : This is a four-component vector distance.
+////////////////////////////////////////////////////////////////////
+
+308 32 SimpleLerpFunctor< LVector4f > * 8576 32 SimpleLerpFunctor< LVector4f > * 32 SimpleLerpFunctor< LVector4f > * 0 0 221 0 0 0 0 0 0 0 0 0 0
+
+309 11 LVector4f * 8576 11 LVector4f * 11 LVector4f * 0 0 307 0 0 0 0 0 0 0 0 0 0
+
+310 38 SimpleLerpFunctor< LVector4f > const * 8576 38 SimpleLerpFunctor< LVector4f > const * 38 SimpleLerpFunctor< LVector4f > const * 0 0 311 0 0 0 0 0 0 0 0 0 0
+
+311 36 SimpleLerpFunctor< LVector4f > const 8832 36 SimpleLerpFunctor< LVector4f > const 36 SimpleLerpFunctor< LVector4f > const 0 0 221 0 0 0 0 0 0 0 0 0 0
+
+312 17 LVector4f const * 8576 17 LVector4f const * 17 LVector4f const * 0 0 313 0 0 0 0 0 0 0 0 0 0
+
+313 15 LVector4f const 8832 15 LVector4f const 15 LVector4f const 0 0 307 0 0 0 0 0 0 0 0 0 0
+
+314 31 SimpleQueryLerpFunctor< int > * 8576 31 SimpleQueryLerpFunctor< int > * 31 SimpleQueryLerpFunctor< int > * 0 0 222 0 0 0 0 0 0 0 0 0 0
+
+315 33 SimpleQueryLerpFunctor< float > * 8576 33 SimpleQueryLerpFunctor< float > * 33 SimpleQueryLerpFunctor< float > * 0 0 223 0 0 0 0 0 0 0 0 0 0
+
+316 36 SimpleQueryLerpFunctor< LPoint2f > * 8576 36 SimpleQueryLerpFunctor< LPoint2f > * 36 SimpleQueryLerpFunctor< LPoint2f > * 0 0 224 0 0 0 0 0 0 0 0 0 0
+
+317 36 SimpleQueryLerpFunctor< LPoint3f > * 8576 36 SimpleQueryLerpFunctor< LPoint3f > * 36 SimpleQueryLerpFunctor< LPoint3f > * 0 0 225 0 0 0 0 0 0 0 0 0 0
+
+318 36 SimpleQueryLerpFunctor< LPoint4f > * 8576 36 SimpleQueryLerpFunctor< LPoint4f > * 36 SimpleQueryLerpFunctor< LPoint4f > * 0 0 226 0 0 0 0 0 0 0 0 0 0
+
+319 38 SimpleQueryLerpFunctor< LVecBase2f > * 8576 38 SimpleQueryLerpFunctor< LVecBase2f > * 38 SimpleQueryLerpFunctor< LVecBase2f > * 0 0 227 0 0 0 0 0 0 0 0 0 0
+
+320 38 SimpleQueryLerpFunctor< LVecBase3f > * 8576 38 SimpleQueryLerpFunctor< LVecBase3f > * 38 SimpleQueryLerpFunctor< LVecBase3f > * 0 0 228 0 0 0 0 0 0 0 0 0 0
+
+321 38 SimpleQueryLerpFunctor< LVecBase4f > * 8576 38 SimpleQueryLerpFunctor< LVecBase4f > * 38 SimpleQueryLerpFunctor< LVecBase4f > * 0 0 229 0 0 0 0 0 0 0 0 0 0
+
+322 37 SimpleQueryLerpFunctor< LVector2f > * 8576 37 SimpleQueryLerpFunctor< LVector2f > * 37 SimpleQueryLerpFunctor< LVector2f > * 0 0 230 0 0 0 0 0 0 0 0 0 0
+
+323 37 SimpleQueryLerpFunctor< LVector3f > * 8576 37 SimpleQueryLerpFunctor< LVector3f > * 37 SimpleQueryLerpFunctor< LVector3f > * 0 0 231 0 0 0 0 0 0 0 0 0 0
+
+324 37 SimpleQueryLerpFunctor< LVector4f > * 8576 37 SimpleQueryLerpFunctor< LVector4f > * 37 SimpleQueryLerpFunctor< LVector4f > * 0 0 232 0 0 0 0 0 0 0 0 0 0
+
+325 15 LerpBlendType * 8576 15 LerpBlendType * 15 LerpBlendType * 0 0 234 0 0 0 0 0 0 0 0 0 0
+
+326 17 EaseInBlendType * 8576 17 EaseInBlendType * 17 EaseInBlendType * 0 0 235 0 0 0 0 0 0 0 0 0 0
+
+327 18 EaseOutBlendType * 8576 18 EaseOutBlendType * 18 EaseOutBlendType * 0 0 236 0 0 0 0 0 0 0 0 0 0
+
+328 20 EaseInOutBlendType * 8576 20 EaseInOutBlendType * 20 EaseInOutBlendType * 0 0 237 0 0 0 0 0 0 0 0 0 0
+
+329 13 NoBlendType * 8576 13 NoBlendType * 13 NoBlendType * 0 0 238 0 0 0 0 0 0 0 0 0 0
+
+330 12 Lerp const * 8576 12 Lerp const * 12 Lerp const * 0 0 331 0 0 0 0 0 0 0 0 0 0
+
+331 10 Lerp const 8832 10 Lerp const 10 Lerp const 0 0 239 0 0 0 0 0 0 0 0 0 0
+
+332 6 Lerp * 8576 6 Lerp * 6 Lerp * 0 0 239 0 0 0 0 0 0 0 0 0 0
+
+333 13 LerpFunctor * 8576 13 LerpFunctor * 13 LerpFunctor * 0 0 209 0 0 0 0 0 0 0 0 0 0
+
+334 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+335 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+336 13 atomic string 2 13 atomic string 13 atomic string 0 7 0 0 0 0 0 0 0 0 0 0 0
+
+337 22 AutonomousLerp const * 8576 22 AutonomousLerp const * 22 AutonomousLerp const * 0 0 338 0 0 0 0 0 0 0 0 0 0
+
+338 20 AutonomousLerp const 8832 20 AutonomousLerp const 20 AutonomousLerp const 0 0 240 0 0 0 0 0 0 0 0 0 0
+
+339 16 AutonomousLerp * 8576 16 AutonomousLerp * 16 AutonomousLerp * 0 0 240 0 0 0 0 0 0 0 0 0 0
+
+340 14 EventHandler * 8576 14 EventHandler * 14 EventHandler * 0 0 341 0 0 0 0 0 0 0 0 0 0
+
+341 12 EventHandler 2048 12 EventHandler 12 EventHandler 0 0 0 0 0 0 0 0 0 0 0 0 678
+////////////////////////////////////////////////////////////////////
+//       Class : EventHandler
+// Description : A class to monitor events from the C++ side of
+//               things.  It maintains a set of "hooks", function
+//               pointers assigned to event names, and calls the
+//               appropriate hooks when the matching event is
+//               detected.
+//
+//               This class is not necessary when the hooks are
+//               detected and processed entirely by the scripting
+//               language, e.g. via Scheme hooks or the messenger
+//               in Python.
+////////////////////////////////////////////////////////////////////
+
+0
+0
+0

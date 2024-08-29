@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<contents seq="3">
+    <host url="http://download.sunrise.games/runtime" />
+    <package name="ai" version="Rocket_1.7" seq="1" filename="ai/Rocket_1.7/ai.Rocket_1.7.xml" size="523" timestamp="1687218623" hash="512faeedae78bcbbab2dde8fefca2f0e">
+        <import filename="ai/Rocket_1.7/ai.Rocket_1.7.import.xml" size="255" timestamp="1687218623" hash="c988b28ad26428620576ffc37cf50583" />
+    </package>
+    <package name="audio" version="Rocket_1.7" seq="1" filename="audio/Rocket_1.7/audio.Rocket_1.7.xml" size="588" timestamp="1687218616" hash="1793871fe6dbe9dfaabb871458c5cf5f">
+        <import filename="audio/Rocket_1.7/audio.Rocket_1.7.import.xml" size="364" timestamp="1687218616" hash="d481ef8bd445f1edb8fc1d2ae6baa31e" />
+    </package>
+    <package name="certlist" seq="1" filename="certlist/certlist.xml" size="341" timestamp="1687218637" hash="3f9c51ab00ebc1454f16d81a21887551">
+        <import filename="certlist/certlist.import.xml" size="123" timestamp="1687218637" hash="88f57c8d3d874017caf691db192815f9" />
+    </package>
+    <package name="coreapi" platform="win32" solo="1" filename="coreapi/win32/p3d_plugin.dll" size="929792" timestamp="1687218637" hash="3224ec507080600eb8df485fa1f2a438" />
+    <package name="egg" version="Rocket_1.7" seq="1" filename="egg/Rocket_1.7/egg.Rocket_1.7.xml" size="636" timestamp="1687218616" hash="798da25bcaf2b356585bd4086020788a">
+        <import filename="egg/Rocket_1.7/egg.Rocket_1.7.import.xml" size="294" timestamp="1687218616" hash="6540a17a7d804d0f79702c9c2d0c2149" />
+    </package>
+    <package name="fmod" platform="win32" version="Rocket_1.7" seq="1" filename="fmod/Rocket_1.7/win32/fmod.Rocket_1.7.win32.xml" size="1880" timestamp="1687218615" hash="fc977fb335e177c1f3311de3cb6b9bf9">
+        <import filename="fmod/Rocket_1.7/win32/fmod.Rocket_1.7.win32.import.xml" size="850" timestamp="1687218615" hash="a4f8d1b18446d94f51a225236990f8cd" />
+    </package>
+    <package name="httplib2" version="Rocket_1.7" seq="1" filename="httplib2/Rocket_1.7/httplib2.Rocket_1.7.xml" size="531" timestamp="1687218662" hash="ab36119bdd1ad7ee09b1b9707da8180a">
+        <import filename="httplib2/Rocket_1.7/httplib2.Rocket_1.7.import.xml" size="293" timestamp="1687218662" hash="20fa8833a8115488c11ef89c93e1c931" />
+    </package>
+    <package name="images" seq="1" filename="images/images.xml" size="1662" timestamp="1687218637" hash="67e992a110aba2c2d7b16ed412d4acae">
+        <import filename="images/images.import.xml" size="491" timestamp="1687218637" hash="d077cb804536b8ae555a06e282a70642" />
+    </package>
+    <package name="models" version="Rocket_1.7" seq="1" filename="models/Rocket_1.7/models.Rocket_1.7.xml" size="425" timestamp="1687218612" hash="93c5cbbdc711b8e1032fe2003652f3c6">
+        <import filename="models/Rocket_1.7/models.Rocket_1.7.import.xml" size="142" timestamp="1687218612" hash="d92db22f840f7cc2f6bff27b94377583" />
+    </package>
+    <package name="morepy" platform="win32" version="Rocket_1.7" seq="1" filename="morepy/Rocket_1.7/win32/morepy.Rocket_1.7.win32.xml" size="2154" timestamp="1687218612" hash="57e5c8975800444952508576518b8d60">
+        <import filename="morepy/Rocket_1.7/win32/morepy.Rocket_1.7.win32.import.xml" size="16239" timestamp="1687218612" hash="a263b442a2e5eaaf4d5d80049eb59f45" />
+    </package>
+    <package name="numpy" version="Rocket_1.7" seq="1" filename="numpy/Rocket_1.7/numpy.Rocket_1.7.xml" size="519" timestamp="1687218656" hash="db4fd1717cd82f8c2143f780acd040b8">
+        <import filename="numpy/Rocket_1.7/numpy.Rocket_1.7.import.xml" size="287" timestamp="1687218656" hash="c28210ac3668a8ab6fbb64c6547a1147" />
+    </package>
+    <package name="ode" platform="win32" version="Rocket_1.7" seq="1" filename="ode/Rocket_1.7/win32/ode.Rocket_1.7.win32.xml" size="725" timestamp="1687218620" hash="ab248e9463070e5c17d3e32fc3b2dac7">
+        <import filename="ode/Rocket_1.7/win32/ode.Rocket_1.7.win32.import.xml" size="336" timestamp="1687218620" hash="9c8303bfde73652d90c6380e60172cc3" />
+    </package>
+    <package name="openal" platform="win32" version="Rocket_1.7" seq="1" filename="openal/Rocket_1.7/win32/openal.Rocket_1.7.win32.xml" size="948" timestamp="1687218616" hash="e07bef1f317dadfdf0de9a405d59a723">
+        <import filename="openal/Rocket_1.7/win32/openal.Rocket_1.7.win32.import.xml" size="429" timestamp="1687218616" hash="1469408a31ed3b4a001c7e66cee27b59" />
+    </package>
+    <package name="p3dcert" platform="win32" seq="1" filename="p3dcert/win32/p3dcert.win32.xml" size="1145" timestamp="1687218644" hash="037c8ccd8d58ecbd6264091c1164d5f5">
+        <import filename="p3dcert/win32/p3dcert.win32.import.xml" size="417" timestamp="1687218644" hash="7e5a73b8fbad25a503e1c7beec6250fd" />
+    </package>
+    <package name="p3dembed" platform="win32" seq="1" filename="p3dembed/win32/p3dembed.win32.xml" size="1781" timestamp="1687218652" hash="65cd732b1f3ca2916d7b1be1e4b3504c">
+        <import filename="p3dembed/win32/p3dembed.win32.import.xml" size="734" timestamp="1687218652" hash="5802e8fafd18bad1c4ec050b4a2e25aa" />
+    </package>
+    <package name="panda3d" platform="win32" version="Rocket_1.7" seq="1" filename="panda3d/Rocket_1.7/win32/panda3d.Rocket_1.7.win32.xml" size="6463" timestamp="1687218587" hash="c6f194e13fd7d81b3d864d9986caccd7">
+        <import filename="panda3d/Rocket_1.7/win32/panda3d.Rocket_1.7.win32.import.xml" size="23574" timestamp="1687218587" hash="e05fbef5d4719adba330a39363140934" />
+    </package>
+    <package name="physx" platform="win32" version="Rocket_1.7" seq="1" filename="physx/Rocket_1.7/win32/physx.Rocket_1.7.win32.xml" size="714" timestamp="1687218623" hash="c089c46b13e1f9816be310b58949b672">
+        <import filename="physx/Rocket_1.7/win32/physx.Rocket_1.7.win32.import.xml" size="338" timestamp="1687218623" hash="09ac0a25e11beab0dbd7632ec5a387ff" />
+    </package>
+    <package name="pil" version="Rocket_1.7" seq="1" filename="pil/Rocket_1.7/pil.Rocket_1.7.xml" size="530" timestamp="1687218662" hash="bf2c412d11d36e5c948fa370202f7be9">
+        <import filename="pil/Rocket_1.7/pil.Rocket_1.7.import.xml" size="3254" timestamp="1687218662" hash="169c765d46ee0fc179a34d47fcde8026" />
+    </package>
+    <package name="pycurl" version="Rocket_1.7" seq="1" filename="pycurl/Rocket_1.7/pycurl.Rocket_1.7.xml" size="523" timestamp="1687218662" hash="49eaa78159da6484864beb19d149ecde">
+        <import filename="pycurl/Rocket_1.7/pycurl.Rocket_1.7.import.xml" size="289" timestamp="1687218662" hash="cc54ed1903794bac7cf59187b1dbfa64" />
+    </package>
+    <package name="pygame" version="Rocket_1.7" seq="1" filename="pygame/Rocket_1.7/pygame.Rocket_1.7.xml" size="628" timestamp="1687218656" hash="7f66c5085eaf325adacb5be1d024bcda">
+        <import filename="pygame/Rocket_1.7/pygame.Rocket_1.7.import.xml" size="394" timestamp="1687218656" hash="5b92838b1e865cebfd0a58202d8d089d" />
+    </package>
+    <package name="pyopengl" version="Rocket_1.7" seq="1" filename="pyopengl/Rocket_1.7/pyopengl.Rocket_1.7.xml" size="636" timestamp="1687218662" hash="84075b3cbb1616b9f276491959d413db">
+        <import filename="pyopengl/Rocket_1.7/pyopengl.Rocket_1.7.import.xml" size="396" timestamp="1687218662" hash="9ba34828972c3bceeced92dc28f6ed23" />
+    </package>
+    <package name="sqlite" platform="win32" version="Rocket_1.7" seq="1" filename="sqlite/Rocket_1.7/win32/sqlite.Rocket_1.7.win32.xml" size="821" timestamp="1687218656" hash="457f1634d424c66b7a009cba8c7e14a3">
+        <import filename="sqlite/Rocket_1.7/win32/sqlite.Rocket_1.7.win32.import.xml" size="541" timestamp="1687218656" hash="4a23ac3894cb496d5ac3c589d439cc6e" />
+    </package>
+    <package name="tk" platform="win32" version="Rocket_1.7" seq="1" filename="tk/Rocket_1.7/win32/tk.Rocket_1.7.win32.xml" size="1038" timestamp="1687218654" hash="eb8a1438454c3a84ce588e7c101e5678">
+        <import filename="tk/Rocket_1.7/win32/tk.Rocket_1.7.win32.import.xml" size="1595" timestamp="1687218654" hash="49f5749ef286a4c8e154e4d55eb72e87" />
+    </package>
+    <package name="twisted" platform="win32" version="Rocket_1.7" seq="1" filename="twisted/Rocket_1.7/win32/twisted.Rocket_1.7.win32.xml" size="699" timestamp="1687218662" hash="10431d8bf2dfa7d71a5bb79b0bae27cb">
+        <import filename="twisted/Rocket_1.7/win32/twisted.Rocket_1.7.win32.import.xml" size="25062" timestamp="1687218662" hash="7e63dee0d6910fa7c63f5ce4a20728aa" />
+    </package>
+    <package name="vision" platform="win32" version="Rocket_1.7" seq="1" filename="vision/Rocket_1.7/win32/vision.Rocket_1.7.win32.xml" size="2653" timestamp="1687218631" hash="877de424dafb824f0e1be6052c116805">
+        <import filename="vision/Rocket_1.7/win32/vision.Rocket_1.7.win32.import.xml" size="1160" timestamp="1687218631" hash="9d437f7717b569be7b7250b3777e9db3" />
+    </package>
+    <package name="wx" version="Rocket_1.7" seq="1" filename="wx/Rocket_1.7/wx.Rocket_1.7.xml" size="528" timestamp="1687218653" hash="6d857210e9f708770807bb880266e43e">
+        <import filename="wx/Rocket_1.7/wx.Rocket_1.7.import.xml" size="329" timestamp="1687218653" hash="8b4e4c8125f8a9158657e80faaa220d4" />
+    </package>
+</contents>

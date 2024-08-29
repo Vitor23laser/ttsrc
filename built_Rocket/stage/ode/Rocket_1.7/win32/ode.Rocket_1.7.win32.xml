@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="ode" platform="win32" version="Rocket_1.7" seq="1">
+    <config display_name="Panda3D Open Dynamics Engine integration" />
+    <requires name="panda3d" platform="win32" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <uncompressed_archive filename="ode.Rocket_1.7.win32.mf" size="1280057" timestamp="1687218620" hash="f5a9c74ba8741d31df9a0890fce331b5" />
+    <compressed_archive filename="ode.Rocket_1.7.win32.mf.pz" size="376942" timestamp="1687218620" hash="09b6f69390118124e3e753ad8ba9d63e" />
+    <extract filename="libpandaode.dll" size="1280000" timestamp="1687213599" hash="c5abf99f29f537bd62f68a62ef9220a1" />
+</package>

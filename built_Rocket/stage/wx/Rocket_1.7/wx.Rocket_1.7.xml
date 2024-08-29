@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="wx" version="Rocket_1.7" seq="1">
+    <config display_name="wxPython GUI Toolkit" />
+    <requires name="panda3d" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <uncompressed_archive filename="wx.Rocket_1.7.mf" size="1201" timestamp="1687218653" hash="98acdf82c033d216563afaf9fc837e8b" />
+    <compressed_archive filename="wx.Rocket_1.7.mf.pz" size="561" timestamp="1687218653" hash="95d91a36cb9d21efff1dc41a46bb6f7a" />
+</package>

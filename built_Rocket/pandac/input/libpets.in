@@ -1,0 +1,356 @@
+1687214005
+2 2
+7 libpets 4 Wst6 8 toontown 
+12
+18 9 CPetBrain 4 30 20 CPetBrain::CPetBrain 0 1 1 222
+////////////////////////////////////////////////////////////////////
+//     Function: CPetBrain::Constructor
+//       Access: Published
+//  Description: 
+////////////////////////////////////////////////////////////////////
+27
+CPetBrain::CPetBrain(void);
+
+19 15 is_attending_us 4 30 26 CPetBrain::is_attending_us 0 1 2 302
+////////////////////////////////////////////////////////////////////
+//     Function: CPetBrain::is_attending_us
+//       Access: Published
+//  Description: Calculates whether another avatar is paying
+//               attention to us
+////////////////////////////////////////////////////////////////////
+62
+bool CPetBrain::is_attending_us(NodePath &us, NodePath &them);
+
+20 10 ~CPetBrain 4 30 21 CPetBrain::~CPetBrain 0 0 0
+28
+CPetBrain::~CPetBrain(void);
+
+21 9 CPetChase 4 31 20 CPetChase::CPetChase 0 4 3 4 5 6 219
+////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::Constructor
+//       Access: Public
+//  Description: 
+////////////////////////////////////////////////////////////////////
+92
+CPetChase::CPetChase(NodePath *target = (0), float min_dist = (5), float move_angle = (20));
+
+22 10 set_target 4 31 21 CPetChase::set_target 0 1 7 397
+// Filename: cPetChase.I
+// Created by:  dcranall (15Jul04)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::set_target
+//       Access: Published
+//  Description: Sets the NodePath that this pet should chase
+////////////////////////////////////////////////////////////////////
+58
+inline void CPetChase::set_target(NodePath const &target);
+
+23 10 get_target 4 31 21 CPetChase::get_target 0 1 8 266
+////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::get_target
+//       Access: Published
+//  Description: Returns the NodePath that this pet is chasing
+////////////////////////////////////////////////////////////////////
+50
+inline NodePath CPetChase::get_target(void) const;
+
+24 12 set_min_dist 4 31 23 CPetChase::set_min_dist 0 1 9 325
+////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::set_min_dist
+//       Access: Published
+//  Description: Sets the minimum distance for which the pet should
+//               approach the target it is chasing.
+////////////////////////////////////////////////////////////////////
+52
+inline void CPetChase::set_min_dist(float min_dist);
+
+25 12 get_min_dist 4 31 23 CPetChase::get_min_dist 0 1 10 328
+////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::get_min_dist
+//       Access: Published
+//  Description: returns the minimum distance for which the pet should
+//               approach the target it is chasing.
+////////////////////////////////////////////////////////////////////
+49
+inline float CPetChase::get_min_dist(void) const;
+
+26 14 get_class_type 4 31 25 CPetChase::get_class_type 0 1 11 0
+50
+static TypeHandle CPetChase::get_class_type(void);
+
+27 8 CPetFlee 4 33 18 CPetFlee::CPetFlee 0 4 12 13 14 15 218
+////////////////////////////////////////////////////////////////////
+//     Function: CPetFlee::Constructor
+//       Access: Public
+//  Description: 
+////////////////////////////////////////////////////////////////////
+91
+CPetFlee::CPetFlee(NodePath *chaser = (0), float max_dist = (50), float move_angle = (20));
+
+28 10 set_chaser 4 33 20 CPetFlee::set_chaser 0 1 16 399
+// Filename: cPetFlee.I
+// Created by:  dcranall (15Jul04)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CPetFlee::set_chaser
+//       Access: Published
+//  Description: Sets the NodePath that this pet should flee from
+////////////////////////////////////////////////////////////////////
+51
+inline void CPetFlee::set_chaser(NodePath &chaser);
+
+29 14 get_class_type 4 33 24 CPetFlee::get_class_type 0 1 17 0
+49
+static TypeHandle CPetFlee::get_class_type(void);
+
+17
+1 14 Dtool_Wst671NL 7 2 34 20 14 Dtool_Wst671NL 222 ////////////////////////////////////////////////////////////////////
+//     Function: CPetBrain::Constructor
+//       Access: Published
+//  Description: 
+//////////////////////////////////////////////////////////////////// 0 
+2 14 Dtool_Wst6TsF7 6 3 37 0 14 Dtool_Wst6TsF7 302 ////////////////////////////////////////////////////////////////////
+//     Function: CPetBrain::is_attending_us
+//       Access: Published
+//  Description: Calculates whether another avatar is paying
+//               attention to us
+//////////////////////////////////////////////////////////////////// 3 4 this 3 34  2 us 1 35  4 them 1 35  
+3 14 Dtool_Wst68Ddg 7 7 39 0 14 Dtool_Wst68Ddg 219 ////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::Constructor
+//       Access: Public
+//  Description: 
+//////////////////////////////////////////////////////////////////// 3 6 target 1 35  8 min_dist 1 38  10 move_angle 1 38  
+4 14 Dtool_Wst6GfWU 7 7 39 0 14 Dtool_Wst6GfWU 219 ////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::Constructor
+//       Access: Public
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 6 target 1 35  8 min_dist 1 38  
+5 14 Dtool_Wst6LE_g 7 7 39 0 14 Dtool_Wst6LE_g 219 ////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::Constructor
+//       Access: Public
+//  Description: 
+//////////////////////////////////////////////////////////////////// 1 6 target 1 35  
+6 14 Dtool_Wst6bF3y 7 7 39 0 14 Dtool_Wst6bF3y 219 ////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::Constructor
+//       Access: Public
+//  Description: 
+//////////////////////////////////////////////////////////////////// 0 
+7 14 Dtool_Wst6SKEc 4 8 42 0 14 Dtool_Wst6SKEc 397 // Filename: cPetChase.I
+// Created by:  dcranall (15Jul04)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::set_target
+//       Access: Published
+//  Description: Sets the NodePath that this pet should chase
+//////////////////////////////////////////////////////////////////// 2 4 this 3 39  6 target 1 40  
+8 14 Dtool_Wst6RLNO 7 9 35 0 14 Dtool_Wst6RLNO 266 ////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::get_target
+//       Access: Published
+//  Description: Returns the NodePath that this pet is chasing
+//////////////////////////////////////////////////////////////////// 1 4 this 3 43  
+9 14 Dtool_Wst6Cr69 4 10 42 0 14 Dtool_Wst6Cr69 325 ////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::set_min_dist
+//       Access: Published
+//  Description: Sets the minimum distance for which the pet should
+//               approach the target it is chasing.
+//////////////////////////////////////////////////////////////////// 2 4 this 3 39  8 min_dist 1 38  
+10 14 Dtool_Wst6ngYb 6 11 38 0 14 Dtool_Wst6ngYb 328 ////////////////////////////////////////////////////////////////////
+//     Function: CPetChase::get_min_dist
+//       Access: Published
+//  Description: returns the minimum distance for which the pet should
+//               approach the target it is chasing.
+//////////////////////////////////////////////////////////////////// 1 4 this 3 43  
+11 14 Dtool_Wst65x_E 7 12 46 0 14 Dtool_Wst65x_E 0 0 
+12 14 Dtool_Wst6jt8E 7 14 47 0 14 Dtool_Wst6jt8E 218 ////////////////////////////////////////////////////////////////////
+//     Function: CPetFlee::Constructor
+//       Access: Public
+//  Description: 
+//////////////////////////////////////////////////////////////////// 3 6 chaser 1 35  8 max_dist 1 38  10 move_angle 1 38  
+13 14 Dtool_Wst6_ZKe 7 14 47 0 14 Dtool_Wst6_ZKe 218 ////////////////////////////////////////////////////////////////////
+//     Function: CPetFlee::Constructor
+//       Access: Public
+//  Description: 
+//////////////////////////////////////////////////////////////////// 2 6 chaser 1 35  8 max_dist 1 38  
+14 14 Dtool_Wst6SUJ9 7 14 47 0 14 Dtool_Wst6SUJ9 218 ////////////////////////////////////////////////////////////////////
+//     Function: CPetFlee::Constructor
+//       Access: Public
+//  Description: 
+//////////////////////////////////////////////////////////////////// 1 6 chaser 1 35  
+15 14 Dtool_Wst6DOPZ 7 14 47 0 14 Dtool_Wst6DOPZ 218 ////////////////////////////////////////////////////////////////////
+//     Function: CPetFlee::Constructor
+//       Access: Public
+//  Description: 
+//////////////////////////////////////////////////////////////////// 0 
+16 14 Dtool_Wst6tL1S 4 15 42 0 14 Dtool_Wst6tL1S 399 // Filename: cPetFlee.I
+// Created by:  dcranall (15Jul04)
+//
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//     Function: CPetFlee::set_chaser
+//       Access: Published
+//  Description: Sets the NodePath that this pet should flee from
+//////////////////////////////////////////////////////////////////// 2 4 this 3 47  6 chaser 1 35  
+17 14 Dtool_Wst6PvOg 7 16 46 0 14 Dtool_Wst6PvOg 0 0 
+18
+30 9 CPetBrain 141313 9 CPetBrain 9 CPetBrain 0 0 0 1 18 20 0 1 19 0 0 0 0 0 0
+
+31 9 CPetChase 75777 9 CPetChase 9 CPetChase 0 0 0 1 21 0 0 5 22 23 24 25 26 0 0 1 0 32 0 0 0 0 0
+
+32 8 CImpulse 2049 8 CImpulse 8 CImpulse 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+33 8 CPetFlee 75777 8 CPetFlee 8 CPetFlee 0 0 0 1 27 0 0 2 28 29 0 0 1 0 32 0 0 0 0 0
+
+34 11 CPetBrain * 8576 11 CPetBrain * 11 CPetBrain * 0 0 30 0 0 0 0 0 0 0 0 0 0
+
+35 10 NodePath * 8576 10 NodePath * 10 NodePath * 0 0 36 0 0 0 0 0 0 0 0 0 0
+
+36 8 NodePath 2048 8 NodePath 8 NodePath 0 0 0 0 0 0 0 2 48 49 0 0 0 0 4938
+//
+// A NodePath is the fundamental unit of high-level interaction with
+// the scene graph.  It encapsulates the complete path down to a node
+// from some other node, usually the root of the scene graph.  This is
+// used to resolve ambiguities associated with instancing.
+//
+// NodePath also contains a number of handy high-level methods for
+// common scene-graph manipulations, such as reparenting, and common
+// state changes, such as repositioning.
+//
+// There are also a number of NodePath methods for finding nodes deep
+// within the tree by name or by type.  These take a path string,
+// which at its simplest consists of a series of node names separated
+// by slashes, like a directory pathname.
+//
+// Each component of the path string may optionally consist of one of
+// the following special names, instead of a node name:
+//
+//   *          -- matches exactly one node, with any name.
+//   **         -- matches any sequence of zero or more nodes.
+//   +typename  -- matches any node that is or derives from the given type.
+//   -typename  -- matches any node that is the given type exactly.
+//   =tag       -- matches any node that has the indicated tag.
+//   =tag=value -- matches any node whose tag matches the indicated value.
+//
+// Furthermore, a node name may itself contain standard filename
+// globbing characters, like *, ?, and [a-z], that will be accepted as
+// a partial match.  (In fact, the '*' special name may be seen as
+// just a special case of this.)  The globbing characters may not be
+// used with the typename matches or with tag matches, but they may
+// be used to match a tag's value in the =tag=value syntax.
+//
+// The special characters "@@", appearing at the beginning of a node
+// name, indicate a stashed node.  Normally, stashed nodes are not
+// returned by a find (but see the special flags, below), but a
+// stashed node may be found if it is explicitly named with its
+// leading @@ characters.  By extension, "@@*" may be used to identify
+// any stashed node.
+//
+// Examples:
+//
+// "room//graph" will look for a node named "graph", which is a child
+// of an unnamed node, which is a child of a node named "room", which
+// is a child of the starting path.
+//
+// "**/red*" will look for any node anywhere in the tree (below the
+// starting path) with a name that begins with "red".
+//
+// "**/+PartBundleNode/**/head" will look for a node named "head",
+// somewhere below a PartBundleNode anywhere in the tree.
+//
+//
+// The search is always potentially ambiguous, even if the special
+// wildcard operators are not used, because there may be multiple
+// nodes in the tree with the same name.  In general, in the case of
+// an ambiguity, the shortest path is preferred; when a method (such
+// as extend_by) must choose only only one of several possible paths,
+// it will choose the shortest available; on the other hand, when a
+// method (such as find_all_matches) is to return all of the matching
+// paths, it will sort them so that the shortest paths appear first in
+// the output.
+//
+//
+// Special flags.  The entire string may optionally be followed by the
+// ";" character, followed by one or more of the following special
+// control flags, with no intervening spaces or punctuation:
+//
+//    -h    Do not return hidden nodes.
+//    +h    Do return hidden nodes.
+//    -s    Do not return stashed nodes unless explicitly referenced with @@.
+//    +s    Return stashed nodes even without any explicit @@ characters.
+//    -i    Node name comparisons are not case insensitive: case must match
+//          exactly.
+//    +i    Node name comparisons are case insensitive: case is not important.
+//          This affects matches against the node name only; node type
+//          and tag strings are always case sensitive.
+//
+// The default flags are +h-s-i.
+//
+////////////////////////////////////////////////////////////////////
+//       Class : NodePath
+// Description : NodePath is the fundamental system for disambiguating
+//               instances, and also provides a higher-level interface
+//               for manipulating the scene graph.
+//
+//               A NodePath is a list of connected nodes from the root
+//               of the graph to any sub-node.  Each NodePath
+//               therefore uniquely describes one instance of a node.
+//
+//               NodePaths themselves are lightweight objects that may
+//               easily be copied and passed by value.  Their data is
+//               stored as a series of NodePathComponents that are
+//               stored on the nodes.  Holding a NodePath will keep a
+//               reference count to all the nodes in the path.
+//               However, if any node in the path is removed or
+//               reparented (perhaps through a different NodePath),
+//               the NodePath will automatically be updated to reflect
+//               the changes.
+////////////////////////////////////////////////////////////////////
+
+37 4 bool 8194 4 bool 4 bool 0 4 0 0 0 0 0 0 0 0 0 0 0
+
+38 5 float 8194 5 float 5 float 0 2 0 0 0 0 0 0 0 0 0 0 0
+
+39 11 CPetChase * 8576 11 CPetChase * 11 CPetChase * 0 0 31 0 0 0 0 0 0 0 0 0 0
+
+40 16 NodePath const * 8576 16 NodePath const * 16 NodePath const * 0 0 41 0 0 0 0 0 0 0 0 0 0
+
+41 14 NodePath const 8832 14 NodePath const 14 NodePath const 0 0 36 0 0 0 0 0 0 0 0 0 0
+
+42 4 void 8194 4 void 4 void 0 6 0 0 0 0 0 0 0 0 0 0 0
+
+43 17 CPetChase const * 8576 17 CPetChase const * 17 CPetChase const * 0 0 44 0 0 0 0 0 0 0 0 0 0
+
+44 15 CPetChase const 8832 15 CPetChase const 15 CPetChase const 0 0 31 0 0 0 0 0 0 0 0 0 0
+
+45 10 TypeHandle 2048 10 TypeHandle 10 TypeHandle 0 0 0 0 0 0 0 0 0 0 0 0 1098
+////////////////////////////////////////////////////////////////////
+//       Class : TypeHandle
+// Description : TypeHandle is the identifier used to differentiate
+//               C++ class types.  Any C++ classes that inherit from
+//               some base class, and must be differentiated at run
+//               time, should store a static TypeHandle object that
+//               can be queried through a static member function
+//               named get_class_type().  Most of the time, it is also
+//               desirable to inherit from TypedObject, which provides
+//               some virtual functions to return the TypeHandle for a
+//               particular instance.
+//
+//               At its essence, a TypeHandle is simply a unique
+//               identifier that is assigned by the TypeRegistry.  The
+//               TypeRegistry stores a tree of TypeHandles, so that
+//               ancestry of a particular type may be queried, and the
+//               type name may be retrieved for run-time display.
+////////////////////////////////////////////////////////////////////
+
+46 12 TypeHandle * 8576 12 TypeHandle * 12 TypeHandle * 0 0 45 0 0 0 0 0 0 0 0 0 0
+
+47 10 CPetFlee * 8576 10 CPetFlee * 10 CPetFlee * 0 0 33 0 0 0 0 0 0 0 0 0 0
+
+0
+0
+2
+48 0 21 9 get_nodes 13 get_num_nodes 8 get_node 
+49 0 21 13 get_ancestors 13 get_num_nodes 12 get_ancestor 

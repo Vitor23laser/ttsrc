@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package name="fmod" platform="win32" version="Rocket_1.7" seq="1">
+    <config display_name="FMod audio library" />
+    <requires name="panda3d" platform="win32" version="Rocket_1.7" seq="1" host="http://download.sunrise.games/runtime" />
+    <uncompressed_archive filename="fmod.Rocket_1.7.win32.mf" size="703472" timestamp="1687218615" hash="19feb47e5afa57c65afff25b84b17e8b" />
+    <compressed_archive filename="fmod.Rocket_1.7.win32.mf.pz" size="481161" timestamp="1687218615" hash="fa1774710cd7970afaa5a3538274f930" />
+    <extract filename="api-ms-win-core-debug-l1-1-0.dll" size="11984" timestamp="1631685802" hash="6c580f945147d132beb3e12f9fffda24" />
+    <extract filename="api-ms-win-core-interlocked-l1-1-0.dll" size="11984" timestamp="1631685824" hash="8103ec685742c3a641ea6eb6ad5c22d1" />
+    <extract filename="api-ms-win-core-memory-l1-1-0.dll" size="12496" timestamp="1631685832" hash="2422d0a9458004421e036d2346fc65cb" />
+    <extract filename="api-ms-win-crt-private-l1-1-0.dll" size="64720" timestamp="1631685896" hash="577be9d9e88204fcc2e5eba78b79279f" />
+    <extract filename="api-ms-win-crt-runtime-l1-1-0.dll" size="16592" timestamp="1631685902" hash="fe25b5d4c7d20d469184195ea06dfa11" />
+    <extract filename="api-ms-win-crt-string-l1-1-0.dll" size="18128" timestamp="1631685908" hash="d744d66821cdc6c471a976e617bddc5e" />
+    <extract filename="fmod.prc" size="57" timestamp="1687218613" hash="ea819b39dd9791053fe0ec095ba195e0" />
+    <extract filename="fmodex.dll" size="397312" timestamp="1687212761" hash="2a3674a36c79fac99699572b5ba6b908" />
+    <extract filename="libp3fmod_audio.dll" size="77824" timestamp="1687213516" hash="f1574be32a1defbebe2eb55ecd3ed756" />
+    <extract filename="MSACM32.dll" size="91904" timestamp="1686278000" hash="1ab1c0eac3bd216cbd17e6a7622f4837" />
+</package>
