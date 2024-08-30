@@ -486,14 +486,6 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI,
         self.defaultZone = zone
         self.notify.debug("setting default zone to %s" % zone)
 
-    def d_setDefaultZone(self, zone):
-        self.sendUpdate('setDefaultZone', [zone])
-
-    def b_setDefaultZone(self, zone):
-        if zone != self.defaultZone:
-            self.setDefaultZone(zone)
-            self.d_setDefaultZone(zone)
-
     def getDefaultZone(self):
         return self.defaultZone
 
@@ -872,14 +864,6 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI,
 
     def getLastHood(self):
         return self.lastHood
-
-    def d_setLastHood(self, hood):
-        self.sendUpdate('setLastHood', [hood])
-
-    def b_setLastHood(self, hood):
-        if hood != self.lastHood:
-            self.setLastHood(hood)
-            self.d_setLastHood(hood)
 
     def b_setAnimState(self, animName, animMultiplier):
         self.setAnimState(animName, animMultiplier)
