@@ -59,8 +59,8 @@ dclass TimeManager : DistributedObject {
 };
 
 dclass ObjectServer {
-  setName(string) required airecv ram required;
-  setDateCreated(uint32) airecv;
+  setName(string) required p2p;
+  setDateCreated(uint32) p2p;
 };
 
 dclass DistributedDirectory : DistributedObject {
