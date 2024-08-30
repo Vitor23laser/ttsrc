@@ -428,9 +428,6 @@ class DistributedEstateAI(DistributedObjectAI.DistributedObjectAI):
         tupleNewTime = time.localtime(currentTime - self.epochHourInSeconds)
         tupleOldTime = time.localtime(self.lastEpochTimeStamp)
 
-        if (tupleOldTime < time.gmtime(0)):
-            tupleOldTime = time.gmtime(0)
-
         #tupleOldTime = (2006, 6, 18, 0, 36, 45, 0, 170, 1)
         #tupleNewTime = (2006, 6, 19, 3, 36, 45, 0, 170, 1)
 
@@ -454,7 +451,7 @@ class DistributedEstateAI(DistributedObjectAI.DistributedObjectAI):
         if epochsToDo < 0:
             epochsToDo = 0
 
-        print(("epochsToDo %s" % (epochsToDo)))
+        print("epochsToDo %s" % (epochsToDo))
 
         #print("tuple times")
         #print tupleNewTime

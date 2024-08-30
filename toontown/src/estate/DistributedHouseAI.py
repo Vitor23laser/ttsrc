@@ -663,7 +663,7 @@ class DistributedHouseAI(DistributedObjectAI.DistributedObjectAI):
 
         self.notify.debug("__checkOwner: %s" % (self.doId))
 
-        if self.ownerId >= 0:
+        if self.ownerId == 0:
             # No owner.  Duh.
             self.d_setHouseReady()
             return
@@ -699,13 +699,13 @@ class DistributedHouseAI(DistributedObjectAI.DistributedObjectAI):
         dg = db.values.get('setDeliverySchedule')
         if dg:
             di = PyDatagramIterator(dg)
-            blob = di.getString()
+            blob = di.getBlob()
             onOrder = CatalogItemList.CatalogItemList(blob, store = CatalogItem.Customization | CatalogItem.DeliveryDate)
 
         dg = db.values.get('setMailboxContents')
         if dg:
             di = PyDatagramIterator(dg)
-            blob = di.getString()
+            blob = di.getBlob()
             mailboxContents = CatalogItemList.CatalogItemList(blob, store = CatalogItem.Customization)
 
         dg = db.values.get('setMaxHp')
@@ -716,7 +716,7 @@ class DistributedHouseAI(DistributedObjectAI.DistributedObjectAI):
         dg = db.values.get('setAwardMailboxContents')
         if dg:
             di = PyDatagramIterator(dg)
-            blob = di.getString()
+            blob = di.getBlob()
             awardMailboxContents = CatalogItemList.CatalogItemList(blob, store = CatalogItem.Customization)
 
         #self.b_setCannonEnabled(1)
