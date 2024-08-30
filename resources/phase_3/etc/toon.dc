@@ -183,17 +183,17 @@ dclass DistributedToon : DistributedPlayer {
   setInventory(blob = {0*7, 0*7, 0*7, 0*7, 1, 0*6, 1, 0*6, 0*7}) required ownrecv db;
   setMaxNPCFriends(uint16 = 16) required ownrecv db;
   setNPCFriendsDict(uint32uint8array = {}) required ownrecv db;
-  setDefaultShard(uint32 = 201000000) required p2p db;
-  setDefaultZone(uint32 = 2000) required p2p db;
-  setShtickerBook(blob = {}) required p2p db;
-  setZonesVisited(uint32array = { 2000 }) required p2p db;
-  setHoodsVisited(uint32array = { 2000 }) required p2p db;
-  setInterface(blob = {}) required p2p db;
-  setLastHood(uint32 = 2000) required p2p db;
+  setDefaultShard(uint32 = 201000000) required ownrecv db;
+  setDefaultZone(uint32 = 2000) required ownrecv db;
+  setShtickerBook(blob = {}) required ownrecv db;
+  setZonesVisited(uint32array = { 2000 }) required ownrecv db;
+  setHoodsVisited(uint32array = { 2000 }) required ownrecv db;
+  setInterface(blob = {}) required ownrecv db;
+  setLastHood(uint32 = 2000) required ownrecv db;
   setTutorialAck(uint8 = 0) required ownrecv db;
   setMaxClothes(uint32 = 10) required ownrecv db;
-  setClothesTopsList(uint8array = {}) required p2p db;
-  setClothesBottomsList(uint8array = {}) required p2p db;
+  setClothesTopsList(uint8array = {}) required ownrecv db;
+  setClothesBottomsList(uint8array = {}) required ownrecv db;
   setEarnedExperience(uint16array) ownrecv;
   setTunnelIn(int16, int16/10, int16/10, int16/10, int16/100, int32/100) broadcast ownsend;
   setTunnelOut(int16, int16/10, int16/10, int16/10, int16/10, int16/100, int32/100) broadcast ownsend;
@@ -202,12 +202,12 @@ dclass DistributedToon : DistributedPlayer {
   setEmoteAccess(uint8array = {1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}) required ownrecv db;
   setCustomMessages(uint16array = {}) required ownrecv db;
   setResistanceMessages(pair16 [] = {}) required ownrecv db;
-  setPetTrickPhrases(uint8array = [0]) required p2p db;
-  setCatalogSchedule(uint16 = 0, uint32 = 0) required p2p db;
-  setCatalog(blob = {}, blob = {}, blob = {}) required p2p db;
-  setMailboxContents(blob = {}) required p2p db;
-  setDeliverySchedule(blob = {}) required p2p db;
-  setCatalogNotify(uint8 = 0, uint8 = 0) required p2p db;
+  setPetTrickPhrases(uint8array = [0]) required ownrecv db;
+  setCatalogSchedule(uint16 = 0, uint32 = 0) required ownrecv db;
+  setCatalog(blob = {}, blob = {}, blob = {}) required ownrecv db;
+  setMailboxContents(blob = {}) required ownrecv db;
+  setDeliverySchedule(blob = {}) required ownrecv db;
+  setCatalogNotify(uint8 = 0, uint8 = 0) required ownrecv db;
   playSplashEffect(int16/10, int16/10, int16/10) broadcast ownsend;
   setWhisperSCToontaskFrom(uint32, uint32, uint32, uint32, uint8) ownrecv clsend;
   setSCToontask(uint32, uint32, uint32, uint8) broadcast ownsend;
@@ -235,15 +235,15 @@ dclass DistributedToon : DistributedPlayer {
   setQuests(uint32array = {}) required broadcast db;
   setQuestHistory(uint16array = {}) required ownrecv db;
   setRewardHistory(uint8 = 0, uint16array = {}) required ownrecv db;
-  setQuestCarryLimit(uint8 = 1) required p2p db;
+  setQuestCarryLimit(uint8 = 1) required ownrecv db;
   setCheesyEffect(int16 = 0, uint32 = 0, uint32 = 0) required broadcast db;
   setGhostMode(uint8) broadcast ram;
   setPosIndex(uint8 = 0) required ownrecv db;
   setFishCollection(uint8array = {}, uint8array = {}, uint16array = {}) required ownrecv db;
-  setMaxFishTank(uint8 = 20) required p2p db;
+  setMaxFishTank(uint8 = 20) required ownrecv db;
   setFishTank(uint8array = {}, uint8array = {}, uint16array = {}) required ownrecv db;
   setFishingRod(uint8 = 0) required broadcast db;
-  setFishingTrophies(uint8array = {}) required p2p db;
+  setFishingTrophies(uint8array = {}) required ownrecv db;
   presentPie(int16/10, int16/10, int16/10, int16/10, int16/10, int16/10, int32) broadcast ownsend;
   tossPie(int16/10, int16/10, int16/10, int16/10, int16/10, int16/10, uint8, uint8, int32) broadcast ownsend;
   pieSplat(int16/10, int16/10, int16/10, uint8, uint8, int32) broadcast ownsend;
@@ -487,8 +487,8 @@ dclass DistributedButterfly : DistributedObject {
 };
 
 dclass DistributedMMPiano : DistributedObject {
-  requestSpeedUp() p2p clsend;
-  requestChangeDirection() p2p clsend;
+  requestSpeedUp() airecv clsend;
+  requestChangeDirection() airecv clsend;
   setSpeed(int16/1000, uint16/100, int16) broadcast ram;
   playSpeedUp(uint32) broadcast;
   playChangeDirection(uint32) broadcast;
@@ -537,9 +537,9 @@ dclass DistributedPondBingoManager : DistributedObject {
 dclass DistributedCannon : DistributedObject {
   setEstateId(uint32) required broadcast ram;
   setPosHpr(int16/10, int16/10, int16/10, int16/10, int16/10, int16/10) required broadcast ram;
-  setActive(uint8) p2p clsend;
+  setActive(uint8) airecv clsend;
   setActiveState(uint8) broadcast ram;
-  requestEnter() p2p clsend;
+  requestEnter() airecv clsend;
   setMovie(uint8, uint32) broadcast ram;
   setCannonPosition(int32/100, uint32/100) airecv clsend;
   setCannonLit(int32/100, uint32/100) airecv clsend;
@@ -1049,14 +1049,14 @@ dclass DistributedPhone : DistributedFurnitureItem {
 
 dclass DistributedFireworkShow : DistributedObject {
   startShow(uint8, uint8, int16) broadcast ram;
-  requestFirework(int16/10, int16/10, int16/100, uint8, uint8, uint8) p2p clsend;
+  requestFirework(int16/10, int16/10, int16/100, uint8, uint8, uint8) airecv clsend;
   shootFirework(int16/10, int16/10, int16/100, uint8, uint8, uint8) broadcast;
 };
 
 dclass DistributedFireworksCannon : DistributedFireworkShow {
-  avatarEnter() p2p clsend;
-  avatarExit() p2p clsend;
-  freeAvatar() p2p;
+  avatarEnter() airecv clsend;
+  avatarExit() airecv clsend;
+  freeAvatar();
   setMovie(uint8, uint32, int16) broadcast ram;
   setPosition(int16/10, int16/10, int16/10) required broadcast ram;
 };
