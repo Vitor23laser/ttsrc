@@ -168,7 +168,7 @@ typedef int16 pair16[2];
 
 dclass DistributedToon : DistributedPlayer {
   setDNAString(blob) required broadcast ownrecv db;
-  setMaxBankMoney(int16 = 12000) required broadcast db;
+  setMaxBankMoney(int16 = 1000) required broadcast db;
   setBankMoney(int16 = 0) required broadcast db;
   setMaxMoney(int16 = 40) required broadcast ownrecv db;
   setMoney(int16 = 0) required broadcast db;
