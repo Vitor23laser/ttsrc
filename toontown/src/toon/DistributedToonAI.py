@@ -224,23 +224,6 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI,
         DistributedSmoothNodeAI.DistributedSmoothNodeAI.announceGenerate(self)
         if self.isPlayerControlled():
             messenger.send('avatarEntered', [self])
-            self.sendUpdate('setDefaultShard', [self.air.districtId])
-
-    def setLocation(self, parentId, zoneId):
-        DistributedPlayerAI.DistributedPlayerAI.setLocation(self, parentId, zoneId)
-
-        if self.isPlayerControlled():
-            if 100 <= zoneId < ToontownGlobals.DynamicZonesBegin:
-                hood = ZoneUtil.getHoodId(zoneId)
-
-                self.b_setLastHood(hood)
-                self.b_setDefaultZone(hood)
-
-                hoodsVisited = list(self.getHoodsVisited())
-
-                if hood not in hoodsVisited:
-                    hoodsVisited.append(hood)
-                    self.b_setHoodsVisited(hoodsVisited)
 
     ### Field definitions
 
@@ -342,6 +325,7 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI,
         if oldZoneId is None:
             # Make sure the oldZoneId is by default 0.
             # This is required for Python 3.
+            print("oldZoneId is None")
             oldZoneId = 0
 
         # make sure ghost mode is disabled on zone change (fixes furniture arranger exploit)
