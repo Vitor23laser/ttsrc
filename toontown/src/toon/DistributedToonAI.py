@@ -325,7 +325,6 @@ class DistributedToonAI(DistributedPlayerAI.DistributedPlayerAI,
         if oldZoneId is None:
             # Make sure the oldZoneId is by default 0.
             # This is required for Python 3.
-            print("oldZoneId is None")
             oldZoneId = 0
 
         # make sure ghost mode is disabled on zone change (fixes furniture arranger exploit)
